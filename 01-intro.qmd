@@ -1,5 +1,7 @@
 # Introduction {#sec-intro}
 
+---
+
 En développant son jeu de la vie (*game of life*) en 1970, John Horton Connway a présenté un exemple percutant que des règles simples peuvent mener à des résultats inattendus. Le jeu consiste à placer des jetons sur les cases d'un plateau de jeu consistant en une simple grille orthogonale. Le jeu évolue en fonction du nombre de jetons présents parmi les huit cases du voisinage des jetons ou des cases vides.
 
 1.  Les jetons ayant 0 ou 1 voisin sont retirés.
@@ -13,7 +15,7 @@ Une grille vidée correspond à une extinction et une grille remplie correspond 
 
 Le jeu est une application de la technique des *automates cellulaires*. Il se complexifie à mesure que le nombre de jetons grandit. Un humain passera des heures à calculer une seule ronde à 50 jetons, commettra probablement quelques erreurs et prendra quelques cafés. Un processeur pourra gérer des centaines de rondes sur des grilles de centaines de jetons en quelques secondes.
 
-En établissant des règles correspondant aux mécanismes de l'objet étudié, il devient possible de modéliser l'évolution des systèmes vivants, comme l'émergence ou le déclin d'espèces. La @fig-index-cellular-automata présente un cas simple d'automates cellularies généré dans le langage de programmation R.
+En établissant des règles correspondant aux mécanismes de l'objet étudié, il devient possible de modéliser l'évolution des systèmes vivants, comme l'émergence ou le déclin d'espèces. La @fig-index-cellular-automata présente un cas simple d'automates cellulaires généré dans le langage de programmation R.
 
 ```{r index-cellular-automata}
 #| out-width: 50%
@@ -111,7 +113,7 @@ Je favorise une l'approche intuitive aux développements mathématiques. Nous ab
 
 **[Chapitre @sec-git] - Le travail collaboratif, le suivi de version et la science ouverte**. Ce chapitre offre une introduction à l'utilisation des outils de calcul collaboratif, ainsi qu'un aperçu du système de suivi de version *git* et de son utilisation sur [GitHub](https://github.com/).
 
-**[Chapitre @sec-py] - Biostatistiques (section facultative)**. Une très brève introduction au langage de programmation *Python*. Ce contenu est externe au cours et est là pour vous fournir des références si vous souhaitez explorer ce langage dans le futur.
+**[Chapitre @sec-py] - Introduction à Python (section facultative)**. Une très brève introduction au langage de programmation *Python*. Ce contenu est externe au cours et est là pour vous fournir des références si vous souhaitez explorer ce langage dans le futur.
 
 **[Chapitre @sec-bios] - Biostatistiques**. Il est audacieux de ne consacrer qu'un seul chapitre sur ce vaste sujet. Nous irons à l'essentiel... pour vous donner les outils qui permettront d'approfondir le sujet.
 
