@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Serge-Étienne Parent">
-<meta name="dcterms.date" content="2024-01-07">
 
-<title>Analyse et modélisation d’agroécosystèmes sur R</title>
+<title>Analyse et modélisation d’agroécosystèmes sur R - 16&nbsp; Modélisation de mécanismes écologiques</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -32,7 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./01-intro.html" rel="next">
+<link href="./14-donnees-spatiales.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -77,7 +75,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Préface</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./15-modelisation.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Modélisation de mécanismes écologiques</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -107,7 +105,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Préface</span></a>
   </div>
 </li>
@@ -203,7 +201,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./15-modelisation.html" class="sidebar-item-text sidebar-link">
+  <a href="./15-modelisation.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Modélisation de mécanismes écologiques</span></span></a>
   </div>
 </li>
@@ -213,42 +211,21 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#préface" id="toc-préface" class="nav-link active" data-scroll-target="#préface">Préface</a>
-  <ul class="collapse">
-  <li><a href="#table-des-matières" id="toc-table-des-matières" class="nav-link" data-scroll-target="#table-des-matières">Table des matières</a></li>
-  </ul></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Analyse et modélisation d’agroécosystèmes sur R</h1>
+<h1 class="title"><span id="sec-model" class="quarto-section-identifier"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Modélisation de mécanismes écologiques</span></span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Serge-Étienne Parent </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">January 7, 2024</p>
-    </div>
-  </div>
   
     
   </div>
@@ -256,39 +233,9 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-
-<section id="préface" class="level1 unnumbered">
-<h1 class="unnumbered">Préface</h1><p><img src="images/cover.png" title="Analyse et modélisation d'agroécosystèmes sur R" class="quarto-cover-image img-fluid"></p>
-<p>Ce cours a pour objectif de former les étudiants gradués en génie agroenvironnemental, génie civil, génie écologique, agronomie, biologie, foresterie et écologie en analyse et modélisation de systèmes vivants. Les sujets traités sont l’introduction au langage de programmation R, l’analyse statistique descriptive, la visualisation, la modélisation inférentielle, prédictive et déterministe.</p>
-<p>Ce manuel est basé sur le cours Analyse et modélisation d’agroécosystèmes de <a xmlns:cc="http://creativecommons.org/ns#" href="https://essicolo.github.io/ecologie-mathematique-R/" property="cc:attributionName" rel="cc:attributionURL">Serge-Étienne Parent</a> (voir <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1">licence</a> au bas de la page). La version proposée ici tient compte des mises à jour des différents outils présentés dans le manuel original. Elle est construite au format Quarto par <a xmlns:cc="http://creativecommons.org/ns#" href="https://github.com/chavalli" property="cc:attributionName" rel="cc:attributionURL">Charles Frenette-Vallières</a> et <a xmlns:cc="http://creativecommons.org/ns#" href="https://github.com/afsilvad" property="cc:attributionName" rel="cc:attributionURL">Andrés Felipe Silva Dimaté</a></p>
-<section id="table-des-matières" class="level2">
-<h2 class="anchored" data-anchor-id="table-des-matières">Table des matières</h2>
-<ol type="1">
-<li><a href="./01-intro.html">Introduction</a></li>
-<li><a href="./02-R.html">La science des données avec R</a></li>
-<li><a href="./03-tableaux.html">Organisation des données et opérations sur des tableaux</a></li>
-<li><a href="./04-visualisation.html">Visualisation</a></li>
-<li><a href="./05-github.html">Science ouverte et reproductibilité</a></li>
-<li><a href="./06-python.html">Introduction à Python</a></li>
-<li><a href="./07a-biostats.html">Biostatistiques</a></li>
-<li><a href="./07b-bayes.html">Introduction à l’analyse bayésienne en écologie</a></li>
-<li><a href="./08-regression.html">Régression</a></li>
-<li><a href="./09-explorer.html">Explorer R</a></li>
-<li><a href="./10-ordination.html">Association, partitionnement et ordination</a></li>
-<li><a href="./11-imputation.html">Détection de valeurs aberrantes et imputation de données manquantes</a></li>
-<li><a href="./12-series-temporelles.html">Les séries temporelles</a></li>
-<li><a href="./13-autoapprentissage.html">Introduction à l’autoapprentissage</a></li>
-<li><a href="14-donnees-spatiales">Les données géospatiales</a></li>
-<li><a href="./15-modelisation.html">Modélisation de mécanismes écologiques</a></li>
-</ol>
-<p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/">
-<a property="dct:title" rel="cc:attributionURL" href="https://essicolo.github.io/ecologie-mathematique-R/">Analyse et modélisation d’agroécosystèmes</a> de <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://github.com/essicolo/ecologie-mathematique-R/">Serge-Étienne Parent</a> est mis à disposition selon les termes de la <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">licence Creative Commons Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1"></a>
-</p>
-<p>Fondé(e) sur une œuvre à <a href="https://github.com/essicolo/ecologie-mathematique-R/">https://github.com/essicolo/ecologie-mathematique-R/</a>.</p>
+<p>À venir</p>
 
 
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -526,11 +473,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./14-donnees-spatiales.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Les données géospatiales</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./01-intro.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->

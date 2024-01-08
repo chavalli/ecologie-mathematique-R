@@ -1,0 +1,49 @@
+---
+title: "Introduction à R"
+author: "Andrés Silva"
+format:
+  revealjs:
+    theme: solarized
+    highlight: kate
+    transition: slide
+    center: true
+    #css: custom.css
+---
+
+## L'écologie mathématique
+
+![Source: [Chapitre 1 - Notes du cours](https://bit.ly/47pnIeE){.external target="_blank"}](images/01_disciplines.png){width=400}
+
+## L'écologie mathématique
+:::: {.columns .center}
+
+::: {.column width="50%"}
+![Source: [Chapitre 1 - Notes du cours](https://bit.ly/47pnIeE){.external target="_blank"}](images/01_disciplines.png){height="350"}
+:::
+
+::: {.column width="50%"}
+::: {.r-stack}
+![](images/02_numerical_ecology_book.jpg){.fragment height="400"}
+
+![](images/03_numerical_ecology_R_book.jpeg){.fragment width="350"}
+:::
+:::
+
+::::
+
+## Le génie écologique
+
+Le génie écologique, une discipline intimement liée à l’écologie mathématique, est voué à l’analyse, la modélisation, la conception et la construction de systèmes vivants dans le but de résoudre de manière efficace des problèmes liés à l’écologie et à une panoplie de domaines qui lui sont raccordés. 
+
+## Les logiciels libres
+
+> Liberté d’exécuter, copier, distribuer, étudier, modifier et améliorer.
+
+Comme professionnel.le, vous êtes responsable des outils que vous utilisez: vous devez vous assurer de la bonne qualité d’un logiciel, qu’il soit propriétaire ou communautaire.
+
+## Langages de programmation libres
+
+- **R**. Le langage de programmation statistique libre.
+- **Python**. Un langage de programmation libre et générique, largement utilisé en calcul scientifique.
+- **Langages propriétaires**. Matlab, SAS, Mathematica, Maple, etc.
+

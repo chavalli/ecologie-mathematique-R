@@ -36,3 +36,5 @@ vignettes/*.pdf
 
 # Jupyter notebook files
 .ipynb_checkpoints
+
+/.quarto/

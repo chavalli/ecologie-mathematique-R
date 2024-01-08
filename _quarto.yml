@@ -1,0 +1,44 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: "Analyse et modélisation d'agroécosystèmes sur R"
+  author:
+  - name: "Serge-Étienne Parent"
+  # - name: "Charles Frenette-Vallières"
+  # - name: "Andrés Felipe Silva Dimate"
+  date: "2024-01-07"
+  repo-url: https://github.com/afsilvad/ecologie-mathematique-R
+  # repo-actions: [edit]
+  # downloads: [pdf]
+  chapters:
+    - href: index.qmd
+      text: Préface
+    - 01-intro.qmd
+    - 02-R.qmd
+    - 03-tableaux.qmd
+    - 04-visualisation.qmd
+    - 05-github.qmd
+    - 06-python.qmd
+    - 07a-biostats.qmd
+    - 07b-bayes.qmd
+    - 08-regression.qmd
+    - 09-explorer.qmd
+    - 10-ordination.qmd
+    - 11-imputation.qmd
+    - 12-series-temporelles.qmd
+    - 13-autoapprentissage.qmd
+    - 14-donnees-spatiales.qmd
+    - 15-modelisation.qmd
+  cover-image: images/cover.png
+  output-file: "ecologie-mathematique-R"
+
+format:
+  html:
+    theme: flatly
+    css: styles.css
+    toc: true
+  # pdf:
+  #   documentclass: scrbook
+  # epub: default
