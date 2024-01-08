@@ -135,7 +135,7 @@ Je favorise une l'approche intuitive aux développements mathématiques. Nous ab
 
 Si les chapitres 3 à 5 peuvent être considérés comme fondamentaux pour bien maîtriser R, les autres peuvent être feuilletés à la pièce, bien qu'ils forment une suite logique.
 
-Chaque chapitre de ce manuel est rédigé en format *Quarto*, dans un environnement RStudio. Pour exécuter les commandes, les vous pourrez soit copier-coller les commandes dans R (ou RStudio), soit [télécharger les fichiers-sources](https://github.com/afsilvad/ecologie-mathematique-R) et exécuter les blocs de code.
+Chaque chapitre de ce manuel est rédigé en format *Quarto*, dans un environnement RStudio. Pour exécuter les commandes, vous pourrez soit les copier-coller dans R (ou RStudio), soit [télécharger les fichiers-sources](https://github.com/chavalli/ecologie-mathematique-R/tree/h2024) et exécuter les blocs de code.
 
 Le manuel original était rédigé au format *R Markdown* et est toujours disponible à l'[adresse suivante](https://github.com/essicolo/ecologie-mathematique-R).
 
