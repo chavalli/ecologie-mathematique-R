@@ -1,3 +1,5 @@
 # Détection de valeurs aberrantes et imputation de données manquantes {#sec-imput}
 
+---
+
 À venir

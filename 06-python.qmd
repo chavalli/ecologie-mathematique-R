@@ -1,3 +1,5 @@
 # Introduction à Python (facultatif) {#sec-py}
 
+---
+
 À venir

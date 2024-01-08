@@ -1,3 +1,5 @@
 # Les séries temporelles {#sec-temps}
 
+---
+
 À venir

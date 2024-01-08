@@ -1,3 +1,5 @@
 # Visualisation {#sec-visual}
 
+---
+
 À venir

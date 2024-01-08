@@ -1,3 +1,5 @@
 # Modélisation de mécanismes écologiques {#sec-model}
 
+---
+
 À venir

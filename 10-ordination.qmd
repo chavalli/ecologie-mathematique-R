@@ -1,3 +1,5 @@
 # Association, partitionnement et ordination {#sec-ord}
 
+---
+
 À venir

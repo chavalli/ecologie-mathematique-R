@@ -1,3 +1,5 @@
 # Les données géospatiales {#sec-geo}
 
+---
+
 À venir

@@ -1,3 +1,5 @@
 # Introduction à l'analyse bayésienne en écologie {#sec-bayes}
 
+---
+
 À venir

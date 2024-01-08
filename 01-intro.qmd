@@ -103,7 +103,7 @@ D'autres langages, comme [Julia](http://julialang.org), [Scala](http://www.scala
 
 ## Contenu du manuel
 
-Je favorise une l'approche intuitive aux développements mathématiques. Nous aborderons l'analyse et la modélisation inférentielle, prédictive et mécanistique appliquée aux agroécosystèmes.
+Je favorise une approche intuitive aux développements mathématiques. Nous aborderons l'analyse et la modélisation inférentielle, prédictive et mécanistique appliquée aux agroécosystèmes.
 
 **[Chapitre @sec-R] - Introduction au langage de programmation R**. Qu'est-ce que R? Comment l'aborder? Quelles sont les fonctionnalités de base et comment tirer profit de tout l'écosystème de programmation?
 
