@@ -5,7 +5,7 @@ project:
 book:
   title: "Analyse et modélisation d'agroécosystèmes sur R"
   author:
-  - name: "Serge-Étienne Parent"
+  - name: "Essi Parent"
   # - name: "Charles Frenette-Vallières"
   # - name: "Andrés Felipe Silva Dimate"
   date: "2024-01-07"

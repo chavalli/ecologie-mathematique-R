@@ -65,7 +65,7 @@ Par ailleurs, ce manuel est distribué librement sous licence Creative commons, 
 
 <p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/">
 
-<a property="dct:title" rel="cc:attributionURL" href="https://essicolo.github.io/ecologie-mathematique-R/">Analyse et modélisation d'agroécosystèmes</a> de <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://github.com/essicolo/ecologie-mathematique-R/">Serge-Étienne Parent</a> est mis à disposition selon les termes de la <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">licence Creative Commons Attribution - Pas d'Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International<img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"/><img src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"/><img src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1" style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"/><img src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1" style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"/></a>
+<a property="dct:title" rel="cc:attributionURL" href="https://essicolo.github.io/ecologie-mathematique-R/">Analyse et modélisation d'agroécosystèmes</a> de <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://github.com/essicolo/ecologie-mathematique-R/">Essi Parent</a> est mis à disposition selon les termes de la <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">licence Creative Commons Attribution - Pas d'Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International<img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"/><img src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"/><img src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1" style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"/><img src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1" style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"/></a>
 
 </p>
 
@@ -195,7 +195,7 @@ Les ouvrages de référence reconnus vous offrent des bases solides sur lesquell
 
 ## À propos de l'auteur
 
-Je m'appelle Serge-Étienne Parent. Je suis ingénieur écologue et professeur adjoint au Département des sols et de génie agroalimentaire de l'Université Laval, Québec, Canada. Je crois que la science est le meilleur moyen d'appréhender le monde pour prendre des décisions avisées.
+Je m'appelle Essi Parent. Je suis ingénieur écologue et professeur adjoint au Département des sols et de génie agroalimentaire de l'Université Laval, Québec, Canada. Je crois que la science est le meilleur moyen d'appréhender le monde pour prendre des décisions avisées.
 
 ## Un cours complémentaire à d'autres cours
 
