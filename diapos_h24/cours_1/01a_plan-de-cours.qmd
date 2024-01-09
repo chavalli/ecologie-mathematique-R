@@ -1,0 +1,110 @@
+---
+title: "Semaine 1 - Plan de cours"
+author: 
+  - name: "Charles Frenette-Vallières"
+format: 
+  revealjs:
+    theme: simple
+---
+
+## Présentation (1/2)
+
+Charles Frenette-Vallières, candidat au doctorat en sols et environnement et chargé de cours.
+
+-   Baccalauréat en études de l'environnement
+-   D.E.S.S. en géomatique appliquée à l'environnement
+-   M. Sc. en sols et environnement
+-   Spécialités : Eddy Covariance, séries temporelles et géomatique en environnement.
+
+## Présentation (2/2)
+
+Andrés Felipe Silva Dimate, candidat au doctorat en sols et environnement et chargé de cours.
+
+-   À compléter
+
+## Objectif général
+
+Au terme du cours, les étudiant.e.s gradué.e.s en génie agroenvironnemental, génie civil, génie écologique, agronomie, biologie, foresterie et écologie seront autonomes dans l'utilisation de R, l'analyse statistique descriptive, la visualisation, ainsi que la modélisation inférentielle, prédictive et déterministe dans le domaine de l'agroenvironnement.
+
+## Objectifs spécifiques (1/2)
+
+Vous serez en mesure
+
+-   de programmer en langage R
+-   d'importer, de manipuler (sélection des colonnes, filtres, sommaires statistiques) et d'exporter des tableaux
+-   de générer des graphiques d'utilisation commune
+-   d'appréhender des données écologiques et agronomiques à l'aide de tests statistiques fréquentiels
+-   d'explorer par vous-même les possibilités offertes par la communauté de développement de modules R
+
+## Objectifs spécifiques (2/2)
+
+-   d'explorer les données à l'aide des outils de l'écologie numérique (association, partitionnement et ordination)
+-   d'imputer des données manquantes dans un tableau et de détecter des valeurs aberrantes
+-   d'effectuer une analyse de série temporelle
+-   de vous assurer que vos calculs soient auditables et reproductibles dans une perspective de science ouverte
+-   de créer un modèle d'autoapprentissage
+-   d'interpoler des données spatiales
+-   de modéliser des équations différentielles ordinaires
+
+## Démarche d'apprentissage
+
+Les vidéos seront rendus disponibles de façon hebdomadaire tous les vendredis, de même que les notes de cours. Vous êtes libres d'utiliser les manuels de référence fournis pour avancer à votre rythme
+
+-   Introduction: Que savez-vous?
+-   Activités d'apprentissage \<--
+-   Exercices
+-   Autoévaluation: Qu'avez-vous appris?
+
+## Encadrement
+
+-   Forum du site du cours
+-   Canal Général du groupe de discussion (Teams)
+-   Messagerie:
+    -   Nous joindre directement sur Teams
+-   Courriel: 
+    -   charles.frenette-vallieres.1@ulaval.ca
+    -   andres-felipe.silva-dimate.1@ulaval.ca
+
+## Activités (1/2)
+
+-   Plan de cours et introduction à R
+-   Organisation des données et opérations sur des tableaux
+-   Visualisation
+-   Science ouverte et suivi de version
+-   Biostatistiques
+-   Explorer R
+
+## Activités (2/2)
+
+-   Association, partitionnement et ordination
+-   Détection de valeurs aberrantes et imputation
+-   Les séries temporelles
+-   Autoapprentissage
+-   Les données spatiales
+-   Modélisation déterministe
+
+## Évaluation
+
+![](images/01_eval.png)
+
+## Imprévus?
+
+-   **Retard**: -10% par jour
+-   **Absence** à l'examen final: me prévenir!
+
+## Français
+
+Maximum de -10% (-1 point par faute)
+
+## Révision de note
+
+C'est *votre* droit. Me contacter dans les 10 jours ouvrables suivant la publication des notes ([règlement des études](https://www.ulaval.ca/fileadmin/Secretaire_general/Reglements/Reglement_des_etudes.pdf)).
+
+## Cote
+
+![](images/01_bareme.png)
+
+## Matériel obligatoire
+
+-   Accéder à R (sur votre ordinateur ou sur un serveur)
+-   Notes de cours: [disponibles en ligne](https://chavalli.github.io/ecologie-mathematique-R/)
