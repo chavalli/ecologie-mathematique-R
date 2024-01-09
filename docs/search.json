@@ -156,9 +156,9 @@
   {
     "objectID": "06-python.html",
     "href": "06-python.html",
-    "title": "6  Introduction à Python (facultatif)",
+    "title": "6  Introduction à Python",
     "section": "",
-    "text": "À venir"
+    "text": "Il peut arriver que, pour une raison ou une autre, vous puissiez bénéficier de travailler avec Python. Par exemple, si vous travaillez en géomatique avec QGIS ou même ArcGIS, Python peut être utilisé pour faire vos manipulations de données et vos analyses spatiales. Le fonctionnement de Python ressemble assez à R et vous remarquerez qu’une fois la première barrière de programmation franchie, les langages subséquents sont beaucoup plus faciles à assimiler.\nL’auteur de ce manuel, Essi Parent, a publié l’automne dernier une introduction au calcul numérique avec Python. Pour le consulter, vous pouvez soit créer une fork sur votre github et cloner le répertoire, ou alors consulter les fichiers directement dans le navigateur. Il est possible que la présente section soit bonifiée au cours de la session, mais à première vue le répertoire de Essi semble concis et bien fait. Sinon, comme pour R, il existe plusieurs bons manuels, en anglais toutefois. Rappelez-vous que cette section est facultative; vous pourrez y revenir dans le futur lorsque le besoin se présentera!"
   },
   {
     "objectID": "07a-biostats.html",
