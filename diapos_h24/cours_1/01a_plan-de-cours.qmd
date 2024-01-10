@@ -5,6 +5,8 @@ author:
 format: 
   revealjs:
     theme: simple
+    logo: images/ul.png
+    scrollable: true
 ---
 
 ## Présentation (1/2)
@@ -59,8 +61,8 @@ Les vidéos seront rendus disponibles de façon hebdomadaire tous les vendredis,
 
 -   Forum du site du cours
 -   Canal Général du groupe de discussion (Teams)
--   Messagerie:
-    -   Nous joindre directement sur Teams
+-   Messagerie: Nous joindre directement sur Teams
+-   En personne: Pavillon Envirotron au local 1142, prendre rendez-vous.
 -   Courriel: 
     -   charles.frenette-vallieres.1@ulaval.ca
     -   andres-felipe.silva-dimate.1@ulaval.ca
@@ -86,6 +88,10 @@ Les vidéos seront rendus disponibles de façon hebdomadaire tous les vendredis,
 ## Évaluation
 
 ![](images/01_eval.png)
+
+## Questionnaire expérience initiale à compléter
+
+![](images/01_experience.png)
 
 ## Imprévus?
 
