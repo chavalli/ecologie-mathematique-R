@@ -17,7 +17,7 @@ Le jeu est une application de la technique des *automates cellulaires*. Il se co
 
 En établissant des règles correspondant aux mécanismes de l'objet étudié, il devient possible de modéliser l'évolution des systèmes vivants, comme l'émergence ou le déclin d'espèces. La @fig-index-cellular-automata présente un cas simple d'automates cellulaires généré dans le langage de programmation R.
 
-```{r index-cellular-automata}
+```{r}
 #| out-width: 50%
 #| fig-align: center
 #| label: fig-index-cellular-automata

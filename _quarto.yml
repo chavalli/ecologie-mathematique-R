@@ -39,6 +39,7 @@ format:
     theme: flatly
     css: styles.css
     toc: true
+    # embed-resources: true
   # pdf:
   #   documentclass: scrbook
   # epub: default
