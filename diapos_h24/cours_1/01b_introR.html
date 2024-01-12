@@ -29,6 +29,71 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="01b_introR_files/libs/revealjs/dist/theme/quarto.css">
   <link href="01b_introR_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -336,23 +401,28 @@ Andrés Silva
 </div>
 
 </section>
+<section id="présentation" class="slide level2 center">
+<h2>Présentation</h2>
+<p><strong>Andrés Felipe Silva Dimaté</strong>, candidat au doctorat en sols et environnement et chargé de cours.</p>
+<ul>
+<li>Baccalauréat en Génie Agricole</li>
+<li>M. Sc. en sols et environnement</li>
+<li>Spécialités : Modélisation, programmation en R et python, science de données.</li>
+</ul>
+</section>
 <section id="lécologie-mathématique" class="slide level2 center">
-<h2>L’écologie mathématique</h2>
-
-<img data-src="images/01_disciplines.png" width="400" class="r-stretch quarto-figure-center"><p class="caption">Source: <a href="https://bit.ly/47pnIeE" class="external" target="_blank">Chapitre 1 - Notes du cours</a></p></section>
-<section id="lécologie-mathématique-1" class="slide level2 center">
 <h2>L’écologie mathématique</h2>
 <div class="columns center">
 <div class="column" style="width:50%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="images/01_disciplines.png" height="350"></p>
+<p><img data-src="images/01_disciplines.png" height="400"></p>
 <figcaption>Source: <a href="https://bit.ly/47pnIeE" class="external" target="_blank">Chapitre 1 - Notes du cours</a></figcaption>
 </figure>
 </div>
 </div><div class="column" style="width:50%;">
 <div class="r-stack">
-<p><img data-src="images/02_numerical_ecology_book.jpg" class="fragment" height="400"></p>
+<p><img data-src="images/02_numerical_ecology_book.jpg" class="fragment" height="450"></p>
 <p><img data-src="images/03_numerical_ecology_R_book.jpeg" class="fragment" width="350"></p>
 </div>
 </div>
@@ -375,6 +445,495 @@ Andrés Silva
 <li><strong>R</strong>. Le langage de programmation statistique libre.</li>
 <li><strong>Python</strong>. Un langage de programmation libre et générique, largement utilisé en calcul scientifique.</li>
 <li><strong>Langages propriétaires</strong>. Matlab, SAS, Mathematica, Maple, etc.</li>
+</ul>
+</section>
+<section id="la-science-des-données-avec-r" class="slide level2 center">
+<h2>La science des données avec R</h2>
+
+<img data-src="images/02_Rlogo.png" class="r-stretch"></section>
+<section id="objectifs-spécifiques" class="slide level2 center">
+<h2>Objectifs spécifiques</h2>
+<p>À la fin de ce chapitre, vous</p>
+<ul>
+<li>saurez contextualiser la science des données par rapport aux statistiques,</li>
+<li>serez en mesure de vous lancer dans un environnement de programmation R,</li>
+<li>serez en mesure d’effectuer des opérations de base en R,</li>
+<li>saurez différencier les grands types d’objets de R et</li>
+<li>saurez installer et charger des modules complémentaire.</li>
+</ul>
+</section>
+<section id="quest-ce-que-r" class="slide level2 center">
+<h2>Qu’est-ce que R ?</h2>
+<ul>
+<li><p>R est un langage de programmation de haut niveau qui est très populaire dans la manipulation, l’analyse et la visualisation des données.</p></li>
+<li><p>Ross Ihaka et Robert Gentleman, créateurs de ce langage, se sont inspirés du langage pour l’analyse de données « S », un langage conçu par Rick Becker, John Chambers and Allan Wilks dans les laboratoires Bell à New Jersey en 1976.</p></li>
+</ul>
+</section>
+<section id="sciences-des-données-vs-statistiques" class="slide level2 center">
+<h2>Sciences des données vs Statistiques</h2>
+<ul>
+<li><strong>Statistique</strong>: l’étude des méthodes pour décrire et mesurer des aspects de la nature à partir d’échantillon (Whitlock et Schluter, 2015).</li>
+<li><strong>Sciences des données</strong>: une discipline <em>excitante</em> permettant de transformer des données brutes en compréhension, perspectives et connaissances (Grolemund et Wickham, 2018).</li>
+</ul>
+</section>
+<section id="flux-de-travail-en-sciences-des-données" class="slide level2 center">
+<h2>Flux de travail en sciences des données</h2>
+
+<img data-src="images/02_science-des-donnees-flow_.png" class="r-stretch"><p><small><a href="https://r4ds.had.co.nz/introduction.html">Adapté de Grolemund et Wickham (2018)</a></small></p>
+</section>
+<section id="installer-r" class="slide level2 center">
+<h2>Installer R</h2>
+<h4 id="installation-classique">Installation classique</h4>
+<ul>
+<li>Windows et Mac <a href="https://cloud.r-project.org/">–&gt;</a></li>
+<li><code>r-base</code> (Ubuntu, Debian), <code>R-base</code> (openSuse) ou <code>R-core</code> (Fedora)</li>
+</ul>
+<h4 id="installation-anaconda-jupyter">Installation Anaconda (Jupyter)</h4>
+<ul>
+<li>Téléchargez <a href="https://www.anaconda.com/">Anaconda</a>, ouvrez Anaconda Navigator, installez RStudio ou bien créez un nouvel environnement R.</li>
+<li>Vous devriez être en mesure d’utiliser R dans Jupyter lab ou Jupyter notebook</li>
+</ul>
+</section>
+<section id="premier-aperçu-de-r" class="slide level2 center">
+<h2>Premier aperçu de R</h2>
+
+<img data-src="images/02_terminal-prompt.png" class="r-stretch"></section>
+<section id="rstudio" class="slide level2 center">
+<h2>RStudio</h2>
+
+<img data-src="images/02_rstudio.png" class="r-stretch"></section>
+<section id="rstudio-1" class="slide level2 center">
+<h2>RStudio</h2>
+<ul>
+<li>R script ou R notebook?</li>
+<li>L’interface par projets</li>
+<li>Exécuter la ligne, le <em>chunk</em> ou le code en surbrillance: <code>Ctrl + Enter</code></li>
+</ul>
+</section>
+<section id="premiers-pas-en-r" class="slide level2 center">
+<h2>Premiers pas en R</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4</code></pre>
+</div>
+</div>
+<ul>
+<li>opérations <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code> et <code>^</code> (ou <code>**</code>) respectant la précédence mathématique</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span> <span class="co"># ceci est un commentaire</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4</code></pre>
+</div>
+</div>
+</section>
+<section id="assigner-des-objets-à-des-variables" class="slide level2 center">
+<h2>Assigner des objets à des variables</h2>
+<p>La flèche <code>&lt;-</code> constitue le standard en R, mais le <code>=</code> est parfois utilisé.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>a <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>b <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a>a <span class="sc">+</span> b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5</code></pre>
+</div>
+</div>
+</section>
+<section id="nom-des-objets-12" class="slide level2 center">
+<h2>Nom des objets (1/2)</h2>
+<p>R tient compte de la case.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>ours <span class="ot">&lt;-</span> <span class="dv">4</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="co"># Ours</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Note</strong>. Lisez-les attentivement les messages d’erreur: ils sont là pour vous aider.</p>
+</section>
+<section id="nom-des-objects-22" class="slide level2 center">
+<h2>Nom des objects (2/2)</h2>
+<p>Éviter les majuscules, les points, les noms trop longs et d’utiliser des noms de fonction.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Ok</th>
+<th>Pas super</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ours_brun</td>
+<td>Ours.Brun</td>
+</tr>
+<tr class="even">
+<td>mod_lin1</td>
+<td>modele_lineaire_pH_CNS_ssSP</td>
+</tr>
+<tr class="odd">
+<td>site_d</td>
+<td>sd (fonction pour calculer l’écart-type)</td>
+</tr>
+</tbody>
+</table>
+<p>La <a href="https://style.tidyverse.org/index.html" class="external" target="_blank">guide de style</a> de Hadley Wickham montre des bonnes pratiques pour l’écriture de code en R.</p>
+</section>
+<section id="types-de-données-13" class="slide level2 center">
+<h2>Types de données (1/3)</h2>
+<h3 id="nombres-entiers">Nombres entiers</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>rendement_arbre <span class="ot">&lt;-</span> <span class="dv">50</span> <span class="co"># pomme/arbre</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>nombre_arbre <span class="ot">&lt;-</span> <span class="dv">300</span> <span class="co"># arbre</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a>nombre_pomme <span class="ot">&lt;-</span> rendement_arbre <span class="sc">*</span> nombre_arbre</span>
+<span id="cb8-4"><a href="#cb8-4"></a>nombre_pomme</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 15000</code></pre>
+</div>
+</div>
+</section>
+<section id="types-de-données-23" class="slide level2 center">
+<h2>Types de données (2/3)</h2>
+<h3 id="chaîne-de-caractère">Chaîne de caractère</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>a <span class="ot">&lt;-</span> <span class="st">"L'ours"</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a>b <span class="ot">&lt;-</span> <span class="st">"polaire"</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a><span class="fu">paste</span>(a, b) <span class="co"># paste est une fonction pour laquelle on définit deux arguments, a et b</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "L'ours polaire"</code></pre>
+</div>
+</div>
+</section>
+<section id="types-de-données-33" class="slide level2 center">
+<h2>Types de données (3/3)</h2>
+<h3 id="booléenne">Booléenne</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>a <span class="ot">&lt;-</span> <span class="dv">21</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a>a <span class="sc">&lt;</span> <span class="dv">10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+</div>
+</section>
+<section id="exercice" class="slide level2 center">
+<h2>Exercice</h2>
+<p>Essayer d’autres opérateurs d’égalité: <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code>, <code>==</code> et <code>!=</code></p>
+<blockquote>
+<p><strong>Truc</strong>. Pour inverser une variable booléenne, utiliser <code>!</code></p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>b <span class="ot">&lt;-</span> a <span class="sc">==</span> <span class="dv">21</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a><span class="sc">!</span>b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+</div>
+</section>
+<section id="les-collections-de-données" class="slide level2 center">
+<h2>Les collections de données</h2>
+<ul>
+<li>Vecteur</li>
+<li>Matrice</li>
+<li>Liste</li>
+<li>Tableau</li>
+</ul>
+</section>
+<section id="vecteur" class="slide level2 center">
+<h2>Vecteur</h2>
+<ul>
+<li>Les vecteurs sont une série de valeurs <em>de même type</em>.</li>
+<li>Les valeurs sont assemblées par <em>concaténation</em> avec la fonction <code>c()</code>.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>espece <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Petromyzon marinus"</span>, <span class="st">"Lepisosteus osseus"</span>, <span class="st">"Amia calva"</span>, <span class="st">"Hiodon tergisus"</span>)</span>
+<span id="cb16-2"><a href="#cb16-2"></a>espece</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Petromyzon marinus" "Lepisosteus osseus" "Amia calva"        
+[4] "Hiodon tergisus"   </code></pre>
+</div>
+</div>
+</section>
+<section id="accéder-à-un-élément-du-vecteur" class="slide level2 center">
+<h2>Accéder à un élément du vecteur</h2>
+<p>Avec les crochets! (en R, on commence les indices à compter à 1)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>espece[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Petromyzon marinus"</code></pre>
+</div>
+</div>
+</section>
+<section id="créer-un-vecteur-de-nombres" class="slide level2 center">
+<h2>Créer un vecteur de nombres</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 2 3</code></pre>
+</div>
+</div>
+<p>… c’est aussi créer un vecteur d’indices</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>espece[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Petromyzon marinus" "Lepisosteus osseus" "Amia calva"        </code></pre>
+</div>
+</div>
+</section>
+<section id="exercice-1" class="slide level2 center">
+<h2>Exercice</h2>
+<p>Pouvez-vous créer un vecteur d’indice avec la fonction <code>c()</code>?</p>
+</section>
+<section id="solution" class="slide level2 center">
+<h2>Solution</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>espece[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Petromyzon marinus" "Amia calva"        </code></pre>
+</div>
+</div>
+<p>Qu’est-ce que la commande <code>espece[-c(1, 3)]</code> donnerait comme réponse, selon vous?</p>
+</section>
+<section id="matrice" class="slide level2 center">
+<h2>Matrice</h2>
+<ul>
+<li>un assemblage rectangle (ou en plusieurs dimensions) de valeurs <em>de même type</em></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>mat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">11</span>, <span class="dv">12</span>), <span class="at">ncol=</span><span class="dv">3</span>) <span class="co"># ou nrow</span></span>
+<span id="cb26-2"><a href="#cb26-2"></a><span class="fu">colnames</span>(mat) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'A'</span>, <span class="st">'B'</span>, <span class="st">'C'</span>)</span>
+<span id="cb26-3"><a href="#cb26-3"></a><span class="fu">rownames</span>(mat) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'site_1'</span>, <span class="st">'site_2'</span>, <span class="st">'site_3'</span>, <span class="st">'site_4'</span>)</span>
+<span id="cb26-4"><a href="#cb26-4"></a>mat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       A B  C
+site_1 1 5  9
+site_2 2 6 10
+site_3 3 7 11
+site_4 4 8 12</code></pre>
+</div>
+</div>
+</section>
+<section id="accéder-aux-éléments-dune-matrice" class="slide level2 center">
+<h2>Accéder aux éléments d’une matrice</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a>mat[<span class="dv">2</span>, <span class="dv">3</span>] <span class="co"># une seule cellule</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a>mat[, <span class="dv">3</span>] <span class="co"># la colonne 3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>site_1 site_2 site_3 site_4 
+     9     10     11     12 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a>mat[<span class="dv">2</span>, ] <span class="co"># la figne 2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> A  B  C 
+ 2  6 10 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a>mat[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>), <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       B  C
+site_1 5  9
+site_3 7 11</code></pre>
+</div>
+</div>
+</section>
+<section id="listes" class="slide level2 center">
+<h2>Listes</h2>
+<ul>
+<li>une collection hétérogène</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a>ma_liste <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">especes =</span> <span class="fu">c</span>(<span class="st">'Petromyzon marinus'</span>, <span class="st">'Lepisosteus osseus'</span>,</span>
+<span id="cb36-2"><a href="#cb36-2"></a>                             <span class="st">'Amia calva'</span>, <span class="st">'Hiodon tergisus'</span>),</span>
+<span id="cb36-3"><a href="#cb36-3"></a>                 <span class="at">site =</span> <span class="st">'A101'</span>,</span>
+<span id="cb36-4"><a href="#cb36-4"></a>                <span class="at">stations_meteos =</span> <span class="fu">c</span>(<span class="st">'746583'</span>, <span class="st">'783786'</span>, <span class="st">'856363'</span>))</span>
+<span id="cb36-5"><a href="#cb36-5"></a>ma_liste</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$especes
+[1] "Petromyzon marinus" "Lepisosteus osseus" "Amia calva"        
+[4] "Hiodon tergisus"   
+
+$site
+[1] "A101"
+
+$stations_meteos
+[1] "746583" "783786" "856363"</code></pre>
+</div>
+</div>
+</section>
+<section id="accéder-aux-éléments-dune-matrice-1" class="slide level2 center">
+<h2>Accéder aux éléments d’une matrice</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a>ma_liste[[<span class="dv">2</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "A101"</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a>ma_liste<span class="sc">$</span>especes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Petromyzon marinus" "Lepisosteus osseus" "Amia calva"        
+[4] "Hiodon tergisus"   </code></pre>
+</div>
+</div>
+</section>
+<section id="exercice-2" class="slide level2 center">
+<h2>Exercice</h2>
+<p>Accéder au deuxième élément du vecteur d’espèces dans la liste ma_liste.</p>
+</section>
+<section id="tableau" class="slide level2 center">
+<h2>Tableau</h2>
+<ul>
+<li>liste composée de vecteurs de même longueur</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a>tableau <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">espece =</span> <span class="fu">c</span>(<span class="st">'Petromyzon marinus'</span>, <span class="st">'Lepisosteus osseus'</span>,</span>
+<span id="cb42-2"><a href="#cb42-2"></a>                                <span class="st">'Amia calva'</span>, <span class="st">'Hiodon tergisus'</span>),</span>
+<span id="cb42-3"><a href="#cb42-3"></a>                      <span class="at">poids =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">13</span>, <span class="dv">21</span>, <span class="dv">4</span>),</span>
+<span id="cb42-4"><a href="#cb42-4"></a>                      <span class="at">longueur =</span> <span class="fu">c</span>(<span class="dv">35</span>, <span class="dv">44</span>, <span class="dv">50</span>, <span class="dv">8</span>))</span>
+<span id="cb42-5"><a href="#cb42-5"></a>tableau</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>              espece poids longueur
+1 Petromyzon marinus    10       35
+2 Lepisosteus osseus    13       44
+3         Amia calva    21       50
+4    Hiodon tergisus     4        8</code></pre>
+</div>
+</div>
+</section>
+<section id="exercice-3" class="slide level2 center">
+<h2>Exercice</h2>
+<p>Accéder aux éléments 3 et 4 des poids.</p>
+</section>
+<section id="solution-1" class="slide level2 center">
+<h2>Solution</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a>tableau<span class="sc">$</span>poids[<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 21  4</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1"></a>tableau[<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>), <span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 21  4</code></pre>
+</div>
+</div>
+</section>
+<section id="les-fonctions-13" class="slide level2 center">
+<h2>Les fonctions (1/3)</h2>
+<p>Une fonction appelle à une transformation.</p>
+
+<img data-src="images/02_fonctions_io_.png" class="r-stretch"><div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1"></a><span class="fu">mean</span>(<span class="at">x =</span> tableau<span class="sc">$</span>poids)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 12</code></pre>
+</div>
+</div>
+</section>
+<section id="les-fonctions-23" class="slide level2 center">
+<h2>Les fonctions (2/3)</h2>
+<p>Pour consulter la documentation, <code>?mean</code> ou mettre <code>mean</code> en surbrillance, puis appuyer sur F1.</p>
+
+<img data-src="images/02_help.png" class="r-stretch"></section>
+<section id="les-fonctions-33" class="slide level2 center">
+<h2>Les fonctions (3/3)</h2>
+<p>Définir ses propres fonctions, disons <span class="math inline">\(z = x^3 - 2y + a\)</span>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1"></a>calculer_z <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y, <span class="at">a =</span> <span class="dv">10</span>) {</span>
+<span id="cb50-2"><a href="#cb50-2"></a>  z <span class="ot">&lt;-</span> x<span class="sc">^</span><span class="dv">3</span> <span class="sc">-</span> <span class="dv">2</span> <span class="sc">*</span> y <span class="sc">+</span> a</span>
+<span id="cb50-3"><a href="#cb50-3"></a>  <span class="fu">return</span>(z)</span>
+<span id="cb50-4"><a href="#cb50-4"></a>}</span>
+<span id="cb50-5"><a href="#cb50-5"></a><span class="fu">calculer_z</span>(<span class="at">x =</span> <span class="dv">2</span>, <span class="at">y =</span> <span class="dv">3</span>, <span class="at">a =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3</code></pre>
+</div>
+</div>
+</section>
+<section id="exercice-4" class="slide level2 center">
+<h2>Exercice</h2>
+<p>Trouvez par vous-même la commande qui vous permettra mesurer la longueur d’un vecteur.</p>
+</section>
+<section id="les-boucles-12" class="slide level2 center">
+<h2>Les boucles (1/2)</h2>
+<p>Effectuer une opération similaire plusieurs fois.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1"></a>params <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">6</span>),</span>
+<span id="cb52-2"><a href="#cb52-2"></a>                     <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">1</span>, <span class="dv">0</span>),</span>
+<span id="cb52-3"><a href="#cb52-3"></a>                     <span class="at">a =</span> <span class="fu">c</span>(<span class="dv">6</span>, <span class="dv">1</span>, <span class="dv">8</span>, <span class="dv">2</span>, <span class="dv">5</span>))</span>
+<span id="cb52-4"><a href="#cb52-4"></a>calcul_res <span class="ot">&lt;-</span> <span class="fu">c</span>() <span class="co"># option numériquement plus rapide: vector(length = nrow(params))</span></span>
+<span id="cb52-5"><a href="#cb52-5"></a></span>
+<span id="cb52-6"><a href="#cb52-6"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(params)) {</span>
+<span id="cb52-7"><a href="#cb52-7"></a>  <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">'boucle:'</span>, i))</span>
+<span id="cb52-8"><a href="#cb52-8"></a>  calcul_res[i] <span class="ot">&lt;-</span> <span class="fu">calculer_z</span>(<span class="at">x =</span> params[i, <span class="dv">1</span>],</span>
+<span id="cb52-9"><a href="#cb52-9"></a>                              <span class="at">y =</span> params[i, <span class="dv">2</span>],</span>
+<span id="cb52-10"><a href="#cb52-10"></a>                              <span class="at">a =</span> params[i, <span class="dv">3</span>])</span>
+<span id="cb52-11"><a href="#cb52-11"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "boucle: 1"
+[1] "boucle: 2"
+[1] "boucle: 3"
+[1] "boucle: 4"
+[1] "boucle: 5"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1"></a>calcul_res</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]   8  57  -7 125 221</code></pre>
+</div>
+</div>
+</section>
+<section id="les-boucles-22" class="slide level2 center">
+<h2>Les boucles (2/2)</h2>
+<p>Les boucles sont très utiles, mais de moins en moins nécessaires en R grâce aux fonctions que nous verrons au chapitre 3.</p>
+</section>
+<section id="les-conditions" class="slide level2 center">
+<h2>Les conditions</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1"></a>classification <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">lim1=</span><span class="dv">10</span>, <span class="at">lim2=</span><span class="dv">20</span>)  {</span>
+<span id="cb56-2"><a href="#cb56-2"></a>    <span class="cf">if</span> (x <span class="sc">&lt;</span> lim1) {</span>
+<span id="cb56-3"><a href="#cb56-3"></a>        categorie <span class="ot">&lt;-</span> <span class="st">"faible"</span></span>
+<span id="cb56-4"><a href="#cb56-4"></a>    } <span class="cf">else</span> <span class="cf">if</span> (x <span class="sc">&lt;</span> lim2) {</span>
+<span id="cb56-5"><a href="#cb56-5"></a>        categorie <span class="ot">&lt;-</span> <span class="st">"moyen"</span></span>
+<span id="cb56-6"><a href="#cb56-6"></a>    } <span class="cf">else</span> {</span>
+<span id="cb56-7"><a href="#cb56-7"></a>        categorie <span class="ot">&lt;-</span> <span class="st">"élevé"</span></span>
+<span id="cb56-8"><a href="#cb56-8"></a>    }</span>
+<span id="cb56-9"><a href="#cb56-9"></a>    <span class="fu">return</span>(categorie)</span>
+<span id="cb56-10"><a href="#cb56-10"></a>}</span>
+<span id="cb56-11"><a href="#cb56-11"></a><span class="fu">classification</span>(<span class="sc">-</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "faible"</code></pre>
+</div>
+</div>
+</section>
+<section id="exercice-5" class="slide level2 center">
+<h2>Exercice</h2>
+<p>Explorer les commandes <code>ifelse</code> et <code>cut</code> et réfléchissez à la manière qu’elles pourraient être utilisées pour effectuer une discrétisation plus efficacement qu’avec les <code>if</code> et les <code>else</code>.</p>
+</section>
+<section id="les-modules-12" class="slide level2 center">
+<h2>Les modules (1/2)</h2>
+
+<img data-src="images/02_modules.png" class="r-stretch"></section>
+<section id="les-modules-22" class="slide level2 center">
+<h2>Les modules (2/2)</h2>
+<p><strong>Note</strong>. Pour accéder à une fonction sans charger le module, ou bien pour s’assurer que l’on utilise une fonction issue d’un module et non une autre d’un même nom (oui, ça arrive!), on peut appeler la fonction sous la forme <code>module::fonction</code>, par exemple <code>vegan::rda</code>.</p>
+</section>
+<section id="retour-sur-les-objectifs-spécifiques" class="slide level2 center">
+<h2>Retour sur les objectifs spécifiques</h2>
+<p>À la fin de ce chapitre, vous</p>
+<ul>
+<li>saurez contextualiser la science des données par rapport aux statistiques,</li>
+<li>serez en mesure de vous lancer dans un environnement de programmation R,</li>
+<li>serez en mesure d’effectuer des opérations de base en R,</li>
+<li>saurez différencier les grands types d’objets de R et</li>
+<li>saurez installer et charger des modules complémentaire.</li>
+</ul>
+</section>
+<section id="exercices" class="slide level2 center">
+<h2>Exercices</h2>
+<p>À partir d’ici jusqu’à la fin du cours, nous utiliserons RStudio. Ouvrez-le et familiarisez-vous avec l’interface! Quelques petits trucs:</p>
+<ul>
+<li>pour lancer une ligne, placez votre curseur sur la ligne, puis appuyez sur Ctrl+Enter</li>
+<li>pour lancer une partie de code précise, mettez le en surbrillance, puis Ctrl+Enter</li>
+<li>utilisez toujours le gestionnaire de projets, en haut à droite!</li>
+<li>installez le module tidyverse</li>
+<li>lancez <code>data(iris)</code> pour obtenir un tableau d’exercice, puis cliquez sur l’objet dans la fenêtre environnement</li>
 </ul>
 <div class="footer footer-default">
 
@@ -591,6 +1150,44 @@ Andrés Silva
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {
