@@ -7,6 +7,7 @@ format:
     theme: simple
     logo: images/ul.png
     scrollable: true
+    center: true
 ---
 
 ## Présentation (1/2)
@@ -16,7 +17,7 @@ Charles Frenette-Vallières, candidat au doctorat en sols et environnement et ch
 -   Baccalauréat en études de l'environnement
 -   D.E.S.S. en géomatique appliquée à l'environnement
 -   M. Sc. en sols et environnement
--   Spécialités : Eddy Covariance, séries temporelles et géomatique en environnement.
+-   Spécialités : *Eddy Covariance*, séries temporelles et géomatique en environnement.
 
 ## Présentation (2/2)
 
@@ -52,7 +53,7 @@ Vous serez en mesure
 
 ## Démarche d'apprentissage
 
-Les vidéos seront rendus disponibles de façon hebdomadaire tous les vendredis, de même que les notes de cours. Vous êtes libres d'utiliser les manuels de référence fournis pour avancer à votre rythme
+Les capsules vidéos seront rendues disponibles de façon hebdomadaire chaque lundi matin, de même que les notes de cours. Vous êtes libres d'utiliser les manuels de référence fournis pour avancer à votre rythme
 
 -   Introduction: Que savez-vous?
 -   Activités d'apprentissage \<--
@@ -64,7 +65,9 @@ Les vidéos seront rendus disponibles de façon hebdomadaire tous les vendredis,
 -   Forum du site du cours
 -   Canal Général du groupe de discussion (Teams)
 -   Messagerie: Nous joindre directement sur Teams
--   En personne: Pavillon Envirotron au local 1142, prendre rendez-vous.
+-   En personne: Pavillon Envirotron au local 1142
+    -   Charles : Mercredi matin
+    -   Andrés : Vendredi matin
 -   Courriel: 
     -   charles.frenette-vallieres.1@ulaval.ca
     -   andres-felipe.silva-dimate.1@ulaval.ca
@@ -98,7 +101,7 @@ Les vidéos seront rendus disponibles de façon hebdomadaire tous les vendredis,
 ## Imprévus?
 
 -   **Retard**: -10% par jour
--   **Absence** à l'examen final: nous prévenir!
+-   Nous prévenir
 
 ## Français
 

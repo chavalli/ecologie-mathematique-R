@@ -8,7 +8,8 @@ book:
   - name: "Essi Parent"
   # - name: "Charles Frenette-Vallières"
   # - name: "Andrés Felipe Silva Dimate"
-  date: "today"
+  date: today
+  date-format: iso
   repo-url: https://github.com/chavalli/ecologie-mathematique-R/tree/h2024
   # repo-actions: [edit]
   # downloads: [pdf]
