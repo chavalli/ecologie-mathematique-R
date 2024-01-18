@@ -11,6 +11,7 @@
   <meta name="generator" content="quarto-1.3.450">
 
   <meta name="author" content="Charles Frenette-Vallières">
+  <meta name="dcterms.date" content="2024-01-22">
   <title>Organisation des données et opérations sur des tableaux</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -29,6 +30,71 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="02_tableaux_files/libs/revealjs/dist/theme/quarto.css">
   <link rel="stylesheet" href="custom.css">
@@ -338,6 +404,7 @@ Charles Frenette-Vallières
 </div>
 </div>
 
+  <p class="date">2024-01-22</p>
 </section>
 <section id="plan" class="slide level2 center">
 <h2>Plan</h2>
@@ -406,6 +473,7 @@ Charles Frenette-Vallières
 </tbody>
 </table>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">class</span>(<span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "logical"</code></pre>
 </div>
@@ -415,12 +483,14 @@ Charles Frenette-Vallières
 <h2>Collections de données (1/3)</h2>
 <p><strong>Vecteurs</strong></p>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">1</span>, <span class="dv">7</span>, <span class="dv">4</span>, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2 5 1 7 4 3</code></pre>
 </div>
 </div>
 <p><strong>Matrice</strong></p>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">1</span>, <span class="dv">7</span>, <span class="dv">4</span>, <span class="dv">3</span>), <span class="at">ncol =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     [,1] [,2] [,3]
 [1,]    2    1    4
@@ -432,6 +502,9 @@ Charles Frenette-Vallières
 <h2>Collections de données (2/3)</h2>
 <p><strong>Tableaux</strong></p>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">data.frame</span>(<span class="at">Station =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>),</span>
+<span id="cb7-2"><a href="#cb7-2"></a>           <span class="at">A =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">1</span>, <span class="dv">7</span>, <span class="dv">4</span>, <span class="dv">3</span>),</span>
+<span id="cb7-3"><a href="#cb7-3"></a>           <span class="at">B =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">2</span>, <span class="dv">6</span>, <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Station A B
 1       1 2 5
@@ -447,6 +520,9 @@ Charles Frenette-Vallières
 <h2>Collections de données (3/3)</h2>
 <p><strong>Ensemble de tableaux (bases de données)</strong></p>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">data.frame</span>(<span class="at">Station =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>),</span>
+<span id="cb9-2"><a href="#cb9-2"></a>           <span class="at">A =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">1</span>, <span class="dv">7</span>, <span class="dv">4</span>, <span class="dv">3</span>),</span>
+<span id="cb9-3"><a href="#cb9-3"></a>           <span class="at">B =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">2</span>, <span class="dv">6</span>, <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Station A B
 1       1 2 5
@@ -456,6 +532,9 @@ Charles Frenette-Vallières
 5       3 4 6
 6       3 3 1</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">data.frame</span>(<span class="at">Station =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>),</span>
+<span id="cb11-2"><a href="#cb11-2"></a>           <span class="at">Lon =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">71.15</span>, <span class="sc">-</span><span class="fl">72.45</span>, <span class="sc">-</span><span class="fl">70.81</span>),</span>
+<span id="cb11-3"><a href="#cb11-3"></a>           <span class="at">Lat =</span> <span class="fu">c</span>(<span class="fl">46.21</span>, <span class="fl">45.60</span>, <span class="fl">45.76</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Station    Lon   Lat
 1       1 -71.15 46.21
@@ -477,10 +556,13 @@ Charles Frenette-Vallières
 <ul>
 <li>tidyr: organiser les tableaux (format long, format large)</li>
 <li>tibble: format de tableau moderne</li>
-<li>dplyr: manipuler les tableaux (séléction, filtres)</li>
+<li>dplyr: manipuler les tableaux (sélection, filtres)</li>
 <li>readr: importer et exporter des tableaux</li>
 <li>ggplot2: effectuer des graphiques (prochain cours)</li>
 </ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">library</span>(<span class="st">"tidyverse"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="tableaux-règle-1" class="slide level2 center">
 <h2>Tableaux: règle 1</h2>
@@ -590,6 +672,12 @@ Charles Frenette-Vallières
 <section id="section" class="slide level2 center">
 <h2></h2>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">Station =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>),</span>
+<span id="cb14-2"><a href="#cb14-2"></a>               <span class="at">A =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">1</span>, <span class="dv">7</span>, <span class="dv">4</span>, <span class="dv">3</span>),</span>
+<span id="cb14-3"><a href="#cb14-3"></a>               <span class="at">B =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">2</span>, <span class="dv">6</span>, <span class="dv">1</span>),</span>
+<span id="cb14-4"><a href="#cb14-4"></a>               <span class="at">Lon =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">71.15</span>, <span class="sc">-</span><span class="fl">71.15</span>, <span class="sc">-</span><span class="fl">72.45</span>, <span class="sc">-</span><span class="fl">72.45</span>, <span class="sc">-</span><span class="fl">70.81</span>, <span class="sc">-</span><span class="fl">70.81</span>),</span>
+<span id="cb14-5"><a href="#cb14-5"></a>               <span class="at">Lat =</span> <span class="fu">c</span>(<span class="fl">46.21</span>, <span class="fl">46.21</span>, <span class="fl">45.60</span>, <span class="fl">45.60</span>, <span class="fl">45.76</span>, <span class="fl">45.76</span>))</span>
+<span id="cb14-6"><a href="#cb14-6"></a>data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 5
   Station     A     B   Lon   Lat
@@ -606,6 +694,9 @@ Charles Frenette-Vallières
 <section id="section-1" class="slide level2 center">
 <h2></h2>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">tibble</span>(<span class="at">Station =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>),</span>
+<span id="cb16-2"><a href="#cb16-2"></a>       <span class="at">A =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">1</span>, <span class="dv">7</span>, <span class="dv">4</span>, <span class="dv">3</span>),</span>
+<span id="cb16-3"><a href="#cb16-3"></a>       <span class="at">B =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">2</span>, <span class="dv">6</span>, <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 3
   Station     A     B
@@ -617,6 +708,9 @@ Charles Frenette-Vallières
 5       3     4     6
 6       3     3     1</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">tibble</span>(<span class="at">Station =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>),</span>
+<span id="cb18-2"><a href="#cb18-2"></a>       <span class="at">Lon =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">71.15</span>, <span class="sc">-</span><span class="fl">72.45</span>, <span class="sc">-</span><span class="fl">70.81</span>),</span>
+<span id="cb18-3"><a href="#cb18-3"></a>       <span class="at">Lat =</span> <span class="fu">c</span>(<span class="fl">46.21</span>, <span class="fl">45.60</span>, <span class="fl">45.76</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 3
   Station   Lon   Lat
@@ -632,7 +726,7 @@ Charles Frenette-Vallières
 <p>Ne pas bousiller les données:</p>
 <ul>
 <li>Ajouter des commentaires dans des cellules</li>
-<li>Inscription non systématiques</li>
+<li>Inscriptions non systématiques</li>
 <li>Inclure des notes dans un tableau</li>
 <li>Ajouter des sommaires</li>
 <li>Inclure une hiérarchie dans le entêtes</li>
@@ -643,7 +737,7 @@ Charles Frenette-Vallières
 <h2>Formats de tableau</h2>
 <ul>
 <li>xls, xlsx ou ods: ok comme outil de calcul, mais pas pour entreposer des données</li>
-<li>csv: texte brut (encodage recomandé: UTF-8)</li>
+<li>csv: texte brut (encodage recommandé: UTF-8)</li>
 <li>SQL: Structured Query Language, pour les bases de données</li>
 </ul>
 <p>–&gt; Exemple csv (chicoute.csv)</p>
@@ -655,10 +749,15 @@ Charles Frenette-Vallières
 <section id="importer-vos-données-dans-votre-session-de-travail" class="slide level2 center">
 <h2>Importer vos données dans votre session de travail</h2>
 <p>Utiliser les fonctions du module readr, ou bien la fonction de base <code>read.csv()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="fu">library</span>(<span class="st">"tidyverse"</span>)</span>
+<span id="cb20-2"><a href="#cb20-2"></a>chicoute <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(<span class="at">file =</span> <span class="st">"../../data/chicoute.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="fonctions-de-base-sur-les-tableaux" class="slide level2 center">
 <h2>Fonctions de base sur les tableaux</h2>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">head</span>(chicoute, <span class="at">n =</span> <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 31
      ID CodeTourbiere Ordre  Site Traitement DemiParcelle SousTraitement
@@ -682,6 +781,7 @@ Charles Frenette-Vallières
 <section id="section-2" class="slide level2 center">
 <h2></h2>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">str</span>(chicoute) <span class="co"># ou glimpse()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>spc_tbl_ [90 × 31] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
  $ ID                      : num [1:90] 1 2 3 4 5 6 7 8 9 10 ...
@@ -756,6 +856,7 @@ Charles Frenette-Vallières
 <section id="section-3" class="slide level2 center">
 <h2></h2>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="fu">summary</span>(chicoute)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       ID        CodeTourbiere         Ordre                Site       
  Min.   : 1.00   Length:90          Length:90          Min.   : 1.000  
@@ -835,6 +936,7 @@ Charles Frenette-Vallières
 <section id="section-4" class="slide level2 center">
 <h2></h2>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="fu">names</span>(chicoute) <span class="co"># ou colnames</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "ID"                       "CodeTourbiere"           
  [3] "Ordre"                    "Site"                    
@@ -855,6 +957,7 @@ Charles Frenette-Vallières
 </div>
 </div>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="fu">dim</span>(chicoute) <span class="co"># ncol, nrow</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 90 31</code></pre>
 </div>
@@ -863,6 +966,7 @@ Charles Frenette-Vallières
 <section id="section-5" class="slide level2 center">
 <h2></h2>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a>skimr<span class="sc">::</span><span class="fu">skim</span>(chicoute)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table>
 <caption>Data summary</caption>
@@ -1367,6 +1471,7 @@ Charles Frenette-Vallières
 <h2>Sélectionner</h2>
 <p>Par indice</p>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a>chicoute[, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">13</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 90 × 3
       ID  Site TotalFloral_nombre_m2
@@ -1389,6 +1494,7 @@ Charles Frenette-Vallières
 <h2>Sélectionner</h2>
 <p>Par nom (une seule colonne), avec <code>$</code></p>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a>chicoute<span class="sc">$</span>Rendement_g_5m2 <span class="co"># s'il y a des caractères irrégulies dans le nom, chicoute$`Rendement g/5m2`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1]        NA        NA        NA        NA        NA        NA        NA
  [8]        NA        NA        NA  0.000000  0.000000  0.000000  0.000000
@@ -1410,6 +1516,7 @@ Charles Frenette-Vallières
 <h2>Sélectionner</h2>
 <p>Un vecteur de noms</p>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a>chicoute[<span class="fu">c</span>(<span class="st">"Site"</span>, <span class="st">"Latitude_m"</span>, <span class="st">"Longitude_m"</span>)] <span class="co"># ou bien chicoute[, c("Site", "Latitude_m", "Longitude_m")]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 90 × 3
     Site Latitude_m Longitude_m
@@ -1430,8 +1537,10 @@ Charles Frenette-Vallières
 </section>
 <section id="sélectionner-3" class="slide level2 center">
 <h2>Sélectionner</h2>
-<p>Avec le symvol <em>pipe</em>, <code>%&gt;%</code> (raccourci: Ctrl + Alt + M), qui se lit comme <em>puis</em>.</p>
+<p>Avec le symbole <em>pipe</em>, <code>%&gt;%</code> (raccourci: Ctrl + Alt + M), qui se lit comme <em>puis</em>.</p>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a>chicoute <span class="sc">%&gt;%</span></span>
+<span id="cb38-2"><a href="#cb38-2"></a>  <span class="fu">select</span>(Site, Latitude_m, Longitude_m) <span class="co"># ou simplement select</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 90 × 3
     Site Latitude_m Longitude_m
@@ -1455,6 +1564,9 @@ Charles Frenette-Vallières
 <p>Tableau, puis sélectionne les colonnes qui se terminent par <em>pourc</em>, puis présente-moi l’entête de 3</p>
 <p>On peut utiliser des expressions.</p>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a>chicoute <span class="sc">%&gt;%</span></span>
+<span id="cb40-2"><a href="#cb40-2"></a>  <span class="fu">select</span>(<span class="fu">ends_with</span>(<span class="st">"pourc"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb40-3"><a href="#cb40-3"></a>  <span class="fu">head</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 13
   C_pourc N_pourc P_pourc K_pourc Ca_pourc Mg_pourc S_pourc B_pourc Cu_pourc
@@ -1471,6 +1583,9 @@ Charles Frenette-Vallières
 <h2></h2>
 <p>… et travailler en négatif pour enlever.</p>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a>chicoute <span class="sc">%&gt;%</span></span>
+<span id="cb42-2"><a href="#cb42-2"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">ends_with</span>(<span class="st">"pourc"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb42-3"><a href="#cb42-3"></a>  <span class="fu">head</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 18
      ID CodeTourbiere Ordre  Site Traitement DemiParcelle SousTraitement
@@ -1502,6 +1617,7 @@ Charles Frenette-Vallières
 <h2>Filtrer</h2>
 <p>Méthode classique</p>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a>chicoute[chicoute<span class="sc">$</span>CodeTourbiere <span class="sc">==</span> <span class="st">"BEAU"</span>, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 31
      ID CodeTourbiere Ordre  Site Traitement DemiParcelle SousTraitement
@@ -1525,6 +1641,8 @@ Charles Frenette-Vallières
 <h2>Filtrer</h2>
 <p>Méthode tidyverse</p>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1"></a>chicoute <span class="sc">%&gt;%</span> </span>
+<span id="cb46-2"><a href="#cb46-2"></a>  <span class="fu">filter</span>(CodeTourbiere <span class="sc">==</span> <span class="st">"BEAU"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 31
      ID CodeTourbiere Ordre  Site Traitement DemiParcelle SousTraitement
@@ -1546,8 +1664,11 @@ Charles Frenette-Vallières
 </section>
 <section id="opérations-combinées" class="slide level2 center">
 <h2>Opérations combinées</h2>
-<p>Remarquez <code>%in%</code>, nouvel oprateur logique, qui signifie <em><code>==</code> à l’un de …</em>.</p>
+<p>Remarquez <code>%in%</code>, nouvel opérateur logique, qui signifie <em><code>==</code> à l’un de …</em>.</p>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1"></a>chicoute <span class="sc">%&gt;%</span></span>
+<span id="cb48-2"><a href="#cb48-2"></a>  <span class="fu">filter</span>(C_pourc <span class="sc">&lt;</span> <span class="dv">50</span> <span class="sc">&amp;</span> CodeTourbiere <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"BEAU"</span>, <span class="st">"MB"</span>, <span class="st">"WTP"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb48-3"><a href="#cb48-3"></a>  <span class="fu">select</span>(<span class="fu">contains</span>(<span class="st">"pourc"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 13
   C_pourc N_pourc P_pourc K_pourc Ca_pourc Mg_pourc S_pourc B_pourc Cu_pourc
@@ -1564,22 +1685,27 @@ Charles Frenette-Vallières
 </section>
 <section id="du-format-large-au-format-long" class="slide level2 center">
 <h2>Du format large au format long</h2>
-<p>Les % en une seule variable? Utiliser <code>pivot_longer()</code>. Avant d’utiliser gather, assurez-vous que chaque ligne ait un identifiant unique.</p>
+<p>Les % en une seule variable? Utiliser <code>pivot_longer()</code>. Avant d’utiliser cette opération, assurez-vous que chaque ligne ait un identifiant unique.</p>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1"></a>chicoute_long <span class="ot">&lt;-</span> chicoute <span class="sc">%&gt;%</span></span>
+<span id="cb50-2"><a href="#cb50-2"></a>  <span class="fu">select</span>(CodeTourbiere, N_pourc, P_pourc, K_pourc) <span class="sc">%&gt;%</span></span>
+<span id="cb50-3"><a href="#cb50-3"></a>  <span class="fu">mutate</span>(<span class="at">ID =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(.)) <span class="sc">%&gt;%</span> <span class="co"># mutate ajoute une colonne au tableau</span></span>
+<span id="cb50-4"><a href="#cb50-4"></a>  <span class="fu">pivot_longer</span>(<span class="at">names_to =</span> <span class="st">"element"</span>, <span class="at">values_to =</span> <span class="st">"concentration"</span>, <span class="at">cols =</span> <span class="fu">c</span>(<span class="sc">-</span>CodeTourbiere, <span class="sc">-</span>ID))</span>
+<span id="cb50-5"><a href="#cb50-5"></a>chicoute_long <span class="sc">%&gt;%</span> <span class="fu">slice_sample</span>(<span class="at">n =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 10 × 4
    CodeTourbiere    ID element concentration
    &lt;chr&gt;         &lt;int&gt; &lt;chr&gt;           &lt;dbl&gt;
- 1 MR               40 N_pourc         2.09 
- 2 BP                9 K_pourc         0.754
- 3 2                11 N_pourc         2.91 
- 4 1                82 K_pourc         0.937
- 5 1                70 P_pourc         0.160
- 6 WTP              86 N_pourc         1.98 
- 7 2                26 N_pourc         2.59 
- 8 BEAU              4 K_pourc         1.19 
- 9 2                12 P_pourc         0.147
-10 BP                7 K_pourc         0.824</code></pre>
+ 1 MR               39 K_pourc        0.696 
+ 2 MB               32 K_pourc        0.454 
+ 3 SSP              57 P_pourc        0.128 
+ 4 2                21 K_pourc        1.17  
+ 5 BS2              65 N_pourc        1.68  
+ 6 MB               35 N_pourc        2.11  
+ 7 WTP              89 N_pourc        1.80  
+ 8 BS2              63 N_pourc        1.78  
+ 9 1                74 N_pourc        2.37  
+10 WTP              87 P_pourc        0.0760</code></pre>
 </div>
 </div>
 </section>
@@ -1587,20 +1713,24 @@ Charles Frenette-Vallières
 <h2>Du format long au format large</h2>
 <p>Pour l’opération inverse, utiliser <code>pivot_wider()</code>. L’identifiant unique sert à retracer la ligne!</p>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1"></a>chicoute_large <span class="ot">&lt;-</span> chicoute_long <span class="sc">%&gt;%</span></span>
+<span id="cb52-2"><a href="#cb52-2"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> <span class="st">"element"</span>, <span class="at">values_from =</span> <span class="st">"concentration"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb52-3"><a href="#cb52-3"></a>  <span class="fu">select</span>(<span class="sc">-</span>ID) <span class="co"># enlever l'identifiant unique</span></span>
+<span id="cb52-4"><a href="#cb52-4"></a>chicoute_large <span class="sc">%&gt;%</span> <span class="fu">slice_sample</span>(<span class="at">n =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 10 × 4
    CodeTourbiere N_pourc P_pourc K_pourc
    &lt;chr&gt;           &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
- 1 2                2.97  0.166    1.21 
- 2 WTP              1.72  0.0760   0.557
- 3 MR               2.09  0.148    0.656
- 4 2                2.78  0.167    0.831
- 5 1                2.10  0.155    0.485
- 6 BP               2.14  0.153    0.648
- 7 BEAU             2.12  0.0708   1.05 
- 8 1                2.13  0.140    0.683
- 9 BP               1.77  0.166    0.778
-10 2                2.86  0.202    1.18 </code></pre>
+ 1 1                2.47  0.160    1.01 
+ 2 1                2.65  0.169    0.892
+ 3 BEAU             1.95  0.0909   1.19 
+ 4 2                2.26  0.176    0.627
+ 5 1                2.15  0.161    1.32 
+ 6 MR               2.09  0.148    0.656
+ 7 NBM              1.85  0.116    0.745
+ 8 NTP              1.66  0.0872   0.345
+ 9 NTP              1.88  0.0807   0.394
+10 1                2.22  0.150    0.928</code></pre>
 </div>
 </div>
 </section>
@@ -1638,34 +1768,42 @@ Charles Frenette-Vallières
 <section id="exemple" class="slide level2 center">
 <h2>Exemple</h2>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1"></a>tourbieres <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(<span class="st">"../../data/chicoute_tourbieres.csv"</span>)</span>
+<span id="cb54-2"><a href="#cb54-2"></a>tourbieres <span class="sc">%&gt;%</span> </span>
+<span id="cb54-3"><a href="#cb54-3"></a>  <span class="fu">sample_n</span>(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 10 × 4
    Tourbiere               CodeTourbiere Type        TypeCulture
    &lt;chr&gt;                   &lt;chr&gt;         &lt;chr&gt;       &lt;chr&gt;      
- 1 North Est of Smelt Pond NESP          calibration naturel    
- 2 Beaulieu                BEAU          calibration naturel    
- 3 Sphaigne (BS2F)         BS2           validation  cultive sec
- 4 Lichen (BS2E)           2             validation  cultive sec
- 5 Middle Bay Road         MR            calibration naturel    
- 6 North of Blue Moon      NBM           calibration naturel    
+ 1 Middle Bay Road         MR            calibration naturel    
+ 2 South of Smelt Pond     SSP           calibration naturel    
+ 3 Mannys Brook            MB            calibration naturel    
+ 4 North of Blue Moon      NBM           calibration naturel    
+ 5 North Est of Smelt Pond NESP          calibration naturel    
+ 6 Sphaigne (BS2F)         1             calibration naturel    
  7 West of Trout Pond      WTP           calibration naturel    
  8 Brador Path             BP            calibration naturel    
- 9 South of Smelt Pond     SSP           calibration naturel    
-10 Mannys Brook            MB            calibration naturel    </code></pre>
+ 9 Sphaigne (BS2F)         BS2           validation  cultive sec
+10 Lichen (BS2E)           2             validation  cultive sec</code></pre>
 </div>
 </div>
 </section>
 <section id="fusionner" class="slide level2 center">
 <h2>Fusionner</h2>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1"></a>chicoute_merge <span class="ot">&lt;-</span> chicoute <span class="sc">%&gt;%</span></span>
+<span id="cb56-2"><a href="#cb56-2"></a>  <span class="fu">left_join</span>(<span class="at">y =</span> tourbieres, <span class="at">by =</span> <span class="st">"CodeTourbiere"</span>)</span>
+<span id="cb56-3"><a href="#cb56-3"></a>chicoute_merge <span class="sc">%&gt;%</span> </span>
+<span id="cb56-4"><a href="#cb56-4"></a>  <span class="co">#select(ID, CodeTourbiere, Site, Tourbiere) %&gt;% </span></span>
+<span id="cb56-5"><a href="#cb56-5"></a>  <span class="fu">sample_n</span>(<span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 34
      ID CodeTourbiere Ordre  Site Traitement  DemiParcelle SousTraitement
   &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;        &lt;chr&gt;         
-1    59 SSP           F         4 &lt;NA&gt;        &lt;NA&gt;         &lt;NA&gt;          
-2    83 1             5         9 fertilisant right        Control       
-3    87 WTP           E         2 &lt;NA&gt;        &lt;NA&gt;         &lt;NA&gt;          
-4     8 BP            H         3 &lt;NA&gt;        &lt;NA&gt;         &lt;NA&gt;          
+1    71 1             2         3 fertilisant right        Cu            
+2    25 2             9        18 temoin      left         Control       
+3    39 MR            I         4 &lt;NA&gt;        &lt;NA&gt;         &lt;NA&gt;          
+4    76 1             3         6 temoin      left         B             
 # ℹ 27 more variables: Latitude_m &lt;dbl&gt;, Longitude_m &lt;dbl&gt;,
 #   Rendement_g_5m2 &lt;dbl&gt;, TotalRamet_nombre_m2 &lt;dbl&gt;,
 #   TotalVegetatif_nombre_m2 &lt;dbl&gt;, TotalFloral_nombre_m2 &lt;dbl&gt;,
@@ -1685,12 +1823,15 @@ Charles Frenette-Vallières
 <h2>Opérations sur les tableaux</h2>
 <p>Les colonnes des tableaux réagissent comme les vecteurs. On peut effectuer des opérations avec des vecteurs comme avec des scalaires.</p>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1"></a>chicoute<span class="sc">$</span>C_pourc[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] 51.47 51.29 50.55 51.58 53.83 51.47 51.46 51.24 50.68 50.92</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1"></a>chicoute<span class="sc">$</span>C_pourc[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>] <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] 52.47 52.29 51.55 52.58 54.83 52.47 52.46 52.24 51.68 51.92</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1"></a>chicoute<span class="sc">$</span>C_pourc[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>] <span class="sc">+</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] 52.47 53.29 53.55 55.58 58.83 57.47 58.46 59.24 59.68 60.92</code></pre>
 </div>
@@ -1700,12 +1841,16 @@ Charles Frenette-Vallières
 <h2>Fonctions sommaires</h2>
 <p>En mode classique</p>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1"></a><span class="fu">sum</span>(chicoute<span class="sc">$</span>Rendement_g_5m2, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 533.1405</code></pre>
 </div>
 </div>
 <p>En mode tidyverse</p>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1"></a>chicoute <span class="sc">%&gt;%</span> </span>
+<span id="cb66-2"><a href="#cb66-2"></a>  <span class="fu">pull</span>(Rendement_g_5m2) <span class="sc">%&gt;%</span> <span class="co"># pull extrait le vecteur, alors que select génère un tableau</span></span>
+<span id="cb66-3"><a href="#cb66-3"></a>  <span class="fu">sum</span>(<span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 533.1405</code></pre>
 </div>
@@ -1715,6 +1860,7 @@ Charles Frenette-Vallières
 <h2>Opérations sur les lignes et les colonnes</h2>
 <p>En mode classique avec apply</p>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1"></a><span class="fu">apply</span>(chicoute <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">contains</span>(<span class="st">"pourc"</span>)), <span class="at">MARGIN =</span> <span class="dv">2</span>, <span class="at">FUN =</span> mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     C_pourc      N_pourc      P_pourc      K_pourc     Ca_pourc     Mg_pourc 
 5.027911e+01 2.199411e+00 1.388959e-01 8.887000e-01 3.884391e-01 4.980142e-01 
@@ -1729,6 +1875,8 @@ Charles Frenette-Vallières
 <h2>Opérations sur les lignes et les colonnes</h2>
 <p>En mode tidyverse, il existe une panoplie de solutions. Sur une seule colonne, on pourra utiliser <code>summarise</code>.</p>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1"></a>chicoute <span class="sc">%&gt;%</span></span>
+<span id="cb70-2"><a href="#cb70-2"></a>  <span class="fu">summarise</span>(<span class="at">rendement =</span> <span class="fu">mean</span>(Rendement_g_5m2, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 1
   rendement
@@ -1741,6 +1889,9 @@ Charles Frenette-Vallières
 <h2></h2>
 <p>Sur plusieurs colonnes, <code>summarise_all</code>.</p>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1"></a>chicoute <span class="sc">%&gt;%</span></span>
+<span id="cb72-2"><a href="#cb72-2"></a>  <span class="fu">select</span>(<span class="fu">contains</span>(<span class="st">"pourc"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb72-3"><a href="#cb72-3"></a>  <span class="fu">summarise_all</span>(mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 13
   C_pourc N_pourc P_pourc K_pourc Ca_pourc Mg_pourc S_pourc B_pourc Cu_pourc
@@ -1755,6 +1906,9 @@ Charles Frenette-Vallières
 <h2></h2>
 <p>Ou, sur plusieurs lignes ou colonnes, j’en viens souvent à utiliser <code>apply</code> comme ceci.</p>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1"></a>chicoute <span class="sc">%&gt;%</span></span>
+<span id="cb74-2"><a href="#cb74-2"></a>  <span class="fu">select</span>(<span class="fu">contains</span>(<span class="st">"pourc"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb74-3"><a href="#cb74-3"></a>  <span class="fu">apply</span>(., <span class="dv">2</span>, mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     C_pourc      N_pourc      P_pourc      K_pourc     Ca_pourc     Mg_pourc 
 5.027911e+01 2.199411e+00 1.388959e-01 8.887000e-01 3.884391e-01 4.980142e-01 
@@ -1769,6 +1923,10 @@ Charles Frenette-Vallières
 <h2>Opération regroupées</h2>
 <p>Effectuer des opérations par groupe. Ici, j’effectue un sommaire de deux fonctions.</p>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1"></a>chicoute <span class="sc">%&gt;%</span></span>
+<span id="cb76-2"><a href="#cb76-2"></a>  <span class="fu">group_by</span>(CodeTourbiere) <span class="sc">%&gt;%</span> </span>
+<span id="cb76-3"><a href="#cb76-3"></a>  <span class="fu">summarise</span>(<span class="at">moyenne =</span> <span class="fu">mean</span>(TotalFloral_nombre_m2, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb76-4"><a href="#cb76-4"></a>            <span class="at">ecart_type =</span> <span class="fu">sd</span>(TotalFloral_nombre_m2, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 12 × 3
    CodeTourbiere moyenne ecart_type
@@ -1792,6 +1950,10 @@ Charles Frenette-Vallières
 <h2></h2>
 <p>Les sommaires groupés avec plusuers colonnes.</p>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1"></a>chicoute <span class="sc">%&gt;%</span></span>
+<span id="cb78-2"><a href="#cb78-2"></a>  <span class="fu">group_by</span>(CodeTourbiere) <span class="sc">%&gt;%</span></span>
+<span id="cb78-3"><a href="#cb78-3"></a>  <span class="fu">select</span>(N_pourc, P_pourc) <span class="sc">%&gt;%</span></span>
+<span id="cb78-4"><a href="#cb78-4"></a>  <span class="fu">summarise_all</span>(<span class="fu">funs</span>(mean, sd))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 12 × 5
    CodeTourbiere N_pourc_mean P_pourc_mean N_pourc_sd P_pourc_sd
@@ -1814,11 +1976,21 @@ Charles Frenette-Vallières
 <section id="exercice" class="slide level2 center">
 <h2>Exercice</h2>
 <p>Espèces menacées, données issues de l’UICN (<a href="https://stats.oecd.org/Index.aspx?DataSetCode=WILD_LIFE">distribuées par l’OCDE</a>).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1"></a>especes_menacees <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">'../../data/WILD_LIFE_14012020030114795.csv'</span>) <span class="co"># données de UICN, </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="exercice-1" class="slide level2 center">
 <h2>Exercice</h2>
 <p>Ce cheminement comporte de nouvelles fonctions. Pouvez-vous identifier ce qu’il produira comme information?</p>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1"></a>especes_menacees <span class="sc">%&gt;%</span></span>
+<span id="cb81-2"><a href="#cb81-2"></a>  <span class="fu">filter</span>(IUCN <span class="sc">==</span> <span class="st">'CRITICAL'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb81-3"><a href="#cb81-3"></a>  <span class="fu">select</span>(Country, Value) <span class="sc">%&gt;%</span></span>
+<span id="cb81-4"><a href="#cb81-4"></a>  <span class="fu">group_by</span>(Country)  <span class="sc">%&gt;%</span></span>
+<span id="cb81-5"><a href="#cb81-5"></a>  <span class="fu">summarise</span>(<span class="at">n_critical_species =</span> <span class="fu">sum</span>(Value)) <span class="sc">%&gt;%</span></span>
+<span id="cb81-6"><a href="#cb81-6"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n_critical_species)) <span class="sc">%&gt;%</span></span>
+<span id="cb81-7"><a href="#cb81-7"></a>  <span class="fu">top_n</span>(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 10 × 2
    Country         n_critical_species
@@ -1843,6 +2015,9 @@ Charles Frenette-Vallières
 <section id="exporter-un-tableau" class="slide level2 center">
 <h2>Exporter un tableau</h2>
 <p>Simplement avec <code>write_csv()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1"></a><span class="fu">write_csv</span>(chicoute_long, <span class="st">"data/chicoute_long.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="pour-terminer" class="slide level2 center">
 <h2>Pour terminer</h2>

@@ -2,6 +2,7 @@
 title: "Organisation des données et opérations sur des tableaux"
 author:
   - name: "Charles Frenette-Vallières"
+date: "2024-01-22"
 format: 
   revealjs:
     theme: simple
@@ -11,6 +12,8 @@ format:
     css: custom.css
     logo: images/ul.png
     scrollable: true
+echo: true
+
 ---
 
 ## Plan
@@ -102,7 +105,7 @@ Dans R, format `data.frame` et `tibble`.
 
 - tidyr: organiser les tableaux (format long, format large)
 - tibble: format de tableau moderne
-- dplyr: manipuler les tableaux (séléction, filtres)
+- dplyr: manipuler les tableaux (sélection, filtres)
 - readr: importer et exporter des tableaux
 - ggplot2: effectuer des graphiques (prochain cours)
 
@@ -173,7 +176,7 @@ tibble(Station = c(1, 2, 3),
 Ne pas bousiller les données:
 
 - Ajouter des commentaires dans des cellules
-- Inscription non systématiques
+- Inscriptions non systématiques
 - Inclure des notes dans un tableau
 - Ajouter des sommaires
 - Inclure une hiérarchie dans le entêtes
@@ -183,7 +186,7 @@ Ne pas bousiller les données:
 ## Formats de tableau
 
 - xls, xlsx ou ods: ok comme outil de calcul, mais pas pour entreposer des données
-- csv: texte brut (encodage recomandé: UTF-8)
+- csv: texte brut (encodage recommandé: UTF-8)
 - SQL: Structured Query Language, pour les bases de données
 
 --> Exemple csv (chicoute.csv)
@@ -266,11 +269,11 @@ chicoute[c("Site", "Latitude_m", "Longitude_m")] # ou bien chicoute[, c("Site", 
 
 ## Sélectionner
 
-Avec le symvol *pipe*, `%>%` (raccourci: Ctrl + Alt + M), qui se lit comme *puis*.
+Avec le symbole *pipe*, `%>%` (raccourci: Ctrl + Alt + M), qui se lit comme *puis*.
 
 ```{r}
 chicoute %>%
-  select(Site, Latitude_m, Longitude_m) # ou siplement select
+  select(Site, Latitude_m, Longitude_m) # ou simplement select
 ```
 
 ## Sélectionner avec `select`
@@ -324,7 +327,7 @@ chicoute %>%
 
 ## Opérations combinées
 
-Remarquez `%in%`, nouvel oprateur logique, qui signifie *`==` à l'un de ...*.
+Remarquez `%in%`, nouvel opérateur logique, qui signifie *`==` à l'un de ...*.
 
 ```{r}
 chicoute %>%
@@ -334,14 +337,14 @@ chicoute %>%
 
 ## Du format large au format long
 
-Les % en une seule variable? Utiliser `pivot_longer()`. Avant d'utiliser gather, assurez-vous que chaque ligne ait un identifiant unique.
+Les % en une seule variable? Utiliser `pivot_longer()`. Avant d'utiliser cette opération, assurez-vous que chaque ligne ait un identifiant unique.
 
 ```{r}
 chicoute_long <- chicoute %>%
   select(CodeTourbiere, N_pourc, P_pourc, K_pourc) %>%
   mutate(ID = 1:nrow(.)) %>% # mutate ajoute une colonne au tableau
   pivot_longer(names_to = "element", values_to = "concentration", cols = c(-CodeTourbiere, -ID))
-chicoute_long %>% sample_n(10)
+chicoute_long %>% slice_sample(n = 10)
 ```
 
 ## Du format long au format large
@@ -352,7 +355,7 @@ Pour l'opération inverse, utiliser `pivot_wider()`. L'identifiant unique sert �
 chicoute_large <- chicoute_long %>%
   pivot_wider(names_from = "element", values_from = "concentration") %>%
   select(-ID) # enlever l'identifiant unique
-chicoute_large %>% sample_n(10)
+chicoute_large %>% slice_sample(n = 10)
 ```
 
 ## 3. Combiner des tableaux

@@ -335,7 +335,7 @@ chicoute %>%
 
 Dans le tableau `chicoute`, chaque élément possède sa propre colonne. Si l'on voulait mettre en graphique les boxplot des facettes de concentrations d'azote, de phosphore et de potassium dans les différentes tourbières, il faudrait obtenir une seule colonne de concentrations.
 
-Pour ce faire, nous utiliserons la fonction `pivot_longer()`. L'argument obligatoire (excluant le tableau, qui est implicite dans la chaîne d'opérations), est `cols`, le nom des colonnes à allonger. Pour obtenir des noms de colonnes allongées personnalisées, on spécifie le nom des variables consistant aux anciens noms de colonnes avec `names_to` et celui de la nouvelle colonne contenant les valeurs dans `values_to`. La suite consiste à décrire les colonnes à inclure ou à exclure. Dans le cas qui suit, j'exclue CodeTourbiere de la refonte et j'utilise `slice_head()` pour présenter un échantillon du résultat. Notez la ligne comprenant la fonction `mutate`, que l'on verra plus loin. Cette fonction ajoute une colonne au tableau. Dans ce cas-ci, j'ajoute une colonne constituée d'une séquence de nombres allant de 1 au nombre de lignes du tableau (il y en a 90). Cet identifiant unique pour chaque ligne permettra de reconstituer par la suite le tableau initial.
+Pour ce faire, nous utiliserons la fonction `pivot_longer()`. L'argument obligatoire (excluant le tableau, qui est implicite dans la chaîne d'opérations), est `cols`, le nom des colonnes à allonger. Pour obtenir des noms de colonnes allongées personnalisées, on spécifie le nom des variables consistant aux anciens noms de colonnes avec `names_to` et celui de la nouvelle colonne contenant les valeurs dans `values_to`. La suite consiste à décrire les colonnes à inclure ou à exclure. Dans le cas qui suit, j'exclue CodeTourbiere de la refonte et j'utilise `slice_sample()` pour présenter un échantillon aléatoire du résultat. Notez la ligne comprenant la fonction `mutate`, que l'on verra plus loin. Cette fonction ajoute une colonne au tableau. Dans ce cas-ci, j'ajoute une colonne constituée d'une séquence de nombres allant de 1 au nombre de lignes du tableau (il y en a 90). Cet identifiant unique pour chaque ligne permettra de reconstituer par la suite le tableau initial.
 
 ```{r}
 #| label: tab-longer
@@ -343,7 +343,7 @@ chicoute_long <- chicoute %>%
   select(CodeTourbiere, N_pourc, P_pourc, K_pourc) %>%
   mutate(ID = 1:nrow(.)) %>% # mutate ajoute une colonne au tableau
   pivot_longer(cols = contains("pourc"), names_to = "nutrient", values_to = "concentration")
-chicoute_long %>% slice_head(n = 10)
+chicoute_long %>% slice_sample(n = 10)
 ```
 
 L'opération inverse est `pivot_wider()`, avec laquelle nous sélectionnons une colonne spécifiant les nouvelles colonnes à construire (`names_from`) ainsi que les valeurs à placer dans ces colonnes (`values_from`).
@@ -352,7 +352,7 @@ L'opération inverse est `pivot_wider()`, avec laquelle nous sélectionnons une 
 #| label: tab-wider
 chicoute_large <- chicoute_long %>%
   pivot_wider(names_from = nutrient, values_from = concentration)
-chicoute_large %>% slice_head(n = 10)
+chicoute_large %>% slice_sample(n = 10)
 ```
 
 ### Combiner des tableaux
@@ -576,7 +576,7 @@ dist_station_A <- function(x, y) {
 chicoute %>%
   mutate(dist = dist_station_A(x = Longitude_m, y = Latitude_m)) %>%
   select(ID, CodeTourbiere, Longitude_m, Latitude_m, dist) %>%
-  slice_head(n = 10)
+  slice_sample(n = 10)
 ```
 
 Nous pourrions procéder de la même manière pour fusionner des données climatiques. Le tableau `chicoute` ne possède pas d'indicateurs climatiques, mais il est possible de les soutirer de stations météo placées près des sites. Ces données ne sont pas disponibles pour le tableau de la chicouté, alors j'utiliserai des données fictives pour l'exemple.
@@ -634,7 +634,7 @@ chicoute %>%
   rowwise() %>%
   mutate(Station = dist_station(x = Longitude_m, y = Latitude_m, stations_df = mes_stations)) %>%
   select(ID, CodeTourbiere, Longitude_m, Latitude_m, Station) %>%
-  slice_head(n = 10)
+  slice_sample(n = 10)
 ```
 
 Cela semble fonctionner. On peut y ajouter un `left_join()` pour joindre les données météo au tableau principal.
@@ -645,7 +645,7 @@ chicoute_weather <- chicoute %>%
   rowwise() %>%
   mutate(Station = dist_station(x = Longitude_m, y = Latitude_m, stations_df = mes_stations)) %>%
   left_join(y = mes_stations, by = "Station")
-chicoute_weather %>% slice_head(n = 10)
+chicoute_weather %>% slice_sample(n = 10)
 ```
 
 ### Exporter un tableau

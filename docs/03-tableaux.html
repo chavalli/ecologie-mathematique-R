@@ -1301,48 +1301,48 @@ dbl (26): ID, Site, Latitude_m, Longitude_m, Rendement_g_5m2, TotalRamet_nom...
 <section id="le-format-long-et-le-format-large" class="level3" data-number="3.5.3">
 <h3 data-number="3.5.3" class="anchored" data-anchor-id="le-format-long-et-le-format-large"><span class="header-section-number">3.5.3</span> Le format long et le format large</h3>
 <p>Dans le tableau <code>chicoute</code>, chaque élément possède sa propre colonne. Si l’on voulait mettre en graphique les boxplot des facettes de concentrations d’azote, de phosphore et de potassium dans les différentes tourbières, il faudrait obtenir une seule colonne de concentrations.</p>
-<p>Pour ce faire, nous utiliserons la fonction <code>pivot_longer()</code>. L’argument obligatoire (excluant le tableau, qui est implicite dans la chaîne d’opérations), est <code>cols</code>, le nom des colonnes à allonger. Pour obtenir des noms de colonnes allongées personnalisées, on spécifie le nom des variables consistant aux anciens noms de colonnes avec <code>names_to</code> et celui de la nouvelle colonne contenant les valeurs dans <code>values_to</code>. La suite consiste à décrire les colonnes à inclure ou à exclure. Dans le cas qui suit, j’exclue CodeTourbiere de la refonte et j’utilise <code>slice_head()</code> pour présenter un échantillon du résultat. Notez la ligne comprenant la fonction <code>mutate</code>, que l’on verra plus loin. Cette fonction ajoute une colonne au tableau. Dans ce cas-ci, j’ajoute une colonne constituée d’une séquence de nombres allant de 1 au nombre de lignes du tableau (il y en a 90). Cet identifiant unique pour chaque ligne permettra de reconstituer par la suite le tableau initial.</p>
+<p>Pour ce faire, nous utiliserons la fonction <code>pivot_longer()</code>. L’argument obligatoire (excluant le tableau, qui est implicite dans la chaîne d’opérations), est <code>cols</code>, le nom des colonnes à allonger. Pour obtenir des noms de colonnes allongées personnalisées, on spécifie le nom des variables consistant aux anciens noms de colonnes avec <code>names_to</code> et celui de la nouvelle colonne contenant les valeurs dans <code>values_to</code>. La suite consiste à décrire les colonnes à inclure ou à exclure. Dans le cas qui suit, j’exclue CodeTourbiere de la refonte et j’utilise <code>slice_sample()</code> pour présenter un échantillon aléatoire du résultat. Notez la ligne comprenant la fonction <code>mutate</code>, que l’on verra plus loin. Cette fonction ajoute une colonne au tableau. Dans ce cas-ci, j’ajoute une colonne constituée d’une séquence de nombres allant de 1 au nombre de lignes du tableau (il y en a 90). Cet identifiant unique pour chaque ligne permettra de reconstituer par la suite le tableau initial.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>chicoute_long <span class="ot">&lt;-</span> chicoute <span class="sc">%&gt;%</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(CodeTourbiere, N_pourc, P_pourc, K_pourc) <span class="sc">%&gt;%</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ID =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(.)) <span class="sc">%&gt;%</span> <span class="co"># mutate ajoute une colonne au tableau</span></span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">contains</span>(<span class="st">"pourc"</span>), <span class="at">names_to =</span> <span class="st">"nutrient"</span>, <span class="at">values_to =</span> <span class="st">"concentration"</span>)</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>chicoute_long <span class="sc">%&gt;%</span> <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>chicoute_long <span class="sc">%&gt;%</span> <span class="fu">slice_sample</span>(<span class="at">n =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 10 × 4
    CodeTourbiere    ID nutrient concentration
    &lt;chr&gt;         &lt;int&gt; &lt;chr&gt;            &lt;dbl&gt;
- 1 BEAU              1 N_pourc         1.72  
- 2 BEAU              1 P_pourc         0.108 
- 3 BEAU              1 K_pourc         1.21  
- 4 BEAU              2 N_pourc         2.18  
- 5 BEAU              2 P_pourc         0.0985
- 6 BEAU              2 K_pourc         1.22  
- 7 BEAU              3 N_pourc         2.12  
- 8 BEAU              3 P_pourc         0.0708
- 9 BEAU              3 K_pourc         1.05  
-10 BEAU              4 N_pourc         1.95  </code></pre>
+ 1 2                29 K_pourc          0.858
+ 2 1                85 K_pourc          1.16 
+ 3 BS2              61 N_pourc          2.62 
+ 4 NBM              50 P_pourc          0.156
+ 5 NESP             44 P_pourc          0.120
+ 6 NBM              49 K_pourc          1.14 
+ 7 2                16 K_pourc          0.831
+ 8 BEAU              5 N_pourc          2.04 
+ 9 SSP              58 P_pourc          0.131
+10 BP                9 P_pourc          0.156</code></pre>
 </div>
 </div>
 <p>L’opération inverse est <code>pivot_wider()</code>, avec laquelle nous sélectionnons une colonne spécifiant les nouvelles colonnes à construire (<code>names_from</code>) ainsi que les valeurs à placer dans ces colonnes (<code>values_from</code>).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>chicoute_large <span class="ot">&lt;-</span> chicoute_long <span class="sc">%&gt;%</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> nutrient, <span class="at">values_from =</span> concentration)</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>chicoute_large <span class="sc">%&gt;%</span> <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>chicoute_large <span class="sc">%&gt;%</span> <span class="fu">slice_sample</span>(<span class="at">n =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 10 × 5
    CodeTourbiere    ID N_pourc P_pourc K_pourc
    &lt;chr&gt;         &lt;int&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
- 1 BEAU              1    1.72  0.108    1.21 
- 2 BEAU              2    2.18  0.0985   1.22 
- 3 BEAU              3    2.12  0.0708   1.05 
- 4 BEAU              4    1.95  0.0909   1.19 
- 5 BEAU              5    2.04  0.115    0.947
- 6 BP                6    2.13  0.151    0.729
- 7 BP                7    2.06  0.162    0.824
- 8 BP                8    1.77  0.166    0.778
- 9 BP                9    2.16  0.156    0.754
-10 BP               10    2.14  0.153    0.648</code></pre>
+ 1 1                66    2.63   0.186   0.988
+ 2 2                19    2.62   0.213   1.21 
+ 3 BP                9    2.16   0.156   0.754
+ 4 1                72    2.77   0.206   1.18 
+ 5 MR               39    1.95   0.122   0.696
+ 6 1                81    2.06   0.141   0.713
+ 7 1                78    2.31   0.156   0.833
+ 8 2                25    2.65   0.172   1.24 
+ 9 1                67    2.22   0.175   0.871
+10 2                28    2.70   0.190   1.17 </code></pre>
 </div>
 </div>
 </section>
@@ -1665,21 +1665,21 @@ afficher le top 10</code></pre>
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>chicoute <span class="sc">%&gt;%</span></span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">dist =</span> <span class="fu">dist_station_A</span>(<span class="at">x =</span> Longitude_m, <span class="at">y =</span> Latitude_m)) <span class="sc">%&gt;%</span></span>
 <span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(ID, CodeTourbiere, Longitude_m, Latitude_m, dist) <span class="sc">%&gt;%</span></span>
-<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_sample</span>(<span class="at">n =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 10 × 5
-      ID CodeTourbiere Longitude_m Latitude_m    dist
-   &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt;      &lt;dbl&gt;   &lt;dbl&gt;
- 1     1 BEAU               490627    5702454   13.0 
- 2     2 BEAU               490634    5702452    6.08
- 3     3 BEAU               490638    5702461    8.25
- 4     4 BEAU               490647    5702453    7   
- 5     5 BEAU               490654    5702445   16.1 
- 6     6 BP                 484865    5706394 6992.  
- 7     7 BP                 484054    5706307 7631.  
- 8     8 BP                 484742    5702280 5901.  
- 9     9 BP                 484761    5706324 7039.  
-10    10 BP                 484780    5706364 7045.  </code></pre>
+      ID CodeTourbiere Longitude_m Latitude_m  dist
+   &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt;
+ 1     6 BP                 484865    5706394 6992.
+ 2    73 1                  486488    5702129 4165.
+ 3    18 2                  486501    5702627 4143.
+ 4    76 1                  486465    5702112 4189.
+ 5    35 MB                 491949    5699362 3357.
+ 6    29 2                  486350    5702494 4290.
+ 7    82 1                  486505    5702162 4145.
+ 8    67 1                  486544    5702078 4113.
+ 9    62 BS2                486564    5702189 4085.
+10    43 NESP               484866    5701866 5804.</code></pre>
 </div>
 </div>
 <p>Nous pourrions procéder de la même manière pour fusionner des données climatiques. Le tableau <code>chicoute</code> ne possède pas d’indicateurs climatiques, mais il est possible de les soutirer de stations météo placées près des sites. Ces données ne sont pas disponibles pour le tableau de la chicouté, alors j’utiliserai des données fictives pour l’exemple.</p>
@@ -1734,7 +1734,7 @@ afficher le top 10</code></pre>
 <span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span></span>
 <span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Station =</span> <span class="fu">dist_station</span>(<span class="at">x =</span> Longitude_m, <span class="at">y =</span> Latitude_m, <span class="at">stations_df =</span> mes_stations)) <span class="sc">%&gt;%</span></span>
 <span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(ID, CodeTourbiere, Longitude_m, Latitude_m, Station) <span class="sc">%&gt;%</span></span>
-<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_sample</span>(<span class="at">n =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 90 × 5
 # Rowwise: 
@@ -1759,7 +1759,7 @@ afficher le top 10</code></pre>
 <span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span></span>
 <span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Station =</span> <span class="fu">dist_station</span>(<span class="at">x =</span> Longitude_m, <span class="at">y =</span> Latitude_m, <span class="at">stations_df =</span> mes_stations)) <span class="sc">%&gt;%</span></span>
 <span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(<span class="at">y =</span> mes_stations, <span class="at">by =</span> <span class="st">"Station"</span>)</span>
-<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>chicoute_weather <span class="sc">%&gt;%</span> <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>chicoute_weather <span class="sc">%&gt;%</span> <span class="fu">slice_sample</span>(<span class="at">n =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 90 × 36
 # Rowwise: 
