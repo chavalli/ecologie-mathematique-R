@@ -12,7 +12,7 @@ format:
     #css: custom.css
 ---
 
-## Présentation
+## Présentation (1/2)
 
 **Andrés Felipe Silva Dimaté**, candidat au doctorat en sols et environnement et chargé de cours.
 
@@ -20,26 +20,33 @@ format:
 -   M. Sc. en sols et environnement
 -   Spécialités : Modélisation, programmation en R et python, science de données.
 
-## L'écologie mathématique
-:::: {.columns .center}
+## Présentation (2/2)
 
+Je serai disponible tous les vendredis matin pour résoudre des doutes en présentiel ou en ligne.
+
+::: {.callout-important appearance="simple"}
+Veuillez noter que je ne serai disponible qu'en ligne jusqu'au 12 février, inclusivement.
+:::
+
+## L'écologie mathématique
+
+::: {.columns .center}
 ::: {.column width="50%"}
 ![Source: [Chapitre 1 - Notes du cours](https://bit.ly/47pnIeE){.external target="_blank"}](images/01_disciplines.png){height="400"}
 :::
 
 ::: {.column width="50%"}
-::: {.r-stack}
+::: r-stack
 ![](images/02_numerical_ecology_book.jpg){.fragment height="450"}
 
-![](images/03_numerical_ecology_R_book.jpeg){.fragment width="350"}
+![](images/03_numerical_ecology_R_book.jpeg){.fragment width="375"}
 :::
 :::
-
-::::
+:::
 
 ## Le génie écologique
 
-Le génie écologique, une discipline intimement liée à l’écologie mathématique, est voué à l’analyse, la modélisation, la conception et la construction de systèmes vivants dans le but de résoudre de manière efficace des problèmes liés à l’écologie et à une panoplie de domaines qui lui sont raccordés. 
+Le génie écologique, une discipline intimement liée à l’écologie mathématique, est voué à l’analyse, la modélisation, la conception et la construction de systèmes vivants dans le but de résoudre de manière efficace des problèmes liés à l’écologie et à une panoplie de domaines qui lui sont raccordés.
 
 ## Les logiciels libres
 
@@ -49,52 +56,52 @@ Comme professionnel.le, vous êtes responsable des outils que vous utilisez: vou
 
 ## Langages de programmation libres
 
-- **R**. Le langage de programmation statistique libre.
-- **Python**. Un langage de programmation libre et générique, largement utilisé en calcul scientifique.
-- **Langages propriétaires**. Matlab, SAS, Mathematica, Maple, etc.
+-   **R**. Le langage de programmation statistique libre.
+-   **Python**. Un langage de programmation libre et générique, largement utilisé en calcul scientifique.
+-   **Langages propriétaires**. Matlab, SAS, Mathematica, Maple, etc.
 
 ## La science des données avec R
 
-![](images/02_Rlogo.png)
+![](images/02_Rlogo.png){fig-align="center" width="200"}
 
 ## Objectifs spécifiques
 
 À la fin de ce chapitre, vous
 
-- saurez contextualiser la science des données par rapport aux statistiques,
-- serez en mesure de vous lancer dans un environnement de programmation R,
-- serez en mesure d’effectuer des opérations de base en R,
-- saurez différencier les grands types d’objets de R et
-- saurez installer et charger des modules complémentaire.
+-   saurez contextualiser la science des données par rapport aux statistiques,
+-   serez en mesure de vous lancer dans un environnement de programmation R,
+-   serez en mesure d’effectuer des opérations de base en R,
+-   saurez différencier les grands types d’objets de R et
+-   saurez installer et charger des modules complémentaire.
 
 ## Qu'est-ce que R ?
 
-- R est un langage de programmation de haut niveau qui est très populaire dans la manipulation, l'analyse et la visualisation des données.
+-   R est un langage de programmation de haut niveau très populaire dans la manipulation, l'analyse et la visualisation des données.
 
-- Ross Ihaka et Robert Gentleman, créateurs de ce langage, se sont inspirés du langage pour l'analyse de données « S », un langage conçu par Rick Becker, John Chambers and Allan Wilks dans les laboratoires Bell à New Jersey en 1976.
+-   Ross Ihaka et Robert Gentleman, créateurs de ce langage, se sont inspirés du langage pour l'analyse de données « S », un langage conçu par Rick Becker, John Chambers and Allan Wilks dans les laboratoires Bell à New Jersey en 1976.
 
 ## Sciences des données vs Statistiques
 
-- **Statistique**: l’étude des méthodes pour décrire et mesurer des aspects de la nature à partir d’échantillon (Whitlock et Schluter, 2015).
-- **Sciences des données**: une discipline *excitante* permettant de transformer des données brutes en compréhension, perspectives et connaissances (Grolemund et Wickham, 2018).
+-   **Statistique**: l’étude des méthodes pour décrire et mesurer des aspects de la nature à partir d’échantillon (Whitlock et Schluter, 2015).
+-   **Sciences des données**: une discipline *excitante* permettant de transformer des données brutes en compréhension, perspectives et connaissances (Wickham, Çetinkaya-Rundel et Grolemund, 2023).
 
 ## Flux de travail en sciences des données
 
 ![](images/02_science-des-donnees-flow_.png)
 
-<small>[Adapté de Grolemund et Wickham (2018)](https://r4ds.had.co.nz/introduction.html)</small>
+<small>[Adapté de Wickham, Çetinkaya-Rundel et Grolemund (2023)](https://r4ds.hadley.nz/intro){.external target="_blank"}</small>
 
 ## Installer R
 
 #### Installation classique
 
-- Windows et Mac [-->](https://cloud.r-project.org/)
-- `r-base` (Ubuntu, Debian), `R-base` (openSuse) ou `R-core` (Fedora)
+-   Windows et Mac [--\>](https://cloud.r-project.org/){.external target="_blank"}
+-   `r-base` (Ubuntu, Debian), `R-base` (openSuse) ou `R-core` (Fedora)
 
 #### Installation Anaconda (Jupyter)
 
-- Téléchargez [Anaconda](https://www.anaconda.com/), ouvrez Anaconda Navigator, installez RStudio ou bien créez un nouvel environnement R.
-- Vous devriez être en mesure d'utiliser R dans Jupyter lab ou Jupyter notebook
+-   Téléchargez [Anaconda](https://www.anaconda.com/){.external target="_blank"}, ouvrez Anaconda Navigator, installez RStudio ou bien créez un nouvel environnement R.
+-   Vous devriez être en mesure d'utiliser R dans Jupyter lab ou Jupyter notebook
 
 ## Premier aperçu de R
 
@@ -106,18 +113,17 @@ Comme professionnel.le, vous êtes responsable des outils que vous utilisez: vou
 
 ## RStudio
 
-- R script ou R notebook?
-- L'interface par projets
-- Exécuter la ligne, le *chunk* ou le code en surbrillance: `Ctrl + Enter`
+-   R script ou R notebook?
+-   L'interface par projets
+-   Exécuter la ligne, le *chunk* ou le code en surbrillance: `Ctrl + Enter`
 
 ## Premiers pas en R
-
 
 ```{r}
 2 + 2
 ```
 
-- opérations `+`, `-`, `*`, `/` et `^` (ou `**`) respectant la précédence mathématique
+-   opérations `+`, `-`, `*`, `/` et `^` (ou `**`) respectant la précédence mathématique
 
 ```{r}
 2 + 2 # ceci est un commentaire
@@ -142,17 +148,19 @@ ours <- 4
 # Ours
 ```
 
-**Note**. Lisez-les attentivement les messages d'erreur: ils sont là pour vous aider.
+::: callout-note
+Lisez-les attentivement les messages d’erreur : ils sont là pour vous aider.
+:::
 
 ## Nom des objects (2/2)
 
 Éviter les majuscules, les points, les noms trop longs et d'utiliser des noms de fonction.
 
-| Ok | Pas super |
-| --- | --- |
-| ours_brun | Ours.Brun |
-| mod_lin1 | modele_lineaire_pH_CNS_ssSP |
-| site_d | sd (fonction pour calculer l'écart-type) |
+| Ok        | Pas super                                |
+|-----------|------------------------------------------|
+| ours_brun | Ours.Brun                                |
+| mod_lin1  | modele_lineaire_pH_CNS_ssSP              |
+| site_d    | sd (fonction pour calculer l'écart-type) |
 
 La [guide de style](https://style.tidyverse.org/index.html){.external target="_blank"} de Hadley Wickham montre des bonnes pratiques pour l'écriture de code en R.
 
@@ -199,15 +207,15 @@ b <- a == 21
 
 ## Les collections de données
 
-- Vecteur
-- Matrice
-- Liste
-- Tableau
+-   Vecteur
+-   Matrice
+-   Liste
+-   Tableau
 
 ## Vecteur
 
-- Les vecteurs sont une série de valeurs *de même type*.
-- Les valeurs sont assemblées par *concaténation* avec la fonction `c()`.
+-   Les vecteurs sont une série de valeurs *de même type*.
+-   Les valeurs sont assemblées par *concaténation* avec la fonction `c()`.
 
 ```{r}
 espece <- c("Petromyzon marinus", "Lepisosteus osseus", "Amia calva", "Hiodon tergisus")
@@ -248,7 +256,7 @@ Qu'est-ce que la commande `espece[-c(1, 3)]` donnerait comme réponse, selon vou
 
 ## Matrice
 
-- un assemblage rectangle (ou en plusieurs dimensions) de valeurs *de même type*
+-   un assemblage rectangle (ou en plusieurs dimensions) de valeurs *de même type*
 
 ```{r}
 mat <- matrix(c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12), ncol=3) # ou nrow
@@ -268,7 +276,7 @@ mat[c(1, 3), c(2, 3)]
 
 ## Listes
 
-- une collection hétérogène
+-   une collection hétérogène
 
 ```{r}
 ma_liste <- list(especes = c('Petromyzon marinus', 'Lepisosteus osseus',
@@ -294,7 +302,7 @@ Accéder au deuxième élément du vecteur d’espèces dans la liste ma_liste.
 
 ## Tableau
 
-- liste composée de vecteurs de même longueur
+-   liste composée de vecteurs de même longueur
 
 ```{r}
 tableau <- data.frame(espece = c('Petromyzon marinus', 'Lepisosteus osseus',
@@ -313,7 +321,6 @@ Accéder aux éléments 3 et 4 des poids.
 ```{r}
 tableau$poids[c(3, 4)]
 ```
-
 
 ```{r}
 tableau[c(3, 4), 2]
@@ -407,18 +414,18 @@ Explorer les commandes `ifelse` et `cut` et réfléchissez à la manière qu’e
 
 À la fin de ce chapitre, vous
 
-- saurez contextualiser la science des données par rapport aux statistiques,
-- serez en mesure de vous lancer dans un environnement de programmation R,
-- serez en mesure d’effectuer des opérations de base en R,
-- saurez différencier les grands types d’objets de R et
-- saurez installer et charger des modules complémentaire.
+-   saurez contextualiser la science des données par rapport aux statistiques,
+-   serez en mesure de vous lancer dans un environnement de programmation R,
+-   serez en mesure d’effectuer des opérations de base en R,
+-   saurez différencier les grands types d’objets de R et
+-   saurez installer et charger des modules complémentaire.
 
 ## Exercices
 
 À partir d’ici jusqu’à la fin du cours, nous utiliserons RStudio. Ouvrez-le et familiarisez-vous avec l’interface! Quelques petits trucs:
 
-- pour lancer une ligne, placez votre curseur sur la ligne, puis appuyez sur Ctrl+Enter
-- pour lancer une partie de code précise, mettez le en surbrillance, puis Ctrl+Enter
-- utilisez toujours le gestionnaire de projets, en haut à droite!
-- installez le module tidyverse
-- lancez `data(iris)` pour obtenir un tableau d’exercice, puis cliquez sur l’objet dans la fenêtre environnement
+-   pour lancer une ligne, placez votre curseur sur la ligne, puis appuyez sur Ctrl+Enter
+-   pour lancer une partie de code précise, mettez le en surbrillance, puis Ctrl+Enter
+-   utilisez toujours le gestionnaire de projets, en haut à droite!
+-   installez le module tidyverse.
+-   lancez `data(iris)` pour obtenir un tableau d’exercice, puis cliquez sur l’objet dans la fenêtre environnement.
