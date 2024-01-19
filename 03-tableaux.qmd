@@ -73,7 +73,7 @@ Qu'est-ce qui cloche avec ce tableau? Chaque ligne est une observation, mais con
 #| label: tbl-exlong
 #| echo: false
 #| tbl-cap: "Rendements obtenus sur les sites expérimentaux selon les traitements."
-extab_long <- extab_wide %>%
+extab_long <- extab_wide |> 
   pivot_longer(cols = -Site, names_to = "Traitement", values_to = "Rendement")
 knitr::kable(
   extab_long, 
@@ -92,7 +92,7 @@ Reprenons la même expérience. Supposons que vous mesurez la précipitation à 
 #| echo: false
 #| tbl-cap: "Rendements et précipitations obtenus sur les sites expérimentaux selon les traitements."
 
-extab_long_prec <- extab_long %>%
+extab_long_prec <- extab_long |> 
   mutate(`Précipitations` = c(813, 813, 813, 642, 642, 642, 1028, 1028, 1028))
 knitr::kable(
   extab_long_prec, booktabs = TRUE
@@ -261,13 +261,6 @@ Voici 4 manières de sélectionner une colonne en R.
   - `chicoute[, c(2, 4, 5)]`: sélectionner les colonnes 2, 4 et 5
   - `chicoute[c(10, 13, 20), c(2, 4, 5)]`: sélectionner les colonnes 2, 4 et 5 et les lignes 10, 13 et 20.
 - Une autre méthode rapide, mais plus expressive, consiste à appeler le tableau, suivi du symbole `$`, puis le nom de la colonne, e.g. `chicoute$Site`.
-- Ou bien d'inscrire le nom de la colonne, ou du vecteur des colonnes, entre des crochets suivant le nom du tableau, c'est-à-dire `chicoute[c("Site", "Latitude_m", "Longitude_m")]`.
-- Enfin, dans une séquence d'opérations en mode pipeline (chaque opération est mise à la suite de la précédente en plaçant le *pipe* `%>%` entre chacune), il peut être préférable de sélectionner des colonnes avec la fonction `select()`, i.e.
-
-```
-chicoute %>%
-  select(Site, Latitude_m, Longitude_m)
-```
 
 > **Truc**. La plupart des IDE, comme RStudio, peuvent vous proposer des colonnes dans une liste. Après avoir saisi le `$`, taper sur la touche de tabulation: vous pourrez sélectionner la colonne dans une liste défilante (@fig-tab-auto-complete).
 
@@ -277,6 +270,25 @@ chicoute %>%
 #| fig-cap: "Autocomplétion dans RStudio."
 #| echo: false
 knitr::include_graphics("images/04_auto-complete-cols.png")
+```
+
+- Vous pouvez aussi inscrire le nom de la colonne, ou du vecteur des colonnes, entre des crochets suivant le nom du tableau, c'est-à-dire `chicoute[c("Site", "Latitude_m", "Longitude_m")]`.
+- Enfin, dans une séquence d'opérations en mode pipeline (chaque opération est mise à la suite de la précédente en plaçant le *pipe* ` |> ` entre chacune), il peut être préférable de sélectionner des colonnes avec la fonction `select()`, i.e.
+
+```{r}
+#| results: false
+chicoute |> 
+  select(Site, Latitude_m, Longitude_m)
+```
+
+> **Note sur le mode *pipeline* :** Le *pipe* ` |> ` a été introduit dans R-base en 2021. Auparavant, on utilisait la fonction `%>%` introduite dans le module magrittr, inclus dans tidyverse. La plupart du temps, les deux fonctionnent sensiblement de la même façon, mais il existe quelques différences dans leur interaction avec certaines fonctions. Puisque `|>` fait partie de R-base, je vous suggère de l'utiliser par défaut, mais il est fort probable que vous trouviez l'ancienne version `%>%` lors de vos recherches sur internet (ou même dans ce guide si j'oublie d'effectuer les modifications). Pour insérer un *pipe*, il suffit d'utiliser le raccourci clavier **`Ctrl + Shift + M`**. Vous pouvez modifier la forme par défaut dans les options de RStudio, comme sur la @fig-tab-pipe.
+
+```{r}
+#| label: fig-tab-pipe
+#| fig-align: center
+#| fig-cap: "Modifier le *pipe* par défaut dans RStudio."
+#| echo: false
+knitr::include_graphics("images/04_pipe.png")
 ```
 
 La fonction `select()` permet aussi de travailler en exclusion. Ainsi pour enlever des colonnes, on placera un `-` (signe de soustraction) devant le nom de la colonne.
@@ -294,8 +306,8 @@ D'autre arguments de `select()` permettent une sélection rapide. Par exemple, p
 
 ```{r}
 #| label: tab-pipe-select
-chicoute %>%
-  select(ends_with("pourc")) %>%
+chicoute |> 
+  select(ends_with("pourc")) |> 
   head(3)
 ```
 
@@ -318,7 +330,7 @@ Les conditions booléennes peuvent être combinées avec les opérateurs *et*,  
 - La méthode *tidyverse*, plus pratique en mode pipeline, passe par la fonction `filter()`, i.e.
 
 ```
-chicoute %>%
+chicoute |> 
   filter(CodeTourbiere == "BEAU")
 ```
 
@@ -326,8 +338,8 @@ Combiner le tout.
 
 ```{r}
 #| label: tab-pipe-filter
-chicoute %>%
-  filter(Ca_pourc < 0.4 & CodeTourbiere %in% c("BEAU", "MB", "WTP")) %>%
+chicoute |> 
+  filter(Ca_pourc < 0.4 & CodeTourbiere %in% c("BEAU", "MB", "WTP")) |> 
   select(contains("pourc"))
 ```
 
@@ -339,20 +351,21 @@ Pour ce faire, nous utiliserons la fonction `pivot_longer()`. L'argument obligat
 
 ```{r}
 #| label: tab-longer
-chicoute_long <- chicoute %>%
-  select(CodeTourbiere, N_pourc, P_pourc, K_pourc) %>%
-  mutate(ID = 1:nrow(.)) %>% # mutate ajoute une colonne au tableau
+chicoute_long <- chicoute |> 
+  select(CodeTourbiere, N_pourc, P_pourc, K_pourc) |> 
+  mutate(ID = 1:n())  |>  # mutate ajoute une colonne au tableau
+  # pour l'identifiant, on peut aussi utiliser la commande cur_group_rows()
   pivot_longer(cols = contains("pourc"), names_to = "nutrient", values_to = "concentration")
-chicoute_long %>% slice_sample(n = 10)
+chicoute_long |>  slice_sample(n = 10)
 ```
 
 L'opération inverse est `pivot_wider()`, avec laquelle nous sélectionnons une colonne spécifiant les nouvelles colonnes à construire (`names_from`) ainsi que les valeurs à placer dans ces colonnes (`values_from`).
 
 ```{r}
 #| label: tab-wider
-chicoute_large <- chicoute_long %>%
+chicoute_large <- chicoute_long |> 
   pivot_wider(names_from = nutrient, values_from = concentration)
-chicoute_large %>% slice_sample(n = 10)
+chicoute_large |>  slice_sample(n = 10)
 ```
 
 ### Combiner des tableaux
@@ -370,8 +383,8 @@ Notre information est organisée en deux tableaux, liés par la colonne `CodeTou
 ```{r}
 #| label: tab-left-join
 chicoute_merge <- left_join(x = chicoute, y = tourbieres, by = "CodeTourbiere")
-# ou bien chicoute %>% left_join(y = tourbieres, by = "CodeTourbiere")
-chicoute_merge %>% slice_head(n = 4)
+# ou bien chicoute |>  left_join(y = tourbieres, by = "CodeTourbiere")
+chicoute_merge |>  slice_head(n = 4)
 ```
 
 D'autres types de jointures sont possibles, et décrites en détails dans la [documentation](https://dplyr.tidyverse.org/reference/mutate-joins.html).
@@ -417,14 +430,14 @@ mean(chicoute$Rendement_g_5m2, na.rm = TRUE)
 
 ```{r}
 #| label: tab-op-apply-col
-apply(chicoute %>% select(contains("pourc")), 2, mean)
+apply(chicoute |>  select(contains("pourc")), 2, mean)
 ```
 
 Les opérations peuvent aussi être effectuées par ligne, par exemple une somme (je garde seulement les 10 premiers résultats).
 
 ```{r}
 #| label: tab-op-apply-row
-apply(chicoute %>% select(contains("pourc")), 1, sum)[1:10]
+apply(chicoute |>  select(contains("pourc")), 1, sum)[1:10]
 ```
 
 La fonction à appliquer peut être personnalisée, par exemple:
@@ -432,7 +445,7 @@ La fonction à appliquer peut être personnalisée, par exemple:
 ```{r}
 #| label: tab-aop-apply-custom
 apply(
-  chicoute %>% select(contains("pourc")), 2,
+  chicoute |>  select(contains("pourc")), 2,
   function(x) (prod(x))^(1 / length(x))
 )
 ```
@@ -465,7 +478,7 @@ Pour effectuer des statistiques par colonne, on utilisera `summarise` pour des s
 
 ```{r}
 #| label: tab-summarise
-chicoute %>%
+chicoute |> 
   summarise(
     moyenne = mean(TotalFloral_nombre_m2, na.rm = TRUE),
     ecart_type = sd(TotalFloral_nombre_m2, na.rm = TRUE)
@@ -476,8 +489,8 @@ Si l'on désire un sommaire sur toutes les variables sélectionnées, on utilise
 
 ```{r}
 #| label: tab-summ-list
-chicoute %>%
-  select(contains("pourc")) %>%
+chicoute |> 
+  select(contains("pourc")) |> 
   summarise_all(list(mean, sd))
 ```
 
@@ -485,8 +498,8 @@ On utilisera `group_by()` pour segmenter le tableau, et ainsi obtenir des statis
 
 ```{r}
 #| label: tab-summ-groupby
-chicoute %>%
-  group_by(CodeTourbiere) %>%
+chicoute |> 
+  group_by(CodeTourbiere) |> 
   summarise(
     moyenne = mean(TotalFloral_nombre_m2, na.rm = TRUE),
     ecart_type = sd(TotalFloral_nombre_m2, na.rm = TRUE)
@@ -497,9 +510,9 @@ Dans le cas de `summarise_all`, les résultats s'affichent de la même manière.
 
 ```{r}
 #| label: tab-summall-groupby
-chicoute %>%
-  group_by(CodeTourbiere) %>%
-  select(N_pourc, P_pourc, K_pourc) %>%
+chicoute |> 
+  group_by(CodeTourbiere) |> 
+  select(N_pourc, P_pourc, K_pourc) |> 
   summarise_all(list(mean, sd))
 ```
 
@@ -507,9 +520,9 @@ Pour obtenir des statistiques à chaque ligne, mieux vaut utiliser `apply()`, te
 
 ```{r}
 #| label: tab-pipe-apply
-chicoute %>%
-  select(contains("pourc")) %>%
-  apply(., 1, sum)
+chicoute |> 
+  select(contains("pourc")) |> 
+  apply(1, sum)
 ```
 
 Prenons ce tableau des espèces menacées issu de l'Union internationale pour la conservation de la nature [distribué par l'OCDE](https://stats.oecd.org/Index.aspx?DataSetCode=WILD_LIFE).
@@ -525,12 +538,12 @@ Nous exécutons le pipeline suivant.
 
 ```{r}
 #| label: tab-spec-top10
-especes_menacees %>%
-  dplyr::filter(IUCN == "CRITICAL", SPEC == "VASCULAR_PLANT") %>%
-  dplyr::select(Country, Value) %>%
-  dplyr::group_by(Country) %>%
-  dplyr::summarise(n_critical_plants = sum(Value)) %>%
-  dplyr::arrange(desc(n_critical_plants)) %>%
+especes_menacees |> 
+  dplyr::filter(IUCN == "CRITICAL", SPEC == "VASCULAR_PLANT") |> 
+  dplyr::select(Country, Value) |> 
+  dplyr::group_by(Country) |> 
+  dplyr::summarise(n_critical_plants = sum(Value)) |> 
+  dplyr::arrange(desc(n_critical_plants)) |> 
   dplyr::slice_head(n = 10)
 ```
 
@@ -573,9 +586,9 @@ dist_station_A <- function(x, y) {
 
 ```{r}
 #| label: tab-stations-mutate
-chicoute %>%
-  mutate(dist = dist_station_A(x = Longitude_m, y = Latitude_m)) %>%
-  select(ID, CodeTourbiere, Longitude_m, Latitude_m, dist) %>%
+chicoute |> 
+  mutate(dist = dist_station_A(x = Longitude_m, y = Latitude_m)) |> 
+  select(ID, CodeTourbiere, Longitude_m, Latitude_m, dist) |> 
   slice_sample(n = 10)
 ```
 
@@ -630,10 +643,10 @@ Nous appliquons cette fonction à toutes les lignes du tableau, puis en retourno
 
 ```{r}
 #| label: tab-stations-rowwise
-chicoute %>%
-  rowwise() %>%
-  mutate(Station = dist_station(x = Longitude_m, y = Latitude_m, stations_df = mes_stations)) %>%
-  select(ID, CodeTourbiere, Longitude_m, Latitude_m, Station) %>%
+chicoute |> 
+  rowwise() |> 
+  mutate(Station = dist_station(x = Longitude_m, y = Latitude_m, stations_df = mes_stations)) |> 
+  select(ID, CodeTourbiere, Longitude_m, Latitude_m, Station) |> 
   slice_sample(n = 10)
 ```
 
@@ -641,11 +654,11 @@ Cela semble fonctionner. On peut y ajouter un `left_join()` pour joindre les don
 
 ```{r}
 #| label: tab-stations-leftjoin
-chicoute_weather <- chicoute %>%
-  rowwise() %>%
-  mutate(Station = dist_station(x = Longitude_m, y = Latitude_m, stations_df = mes_stations)) %>%
+chicoute_weather <- chicoute |> 
+  rowwise() |> 
+  mutate(Station = dist_station(x = Longitude_m, y = Latitude_m, stations_df = mes_stations)) |> 
   left_join(y = mes_stations, by = "Station")
-chicoute_weather %>% slice_sample(n = 10)
+chicoute_weather |>  slice_sample(n = 10)
 ```
 
 ### Exporter un tableau

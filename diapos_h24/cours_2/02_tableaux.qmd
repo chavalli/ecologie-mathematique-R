@@ -269,11 +269,27 @@ chicoute[c("Site", "Latitude_m", "Longitude_m")] # ou bien chicoute[, c("Site", 
 
 ## Sélectionner
 
-Avec le symbole *pipe*, `%>%` (raccourci: Ctrl + Alt + M), qui se lit comme *puis*.
+Avec le symbole *pipe*, `%>%` (raccourci: Ctrl + Shift + M), qui se lit comme *puis*.
 
 ```{r}
 chicoute %>%
   select(Site, Latitude_m, Longitude_m) # ou simplement select
+```
+
+## À propos de `%>%`
+
+Le symbole *pipe*, **`%>%`** (raccourci: Ctrl + Alt + M) fait partie du module `magrittr`, inclus dans tidyverse. En 2021, l'équivalent a été intégré à R-base et prend la forme **`|>`**. Si vous le souhaitez, vous pouvez l'activer par défaut dans les options de RStudio et l'utiliser avec Ctrl + Shift + M.
+
+![](images/pipe.png)
+
+## Sélectionner `%>%` vs `|>`
+
+```{r}
+chicoute %>% 
+ select(Site, Latitude_m, Longitude_m) %>% head(5)
+
+chicoute |> 
+ select(Site, Latitude_m, Longitude_m) |> head(5)
 ```
 
 ## Sélectionner avec `select`
@@ -285,8 +301,8 @@ Tableau, puis
 On peut utiliser des expressions. 
 
 ```{r}
-chicoute %>%
-  select(ends_with("pourc")) %>%
+chicoute |>  
+  select(ends_with("pourc")) |>  
   head(3)
 ```
 
@@ -295,8 +311,8 @@ chicoute %>%
 ... et travailler en négatif pour enlever.
 
 ```{r}
-chicoute %>%
-  select(-ends_with("pourc")) %>%
+chicoute |>  
+  select(-ends_with("pourc")) |>  
   head(3)
 ```
 
@@ -321,7 +337,7 @@ chicoute[chicoute$CodeTourbiere == "BEAU", ]
 Méthode tidyverse
 
 ```{r}
-chicoute %>% 
+chicoute |>   
   filter(CodeTourbiere == "BEAU")
 ```
 
@@ -330,8 +346,8 @@ chicoute %>%
 Remarquez `%in%`, nouvel opérateur logique, qui signifie *`==` à l'un de ...*.
 
 ```{r}
-chicoute %>%
-  filter(C_pourc < 50 & CodeTourbiere %in% c("BEAU", "MB", "WTP")) %>%
+chicoute |>  
+  filter(C_pourc < 50 & CodeTourbiere %in% c("BEAU", "MB", "WTP")) |>  
   select(contains("pourc"))
 ```
 
@@ -340,11 +356,12 @@ chicoute %>%
 Les % en une seule variable? Utiliser `pivot_longer()`. Avant d'utiliser cette opération, assurez-vous que chaque ligne ait un identifiant unique.
 
 ```{r}
-chicoute_long <- chicoute %>%
-  select(CodeTourbiere, N_pourc, P_pourc, K_pourc) %>%
-  mutate(ID = 1:nrow(.)) %>% # mutate ajoute une colonne au tableau
+chicoute_long <- chicoute |>   
+  select(CodeTourbiere, N_pourc, P_pourc, K_pourc) |>   
+  mutate(ID = 1:n()) |>   # mutate ajoute une colonne au tableau
+  # 1:n() peut être remplacé par cur_group_rows()
   pivot_longer(names_to = "element", values_to = "concentration", cols = c(-CodeTourbiere, -ID))
-chicoute_long %>% slice_sample(n = 10)
+chicoute_long |>   slice_sample(n = 6)
 ```
 
 ## Du format long au format large
@@ -352,10 +369,10 @@ chicoute_long %>% slice_sample(n = 10)
 Pour l'opération inverse, utiliser `pivot_wider()`. L'identifiant unique sert à retracer la ligne!
 
 ```{r}
-chicoute_large <- chicoute_long %>%
-  pivot_wider(names_from = "element", values_from = "concentration") %>%
+chicoute_large <- chicoute_long  |>  
+  pivot_wider(names_from = "element", values_from = "concentration") |>  
   select(-ID) # enlever l'identifiant unique
-chicoute_large %>% slice_sample(n = 10)
+chicoute_large |>   slice_sample(n = 10)
 ```
 
 ## 3. Combiner des tableaux
@@ -364,13 +381,13 @@ chicoute_large %>% slice_sample(n = 10)
 
 ## Combiner des tableaux
 
-J'ai des informations supplémentaires à propos des tourbières (colonne `CodeTourbiere`). Comment les combinées avec l'information existante?
+J'ai des informations supplémentaires à propos des tourbières (colonne `CodeTourbiere`). Comment les combiner avec l'information existante?
 
-Par exemple, `chicoute %>% left_join(tourbieres, by = "CodeTourbiere")` collera  sur le tableau `chicoute` seulement les infos des tourbières dont le code est présent dans le tableau `chicoute`.
+Par exemple, `chicoute |>  left_join(tourbieres, by = "CodeTourbiere")` collera  sur le tableau `chicoute` seulement les infos des tourbières dont le code est présent dans le tableau `chicoute`.
 
 ## left_join
 
-`left_join(x, y)` ou `x %>% left_join(y)`: colle y à x seulement ce qui dans y correspond à ce que l’on trouve dans x.
+`left_join(x, y)` ou `x |>  left_join(y)`: colle `y` à `x` seulement ce qui dans `y` correspond à ce que l’on trouve dans `x`.
 
 ![](images/left_join.png)
 
@@ -378,20 +395,20 @@ Par exemple, `chicoute %>% left_join(tourbieres, by = "CodeTourbiere")` collera 
 
 Idem `left_join`, mais l'inverse:
 
-`right_join(x, y)` ou `x %>% right_join(y)`: colle y à x seulement ce qui dans x correspond à ce que l’on trouve dans y.
+`right_join(x, y)` ou `x |>   right_join(y)`: colle `y` à `x` seulement ce qui dans `x` correspond à ce que l’on trouve dans `y`.
 
 ![](images/right_join.png)
 
 ## inner_join
 
-`inner_join(x, y)` colle x et y en excluant les lignes où au moins une variable de joint est absente dans x et y.
+`inner_join(x, y)` colle `x` et `y` en excluant les lignes où au moins une variable de jointure est absente dans `x` et `y`.
 
 ![](images/inner_join.png)
 
 
 ## full_join
 
-`full_join(x, y)` garde toutes les lignes et les colonnes de x et y.
+`full_join(x, y)` garde toutes les lignes et les colonnes de `x` et `y`.
 
 ![](images/full_join.png)
 
@@ -399,19 +416,20 @@ Idem `left_join`, mais l'inverse:
 ## Exemple
 
 ```{r}
+# Nouvelle table des tourbières
 tourbieres <- read_csv2("../../data/chicoute_tourbieres.csv")
-tourbieres %>% 
-  sample_n(10)
+tourbieres |>   
+  slice_sample(n = 10)
 ```
 
 ## Fusionner
 
 ```{r}
-chicoute_merge <- chicoute %>%
+chicoute_merge <- chicoute |>  
   left_join(y = tourbieres, by = "CodeTourbiere")
-chicoute_merge %>% 
-  #select(ID, CodeTourbiere, Site, Tourbiere) %>% 
-  sample_n(4)
+chicoute_merge |>   
+  #select(ID, CodeTourbiere, Site, Tourbiere) |>  
+  slice_sample(n = 4)
 ```
 
 ## 4. Opérations sur les tableaux
@@ -434,13 +452,15 @@ En mode classique
 
 ```{r}
 sum(chicoute$Rendement_g_5m2, na.rm = TRUE)
+# Note : On ajoute na.rm = TRUE pour retirer les valeurs nulles et éviter des problèmes :
+sum(chicoute$Rendement_g_5m2)
 ```
 
 En mode tidyverse
 
 ```{r}
-chicoute %>% 
-  pull(Rendement_g_5m2) %>% # pull extrait le vecteur, alors que select génère un tableau
+chicoute |>  
+  pull(Rendement_g_5m2) |>  # pull extrait le vecteur, comme avec $, alors que select génère un tableau
   sum(na.rm = TRUE)
 ```
 
@@ -449,7 +469,8 @@ chicoute %>%
 En mode classique avec apply
 
 ```{r}
-apply(chicoute %>% select(contains("pourc")), MARGIN = 2, FUN = mean)
+apply(chicoute |>   select(contains("pourc")), MARGIN = 2, FUN = mean)
+# MARGIN : 1 = rows, 2 = cols
 ```
 
 ## Opérations sur les lignes et les colonnes
@@ -457,7 +478,7 @@ apply(chicoute %>% select(contains("pourc")), MARGIN = 2, FUN = mean)
 En mode tidyverse, il existe une panoplie de solutions. Sur une seule colonne, on pourra utiliser `summarise`.
 
 ```{r}
-chicoute %>%
+chicoute |>  
   summarise(rendement = mean(Rendement_g_5m2, na.rm = TRUE))
 ```
 
@@ -466,8 +487,8 @@ chicoute %>%
 Sur plusieurs colonnes, `summarise_all`.
 
 ```{r}
-chicoute %>%
-  select(contains("pourc")) %>% 
+chicoute |>  
+  select(contains("pourc")) |>  
   summarise_all(mean)
 ```
 
@@ -476,9 +497,9 @@ chicoute %>%
 Ou, sur plusieurs lignes ou colonnes, j'en viens souvent à utiliser `apply` comme ceci.
 
 ```{r}
-chicoute %>%
-  select(contains("pourc")) %>%
-  apply(., 2, mean)
+chicoute |>  
+  select(contains("pourc")) |>  
+  apply(2, mean)
 ```
 
 
@@ -487,26 +508,26 @@ chicoute %>%
 Effectuer des opérations par groupe. Ici, j'effectue un sommaire de deux fonctions.
 
 ```{r}
-chicoute %>%
-  group_by(CodeTourbiere) %>% 
+chicoute |> 
+  group_by(CodeTourbiere) |>  
   summarise(moyenne = mean(TotalFloral_nombre_m2, na.rm = TRUE),
             ecart_type = sd(TotalFloral_nombre_m2, na.rm = TRUE))
 ```
 
 ##
 
-Les sommaires groupés avec plusuers colonnes.
+Les sommaires groupés avec plusieurs colonnes.
 
 ```{r}
-chicoute %>%
-  group_by(CodeTourbiere) %>%
-  select(N_pourc, P_pourc) %>%
+chicoute |> 
+  group_by(CodeTourbiere) |> 
+  select(N_pourc, P_pourc) |> 
   summarise_all(funs(mean, sd))
 ```
 
 ## Exercice
 
-Espèces menacées, données issues de l'UICN ([distribuées par l'OCDE](https://stats.oecd.org/Index.aspx?DataSetCode=WILD_LIFE)).
+Espèces menacées, données issues de l'Union Internationale pour la Conservation de la Nature (UICN, [distribuées par l'OCDE](https://stats.oecd.org/Index.aspx?DataSetCode=WILD_LIFE)).
 
 ```{r warning=FALSE}
 especes_menacees <- read_csv('../../data/WILD_LIFE_14012020030114795.csv') # données de UICN, 
@@ -517,13 +538,39 @@ especes_menacees <- read_csv('../../data/WILD_LIFE_14012020030114795.csv') # don
 Ce cheminement comporte de nouvelles fonctions. Pouvez-vous identifier ce qu'il produira comme information?
 
 ```{r}
-especes_menacees %>%
-  filter(IUCN == 'CRITICAL') %>%
-  select(Country, Value) %>%
-  group_by(Country)  %>%
-  summarise(n_critical_species = sum(Value)) %>%
-  arrange(desc(n_critical_species)) %>%
-  top_n(10)
+#| results: false
+especes_menacees |> 
+  filter(IUCN == 'CRITICAL') |> 
+  select(Country, Value) |> 
+  group_by(Country)  |> 
+  summarise(n_critical_species = sum(Value)) |> 
+  arrange(desc(n_critical_species)) |> 
+  slice_head(n = 10)
+```
+
+## Exercice : Réponse
+
+```{r}
+especes_menacees |> 
+  filter(IUCN == 'CRITICAL') |> 
+  select(Country, Value) |> 
+  group_by(Country) |> 
+  summarise(n_critical_species = sum(Value)) |> 
+  arrange(desc(n_critical_species)) |> 
+  slice_head(n = 10)
+```
+
+## Exercice
+
+Note : Au lieu d'utiliser `arrange (desc(n_critical_species)) |>  slice_head(n = 10)`, on aurait simplement pu utiliser la commande `slice_max(n_critical_plants, n = 10)` pour le même résultat.
+
+```{r}
+especes_menacees |> 
+  filter(IUCN == 'CRITICAL') |> 
+  select(Country, Value) |> 
+  group_by(Country)  |> 
+  summarise(n_critical_species = sum(Value)) |> 
+  slice_max(n_critical_species, n = 10)
 ```
 
 ## 5. Fermeture
@@ -541,6 +588,11 @@ write_csv(chicoute_long, "data/chicoute_long.csv")
 ## Pour terminer
 
 Pratiquez-vous avec vos propres données!
+
+Lectures : 
+
+-   [Chapitre 3 des notes de cours](https://chavalli.github.io/ecologie-mathematique-R/03-tableaux.html#op%C3%A9rations-sur-les-tableaux)
+-   
 
 ## Objectifs spécifiques
 
