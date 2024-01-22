@@ -1330,16 +1330,16 @@ dbl (26): ID, Site, Latitude_m, Longitude_m, Rendement_g_5m2, TotalRamet_nom...
 <pre><code># A tibble: 10 × 4
    CodeTourbiere    ID nutrient concentration
    &lt;chr&gt;         &lt;int&gt; &lt;chr&gt;            &lt;dbl&gt;
- 1 1                69 K_pourc         0.485 
- 2 1                76 K_pourc         0.683 
- 3 NBM              48 P_pourc         0.118 
- 4 BS2              61 K_pourc         0.632 
- 5 BP               10 N_pourc         2.14  
- 6 1                83 K_pourc         1.04  
- 7 WTP              89 P_pourc         0.0799
- 8 NTP              51 N_pourc         2.05  
- 9 NBM              50 P_pourc         0.156 
-10 2                26 K_pourc         1.34  </code></pre>
+ 1 2                21 P_pourc          0.233
+ 2 1                75 K_pourc          0.684
+ 3 2                12 K_pourc          1.24 
+ 4 BEAU              1 K_pourc          1.21 
+ 5 SSP              59 P_pourc          0.136
+ 6 2                11 P_pourc          0.138
+ 7 MB               32 N_pourc          2.09 
+ 8 1                84 K_pourc          1.32 
+ 9 SSP              57 N_pourc          1.66 
+10 1                78 N_pourc          2.31 </code></pre>
 </div>
 </div>
 <p>L’opération inverse est <code>pivot_wider()</code>, avec laquelle nous sélectionnons une colonne spécifiant les nouvelles colonnes à construire (<code>names_from</code>) ainsi que les valeurs à placer dans ces colonnes (<code>values_from</code>).</p>
@@ -1351,16 +1351,16 @@ dbl (26): ID, Site, Latitude_m, Longitude_m, Rendement_g_5m2, TotalRamet_nom...
 <pre><code># A tibble: 10 × 5
    CodeTourbiere    ID N_pourc P_pourc K_pourc
    &lt;chr&gt;         &lt;int&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
- 1 2                20    2.80  0.224    1.20 
- 2 BP                8    1.77  0.166    0.778
- 3 2                19    2.62  0.213    1.21 
- 4 WTP              89    1.80  0.0799   0.465
- 5 NTP              53    1.66  0.0872   0.345
- 6 2                13    2.83  0.174    1.06 
- 7 BP                7    2.06  0.162    0.824
- 8 MB               33    2.14  0.103    0.530
- 9 2                23    2.86  0.202    1.18 
-10 MB               32    2.09  0.117    0.454</code></pre>
+ 1 2                19    2.62  0.213    1.21 
+ 2 NESP             41    1.73  0.148    0.851
+ 3 BP                8    1.77  0.166    0.778
+ 4 1                67    2.22  0.175    0.871
+ 5 MB               35    2.11  0.0847   0.913
+ 6 NTP              55    1.88  0.0776   0.419
+ 7 2                17    2.61  0.142    1.01 
+ 8 NBM              50    2.42  0.156    0.825
+ 9 NESP             44    1.75  0.120    1.13 
+10 MR               38    1.95  0.113    0.906</code></pre>
 </div>
 </div>
 </section>
@@ -1686,18 +1686,18 @@ afficher le top 10</code></pre>
 <span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_sample</span>(<span class="at">n =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 10 × 5
-      ID CodeTourbiere Longitude_m Latitude_m    dist
-   &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt;      &lt;dbl&gt;   &lt;dbl&gt;
- 1    47 NBM                485972    5696590 7494.  
- 2    31 MB                 491931    5699342 3368.  
- 3    86 WTP                487075    5700788 3935.  
- 4    32 MB                 491935    5699337 3374.  
- 5     3 BEAU               490638    5702461    8.25
- 6    34 MB                 491955    5699332 3387.  
- 7    14 2                  486538    5702562 4103.  
- 8    41 NESP               484875    5701888 5793.  
- 9    84 1                  486514    5702160 4136.  
-10    70 1                  486488    5702120 4165.  </code></pre>
+      ID CodeTourbiere Longitude_m Latitude_m     dist
+   &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;
+ 1    64 BS2                486530    5702199  4118.  
+ 2    41 NESP               484875    5701888  5793.  
+ 3    79 1                  486499    5702076  4158.  
+ 4    53 NTP                487562    5704093  3488.  
+ 5    14 2                  486538    5702562  4103.  
+ 6     3 BEAU               490638    5702461     8.25
+ 7    17 2                  486501    5702627  4143.  
+ 8    26 2                  486315    5702540  4326.  
+ 9    38 MR                 459880    5701971 30764.  
+10    28 2                  486353    5702478  4287.  </code></pre>
 </div>
 </div>
 <p>Nous pourrions procéder de la même manière pour fusionner des données climatiques. Le tableau <code>chicoute</code> ne possède pas d’indicateurs climatiques, mais il est possible de les soutirer de stations météo placées près des sites. Ces données ne sont pas disponibles pour le tableau de la chicouté, alors j’utiliserai des données fictives pour l’exemple.</p>

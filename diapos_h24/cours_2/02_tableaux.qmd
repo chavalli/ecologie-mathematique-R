@@ -202,6 +202,7 @@ Utiliser les fonctions du module readr, ou bien la fonction de base `read.csv()`
 ```{r}
 library("tidyverse")
 chicoute <- read_csv2(file = "../../data/chicoute.csv")
+# ou readr::read_csv2
 ```
 
 ## Fonctions de base sur les tableaux
