@@ -4,10 +4,10 @@ Ce cours a pour objectif de former les étudiants gradués en génie agroenviron
 
 ## Table des matières
 
-1. [Introduction](https://essicolo.github.io/ecologie-mathematique-R/)
-2. [La science des données avec R](https://essicolo.github.io/ecologie-mathematique-R/chapitre-intro-a-R.html)
-3. [Organisation des données et opérations sur des tableaux](https://essicolo.github.io/ecologie-mathematique-R/chapitre-tableaux.html)
-4. [Visualisation](https://essicolo.github.io/ecologie-mathematique-R/chapitre-visualisation.html)
+1. [Introduction](https://chavalli.github.io/ecologie-mathematique-R/01-intro.html)
+2. [La science des données avec R](https://chavalli.github.io/ecologie-mathematique-R/02-R.html)
+3. [Organisation des données et opérations sur des tableaux](https://chavalli.github.io/ecologie-mathematique-R/03-tableaux.html)
+4. [Visualisation](https://chavalli.github.io/ecologie-mathematique-R/04-visualisation.html)
 5. [Science ouverte et reproductibilité](https://essicolo.github.io/ecologie-mathematique-R/chapitre-git.html)
 6. [Biostatistiques](https://essicolo.github.io/ecologie-mathematique-R/chapitre-biostats.html)
 7. [Introduction à l’analyse bayésienne en écologie](https://essicolo.github.io/ecologie-mathematique-R/chapitre-biostats-bayes.html)
