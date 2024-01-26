@@ -401,14 +401,28 @@ Andrés Silva
 </div>
 
 </section>
-<section id="présentation" class="slide level2 center">
-<h2>Présentation</h2>
+<section id="présentation-12" class="slide level2 center">
+<h2>Présentation (1/2)</h2>
 <p><strong>Andrés Felipe Silva Dimaté</strong>, candidat au doctorat en sols et environnement et chargé de cours.</p>
 <ul>
 <li>Baccalauréat en Génie Agricole</li>
 <li>M. Sc. en sols et environnement</li>
 <li>Spécialités : Modélisation, programmation en R et python, science de données.</li>
 </ul>
+</section>
+<section id="présentation-22" class="slide level2 center">
+<h2>Présentation (2/2)</h2>
+<p>Je serai disponible tous les vendredis matin pour résoudre des doutes en présentiel ou en ligne.</p>
+<div class="callout callout-important callout-style-simple">
+<div class="callout-body">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-content">
+<p>Veuillez noter que je ne serai disponible qu’en ligne jusqu’au 12 février, inclusivement.</p>
+</div>
+</div>
+</div>
 </section>
 <section id="lécologie-mathématique" class="slide level2 center">
 <h2>L’écologie mathématique</h2>
@@ -423,7 +437,7 @@ Andrés Silva
 </div><div class="column" style="width:50%;">
 <div class="r-stack">
 <p><img data-src="images/02_numerical_ecology_book.jpg" class="fragment" height="450"></p>
-<p><img data-src="images/03_numerical_ecology_R_book.jpeg" class="fragment" width="350"></p>
+<p><img data-src="images/03_numerical_ecology_R_book.jpeg" class="fragment" width="375"></p>
 </div>
 </div>
 </div>
@@ -450,7 +464,7 @@ Andrés Silva
 <section id="la-science-des-données-avec-r" class="slide level2 center">
 <h2>La science des données avec R</h2>
 
-<img data-src="images/02_Rlogo.png" class="r-stretch"></section>
+<img data-src="images/02_Rlogo.png" width="200" class="r-stretch quarto-figure-center"></section>
 <section id="objectifs-spécifiques" class="slide level2 center">
 <h2>Objectifs spécifiques</h2>
 <p>À la fin de ce chapitre, vous</p>
@@ -465,7 +479,7 @@ Andrés Silva
 <section id="quest-ce-que-r" class="slide level2 center">
 <h2>Qu’est-ce que R ?</h2>
 <ul>
-<li><p>R est un langage de programmation de haut niveau qui est très populaire dans la manipulation, l’analyse et la visualisation des données.</p></li>
+<li><p>R est un langage de programmation de haut niveau très populaire dans la manipulation, l’analyse et la visualisation des données.</p></li>
 <li><p>Ross Ihaka et Robert Gentleman, créateurs de ce langage, se sont inspirés du langage pour l’analyse de données « S », un langage conçu par Rick Becker, John Chambers and Allan Wilks dans les laboratoires Bell à New Jersey en 1976.</p></li>
 </ul>
 </section>
@@ -473,29 +487,33 @@ Andrés Silva
 <h2>Sciences des données vs Statistiques</h2>
 <ul>
 <li><strong>Statistique</strong>: l’étude des méthodes pour décrire et mesurer des aspects de la nature à partir d’échantillon (Whitlock et Schluter, 2015).</li>
-<li><strong>Sciences des données</strong>: une discipline <em>excitante</em> permettant de transformer des données brutes en compréhension, perspectives et connaissances (Grolemund et Wickham, 2018).</li>
+<li><strong>Sciences des données</strong>: une discipline <em>excitante</em> permettant de transformer des données brutes en compréhension, perspectives et connaissances (Wickham, Çetinkaya-Rundel et Grolemund, 2023).</li>
 </ul>
 </section>
 <section id="flux-de-travail-en-sciences-des-données" class="slide level2 center">
 <h2>Flux de travail en sciences des données</h2>
 
-<img data-src="images/02_science-des-donnees-flow_.png" class="r-stretch"><p><small><a href="https://r4ds.had.co.nz/introduction.html">Adapté de Grolemund et Wickham (2018)</a></small></p>
+<img data-src="images/02_science-des-donnees-flow_.png" class="r-stretch"><p><small><a href="https://r4ds.hadley.nz/intro" class="external" target="_blank">Adapté de Wickham, Çetinkaya-Rundel et Grolemund (2023)</a></small></p>
 </section>
 <section id="installer-r" class="slide level2 center">
 <h2>Installer R</h2>
 <h4 id="installation-classique">Installation classique</h4>
 <ul>
-<li>Windows et Mac <a href="https://cloud.r-project.org/">–&gt;</a></li>
+<li>Windows et Mac <a href="https://cloud.r-project.org/" class="external" target="_blank">–&gt;</a></li>
 <li><code>r-base</code> (Ubuntu, Debian), <code>R-base</code> (openSuse) ou <code>R-core</code> (Fedora)</li>
 </ul>
 <h4 id="installation-anaconda-jupyter">Installation Anaconda (Jupyter)</h4>
 <ul>
-<li>Téléchargez <a href="https://www.anaconda.com/">Anaconda</a>, ouvrez Anaconda Navigator, installez RStudio ou bien créez un nouvel environnement R.</li>
+<li>Téléchargez <a href="https://www.anaconda.com/" class="external" target="_blank">Anaconda</a>, ouvrez Anaconda Navigator, installez RStudio ou bien créez un nouvel environnement R.</li>
 <li>Vous devriez être en mesure d’utiliser R dans Jupyter lab ou Jupyter notebook</li>
 </ul>
 </section>
-<section id="premier-aperçu-de-r" class="slide level2 center">
-<h2>Premier aperçu de R</h2>
+<section id="premier-aperçu-de-r---windows" class="slide level2 center">
+<h2>Premier aperçu de R - Windows</h2>
+
+<img data-src="images/02_R-console-windows.png" class="r-stretch"></section>
+<section id="premier-aperçu-de-r---ubuntu" class="slide level2 center">
+<h2>Premier aperçu de R - Ubuntu</h2>
 
 <img data-src="images/02_terminal-prompt.png" class="r-stretch"></section>
 <section id="rstudio" class="slide level2 center">
@@ -505,7 +523,8 @@ Andrés Silva
 <section id="rstudio-1" class="slide level2 center">
 <h2>RStudio</h2>
 <ul>
-<li>R script ou R notebook?</li>
+<li><a href="https://posit.co/download/rstudio-desktop/" class="external" target="_blank">Télécharger RStudio</a></li>
+<li>R script, <a href="https://quarto.org/" class="external" target="_blank">Quarto</a> document ou R notebook?</li>
 <li>L’interface par projets</li>
 <li>Exécuter la ligne, le <em>chunk</em> ou le code en surbrillance: <code>Ctrl + Enter</code></li>
 </ul>
@@ -547,7 +566,19 @@ Andrés Silva
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>ours <span class="ot">&lt;-</span> <span class="dv">4</span></span>
 <span id="cb7-2"><a href="#cb7-2"></a><span class="co"># Ours</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><strong>Note</strong>. Lisez-les attentivement les messages d’erreur: ils sont là pour vous aider.</p>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>Lisez-les attentivement les messages d’erreur&nbsp;: ils sont là pour vous aider.</p>
+</div>
+</div>
+</div>
 </section>
 <section id="nom-des-objects-22" class="slide level2 center">
 <h2>Nom des objects (2/2)</h2>
@@ -925,16 +956,38 @@ $stations_meteos
 <li>saurez installer et charger des modules complémentaire.</li>
 </ul>
 </section>
-<section id="exercices" class="slide level2 center">
-<h2>Exercices</h2>
+<section id="exercices-12" class="slide level2 center">
+<h2>Exercices (1/2)</h2>
 <p>À partir d’ici jusqu’à la fin du cours, nous utiliserons RStudio. Ouvrez-le et familiarisez-vous avec l’interface! Quelques petits trucs:</p>
+<div class="fragment fade-up">
 <ul>
 <li>pour lancer une ligne, placez votre curseur sur la ligne, puis appuyez sur Ctrl+Enter</li>
-<li>pour lancer une partie de code précise, mettez le en surbrillance, puis Ctrl+Enter</li>
-<li>utilisez toujours le gestionnaire de projets, en haut à droite!</li>
-<li>installez le module tidyverse</li>
-<li>lancez <code>data(iris)</code> pour obtenir un tableau d’exercice, puis cliquez sur l’objet dans la fenêtre environnement</li>
 </ul>
+</div>
+<div class="fragment fade-up">
+<ul>
+<li>pour lancer une partie de code précise, mettez le en surbrillance, puis Ctrl+Enter</li>
+</ul>
+</div>
+</section>
+<section id="exercices-22" class="slide level2 center">
+<h2>Exercices (2/2)</h2>
+<p>À partir d’ici jusqu’à la fin du cours, nous utiliserons RStudio. Ouvrez-le et familiarisez-vous avec l’interface! Quelques petits trucs:</p>
+<div class="fragment fade-up">
+<ul>
+<li>utilisez toujours le gestionnaire de projets, en haut à droite!</li>
+</ul>
+</div>
+<div class="fragment fade-up">
+<ul>
+<li>installez le module tidyverse.</li>
+</ul>
+</div>
+<div class="fragment fade-up">
+<ul>
+<li>lancez <code>data(iris)</code> pour obtenir un tableau d’exercice, puis cliquez sur l’objet dans la fenêtre environnement.</li>
+</ul>
+</div>
 <div class="footer footer-default">
 
 </div>
