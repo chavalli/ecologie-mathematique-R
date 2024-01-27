@@ -426,7 +426,7 @@ Andrés Silva
 <!-- 1. Les tableaux et leur organisation -->
 </section>
 <section id="les-graphiques-avant-de-publier" class="slide level2 center">
-<h2>1. Les graphiques: avant de publier</h2>
+<h2>1. Les graphiques : avant de publier</h2>
 </section>
 <section id="un-outil-dexploration" class="slide level2 center">
 <h2>Un outil d’exploration</h2>
@@ -477,60 +477,139 @@ Andrés Silva
 </div>
 </div>
 </section>
-<section id="section" class="slide level2 center">
-<h2></h2>
+<section id="section" class="slide level2 center" data-auto-animate="true">
+<h2 data-id="quarto-animate-title"></h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>nasa_temp <span class="sc">|&gt;</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a>  <span class="fu">filter</span>(year <span class="sc">&gt;=</span> <span class="dv">1998</span> <span class="sc">&amp;</span> year <span class="sc">&lt;=</span> <span class="dv">2008</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb3-3"><a href="#cb3-3"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> temp)) <span class="sc">+</span></span>
-<span id="cb3-4"><a href="#cb3-4"></a>  <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb3-1" class="hljs-ln-code"><a href="#cb3-1"></a>nasa_temp <span class="sc">|&gt;</span></span>
+<span id="cb3-2" class="hljs-ln-code"><a href="#cb3-2"></a>  <span class="fu">filter</span>(year <span class="sc">&gt;=</span> <span class="dv">1998</span> <span class="sc">&amp;</span> year <span class="sc">&lt;=</span> <span class="dv">2008</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-3" class="hljs-ln-code"><a href="#cb3-3"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> temp)) <span class="sc">+</span></span>
+<span id="cb3-4" class="hljs-ln-code"><a href="#cb3-4"></a>  <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
 <img data-src="04_viz_files/figure-revealjs/unnamed-chunk-2-1.png" width="576" class="r-stretch quarto-figure-center"></section>
+<section id="section-1" class="slide level2 center" data-auto-animate="true">
+<h2 data-id="quarto-animate-title"></h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb4" data-code-line-numbers="2"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb4-1" class="hljs-ln-code"><a href="#cb4-1"></a>nasa_temp <span class="sc">|&gt;</span></span>
+<span id="cb4-2" class="hljs-ln-code"><a href="#cb4-2"></a>  <span class="co">#filter(year &gt;= 1998 &amp; year &lt;= 2008) %&gt;% </span></span>
+<span id="cb4-3" class="hljs-ln-code"><a href="#cb4-3"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> temp)) <span class="sc">+</span></span>
+<span id="cb4-4" class="hljs-ln-code"><a href="#cb4-4"></a>  <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="04_viz_files/figure-revealjs/unnamed-chunk-3-1.png" width="576" class="r-stretch quarto-figure-center"></section>
+<section id="qualité-1.-honnêteté-1" class="slide level2 center">
+<h2>Qualité 1. Honnêteté</h2>
+<div class="columns">
+<div class="column" style="width:525px;">
+<div class="fragment semi-fade-out">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/04_us_income.png" width="900"></p>
+</figure>
+</div>
+</div>
+</div><div class="column" style="width:525px;">
+<div class="fragment fade-in">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/04_us_income_log.png" width="900"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<center>
+<small>L’inégalité des revenus des adultes aux États-Unis au fil du temps. Source : <a href="https://handsondataviz.org/persuasive.html">Hands-On Data Visualization</a>.</small>
+</center>
+</section>
 <section id="qualité-2.-fonctionnelle" class="slide level2 center">
 <h2>Qualité 2. Fonctionnelle</h2>
-<p><img data-src="images/3d-Pie-Chart1.jpg"> Source: <a href="https://slidebazaar.com/items/free-3d-pie-chart-powerpoint-template/">Slidebazaar</a></p>
+
+<img data-src="images/3d-Pie-Chart1.jpg" width="700" class="r-stretch quarto-figure-center"><p>Source : <a href="https://slidebazaar.com/items/free-3d-pie-chart-powerpoint-template/">Slidebazaar</a></p>
 </section>
-<section id="section-1" class="slide level2 center">
+<section id="section-2" class="slide level2 center">
 <h2></h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>market <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">category =</span> <span class="fu">c</span>(<span class="st">"Creative Design"</span>, <span class="st">"Desktop Application"</span>, <span class="st">"Commercial Print Ad"</span>, <span class="st">"Mobile App Design"</span>), <span class="at">proportion =</span> <span class="fu">c</span>(<span class="dv">16</span>, <span class="dv">24</span>, <span class="dv">10</span>, <span class="dv">50</span>))</span>
-<span id="cb4-2"><a href="#cb4-2"></a>market <span class="sc">%&gt;%</span> </span>
-<span id="cb4-3"><a href="#cb4-3"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(category, proportion), <span class="at">y =</span> proportion)) <span class="sc">+</span> <span class="fu">geom_col</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> <span class="st">"Proportion"</span>) <span class="sc">+</span> <span class="fu">coord_flip</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>market <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">category =</span> <span class="fu">c</span>(<span class="st">"Creative Design"</span>, <span class="st">"Desktop Application"</span>, <span class="st">"Commercial Print Ad"</span>, <span class="st">"Mobile App Design"</span>), <span class="at">proportion =</span> <span class="fu">c</span>(<span class="dv">16</span>, <span class="dv">24</span>, <span class="dv">10</span>, <span class="dv">50</span>))</span>
+<span id="cb5-2"><a href="#cb5-2"></a>market <span class="sc">|&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(category, proportion), <span class="at">y =</span> proportion)) <span class="sc">+</span> <span class="fu">geom_col</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> <span class="st">"Proportion"</span>) <span class="sc">+</span> <span class="fu">coord_flip</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="04_viz_files/figure-revealjs/unnamed-chunk-3-1.png" width="576" class="r-stretch"></section>
+<img data-src="04_viz_files/figure-revealjs/unnamed-chunk-4-1.png" width="576" class="r-stretch quarto-figure-center"></section>
 <section id="qualité-3.-visuel" class="slide level2 center">
 <h2>Qualité 3. Visuel</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co">#library("ggthemr")</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="fu">library</span>(ggthemes)</span>
-<span id="cb5-3"><a href="#cb5-3"></a><span class="co">#ggthemr(palette = "dust", layout = "scientific", type = "outer")</span></span>
-<span id="cb5-4"><a href="#cb5-4"></a>market <span class="sc">%&gt;%</span> </span>
-<span id="cb5-5"><a href="#cb5-5"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(category, proportion), <span class="at">y =</span> proportion)) <span class="sc">+</span> <span class="fu">geom_col</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> <span class="st">"Proportion"</span>) <span class="sc">+</span> <span class="fu">coord_flip</span>() <span class="sc">+</span> <span class="fu">theme_wsj</span>(<span class="at">base_size =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Module <a href="https://github.com/Mikata-Project/ggthemr" class="external" target="_blank">ggthemr</a></p>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">library</span>(<span class="st">"ggthemr"</span>)</span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="fu">ggthemr</span>(<span class="at">palette =</span> <span class="st">"dust"</span>, <span class="at">layout =</span> <span class="st">"scientific"</span>, <span class="at">type =</span> <span class="st">"outer"</span>)</span>
+<span id="cb6-3"><a href="#cb6-3"></a>market <span class="sc">|&gt;</span> </span>
+<span id="cb6-4"><a href="#cb6-4"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(category, proportion), <span class="at">y =</span> proportion)) <span class="sc">+</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> <span class="st">"Proportion"</span>) <span class="sc">+</span> <span class="fu">coord_flip</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 
 </div>
-<img data-src="04_viz_files/figure-revealjs/unnamed-chunk-4-1.png" width="576" class="r-stretch"></section>
+<img data-src="04_viz_files/figure-revealjs/unnamed-chunk-5-1.png" width="576" class="r-stretch quarto-figure-center"></section>
 <section id="qualité-3.-visuel-1" class="slide level2 center">
 <h2>Qualité 3. Visuel</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">library</span>(ggprism)</span>
-<span id="cb6-2"><a href="#cb6-2"></a></span>
-<span id="cb6-3"><a href="#cb6-3"></a>market <span class="sc">%&gt;%</span> </span>
-<span id="cb6-4"><a href="#cb6-4"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(category, proportion), <span class="at">y =</span> proportion)) <span class="sc">+</span> <span class="fu">geom_col</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> <span class="st">"Proportion"</span>) <span class="sc">+</span> <span class="fu">coord_flip</span>() <span class="sc">+</span> <span class="fu">theme_prism</span>(<span class="at">palette =</span> <span class="st">"summer"</span>, <span class="at">base_size =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>Module <a href="https://github.com/jrnold/ggthemes" class="external" target="_blank">ggthemes</a></p>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">library</span>(ggthemes)</span>
+<span id="cb7-2"><a href="#cb7-2"></a>market <span class="sc">|&gt;</span> </span>
+<span id="cb7-3"><a href="#cb7-3"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(category, proportion), <span class="at">y =</span> proportion)) <span class="sc">+</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> <span class="st">"Proportion"</span>) <span class="sc">+</span> <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a>  <span class="fu">theme_wsj</span>(<span class="at">base_size =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="04_viz_files/figure-revealjs/unnamed-chunk-7-1.png" width="576"></p>
+</figure>
 </div>
-<img data-src="04_viz_files/figure-revealjs/unnamed-chunk-5-1.png" width="576" class="r-stretch"></section>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<p>Module <a href="https://github.com/csdaw/ggprism" class="external" target="_blank">ggprism</a></p>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">library</span>(ggprism)</span>
+<span id="cb8-2"><a href="#cb8-2"></a>market <span class="sc">|&gt;</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(category, proportion), <span class="at">y =</span> proportion)) <span class="sc">+</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> <span class="st">"Proportion"</span>) <span class="sc">+</span> <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb8-5"><a href="#cb8-5"></a>  <span class="fu">theme_prism</span>(<span class="at">palette =</span> <span class="st">"summer"</span>, <span class="at">base_size =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="04_viz_files/figure-revealjs/unnamed-chunk-8-1.png" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
 <section id="qualité-4.-pertinence" class="slide level2 center">
 <h2>Qualité 4. Pertinence</h2>
-<img src="../../images/03_mann-hockey-stick-2001.png" width="600">
 <center>
-Source: <a href="https://www.ipcc.ch/pdf/climate-changes-2001/scientific-basis/scientific-spm-ts-fr.pdf">GIEC, Bilan 2001 des changements climatiques : Les éléments scientifiques</a>
+<img src="https://images.nzgeo.com/2016/01/52_Weather_01-1300x926.jpg" width="700">
+</center>
+<center>
+<small> Source: <a href="https://www.ipcc.ch/pdf/climate-changes-2001/scientific-basis/scientific-spm-ts-fr.pdf" class="external" target="_blank">GIEC, Bilan 2001 des changements climatiques : Les éléments scientifiques</a> </small>
 </center>
 </section>
 <section id="qualité-5.-instructive" class="slide level2 center">
 <h2>Qualité 5. Instructive</h2>
-<p><img data-src="images/chocolat-nobel.png"> Source: <a href="https://www.nejm.org/doi/full/10.1056/NEJMon1211064">Messerli, (2012)</a></p>
+
+<img data-src="images/chocolat-nobel.png" width="600" class="r-stretch quarto-figure-center"><center>
+Source: <a href="https://www.nejm.org/doi/full/10.1056/NEJMon1211064">Messerli, (2012)</a>
+</center>
 <!-- 3. et 4. -->
 </section>
 <section id="choisir-le-bon-type-de-graphique" class="slide level2 center">
@@ -542,17 +621,17 @@ Source: <a href="https://www.ipcc.ch/pdf/climate-changes-2001/scientific-basis/s
 <li>Testez le résultat.</li>
 </ol>
 </section>
-<section id="section-2" class="slide level2 center">
+<section id="section-3" class="slide level2 center">
 <h2></h2>
 
-<img data-src="../../images/03_poster.png" class="r-stretch quarto-figure-center"></section>
+<img data-src="images/03_poster.png" class="r-stretch quarto-figure-center"></section>
 <section id="différentes-approches" class="slide level2 center">
 <h2>4. Différentes approches</h2>
 <p><strong>Impérative</strong>. <em>Comment</em> placer l’information sur une canevas. Exemple: R-base, Matplotlib (Python), Excel.</p>
 <p><strong>Déclarative</strong>. Spécifier <em>quoi</em> afficher. Exemple: ggplot2, altair (Python).</p>
 <blockquote>
 <p>La visualisation déclarative vous permet de penser aux données et à leurs relations, plutôt que des détails accessoires.</p>
-<p><a href="https://www.youtube.com/watch?v=FytuB8nFHPQ"><em>Jake Vanderplas, Declarative Statistical Visualization in Python with Altair</em></a> (ma traduction)</p>
+<p><small><a href="https://www.youtube.com/watch?v=FytuB8nFHPQ"><em>Jake Vanderplas, Declarative Statistical Visualization in Python with Altair</em></a> (Traduction par Essi Parent)</small></p>
 </blockquote>
 <!-- 5. Visualisation en R  -->
 </section>
@@ -574,11 +653,16 @@ Source: <a href="https://www.ipcc.ch/pdf/climate-changes-2001/scientific-basis/s
 <li><strong>Les données</strong>. Votre tableau est bien sûr un argument nécessaire pour générer le graphique.</li>
 <li><strong>Les marqueurs</strong>. Un terme abstrait pour désigner les points, les lignes, les polygones, les barres, les flèches, etc.</li>
 <li><strong>Les attributs encodés</strong>. La position, la dimension, la couleur ou la forme que prendront les géométries. En ggplot2, on les nomme les <em>aesthetics</em>.</li>
+</ol>
+</section>
+<section id="ggplot2-1" class="slide level2 center">
+<h2>ggplot2</h2>
+<ol start="4" type="1">
 <li><strong>Les attributs globaux</strong>. Les attributs sont globaux lorsqu’ils sont constant (ils ne dépendent pas d’une variable). Les valeurs par défaut conviennent généralement, mais certains attributs peuvent être spécifiés: par exemple la forme ou la couleur des points, le type de ligne.</li>
 <li><strong>Les thèmes</strong>. Le thème du graphique peut être spécifié dans son ensemble, c’est-à-dire en utilisant un thème prédéfini, mais l’on peut modifier certains détails.</li>
 </ol>
 </section>
-<section id="ggplot2-1" class="slide level2 center">
+<section id="ggplot2-2" class="slide level2 center">
 <h2>ggplot2</h2>
 <p>–&gt; basculer vers les notes de cours.</p>
 <!-- 6. Fermeture -->

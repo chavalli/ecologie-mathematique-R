@@ -10,7 +10,7 @@ format:
     transition: slide
     center: true
     #css: custom.css
-editor_options: 
+editor_options:
   chunk_output_type: console
 ---
 
@@ -36,7 +36,7 @@ editor_options:
 
 <!-- 1. Les tableaux et leur organisation -->
 
-## 1. Les graphiques: avant de publier
+## 1. Les graphiques : avant de publier
 
 ## Un outil d'exploration
 
@@ -66,7 +66,7 @@ nasa_temp <- read_table("https://climate.nasa.gov/system/internal_resources/deta
 nasa_temp
 ```
 
-##
+## {auto-animate="true"}
 
 ```{r}
 #| fig-height: 4
@@ -79,59 +79,145 @@ nasa_temp |>
   geom_line()
 ```
 
+## {auto-animate=true}
 
-## Qualité 2. Fonctionnelle
+```{r}
+#| fig-height: 4
+#| fig-width: 6
+#| fig-align: center
+#| code-line-numbers: "2"
 
-![](images/3d-Pie-Chart1.jpg)
-Source: [Slidebazaar](https://slidebazaar.com/items/free-3d-pie-chart-powerpoint-template/)
+nasa_temp |>
+  #filter(year >= 1998 & year <= 2008) %>% 
+  ggplot(mapping = aes(x = year, y = temp)) +
+  geom_line()
+```
+## Qualité 1. Honnêteté
+
+:::: {.columns}
+
+::: {.column width=525px}
+
+::: {.fragment .semi-fade-out}
+![](images/04_us_income.png){fig-align="center" width=900}
+:::
+
+
+:::
+
+::: {.column width=525px}
+
+::: {.fragment .fade-in}
+![](images/04_us_income_log.png){fig-align="center" width=900}
+:::
+
+:::
+
+::::
+
+<center><small>L'inégalité des revenus des adultes aux États-Unis au fil du temps. Source : [Hands-On Data Visualization](https://handsondataviz.org/persuasive.html).</small></center>
+
+## Qualité 2. Fonctionnelle {.center}
+
+![](images/3d-Pie-Chart1.jpg){width=700 fig-align="center"}
+
+Source : [Slidebazaar](https://slidebazaar.com/items/free-3d-pie-chart-powerpoint-template/)
 
 ##
 
 ```{r}
 #| fig-height: 4
 #| fig-width: 6
+#| fig-align: center
 
 market <- tibble(category = c("Creative Design", "Desktop Application", "Commercial Print Ad", "Mobile App Design"), proportion = c(16, 24, 10, 50))
-market %>% 
+market |>
   ggplot(mapping = aes(x = fct_reorder(category, proportion), y = proportion)) + geom_col() + labs(x = "", y = "Proportion") + coord_flip()
 ```
 
 ## Qualité 3. Visuel
 
+Module [ggthemr](https://github.com/Mikata-Project/ggthemr){.external target="_blank"}
+
 ```{r}
 #| fig-height: 4
 #| fig-width: 6
-#| warning: false
+#| fig-align: center
+#| code-fold: true
 
-#library("ggthemr")
-library(ggthemes)
-#ggthemr(palette = "dust", layout = "scientific", type = "outer")
-market %>% 
-  ggplot(mapping = aes(x = fct_reorder(category, proportion), y = proportion)) + geom_col() + labs(x = "", y = "Proportion") + coord_flip() + theme_wsj(base_size = 10)
+library("ggthemr")
+ggthemr(palette = "dust", layout = "scientific", type = "outer")
+market |> 
+  ggplot(mapping = aes(x = fct_reorder(category, proportion), y = proportion)) +
+  geom_col() + labs(x = "", y = "Proportion") + coord_flip()
 ```
 
+```{r}
+#| echo: false
+ggthemr_reset()
+```
 ## Qualité 3. Visuel
 
+:::: {.columns}
+
+::: {.column width="50%"}
+
+Module [ggthemes](https://github.com/jrnold/ggthemes){.external target="_blank"}
+
 ```{r}
 #| fig-height: 4
 #| fig-width: 6
+#| fig-align: center
 #| warning: false
+#| code-fold: true
+
+library(ggthemes)
+market |> 
+  ggplot(mapping = aes(x = fct_reorder(category, proportion), y = proportion)) +
+  geom_col() + labs(x = "", y = "Proportion") + coord_flip() +
+  theme_wsj(base_size = 10)
+```
+:::
+
+::: {.column width="50%"}
+
+Module [ggprism](https://github.com/csdaw/ggprism){.external target="_blank"}
+
+```{r}
+#| fig-height: 4
+#| fig-width: 6
+#| fig-align: center
+#| warning: false
+#| code-fold: true
 
 library(ggprism)
-
-market %>% 
-  ggplot(mapping = aes(x = fct_reorder(category, proportion), y = proportion)) + geom_col() + labs(x = "", y = "Proportion") + coord_flip() + theme_prism(palette = "summer", base_size = 10)
+market |>
+  ggplot(mapping = aes(x = fct_reorder(category, proportion), y = proportion)) +
+  geom_col() + labs(x = "", y = "Proportion") + coord_flip() +
+  theme_prism(palette = "summer", base_size = 10)
 ```
+:::
+
+::::
+
 
 ## Qualité 4. Pertinence
 
-<img src="../../images/03_mann-hockey-stick-2001.png" width="600">
-<center>Source: [GIEC, Bilan 2001 des changements climatiques : Les éléments scientifiques](https://www.ipcc.ch/pdf/climate-changes-2001/scientific-basis/scientific-spm-ts-fr.pdf)</center>
+<center>
+<img src="https://images.nzgeo.com/2016/01/52_Weather_01-1300x926.jpg" width="700">
+</center>
+
+<center><small>
+Source: [GIEC, Bilan 2001 des changements climatiques : Les éléments scientifiques](https://www.ipcc.ch/pdf/climate-changes-2001/scientific-basis/scientific-spm-ts-fr.pdf){.external target="_blank"}
+</small></center>
 
 ## Qualité 5. Instructive
 
-![](images/chocolat-nobel.png)
+![](images/chocolat-nobel.png){width=600 fig-align=center}
+
+<center>
 Source: [Messerli, (2012)](https://www.nejm.org/doi/full/10.1056/NEJMon1211064)
+</center>
 
 
 <!-- 3. et 4. -->
@@ -145,7 +231,7 @@ Source: [Messerli, (2012)](https://www.nejm.org/doi/full/10.1056/NEJMon1211064)
 
 ## 
 
-[![](../../images/03_poster.png)](https://ft.com/vocabulary)
+[![](images/03_poster.png)](https://ft.com/vocabulary)
 
 
 ## 4. Différentes approches
@@ -156,7 +242,7 @@ Source: [Messerli, (2012)](https://www.nejm.org/doi/full/10.1056/NEJMon1211064)
 
 > La visualisation déclarative vous permet de penser aux données et à leurs relations, plutôt que des détails accessoires.
 >
-> [*Jake Vanderplas, Declarative Statistical Visualization in Python with Altair*](https://www.youtube.com/watch?v=FytuB8nFHPQ) (ma traduction)
+> <small>[*Jake Vanderplas, Declarative Statistical Visualization in Python with Altair*](https://www.youtube.com/watch?v=FytuB8nFHPQ) (Traduction par Essi Parent)</small>
 
 <!-- 5. Visualisation en R  -->
 
@@ -173,10 +259,13 @@ Source: [Messerli, (2012)](https://www.nejm.org/doi/full/10.1056/NEJMon1211064)
 ## ggplot2
 
 1. **Les données**. Votre tableau est bien sûr un argument nécessaire pour générer le graphique.
-1. **Les marqueurs**. Un terme abstrait pour désigner les points, les lignes, les polygones, les barres, les flèches, etc.
-1. **Les attributs encodés**. La position, la dimension, la couleur ou la forme que prendront les géométries. En ggplot2, on les nomme les *aesthetics*.
-1. **Les attributs globaux**. Les attributs sont globaux lorsqu'ils sont constant (ils ne dépendent pas d'une variable). Les valeurs par défaut conviennent généralement, mais certains attributs peuvent être spécifiés: par exemple la forme ou la couleur des points, le type de ligne.
-1. **Les thèmes**. Le thème du graphique peut être spécifié dans son ensemble, c'est-à-dire en utilisant un thème prédéfini, mais l'on peut modifier certains détails.
+2. **Les marqueurs**. Un terme abstrait pour désigner les points, les lignes, les polygones, les barres, les flèches, etc.
+3. **Les attributs encodés**. La position, la dimension, la couleur ou la forme que prendront les géométries. En ggplot2, on les nomme les *aesthetics*.
+
+## ggplot2
+
+4. **Les attributs globaux**. Les attributs sont globaux lorsqu'ils sont constant (ils ne dépendent pas d'une variable). Les valeurs par défaut conviennent généralement, mais certains attributs peuvent être spécifiés: par exemple la forme ou la couleur des points, le type de ligne.
+5. **Les thèmes**. Le thème du graphique peut être spécifié dans son ensemble, c'est-à-dire en utilisant un thème prédéfini, mais l'on peut modifier certains détails.
 
 ## ggplot2
 
