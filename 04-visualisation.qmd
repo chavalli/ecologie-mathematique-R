@@ -775,6 +775,7 @@ chart_link
 - Si les thèmes de base ne vous conviennent pas, vous en trouverez d'autres en installant [**`ggthemes`**](https://github.com/jrnold/ggthemes).
 - [**`ggmap`**](https://github.com/dkahle/ggmap) et [**`ggspatial`**](https://github.com/paleolimbot/ggspatial) sont deux extensions pour créer des cartes. Un chapitre sur les données spatiales est en développement.
 - [**`ggtern`**](https://github.com/leogama/ggtern) permet de créer des diagrammes ternaires, qui sont utiles pour la visualisation de proportions incluant trois composantes, par exemple pour la granulométrie des sols.
+- [**`ggprism`**](https://github.com/csdaw/ggprism/) permet de personnaliser les ggplots et leur donner un aspect similaire aux graphiques du logiciel statistique [prism](https://www.graphpad.com/features).
 
 ### Aller plus loin avec **`ggplot2`**
 
