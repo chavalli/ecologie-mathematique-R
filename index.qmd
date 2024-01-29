@@ -4,6 +4,14 @@ Ce cours a pour objectif de former les étudiants gradués en génie agroenviron
 
 Ce manuel est basé sur le cours Analyse et modélisation d'agroécosystèmes de <a xmlns:cc="http://creativecommons.org/ns#" href="https://essicolo.github.io/ecologie-mathematique-R/" property="cc:attributionName" rel="cc:attributionURL">Essi Parent</a> (voir [licence](http://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1) au bas de la page). La version proposée ici tient compte des mises à jour des différents outils présentés dans le manuel original. Elle est construite au format [Quarto](https://quarto.org/) par <a xmlns:cc="http://creativecommons.org/ns#" href="https://github.com/chavalli" property="cc:attributionName" rel="cc:attributionURL">Charles Frenette-Vallières</a> et <a xmlns:cc="http://creativecommons.org/ns#" href="https://github.com/afsilvad" property="cc:attributionName" rel="cc:attributionURL">Andrés Felipe Silva Dimaté</a>
 
+Voici la liste des modifications principales apportées jusqu'à présent par rapport à la version originale :
+
+-   Migration du livre complet au format [Quarto](https://quarto.org/) (versus [RMarkdown](https://rmarkdown.rstudio.com/) pour l'ancienne version)
+-   Remplacement des *pipes* de tidyverse **`%>%`** par la version **` |> `** introduite en 2021 dans r-base
+-   Correction des liens internet et des *CheatSheets* qui ont changé d'adresse
+-   Utilisation des nouvelles éditions des manuels de référence (par exemple [R for data science (2e)](https://r4ds.hadley.nz/) ou [Forecasting: Principles and Practice (3rd ed)](https://otexts.com/fpp3/))
+-   Remplacement de certaines fonctions qui ne sont plus maintenues par leurs options plus à jour (par exemple `sample_n()` remplacé par `slice_sample()`)
+
 ## Table des matières
 
 1.  [Introduction](01-intro.qmd)

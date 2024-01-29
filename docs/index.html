@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Essi Parent">
-<meta name="dcterms.date" content="2024-01-22">
+<meta name="dcterms.date" content="2024-01-23">
 
 <title>Analyse et modélisation d’agroécosystèmes sur R</title>
 <style>
@@ -246,7 +246,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2024-01-22</p>
+      <p class="date">2024-01-23</p>
     </div>
   </div>
   
@@ -261,6 +261,14 @@ ul.task-list li input[type="checkbox"] {
 <h1 class="unnumbered">Préface</h1><p><img src="images/cover.png" title="Analyse et modélisation d'agroécosystèmes sur R" class="quarto-cover-image img-fluid"></p>
 <p>Ce cours a pour objectif de former les étudiants gradués en génie agroenvironnemental, génie civil, génie écologique, agronomie, biologie, foresterie et écologie en analyse et modélisation de systèmes vivants. Les sujets traités sont l’introduction au langage de programmation R, l’analyse statistique descriptive, la visualisation, la modélisation inférentielle, prédictive et déterministe.</p>
 <p>Ce manuel est basé sur le cours Analyse et modélisation d’agroécosystèmes de <a xmlns:cc="http://creativecommons.org/ns#" href="https://essicolo.github.io/ecologie-mathematique-R/" property="cc:attributionName" rel="cc:attributionURL">Essi Parent</a> (voir <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1">licence</a> au bas de la page). La version proposée ici tient compte des mises à jour des différents outils présentés dans le manuel original. Elle est construite au format <a href="https://quarto.org/">Quarto</a> par <a xmlns:cc="http://creativecommons.org/ns#" href="https://github.com/chavalli" property="cc:attributionName" rel="cc:attributionURL">Charles Frenette-Vallières</a> et <a xmlns:cc="http://creativecommons.org/ns#" href="https://github.com/afsilvad" property="cc:attributionName" rel="cc:attributionURL">Andrés Felipe Silva Dimaté</a></p>
+<p>Voici la liste des modifications principales apportées jusqu’à présent par rapport à la version originale :</p>
+<ul>
+<li>Migration du livre complet au format <a href="https://quarto.org/">Quarto</a> (versus <a href="https://rmarkdown.rstudio.com/">RMarkdown</a> pour l’ancienne version)</li>
+<li>Remplacement des <em>pipes</em> de tidyverse <strong><code>%&gt;%</code></strong> par la version <strong><code>|&gt;</code></strong> introduite en 2021 dans r-base</li>
+<li>Correction des liens internet et des <em>CheatSheets</em> qui ont changé d’adresse</li>
+<li>Utilisation des nouvelles éditions des manuels de référence (par exemple <a href="https://r4ds.hadley.nz/">R for data science (2e)</a> ou <a href="https://otexts.com/fpp3/">Forecasting: Principles and Practice (3rd ed)</a>)</li>
+<li>Remplacement de certaines fonctions qui ne sont plus maintenues par leurs options plus à jour (par exemple <code>sample_n()</code> remplacé par <code>slice_sample()</code>)</li>
+</ul>
 <section id="table-des-matières" class="level2">
 <h2 class="anchored" data-anchor-id="table-des-matières">Table des matières</h2>
 <ol type="1">
