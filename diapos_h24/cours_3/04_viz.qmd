@@ -1,0 +1,284 @@
+---
+title: "Visualisation"
+author: "Andrés Silva"
+execute: 
+  echo: true
+format:
+  revealjs:
+    theme: solarized
+    highlight: kate
+    transition: slide
+    center: true
+    #css: custom.css
+editor_options:
+  chunk_output_type: console
+---
+
+## Plan
+
+<!-- 0. Intro -->
+
+1. Les graphiques: avant de publier
+2. Choisir le bon type de graphique
+3. L'approche impérative et l'approche déclarative
+4. Visualisation en R
+5. Fermeture
+
+## Objectifs spécifiques
+
+À la fin de ce chapitre, vous
+
+- comprendrez l'importance de l'exploration des données
+- comprendrez les guides généraux pour créer un graphique approprié
+- comprendrez la différence entre les modes impératifs et déclaratifs pour la création de graphique
+- serez en mesure de créer des nuages de points, lignes, histogrammes, diagrammes en barres et boxplots en R
+- saurez exporter un graphique en vue d'une publication
+
+<!-- 1. Les tableaux et leur organisation -->
+
+## 1. Les graphiques : avant de publier
+
+## Un outil d'exploration
+
+
+<p><center><img src="https://www.research.autodesk.com/app/uploads/2023/03/DinoSequential-1.gif" width="800">
+<small>Animation montrant la progression du jeu de données *Datasaurus* pour toutes les formes visées. Source: [Same Stats, Different Graphs: Generating Datasets with Varied Appearance and Identical Statistics through Simulated Annealing](https://www.research.autodesk.com/publications/same-stats-different-graphs/).</small></p>
+
+## Cinq qualités d'un bon graphique
+
+1. **Elle est véritable**, puisqu'elle est basée sur une recherche exhaustive et honnête.
+2. **Elle est fonctionnelle**, puisqu'elle constitue une représentation précise des données, et qu'elle est construite de manière à laisser les observateurs.trices prendre des initiatives conséquentes.
+3. **Elle est attrayante** et intrigante, et même esthétiquement plaisante pour l'audience visée - les scientifiques d'abord, mais aussi le public en général.
+
+## Cinq qualités d'un bon graphique
+
+4. **Elle est pertinente**, puisqu'elle révèle des évidences scientifiques autrement difficilement accessibles.
+5. **Elle est instructive**, parce que si l'on saisit et accepte les évidences scientifiques qu'elle décrit, cela changera notre perception pour le mieux.
+
+## Qualité 1. Honnêteté {.center}
+
+```{r}
+library("tidyverse")
+nasa_temp <- read_table("https://climate.nasa.gov/system/internal_resources/details/original/647_Global_Temperature_Data_File.txt", skip = 5,
+                      col_names = c('year', 'temp', 'loess'))
+
+
+nasa_temp
+```
+
+## {auto-animate="true"}
+
+```{r}
+#| fig-height: 4
+#| fig-width: 6
+#| fig-align: center
+
+nasa_temp |>
+  filter(year >= 1998 & year <= 2008) %>% 
+  ggplot(mapping = aes(x = year, y = temp)) +
+  geom_line()
+```
+
+## {auto-animate=true}
+
+```{r}
+#| fig-height: 4
+#| fig-width: 6
+#| fig-align: center
+#| code-line-numbers: "2"
+
+nasa_temp |>
+  #filter(year >= 1998 & year <= 2008) %>% 
+  ggplot(mapping = aes(x = year, y = temp)) +
+  geom_line()
+```
+## Qualité 1. Honnêteté
+
+:::: {.columns}
+
+::: {.column width=525px}
+
+::: {.fragment .semi-fade-out}
+![](images/04_us_income.png){fig-align="center" width=900}
+:::
+
+
+:::
+
+::: {.column width=525px}
+
+::: {.fragment .fade-in}
+![](images/04_us_income_log.png){fig-align="center" width=900}
+:::
+
+:::
+
+::::
+
+<center><small>L'inégalité des revenus des adultes aux États-Unis au fil du temps. Source : [Hands-On Data Visualization](https://handsondataviz.org/persuasive.html).</small></center>
+
+## Qualité 2. Fonctionnelle {.center}
+
+![](images/3d-Pie-Chart1.jpg){width=700 fig-align="center"}
+
+Source : [Slidebazaar](https://slidebazaar.com/items/free-3d-pie-chart-powerpoint-template/)
+
+##
+
+```{r}
+#| fig-height: 4
+#| fig-width: 6
+#| fig-align: center
+
+market <- tibble(category = c("Creative Design", "Desktop Application", "Commercial Print Ad", "Mobile App Design"), proportion = c(16, 24, 10, 50))
+market |>
+  ggplot(mapping = aes(x = fct_reorder(category, proportion), y = proportion)) + geom_col() + labs(x = "", y = "Proportion") + coord_flip()
+```
+
+## Qualité 3. Visuel
+
+Module [ggthemr](https://github.com/Mikata-Project/ggthemr){.external target="_blank"}
+
+```{r}
+#| fig-height: 4
+#| fig-width: 6
+#| fig-align: center
+#| code-fold: true
+
+library("ggthemr")
+ggthemr(palette = "dust", layout = "scientific", type = "outer")
+market |> 
+  ggplot(mapping = aes(x = fct_reorder(category, proportion), y = proportion)) +
+  geom_col() + labs(x = "", y = "Proportion") + coord_flip()
+```
+
+```{r}
+#| echo: false
+ggthemr_reset()
+```
+## Qualité 3. Visuel
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+Module [ggthemes](https://github.com/jrnold/ggthemes){.external target="_blank"}
+
+```{r}
+#| fig-height: 4
+#| fig-width: 6
+#| fig-align: center
+#| warning: false
+#| code-fold: true
+
+library(ggthemes)
+market |> 
+  ggplot(mapping = aes(x = fct_reorder(category, proportion), y = proportion)) +
+  geom_col() + labs(x = "", y = "Proportion") + coord_flip() +
+  theme_wsj(base_size = 10)
+```
+:::
+
+::: {.column width="50%"}
+
+Module [ggprism](https://github.com/csdaw/ggprism){.external target="_blank"}
+
+```{r}
+#| fig-height: 4
+#| fig-width: 6
+#| fig-align: center
+#| warning: false
+#| code-fold: true
+
+library(ggprism)
+market |>
+  ggplot(mapping = aes(x = fct_reorder(category, proportion), y = proportion)) +
+  geom_col() + labs(x = "", y = "Proportion") + coord_flip() +
+  theme_prism(palette = "summer", base_size = 10)
+```
+:::
+
+::::
+
+
+## Qualité 4. Pertinence
+
+<center>
+<img src="https://images.nzgeo.com/2016/01/52_Weather_01-1300x926.jpg" width="700">
+</center>
+
+<center><small>
+Source: [GIEC, Bilan 2001 des changements climatiques : Les éléments scientifiques](https://www.ipcc.ch/pdf/climate-changes-2001/scientific-basis/scientific-spm-ts-fr.pdf){.external target="_blank"}
+</small></center>
+
+## Qualité 5. Instructive
+
+![](images/chocolat-nobel.png){width=600 fig-align=center}
+
+<center>
+Source: [Messerli, (2012)](https://www.nejm.org/doi/full/10.1056/NEJMon1211064)
+</center>
+
+
+<!-- 3. et 4. -->
+
+## 3. Choisir le bon type de graphique
+
+1. Mettez de l'ordre dans vos données.
+1. Réfléchissez au message que vous désirez transmettre.
+1. Essayez différentes représentations.
+1. Testez le résultat.
+
+## 
+
+[![](images/03_poster.png)](https://ft.com/vocabulary)
+
+
+## 4. Différentes approches
+
+**Impérative**. *Comment* placer l'information sur une canevas. Exemple: R-base, Matplotlib (Python), Excel.
+
+**Déclarative**. Spécifier *quoi* afficher. Exemple: ggplot2, altair (Python).
+
+> La visualisation déclarative vous permet de penser aux données et à leurs relations, plutôt que des détails accessoires.
+>
+> <small>[*Jake Vanderplas, Declarative Statistical Visualization in Python with Altair*](https://www.youtube.com/watch?v=FytuB8nFHPQ) (Traduction par Essi Parent)</small>
+
+<!-- 5. Visualisation en R  -->
+
+## 5. Visualisation en R
+
+- R-base
+- ggplot2 (et ses nombreuses extensions)
+- plotly (et ggplotly)
+
+## R-base
+
+--> basculer vers les notes de cours.
+
+## ggplot2
+
+::: {.r-stack}
+::: {.fragment .fade-in-then-out}
+1. **Les données**. Votre tableau est bien sûr un argument nécessaire pour générer le graphique.
+2. **Les marqueurs**. Un terme abstrait pour désigner les points, les lignes, les polygones, les barres, les flèches, etc.
+3. **Les attributs encodés**. La position, la dimension, la couleur ou la forme que prendront les géométries. En ggplot2, on les nomme les *aesthetics*.
+
+:::
+
+::: {.fragment}
+
+4. **Les attributs globaux**. Les attributs sont globaux lorsqu'ils sont constant (ils ne dépendent pas d'une variable). Les valeurs par défaut conviennent généralement, mais certains attributs peuvent être spécifiés: par exemple la forme ou la couleur des points, le type de ligne.
+5. **Les thèmes**. Le thème du graphique peut être spécifié dans son ensemble, c'est-à-dire en utilisant un thème prédéfini, mais l'on peut modifier certains détails.
+
+:::
+:::
+
+## ggplot2
+
+--> basculer vers les notes de cours.
+
+
+<!-- 6. Fermeture -->
+
+## 6. Fermeture

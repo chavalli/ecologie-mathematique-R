@@ -103,7 +103,11 @@ Comme professionnel.le, vous êtes responsable des outils que vous utilisez: vou
 -   Téléchargez [Anaconda](https://www.anaconda.com/){.external target="_blank"}, ouvrez Anaconda Navigator, installez RStudio ou bien créez un nouvel environnement R.
 -   Vous devriez être en mesure d'utiliser R dans Jupyter lab ou Jupyter notebook
 
-## Premier aperçu de R
+## Premier aperçu de R - Windows
+
+![](images/02_R-console-windows.png)
+
+## Premier aperçu de R - Ubuntu
 
 ![](images/02_terminal-prompt.png)
 
@@ -113,9 +117,10 @@ Comme professionnel.le, vous êtes responsable des outils que vous utilisez: vou
 
 ## RStudio
 
--   R script ou R notebook?
--   L'interface par projets
--   Exécuter la ligne, le *chunk* ou le code en surbrillance: `Ctrl + Enter`
+- [Télécharger RStudio](https://posit.co/download/rstudio-desktop/){.external target="_blank"}
+- R script, [Quarto](https://quarto.org/){.external target="_blank"} document ou R notebook?
+- L'interface par projets
+- Exécuter la ligne, le *chunk* ou le code en surbrillance: `Ctrl + Enter`
 
 ## Premiers pas en R
 
@@ -420,12 +425,30 @@ Explorer les commandes `ifelse` et `cut` et réfléchissez à la manière qu’e
 -   saurez différencier les grands types d’objets de R et
 -   saurez installer et charger des modules complémentaire.
 
-## Exercices
+## Exercices (1/2)
 
 À partir d’ici jusqu’à la fin du cours, nous utiliserons RStudio. Ouvrez-le et familiarisez-vous avec l’interface! Quelques petits trucs:
 
+::: {.fragment .fade-up}
 -   pour lancer une ligne, placez votre curseur sur la ligne, puis appuyez sur Ctrl+Enter
+:::
+
+::: {.fragment .fade-up}
 -   pour lancer une partie de code précise, mettez le en surbrillance, puis Ctrl+Enter
+:::
+
+## Exercices (2/2)
+
+À partir d’ici jusqu’à la fin du cours, nous utiliserons RStudio. Ouvrez-le et familiarisez-vous avec l’interface! Quelques petits trucs:
+
+::: {.fragment .fade-up}
 -   utilisez toujours le gestionnaire de projets, en haut à droite!
+:::
+
+::: {.fragment .fade-up}
 -   installez le module tidyverse.
+:::
+
+::: {.fragment .fade-up}
 -   lancez `data(iris)` pour obtenir un tableau d’exercice, puis cliquez sur l’objet dans la fenêtre environnement.
+:::
