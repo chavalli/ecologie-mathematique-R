@@ -4,6 +4,34 @@
 
 Il peut arriver que, pour une raison ou une autre, vous puissiez bénéficier de travailler avec Python. Par exemple, si vous travaillez en géomatique avec QGIS ou même ArcGIS, Python peut être utilisé pour faire vos manipulations de données et vos analyses spatiales. Le fonctionnement de Python ressemble assez à R et vous remarquerez qu'une fois la première barrière de programmation franchie, les langages subséquents sont beaucoup plus faciles à assimiler.
 
-L'auteur de ce manuel, Essi Parent, a publié l'automne dernier une [introduction au calcul numérique avec Python](https://github.com/essicolo/introduction-au-calcul-numerique-avec-python). Pour le consulter, vous pouvez soit créer une fork sur votre github et cloner le répertoire, ou alors consulter les fichiers directement dans le navigateur. Il est possible que la présente section soit bonifiée au cours de la session, mais à première vue le répertoire de Essi semble concis et bien fait. Sinon, comme pour R, il existe plusieurs bons manuels, en anglais toutefois. Rappelez-vous que cette section est facultative; vous pourrez y revenir dans le futur lorsque le besoin se présentera!
+Cette section contient une brief introduction à Python. L'auteur de ce manuel, Essi Parent, a publié l'automne dernier une [introduction au calcul numérique avec Python](https://github.com/essicolo/introduction-au-calcul-numerique-avec-python). Le manuel de Essi semble concis et bien fait et vous permettra d'approfondir plus sur l'utilisation de Python. Sinon, comme pour R, il existe plusieurs bons manuels, en anglais toutefois.Pour le consulter, vous pouvez soit créer une fork sur votre github et cloner le répertoire, ou alors consulter les fichiers directement dans le navigateur. Rappelez-vous que cette section est facultative; vous pourrez y revenir dans le futur lorsque le besoin se présentera!
 
+
+# Qu'est-ce que Python ?
+
+Python est un langage de programmation de haute niveau (comme R), ce langage est apparu en février 1991 et a été créé par Guido van Rossum. Un des objectifs principaux de Van Rossum était de créer un langage libre, simple et intuitive, mais puissant comme d'autres langages déjà existants. Python a été amplement adopté partout dans le monde et est devenu un des langages de programmation plus populaires d'après différentes rangs comme les indices [TIOBE](https://www.tiobe.com/tiobe-index/){.external target="_blank"} et [PYPL](https://pypl.github.io/PYPL.html){.external target="_blank"} et les tendances des questions dans [Stack Overflow](https://bit.ly/3HKnTa9){.external target="_blank"}.
+
+Dans les dernières années Python est devenu l'un des outils les plus utilisés pour le calcul scientifique et pour l'analyse de données, même si ce langage n'était pas conçu spécifiquement pour ces tâches. L'utilisation de Python dans la science de données a été poussé par le développement de différents modules qui permettent la manipulation et l'analyse de données, certains des modules les plus populaires pour l'analyse de données en python sont :
+
+- **numpy** : Ce module permet de manipuler et de stocker de façon efficiente les données dans des objets connus comme `tableaux` (en anglais, `array`).
+
+- **pandas** : Permet de travailler avec des données tabulaires avec des étiquettes de file et de colonne, l'objet primaire de ce module est le `DataFrame`.
+
+- **matplotlib** : C'est le module le plus utilisé pour la visualisation de données sur Python, il peut être considéré comme le module de base pour la visualisation en Python.
+
+- **SciPy** : Ce module a différentes fonctions pour la computation scientifique comme le calcul numérique, le traitement de signaux et d'images, et certains statistiques.
+
+- **scikit-learn** : C'est une des modules les plus utilisés pour l'apprentissage automatique. `scikit-learn` a des innombrables algorithmes d’apprentissage supervisé et non-supervisé utilisés pour la classification ou la régression.
+
+## Installation
+
+Il y a différentes façons d'installer Python dans un ordinateur. Dans le cas de Mac et Linux Python vient par défaut avec ces systèmes d'exploitation. Dans le cas de windows il faut le télécharger et l'installer. Une façon d'installer Python sur windows est de télécharger le fichier d'installation directement du site web de [Python](https://www.python.org/downloads/), une fois le fichier téléchargé, l'exécuter et suivre les instructions pour l'installation.
+
+Une autre alternative pour télécharger Python est à partir de [Anaconda](https://www.anaconda.com/). Anaconda c'est une distribution de Python, dont l'objectif est de simplifier la gestion et le déploiement des modules. Le gestionnaire de modules de Anaconda s'appelle `conda`. Il y a deux options pour installer Anaconda sur un ordinateur :
+
+1. Télécharger la version complète qui vient avec Python, conda et 1 500 modules pre-installés.
+
+2. Télécharger une version minimale appellé **Miniconda** qui ne vient qu'avec Python et conda.
+
+Les deux différences principales entre Anaconda et Miniconda sont (1) l'espace réquis pour l'installation qui est de 3 GO et 400 MO, respectivement, et (2) le temps d'installation puisque ça prends moins de temps d'installer Miniconda que Anaconda. L'utilisateur peut choisir Anaconda si n'a pas d'expérience et s'il ne veut pas se préoccuper à installer des modules. L'installation de Miniconda est récommandé pour des utilisateurs qui sont plus experimentés et qui savent déjà quels modules ils vont utiliser. Enfin, si l'ordinateur n'a pas beaucoup d'espace, il est recommandé d'installer Miniconda qui occupe moins d'espace.
 

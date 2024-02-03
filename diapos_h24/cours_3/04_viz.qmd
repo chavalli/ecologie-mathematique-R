@@ -61,8 +61,6 @@ editor_options:
 library("tidyverse")
 nasa_temp <- read_table("https://climate.nasa.gov/system/internal_resources/details/original/647_Global_Temperature_Data_File.txt", skip = 5,
                       col_names = c('year', 'temp', 'loess'))
-
-
 nasa_temp
 ```
 
@@ -74,7 +72,7 @@ nasa_temp
 #| fig-align: center
 
 nasa_temp |>
-  filter(year >= 1998 & year <= 2008) %>% 
+  filter(year >= 1998 & year <= 2008) |>
   ggplot(mapping = aes(x = year, y = temp)) +
   geom_line()
 ```
@@ -88,7 +86,7 @@ nasa_temp |>
 #| code-line-numbers: "2"
 
 nasa_temp |>
-  #filter(year >= 1998 & year <= 2008) %>% 
+  #filter(year >= 1998 & year <= 2008) |>
   ggplot(mapping = aes(x = year, y = temp)) +
   geom_line()
 ```
