@@ -7,7 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Essi Parent">
-<meta name="dcterms.date" content="2024-01-23">
+<meta name="author" content="Charles Frenette-Vallières">
+<meta name="author" content="Andrés Felipe Silva Dimate">
+<meta name="dcterms.date" content="2024-02-04">
 
 <title>Analyse et modélisation d’agroécosystèmes sur R</title>
 <style>
@@ -64,7 +66,6 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="nav-sidebar floating">
@@ -95,6 +96,11 @@ ul.task-list li input[type="checkbox"] {
       <a href="./">Analyse et modélisation d’agroécosystèmes sur R</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/chavalli/ecologie-mathematique-R/tree/h2024" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
 </div>
     </div>
       </div>
@@ -237,16 +243,18 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-title-meta">
 
     <div>
-    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-heading">Authors</div>
     <div class="quarto-title-meta-contents">
              <p>Essi Parent </p>
+             <p>Charles Frenette-Vallières </p>
+             <p>Andrés Felipe Silva Dimate </p>
           </div>
   </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2024-01-23</p>
+      <p class="date">2024-02-04</p>
     </div>
   </div>
   
@@ -265,9 +273,10 @@ ul.task-list li input[type="checkbox"] {
 <ul>
 <li>Migration du livre complet au format <a href="https://quarto.org/">Quarto</a> (versus <a href="https://rmarkdown.rstudio.com/">RMarkdown</a> pour l’ancienne version)</li>
 <li>Remplacement des <em>pipes</em> de tidyverse <strong><code>%&gt;%</code></strong> par la version <strong><code>|&gt;</code></strong> introduite en 2021 dans r-base</li>
-<li>Correction des liens internet et des <em>CheatSheets</em> qui ont changé d’adresse</li>
+<li>Correction des liens internet qui ont changé d’adresse</li>
 <li>Utilisation des nouvelles éditions des manuels de référence (par exemple <a href="https://r4ds.hadley.nz/">R for data science (2e)</a> ou <a href="https://otexts.com/fpp3/">Forecasting: Principles and Practice (3rd ed)</a>)</li>
-<li>Remplacement de certaines fonctions qui ne sont plus maintenues par leurs options plus à jour (par exemple <code>sample_n()</code> remplacé par <code>slice_sample()</code>)</li>
+<li>Remplacement de certaines fonctions qui ne sont plus maintenues (ex. <code>slice_sample()</code> remplace <code>sample_n()</code>)</li>
+<li>Remplacement de certains modules (ex. <code>renv</code> remplace <code>Packrat</code>)</li>
 </ul>
 <section id="table-des-matières" class="level2">
 <h2 class="anchored" data-anchor-id="table-des-matières">Table des matières</h2>
@@ -542,6 +551,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">Analyse et modélisation d’agroécosystèmes est construit avec <a href="https://quarto.org/">Quarto</a>.</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">Lien vers le <a href="https://essicolo.github.io/ecologie-mathematique-R/">manuel original</a>.</div>
+  </div>
+</footer>
 
 
 

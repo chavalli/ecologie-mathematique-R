@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.3.450">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
 <title>Analyse et modélisation d’agroécosystèmes sur R - 3&nbsp; Organisation des données et opérations sur des tableaux</title>
 <style>
 code{white-space: pre-wrap;}
@@ -56,7 +53,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
-
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
@@ -74,8 +70,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -95,18 +90,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-
-
-<link rel="stylesheet" href="styles.css">
 </head>
-
 <body class="nav-sidebar floating">
 
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
@@ -117,17 +106,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <i class="bi bi-search"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Analyse et modélisation d’agroécosystèmes sur R</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/chavalli/ecologie-mathematique-R/tree/h2024" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
 </div>
     </div>
       </div>
@@ -138,7 +128,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Préface</span></a>
@@ -241,46 +231,44 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </li>
     </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+</div>
+</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#les-collections-de-données" id="toc-les-collections-de-données" class="nav-link active" data-scroll-target="#les-collections-de-données"><span class="header-section-number">3.1</span> Les collections de données</a></li>
-  <li><a href="#organiser-un-tableau-de-données" id="toc-organiser-un-tableau-de-données" class="nav-link" data-scroll-target="#organiser-un-tableau-de-données"><span class="header-section-number">3.2</span> Organiser un tableau de données</a></li>
-  <li><a href="#formats-de-tableau" id="toc-formats-de-tableau" class="nav-link" data-scroll-target="#formats-de-tableau"><span class="header-section-number">3.3</span> Formats de tableau</a>
+<li><a href="#les-collections-de-donn%C3%A9es" id="toc-les-collections-de-données" class="nav-link active" data-scroll-target="#les-collections-de-donn%C3%A9es"><span class="header-section-number">3.1</span> Les collections de données</a></li>
+  <li><a href="#organiser-un-tableau-de-donn%C3%A9es" id="toc-organiser-un-tableau-de-données" class="nav-link" data-scroll-target="#organiser-un-tableau-de-donn%C3%A9es"><span class="header-section-number">3.2</span> Organiser un tableau de données</a></li>
+  <li>
+<a href="#formats-de-tableau" id="toc-formats-de-tableau" class="nav-link" data-scroll-target="#formats-de-tableau"><span class="header-section-number">3.3</span> Formats de tableau</a>
   <ul class="collapse">
-  <li><a href="#xls-ou-xlsx" id="toc-xls-ou-xlsx" class="nav-link" data-scroll-target="#xls-ou-xlsx"><span class="header-section-number">3.3.1</span> <em>xls</em> ou <em>xlsx</em></a></li>
+<li><a href="#xls-ou-xlsx" id="toc-xls-ou-xlsx" class="nav-link" data-scroll-target="#xls-ou-xlsx"><span class="header-section-number">3.3.1</span> <em>xls</em> ou <em>xlsx</em></a></li>
   <li><a href="#csv" id="toc-csv" class="nav-link" data-scroll-target="#csv"><span class="header-section-number">3.3.2</span> <em>csv</em></a></li>
   <li><a href="#json" id="toc-json" class="nav-link" data-scroll-target="#json"><span class="header-section-number">3.3.3</span> <em>json</em></a></li>
   <li><a href="#sqlite" id="toc-sqlite" class="nav-link" data-scroll-target="#sqlite"><span class="header-section-number">3.3.4</span> SQLite</a></li>
   <li><a href="#suggestion" id="toc-suggestion" class="nav-link" data-scroll-target="#suggestion"><span class="header-section-number">3.3.5</span> Suggestion</a></li>
-  </ul></li>
-  <li><a href="#entreposer-ses-données" id="toc-entreposer-ses-données" class="nav-link" data-scroll-target="#entreposer-ses-données"><span class="header-section-number">3.4</span> Entreposer ses données</a></li>
-  <li><a href="#manipuler-des-données-en-mode-tidyverse" id="toc-manipuler-des-données-en-mode-tidyverse" class="nav-link" data-scroll-target="#manipuler-des-données-en-mode-tidyverse"><span class="header-section-number">3.5</span> Manipuler des données en mode tidyverse</a>
+  </ul>
+</li>
+  <li><a href="#entreposer-ses-donn%C3%A9es" id="toc-entreposer-ses-données" class="nav-link" data-scroll-target="#entreposer-ses-donn%C3%A9es"><span class="header-section-number">3.4</span> Entreposer ses données</a></li>
+  <li>
+<a href="#manipuler-des-donn%C3%A9es-en-mode-tidyverse" id="toc-manipuler-des-données-en-mode-tidyverse" class="nav-link" data-scroll-target="#manipuler-des-donn%C3%A9es-en-mode-tidyverse"><span class="header-section-number">3.5</span> Manipuler des données en mode tidyverse</a>
   <ul class="collapse">
-  <li><a href="#importer-vos-données-dans-votre-session-de-travail" id="toc-importer-vos-données-dans-votre-session-de-travail" class="nav-link" data-scroll-target="#importer-vos-données-dans-votre-session-de-travail"><span class="header-section-number">3.5.1</span> Importer vos données dans votre session de travail</a></li>
-  <li><a href="#comment-sélectionner-et-filtrer-des-données" id="toc-comment-sélectionner-et-filtrer-des-données" class="nav-link" data-scroll-target="#comment-sélectionner-et-filtrer-des-données"><span class="header-section-number">3.5.2</span> Comment sélectionner et filtrer des données ?</a></li>
+<li><a href="#importer-vos-donn%C3%A9es-dans-votre-session-de-travail" id="toc-importer-vos-données-dans-votre-session-de-travail" class="nav-link" data-scroll-target="#importer-vos-donn%C3%A9es-dans-votre-session-de-travail"><span class="header-section-number">3.5.1</span> Importer vos données dans votre session de travail</a></li>
+  <li><a href="#comment-s%C3%A9lectionner-et-filtrer-des-donn%C3%A9es" id="toc-comment-sélectionner-et-filtrer-des-données" class="nav-link" data-scroll-target="#comment-s%C3%A9lectionner-et-filtrer-des-donn%C3%A9es"><span class="header-section-number">3.5.2</span> Comment sélectionner et filtrer des données ?</a></li>
   <li><a href="#le-format-long-et-le-format-large" id="toc-le-format-long-et-le-format-large" class="nav-link" data-scroll-target="#le-format-long-et-le-format-large"><span class="header-section-number">3.5.3</span> Le format long et le format large</a></li>
   <li><a href="#combiner-des-tableaux" id="toc-combiner-des-tableaux" class="nav-link" data-scroll-target="#combiner-des-tableaux"><span class="header-section-number">3.5.4</span> Combiner des tableaux</a></li>
-  <li><a href="#opérations-sur-les-tableaux" id="toc-opérations-sur-les-tableaux" class="nav-link" data-scroll-target="#opérations-sur-les-tableaux"><span class="header-section-number">3.5.5</span> Opérations sur les tableaux</a></li>
+  <li><a href="#op%C3%A9rations-sur-les-tableaux" id="toc-opérations-sur-les-tableaux" class="nav-link" data-scroll-target="#op%C3%A9rations-sur-les-tableaux"><span class="header-section-number">3.5.5</span> Opérations sur les tableaux</a></li>
   <li><a href="#exemple-difficile" id="toc-exemple-difficile" class="nav-link" data-scroll-target="#exemple-difficile"><span class="header-section-number">3.5.6</span> Exemple (difficile)</a></li>
   <li><a href="#exporter-un-tableau" id="toc-exporter-un-tableau" class="nav-link" data-scroll-target="#exporter-un-tableau"><span class="header-section-number">3.5.7</span> Exporter un tableau</a></li>
   <li><a href="#aller-plus-loin-dans-le-tidyverse" id="toc-aller-plus-loin-dans-le-tidyverse" class="nav-link" data-scroll-target="#aller-plus-loin-dans-le-tidyverse"><span class="header-section-number">3.5.8</span> Aller plus loin dans le tidyverse</a></li>
-  </ul></li>
-  <li><a href="#références" id="toc-références" class="nav-link" data-scroll-target="#références"><span class="header-section-number">3.6</span> Références</a></li>
   </ul>
-</nav>
+</li>
+  <li><a href="#r%C3%A9f%C3%A9rences" id="toc-références" class="nav-link" data-scroll-target="#r%C3%A9f%C3%A9rences"><span class="header-section-number">3.6</span> Références</a></li>
+  </ul></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <h1 class="title"><span id="sec-table" class="quarto-section-identifier"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Organisation des données et opérations sur des tableaux</span></span></h1>
 </div>
 
@@ -294,9 +282,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
-</header>
-
-<hr>
+</header><hr>
 <p><strong>Objectifs spécifiques</strong>:</p>
 <p>À la fin de ce chapitre, vous</p>
 <ul>
@@ -308,7 +294,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>des sélections de colonnes,</li>
 <li>des sommaires statistiques et</li>
 <li>des jointures entre tableaux.</li>
-</ul></li>
+</ul>
+</li>
 </ul>
 <hr>
 <p>Les données sont utilisées à chaque étape dans les flux de travail en sciences. Elles alimentent l’analyse et la modélisation. Les résultats qui en découlent sont aussi des données qui peuvent alimenter les travaux subséquents. Une bonne organisation des données facilitera le flux de travail.</p>
@@ -321,15 +308,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Ce chapitre traite de l’importation, l’utilisation et l’exportation de données structurées, en R, sous forme de vecteurs, matrices, tableaux et ensemble de tableaux (bases de données).</p>
 <p>Bien qu’il soit toujours préférable d’organiser les structures qui accueilleront les données d’une expérience avant-même de procéder à la collecte de données, l’analyste doit s’attendre à réorganiser ses données en cours de route. Or, des données bien organisées au départ faciliteront aussi leur réorganisation.</p>
 <p>Ce chapitre débute avec quelques définitions : les données, les matrices, les tableaux et les bases de données, ainsi que leur signification en R. Puis nous verrons comment organiser un tableau selon quelques règles simples, mais importantes pour éviter les erreurs et les opérations fastidieuses pour reconstruire un tableau mal conçu. Ensuite, nous traiterons des formats de tableaux courants, pour enfin passer à l’utilisation de <a href="https://dplyr.tidyverse.org/"><strong><code>dplyr</code></strong></a>, le module du <em>tidyverse</em> pour effectuer des opérations sur les tableaux.</p>
-<section id="les-collections-de-données" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="les-collections-de-données"><span class="header-section-number">3.1</span> Les collections de données</h2>
+<section id="les-collections-de-données" class="level2" data-number="3.1"><h2 data-number="3.1" class="anchored" data-anchor-id="les-collections-de-données">
+<span class="header-section-number">3.1</span> Les collections de données</h2>
 <p>Dans le <a href="02-R.html">chapitre&nbsp;<span>2</span></a>, nous avons survolé différents types d’objets : réels, entiers, chaînes de caractères et booléens. Les données peuvent appartenir à d’autres types : dates, catégories ordinales (ordonnées : faible, moyen, élevé) et nominales (non ordonnées : espèces, cultivars, couleurs, unité pédologique, etc.). Comme mentionné en début de chapitre, une donnée est une valeur associée à une variable. Les données peuvent être organisées en collections.</p>
 <p>Nous avons aussi vu au <a href="02-R.html">chapitre&nbsp;<span>2</span></a> que la manière privilégiée d’organiser des données était sous forme de <strong>tableaux</strong>. De manière générale, un tableau de données est une organisation de données en deux dimensions, comportant des <em>lignes</em> et des <em>colonnes</em>. Il est préférable de respecter la convention selon laquelle <strong>les lignes sont des observations et les colonnes sont des variables</strong>. Ainsi, un tableau est une liste de vecteurs de même longueur, chaque vecteur représentant une variable. Chaque variable est libre de prendre le type de données approprié. La position d’une donnée dans le vecteur correspond à une observation. Lorsque les vecteurs sont posés les uns à côté des autres, la position dans le vecteur devient une ligne qui définit les valeurs des variables d’une observation.</p>
 <p>Imaginez que vous consignez des données météorologiques comme les précipitations totales ou la température moyenne pour chaque jour, pendant une semaine sur les sites A, B et C. Chaque site possède ses propres caractéristiques, comme la position en longitude-latitude. Il est redondant de répéter la position du site pour chaque jour de la semaine. Vous préférerez créer deux tableaux : un pour décrire vos observations, et un autre pour décrire les sites. De cette manière, vous créez une collection de tableaux interreliés : une <strong>base de données</strong>. Nous couvrirons cette notion un peu plus loin. R peut soutirer des données des bases de données grâce au module DBI, qui n’est pas couvert à ce stade de développement du cours.</p>
 <p>Dans R, les données structurées en tableaux, ainsi que les opérations sur les tableaux, peuvent être gérées grâce aux modules <strong><code>readr</code></strong>, <strong><code>dplyr</code></strong> et <strong><code>tidyr</code></strong>, tous des modules faisant partie du méta-module <strong><code>tidyverse</code></strong>, qui est un genre de Microsoft Office sur R : plusieurs modules fonctionnant en interopérabilité. Mais avant de se lancer dans l’utilisation de ces modules, voyons quelques règles à suivre pour bien structurer ses données en format <em>tidy</em>, un jargon du <em>tidyverse</em> qui signifie <em>proprement organisé</em>.</p>
-</section>
-<section id="organiser-un-tableau-de-données" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="organiser-un-tableau-de-données"><span class="header-section-number">3.2</span> Organiser un tableau de données</h2>
+</section><section id="organiser-un-tableau-de-données" class="level2" data-number="3.2"><h2 data-number="3.2" class="anchored" data-anchor-id="organiser-un-tableau-de-données">
+<span class="header-section-number">3.2</span> Organiser un tableau de données</h2>
 <p>Afin de repérer chaque cellule d’un tableau, on attribue à chaque ligne et à chaque colonne un identifiant <em>unique</em>, que l’on nomme <em>indice</em> pour les lignes et <em>entête</em> pour les colonnes.</p>
 <blockquote class="blockquote">
 <p><strong>Règle no 1.</strong> Une variable par colonne, une observation par ligne, une valeur par cellule.</p>
@@ -352,14 +338,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="tbl-exwide" class="anchored">
 <table class="table table-sm table-striped small">
 <caption>Table&nbsp;3.1: Rendements obtenus sur les sites expérimentaux selon les traitements.</caption>
-<thead>
-<tr class="header">
+<thead><tr class="header">
 <th style="text-align: left;">Site</th>
 <th style="text-align: right;">Traitement A</th>
 <th style="text-align: right;">Traitement B</th>
 <th style="text-align: right;">Traitement C</th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Sainte-Souris</td>
@@ -390,13 +374,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="tbl-exlong" class="anchored">
 <table class="table table-sm table-striped small">
 <caption>Table&nbsp;3.2: Rendements obtenus sur les sites expérimentaux selon les traitements.</caption>
-<thead>
-<tr class="header">
+<thead><tr class="header">
 <th style="text-align: left;">Site</th>
 <th style="text-align: left;">Traitement</th>
 <th style="text-align: right;">Rendement</th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Sainte-Souris</td>
@@ -448,7 +430,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>Plus précisément, l’expression <em>à bien y penser</em> suggère une réflexion sur la signification des données. Certaines variables peuvent parfois être intégrées dans une même colonne, parfois pas. Par exemple, les concentrations en cuivre, zinc et plomb dans un sol contaminé peuvent être placées dans la même colonne “Concentration” ou déclinées en plusieurs colonnes Cu, Zn et Pb. La première version trouvera son utilité pour créer des graphiques (<a href="04-visualisation.html">chapitre&nbsp;<span>4</span></a>), alors que la deuxième favorise le traitement statistique (<a href="07a-biostats.html">chapitre&nbsp;<span>7</span></a>). Il est possible de passer d’un format à l’autre grâce à la fonction <code>pivot_longer()</code> et <code>pivot_wider()</code> du module tidyr.</p>
+<p>Plus précisément, l’expression <em>à bien y penser</em> suggère une réflexion sur la signification des données. Certaines variables peuvent parfois être intégrées dans une même colonne, parfois pas. Par exemple, les concentrations en cuivre, zinc et plomb dans un sol contaminé peuvent être placées dans la même colonne “Concentration” ou déclinées en plusieurs colonnes Cu, Zn et Pb. La première version trouvera son utilité pour créer des graphiques (<a href="04-visualisation.html">chapitre&nbsp;<span>4</span></a>), alors que la deuxième favorise le traitement statistique (<a href="07a-biostats.html">chapitre&nbsp;<span>7</span></a>). Il est possible de passer d’un format à l’autre grâce à la fonction <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code> et <code><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider()</a></code> du module tidyr.</p>
 <blockquote class="blockquote">
 <p><strong>Règle no 2.</strong> Un tableau par unité observationnelle: ne pas répéter les informations.</p>
 </blockquote>
@@ -458,14 +440,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="tbl-exlong-prec" class="anchored">
 <table class="table table-sm table-striped small">
 <caption>Table&nbsp;3.3: Rendements et précipitations obtenus sur les sites expérimentaux selon les traitements.</caption>
-<thead>
-<tr class="header">
+<thead><tr class="header">
 <th style="text-align: left;">Site</th>
 <th style="text-align: left;">Traitement</th>
 <th style="text-align: right;">Rendement</th>
 <th style="text-align: right;">Précipitations</th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Sainte-Souris</td>
@@ -532,12 +512,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="tbl-prec" class="anchored">
 <table class="table table-sm table-striped small">
 <caption>Table&nbsp;3.4: Précipitations sur les sites expérimentaux.</caption>
-<thead>
-<tr class="header">
+<thead><tr class="header">
 <th style="text-align: left;">Site</th>
 <th style="text-align: right;">Précipitations</th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Sainte-Souris</td>
@@ -556,68 +534,78 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>Les tableaux <a href="#tbl-exlong">Table&nbsp;<span>3.2</span></a> et <a href="#tbl-prec">Table&nbsp;<span>3.4</span></a>, ensemble, forment une base de données (collection organisée de tableaux). Les opérations de fusion entre les tableaux peuvent être effectuées grâce aux fonctions de jointure (<code>left_join()</code>, par exemple) du module <strong><code>tidyr</code></strong>. Une jointure de <a href="#tbl-prec">Table&nbsp;<span>3.4</span></a> vers <a href="#tbl-exlong">Table&nbsp;<span>3.2</span></a> donnera le tableau <a href="#tbl-exlong-prec">Table&nbsp;<span>3.3</span></a>.</p>
+<p>Les tableaux <a href="#tbl-exlong">Table&nbsp;<span>3.2</span></a> et <a href="#tbl-prec">Table&nbsp;<span>3.4</span></a>, ensemble, forment une base de données (collection organisée de tableaux). Les opérations de fusion entre les tableaux peuvent être effectuées grâce aux fonctions de jointure (<code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join()</a></code>, par exemple) du module <strong><code>tidyr</code></strong>. Une jointure de <a href="#tbl-prec">Table&nbsp;<span>3.4</span></a> vers <a href="#tbl-exlong">Table&nbsp;<span>3.2</span></a> donnera le tableau <a href="#tbl-exlong-prec">Table&nbsp;<span>3.3</span></a>.</p>
 <blockquote class="blockquote">
 <p><strong>Règle no 3.</strong> Ne pas bousiller les données.</p>
 </blockquote>
 <p>Par exemple.</p>
 <ul>
-<li><em>Ajouter des commentaires dans des cellules</em>. Si une cellule mérite d’être commentée, il est préférable de placer les commentaires soit dans un fichier décrivant le tableau de données, soit dans une colonne de commentaire juxtaposée à la colonne de la variable à commenter. Par exemple, si vous n’avez pas mesuré le pH pour une observation, n’écrivez pas “échantillon contaminé” dans la cellule, mais annoter dans un fichier d’explication que l’échantillon no X a été contaminé. Si les commentaires sont systématiques, il peut être pratique de les inscrire dans une colonne <code>commentaire_pH</code>.</li>
-<li><em>Inscription non systématique</em>. Il arrive souvent que des catégories d’une variable ou que des valeurs manquantes soient annotées différemment. Il arrive même que le séparateur décimal soit non systématique, parfois noté par un point, parfois par une virgule. Par exemple, une fois importés dans votre session, les catégories <code>St-Ours</code> et <code>Saint-Ours</code> seront traitées comme deux catégories distinctes. De même, les cellules correspondant à des valeurs manquantes ne devraient pas être inscrites parfois avec une cellule vide, parfois avec un point, parfois avec un tiret ou avec la mention <code>NA</code>. Le plus simple est de laisser systématiquement ces cellules vides.</li>
-<li><em>Inclure des notes dans un tableau</em>. La règle “une colonne, une variable” n’est pas respectée si on ajoute des notes un peu n’importe où sous ou à côté du tableau.</li>
-<li><em>Ajouter des sommaires</em>. Si vous ajoutez une ligne sous un tableau comprenant la moyenne de chaque colonne, qu’est-ce qui arrivera lorsque vous importerez votre tableau dans votre session de travail? La ligne sera considérée comme une observation supplémentaire.</li>
-<li><em>Inclure une hiérarchie dans les entêtes</em>. Afin de consigner des données de texture du sol, comprenant la proportion de sable, de limon et d’argile, vous organisez votre entête en plusieurs lignes. Une ligne pour la catégorie de donnée, <em>Texture</em>, fusionnée sur trois colonnes, puis trois colonnes intitulées <em>Sable</em>, <em>Limon</em> et <em>Argile</em>. Votre tableau est joli, mais il ne pourra pas être importé conformément dans un votre session de calcul : on recherche <em>une entête unique par colonne</em>. Votre tableau de données devrait plutôt porter les entêtes <em>Texture sable</em>, <em>Texture limon</em> et <em>Texture argile</em>. Un conseil : réserver le travail esthétique à la toute fin d’un flux de travail.</li>
-</ul>
-</section>
-<section id="formats-de-tableau" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="formats-de-tableau"><span class="header-section-number">3.3</span> Formats de tableau</h2>
+<li>
+<em>Ajouter des commentaires dans des cellules</em>. Si une cellule mérite d’être commentée, il est préférable de placer les commentaires soit dans un fichier décrivant le tableau de données, soit dans une colonne de commentaire juxtaposée à la colonne de la variable à commenter. Par exemple, si vous n’avez pas mesuré le pH pour une observation, n’écrivez pas “échantillon contaminé” dans la cellule, mais annoter dans un fichier d’explication que l’échantillon no X a été contaminé. Si les commentaires sont systématiques, il peut être pratique de les inscrire dans une colonne <code>commentaire_pH</code>.</li>
+<li>
+<em>Inscription non systématique</em>. Il arrive souvent que des catégories d’une variable ou que des valeurs manquantes soient annotées différemment. Il arrive même que le séparateur décimal soit non systématique, parfois noté par un point, parfois par une virgule. Par exemple, une fois importés dans votre session, les catégories <code>St-Ours</code> et <code>Saint-Ours</code> seront traitées comme deux catégories distinctes. De même, les cellules correspondant à des valeurs manquantes ne devraient pas être inscrites parfois avec une cellule vide, parfois avec un point, parfois avec un tiret ou avec la mention <code>NA</code>. Le plus simple est de laisser systématiquement ces cellules vides.</li>
+<li>
+<em>Inclure des notes dans un tableau</em>. La règle “une colonne, une variable” n’est pas respectée si on ajoute des notes un peu n’importe où sous ou à côté du tableau.</li>
+<li>
+<em>Ajouter des sommaires</em>. Si vous ajoutez une ligne sous un tableau comprenant la moyenne de chaque colonne, qu’est-ce qui arrivera lorsque vous importerez votre tableau dans votre session de travail? La ligne sera considérée comme une observation supplémentaire.</li>
+<li>
+<em>Inclure une hiérarchie dans les entêtes</em>. Afin de consigner des données de texture du sol, comprenant la proportion de sable, de limon et d’argile, vous organisez votre entête en plusieurs lignes. Une ligne pour la catégorie de donnée, <em>Texture</em>, fusionnée sur trois colonnes, puis trois colonnes intitulées <em>Sable</em>, <em>Limon</em> et <em>Argile</em>. Votre tableau est joli, mais il ne pourra pas être importé conformément dans un votre session de calcul : on recherche <em>une entête unique par colonne</em>. Votre tableau de données devrait plutôt porter les entêtes <em>Texture sable</em>, <em>Texture limon</em> et <em>Texture argile</em>. Un conseil : réserver le travail esthétique à la toute fin d’un flux de travail.</li>
+</ul></section><section id="formats-de-tableau" class="level2" data-number="3.3"><h2 data-number="3.3" class="anchored" data-anchor-id="formats-de-tableau">
+<span class="header-section-number">3.3</span> Formats de tableau</h2>
 <p>Plusieurs outils sont à votre disposition pour créer des tableaux. Je vous présente ici les plus communs.</p>
-<section id="xls-ou-xlsx" class="level3" data-number="3.3.1">
-<h3 data-number="3.3.1" class="anchored" data-anchor-id="xls-ou-xlsx"><span class="header-section-number">3.3.1</span> <em>xls</em> ou <em>xlsx</em></h3>
+<section id="xls-ou-xlsx" class="level3" data-number="3.3.1"><h3 data-number="3.3.1" class="anchored" data-anchor-id="xls-ou-xlsx">
+<span class="header-section-number">3.3.1</span> <em>xls</em> ou <em>xlsx</em>
+</h3>
 <p>Microsoft Excel est un logiciel de type <em>tableur</em>, ou chiffrier électronique. L’ancien format <em>xls</em> a été remplacé par le format <em>xlsx</em> avec l’arrivée de Microsoft Office 2010. Il s’agit d’un format propriétaire, dont l’alternative libre la plus connue est le format <em>ods</em>, popularisé par la suite bureautique LibreOffice. Les formats <em>xls</em>, <em>xlsx</em> ou <em>ods</em> sont davantage utilisés comme outils de calcul que d’entreposage de données. Ils contiennent des formules, des graphiques, du formatage de cellule, etc. <em>Je ne les recommande pas pour stocker des données</em>.</p>
-</section>
-<section id="csv" class="level3" data-number="3.3.2">
-<h3 data-number="3.3.2" class="anchored" data-anchor-id="csv"><span class="header-section-number">3.3.2</span> <em>csv</em></h3>
+</section><section id="csv" class="level3" data-number="3.3.2"><h3 data-number="3.3.2" class="anchored" data-anchor-id="csv">
+<span class="header-section-number">3.3.2</span> <em>csv</em>
+</h3>
 <p>Le format <em>csv</em>, pour <em>comma separated values</em>, est un fichier texte, que vous pouvez ouvrir avec n’importe quel éditeur de texte brut (Bloc note, <a href="https://code.visualstudio.com/">VSCode</a>, <a href="https://notepad-plus-plus.org">Notepad++</a>, etc.). Chaque colonne doit être délimitée par un caractère cohérent (conventionnellement une virgule, mais en français un point-virgule ou une tabulation pour éviter la confusion avec le séparateur décimal) et chaque ligne du tableau est un retour de ligne. Il est possible d’ouvrir et d’éditer les fichiers csv dans un éditeur texte, mais il est plus pratique de les ouvrir avec des tableurs (LibreOffice Calc, Microsoft Excel, Google Sheets, etc.).</p>
 <p><strong>Encodage des fichiers texte</strong>. Puisque le format <em>csv</em> est un fichier texte, un souci particulier doit être porté sur la manière dont le texte est encodé. Les caractères accentués pourraient être importés incorrectement si vous importez votre tableau en spécifiant le mauvais encodage. Pour les fichiers en langues occidentales, l’encodage UTF-8 devrait être utilisé. Toutefois, par défaut, Excel utilise un encodage de Microsoft. Si le <em>csv</em> a été généré par Excel, il est préférable de l’ouvrir avec votre éditeur texte et de l’enregistrer dans l’encodage UTF-8.</p>
-</section>
-<section id="json" class="level3" data-number="3.3.3">
-<h3 data-number="3.3.3" class="anchored" data-anchor-id="json"><span class="header-section-number">3.3.3</span> <em>json</em></h3>
+</section><section id="json" class="level3" data-number="3.3.3"><h3 data-number="3.3.3" class="anchored" data-anchor-id="json">
+<span class="header-section-number">3.3.3</span> <em>json</em>
+</h3>
 <p>Comme le format <em>csv</em>, le format <em>json</em> indique un fichier en texte clair. En permettant des structures de tableaux emboîtés et en ne demandant pas que chaque colonne ait la même longueur, le format <em>json</em> permet plus de souplesse que le format <em>csv</em>, mais il est plus compliqué à consulter et prend davantage d’espace sur le disque que le <em>csv</em>. Il est utilisé davantage pour le partage de données des applications web, mais en ce qui concerne la matière du cours, ce format est surtout utilisé pour les données géoréférencées. L’encodage est géré de la même manière qu’un fichier <em>csv</em>.</p>
-</section>
-<section id="sqlite" class="level3" data-number="3.3.4">
-<h3 data-number="3.3.4" class="anchored" data-anchor-id="sqlite"><span class="header-section-number">3.3.4</span> SQLite</h3>
+</section><section id="sqlite" class="level3" data-number="3.3.4"><h3 data-number="3.3.4" class="anchored" data-anchor-id="sqlite">
+<span class="header-section-number">3.3.4</span> SQLite</h3>
 <p>SQLite est une application pour les bases de données relationnelles de type SQL qui n’a pas besoin de serveur pour fonctionner. Les bases de données SQLite sont encodés dans des fichiers portant l’extension <em>db</em>, qui peuvent être facilement partagés.</p>
-</section>
-<section id="suggestion" class="level3" data-number="3.3.5">
-<h3 data-number="3.3.5" class="anchored" data-anchor-id="suggestion"><span class="header-section-number">3.3.5</span> Suggestion</h3>
+</section><section id="suggestion" class="level3" data-number="3.3.5"><h3 data-number="3.3.5" class="anchored" data-anchor-id="suggestion">
+<span class="header-section-number">3.3.5</span> Suggestion</h3>
 <p>En <em>csv</em> pour les petits tableaux, en <em>sqlite</em> pour les bases de données plus complexes. Ce cours se concentre toutefois sur les données de type <em>csv</em>.</p>
-</section>
-</section>
-<section id="entreposer-ses-données" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="entreposer-ses-données"><span class="header-section-number">3.4</span> Entreposer ses données</h2>
+</section></section><section id="entreposer-ses-données" class="level2" data-number="3.4"><h2 data-number="3.4" class="anchored" data-anchor-id="entreposer-ses-données">
+<span class="header-section-number">3.4</span> Entreposer ses données</h2>
 <p>La manière la plus sécurisée pour entreposer ses données est de les confiner dans une base de données sécurisée sur un serveur sécurisé dans un environnement sécurisé et d’encrypter les communications. C’est aussi… la manière la moins accessible. Des espaces de stockage nuagiques, comme Dropbox ou d’autres <a href="https://alternativeto.net/software/dropbox/">options similaires</a>, peuvent être pratiques pour les backups et le partage des données avec une équipe de travail (qui risque en retour de bousiller vos données). Le suivi de version est possible chez certains fournisseurs d’espace de stockage. Mais pour un suivi de version plus rigoureux, les espaces de développement (comme GitHub et GitLab) sont plus appropriés (couverts au <a href="05-github.html">chapitre&nbsp;<span>5</span></a>). Dans tous les cas, il est important de garder (1) des copies anciennes pour y revenir en cas d’erreurs et (2) un petit fichier décrivant les changements effectués sur les données.</p>
-</section>
-<section id="manipuler-des-données-en-mode-tidyverse" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="manipuler-des-données-en-mode-tidyverse"><span class="header-section-number">3.5</span> Manipuler des données en mode tidyverse</h2>
+</section><section id="manipuler-des-données-en-mode-tidyverse" class="level2" data-number="3.5"><h2 data-number="3.5" class="anchored" data-anchor-id="manipuler-des-données-en-mode-tidyverse">
+<span class="header-section-number">3.5</span> Manipuler des données en mode tidyverse</h2>
 <p>Le méta-module <strong><code>tidyverse</code></strong> regroupe une collection de précieux modules pour l’analyse de données en R. Il permet d’importer des données dans votre session de travail avec <strong><code>readr</code></strong>, de les explorer avec le module de visualisation <strong><code>ggplot2</code></strong>, de les transformer avec <strong><code>tidyr</code></strong> et <strong><code>dplyr</code></strong> et de les exporter avec <strong><code>readr</code></strong>. Les tableaux de classe <code>data.frame</code>, comme ceux de la plus moderne classe <code>tibble</code>, peuvent être manipulés à travers le flux de travail pour l’analyse et la modélisation. Comme ce sera le cas pour le chapitre sur la visualisation, ce chapitre est loin de couvrir les nombreuses fonctionnalités qui sont offertes dans le <em>tidyverse</em>.</p>
-<section id="importer-vos-données-dans-votre-session-de-travail" class="level3" data-number="3.5.1">
-<h3 data-number="3.5.1" class="anchored" data-anchor-id="importer-vos-données-dans-votre-session-de-travail"><span class="header-section-number">3.5.1</span> Importer vos données dans votre session de travail</h3>
+<section id="importer-vos-données-dans-votre-session-de-travail" class="level3" data-number="3.5.1"><h3 data-number="3.5.1" class="anchored" data-anchor-id="importer-vos-données-dans-votre-session-de-travail">
+<span class="header-section-number">3.5.1</span> Importer vos données dans votre session de travail</h3>
 <p>Supposons que vous avez bien organisé vos données en mode <em>tidy</em>. Pour les importer dans votre session et commencer à les inspecter, vous lancerez une des commandes du module <strong><code>readr</code></strong>, décrites dans la documentation dédiée.</p>
 <ul>
-<li><code>read_csv()</code> si le séparateur de colonne est une virgule</li>
-<li><code>read_csv2()</code> si le séparateur de colonne est un point-virgule et que le séparateur décimal est une virgule</li>
-<li><code>read_tsv()</code> si le séparateur de colonne est une tabulation</li>
-<li><code>read_table()</code> si le séparateur de colonne est un espace blanc</li>
-<li><code>read_delim()</code> si le séparateur de colonne est un autre caractère (comme le point-virgule) que vous spécifierez dans l’argument <code>delim = ";"</code></li>
+<li>
+<code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code> si le séparateur de colonne est une virgule</li>
+<li>
+<code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv2()</a></code> si le séparateur de colonne est un point-virgule et que le séparateur décimal est une virgule</li>
+<li>
+<code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_tsv()</a></code> si le séparateur de colonne est une tabulation</li>
+<li>
+<code><a href="https://readr.tidyverse.org/reference/read_table.html">read_table()</a></code> si le séparateur de colonne est un espace blanc</li>
+<li>
+<code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_delim()</a></code> si le séparateur de colonne est un autre caractère (comme le point-virgule) que vous spécifierez dans l’argument <code>delim = ";"</code>
+</li>
 </ul>
 <p>Les principaux arguments sont les suivants.</p>
 <ul>
-<li><code>file</code>: le chemin vers le fichier. Ce chemin peut aussi bien être une adresse locale (data/…) qu’une adresse internet (https://…).</li>
-<li><code>delim</code>: le symbole délimitant les colonnes dans le cas de <code>read_delim</code>.</li>
-<li><code>col_names</code>: si TRUE, la première ligne est l’entête du tableau, sinon FALSE. Si vous spécifiez un vecteur numérique, ce sont les numéros des lignes utilisées pour le nom de l’entête. Si vous utilisez un vecteur de caractères, ce sont les noms des colonnes que vous désirez donner à votre tableau.</li>
-<li><code>na</code>: le symbole spécifiant une valeur manquante. L’argument <code>na=''</code> signifie que les cellules vides sont des données manquantes. Si les valeurs manquantes ne sont pas uniformes, vous pouvez les indiquer dans un vecteur, par exemple <code>na = c("", "NA", "NaN", ".", "-")</code>.</li>
-<li><code>local</code>: cet argument prend une fonction <code>local()</code> qui peut inclure des arguments de format de temps, mais aussi d’encodage (<a href="https://readr.tidyverse.org/reference/locale.html">voir documentation</a>)</li>
+<li>
+<code>file</code>: le chemin vers le fichier. Ce chemin peut aussi bien être une adresse locale (data/…) qu’une adresse internet (https://…).</li>
+<li>
+<code>delim</code>: le symbole délimitant les colonnes dans le cas de <code>read_delim</code>.</li>
+<li>
+<code>col_names</code>: si TRUE, la première ligne est l’entête du tableau, sinon FALSE. Si vous spécifiez un vecteur numérique, ce sont les numéros des lignes utilisées pour le nom de l’entête. Si vous utilisez un vecteur de caractères, ce sont les noms des colonnes que vous désirez donner à votre tableau.</li>
+<li>
+<code>na</code>: le symbole spécifiant une valeur manquante. L’argument <code>na=''</code> signifie que les cellules vides sont des données manquantes. Si les valeurs manquantes ne sont pas uniformes, vous pouvez les indiquer dans un vecteur, par exemple <code>na = c("", "NA", "NaN", ".", "-")</code>.</li>
+<li>
+<code>local</code>: cet argument prend une fonction <code><a href="https://rdrr.io/r/base/eval.html">local()</a></code> qui peut inclure des arguments de format de temps, mais aussi d’encodage (<a href="https://readr.tidyverse.org/reference/locale.html">voir documentation</a>)</li>
 </ul>
 <p>D’autres arguments peuvent être spécifiés au besoin, et les répéter ici dupliquerait l’information de la documentation de <a href="https://readr.tidyverse.org/reference/read_delim.html">la fonction <code>read_csv</code> de readr</a>.</p>
 <p>Je déconseille d’importer des données en format xls ou xlsx. Si toutefois cela vous convient, je vous réfère au module <a href="https://readxl.tidyverse.org/">readxl</a>.</p>
@@ -625,10 +613,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-readr-cheatsheet" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="images/04_data-import-cs.png" class="img-fluid figure-img" style="width:100.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;3.1: Aide-mémoire de readr, Source: <a href="https://rstudio.github.io/cheatsheets/data-import.pdf">https://rstudio.github.io/cheatsheets/data-import.pdf</a></figcaption>
-</figure>
+<figure class="figure"><p><img src="images/04_data-import-cs.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption class="figure-caption">Figure&nbsp;3.1: Aide-mémoire de readr, Source: <a href="https://rstudio.github.io/cheatsheets/data-import.pdf">https://rstudio.github.io/cheatsheets/data-import.pdf</a></figcaption></figure>
 </div>
 </div>
 </div>
@@ -636,10 +622,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-tab-csv" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="images/04_chicoute-csv-atom.png" class="img-fluid figure-img" style="width:100.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;3.2: Aperçu brut d’un fichier csv.</figcaption>
-</figure>
+<figure class="figure"><p><img src="images/04_chicoute-csv-atom.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption class="figure-caption">Figure&nbsp;3.2: Aperçu brut d’un fichier csv.</figcaption></figure>
 </div>
 </div>
 </div>
@@ -648,17 +632,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-tab-csv-enc" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="images/04_chicoute-csv-encoding.png" class="img-fluid figure-img" style="width:100.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;3.3: Changer l’encodage d’un fichier csv.</figcaption>
-</figure>
+<figure class="figure"><p><img src="images/04_chicoute-csv-encoding.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption class="figure-caption">Figure&nbsp;3.3: Changer l’encodage d’un fichier csv.</figcaption></figure>
 </div>
 </div>
 </div>
-<p>Nous allons donc utiliser <code>read_csv2()</code> avec ses arguments par défaut.</p>
+<p>Nous allons donc utiliser <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv2()</a></code> avec ses arguments par défaut.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"tidyverse"</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>chicoute <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(<span class="st">"data/chicoute.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://tidyverse.tidyverse.org">"tidyverse"</a></span><span class="op">)</span></span>
+<span><span class="va">chicoute</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv2</a></span><span class="op">(</span><span class="st">"data/chicoute.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>ℹ Using "','" as decimal and "'.'" as grouping mark. Use `read_delim()` for more control.</code></pre>
 </div>
@@ -675,17 +657,23 @@ dbl (26): ID, Site, Latitude_m, Longitude_m, Rendement_g_5m2, TotalRamet_nom...
 </div>
 <p>Quelques commandes utiles inspecter le tableau:</p>
 <ul>
-<li><code>head()</code> présente l’entête du tableau, soit ses 6 premières lignes</li>
-<li><code>str()</code> et <code>glimpse()</code> présentent les variables du tableau et leur type - <code>glimpse()</code>est la fonction tidyverse et <code>str()</code> est la fonction classique (je préfère <code>str()</code>)</li>
-<li><code>summary()</code> présente des statistiques de base du tableau</li>
-<li><code>names()</code> ou <code>colnames()</code> sort les noms des colonnes sous forme d’un vecteur</li>
-<li><code>dim()</code> donne les dimensions du tableau, <code>ncol()</code> son nombre de colonnes et <code>nrow()</code> son nombre de lignes</li>
-<li><code>skim</code> est une fonction du module skimr montrant un portrait graphique et numérique du tableau</li>
+<li>
+<code><a href="https://rdrr.io/r/utils/head.html">head()</a></code> présente l’entête du tableau, soit ses 6 premières lignes</li>
+<li>
+<code><a href="https://rdrr.io/r/utils/str.html">str()</a></code> et <code><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse()</a></code> présentent les variables du tableau et leur type - <code><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse()</a></code>est la fonction tidyverse et <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code> est la fonction classique (je préfère <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code>)</li>
+<li>
+<code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> présente des statistiques de base du tableau</li>
+<li>
+<code><a href="https://rdrr.io/r/base/names.html">names()</a></code> ou <code><a href="https://rdrr.io/r/base/colnames.html">colnames()</a></code> sort les noms des colonnes sous forme d’un vecteur</li>
+<li>
+<code><a href="https://rdrr.io/r/base/dim.html">dim()</a></code> donne les dimensions du tableau, <code><a href="https://rdrr.io/r/base/nrow.html">ncol()</a></code> son nombre de colonnes et <code><a href="https://rdrr.io/r/base/nrow.html">nrow()</a></code> son nombre de lignes</li>
+<li>
+<code>skim</code> est une fonction du module skimr montrant un portrait graphique et numérique du tableau</li>
 </ul>
 <p><strong>Extra 1</strong>. Plusieurs modules ne se trouvent pas dans les dépôts CRAN, mais sont disponibles sur GitHub. Pour les installer, installez d’abord le module devtools disponible sur CRAN. Vous pourrez alors installer les packages de GitHub comme on le fait avec le package skimr.</p>
 <p><strong>Extra 2</strong>. Lorsque je désire utiliser une fonction, mais sans charger le module dans la session, j’utilise la notation <code>module::fonction</code>. Comme dans ce cas, pour skimr.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>skimr<span class="sc">::</span><span class="fu">skim</span>(chicoute)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">skimr</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/skimr/reference/skim.html">skim</a></span><span class="op">(</span><span class="va">chicoute</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
 <caption>Data summary</caption>
@@ -740,8 +728,7 @@ dbl (26): ID, Site, Latitude_m, Longitude_m, Rendement_g_5m2, TotalRamet_nom...
 <col style="width: 12%">
 <col style="width: 15%">
 </colgroup>
-<thead>
-<tr class="header">
+<thead><tr class="header">
 <th style="text-align: left;">skim_variable</th>
 <th style="text-align: right;">n_missing</th>
 <th style="text-align: right;">complete_rate</th>
@@ -750,8 +737,7 @@ dbl (26): ID, Site, Latitude_m, Longitude_m, Rendement_g_5m2, TotalRamet_nom...
 <th style="text-align: right;">empty</th>
 <th style="text-align: right;">n_unique</th>
 <th style="text-align: right;">whitespace</th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">CodeTourbiere</td>
@@ -820,8 +806,7 @@ dbl (26): ID, Site, Latitude_m, Longitude_m, Rendement_g_5m2, TotalRamet_nom...
 <col style="width: 8%">
 <col style="width: 4%">
 </colgroup>
-<thead>
-<tr class="header">
+<thead><tr class="header">
 <th style="text-align: left;">skim_variable</th>
 <th style="text-align: right;">n_missing</th>
 <th style="text-align: right;">complete_rate</th>
@@ -833,8 +818,7 @@ dbl (26): ID, Site, Latitude_m, Longitude_m, Rendement_g_5m2, TotalRamet_nom...
 <th style="text-align: right;">p75</th>
 <th style="text-align: right;">p100</th>
 <th style="text-align: left;">hist</th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">ID</td>
@@ -1179,21 +1163,25 @@ dbl (26): ID, Site, Latitude_m, Longitude_m, Rendement_g_5m2, TotalRamet_nom...
 </div>
 </div>
 <p><strong>Exercice</strong>. Inspectez le tableau.</p>
-</section>
-<section id="comment-sélectionner-et-filtrer-des-données" class="level3" data-number="3.5.2">
-<h3 data-number="3.5.2" class="anchored" data-anchor-id="comment-sélectionner-et-filtrer-des-données"><span class="header-section-number">3.5.2</span> Comment sélectionner et filtrer des données ?</h3>
+</section><section id="comment-sélectionner-et-filtrer-des-données" class="level3" data-number="3.5.2"><h3 data-number="3.5.2" class="anchored" data-anchor-id="comment-sélectionner-et-filtrer-des-données">
+<span class="header-section-number">3.5.2</span> Comment sélectionner et filtrer des données ?</h3>
 <p>On utilise le terme <em>sélectionner</em> lorsque l’on désire choisir une ou plusieurs lignes et colonnes d’un tableau (la plupart du temps des colonnes). L’action de <em>filtrer</em> signifie de sélectionner des lignes selon certains critères.</p>
-<section id="sélectionner" class="level4" data-number="3.5.2.1">
-<h4 data-number="3.5.2.1" class="anchored" data-anchor-id="sélectionner"><span class="header-section-number">3.5.2.1</span> Sélectionner</h4>
+<section id="sélectionner" class="level4" data-number="3.5.2.1"><h4 data-number="3.5.2.1" class="anchored" data-anchor-id="sélectionner">
+<span class="header-section-number">3.5.2.1</span> Sélectionner</h4>
 <p>Voici 4 manières de sélectionner une colonne en R.</p>
 <ul>
 <li>Une méthode rapide mais peu expressive consiste à indiquer les valeurs numériques de l’indice de la colonne entre des crochets. Il s’agit d’appeler le tableau suivi de crochets. L’intérieur des crochets comprend deux éléments séparés par une virgule. Le premier élément sert à filtrer selon l’indice, le deuxième sert à sélectionner selon l’indice. Ainsi:
 <ul>
-<li><code>chicoute[, 1]</code>: sélectionner la première colonne</li>
-<li><code>chicoute[, 1:10]</code>: sélectionner les 10 premières colonnes</li>
-<li><code>chicoute[, c(2, 4, 5)]</code>: sélectionner les colonnes 2, 4 et 5</li>
-<li><code>chicoute[c(10, 13, 20), c(2, 4, 5)]</code>: sélectionner les colonnes 2, 4 et 5 et les lignes 10, 13 et 20.</li>
-</ul></li>
+<li>
+<code>chicoute[, 1]</code>: sélectionner la première colonne</li>
+<li>
+<code>chicoute[, 1:10]</code>: sélectionner les 10 premières colonnes</li>
+<li>
+<code>chicoute[, c(2, 4, 5)]</code>: sélectionner les colonnes 2, 4 et 5</li>
+<li>
+<code>chicoute[c(10, 13, 20), c(2, 4, 5)]</code>: sélectionner les colonnes 2, 4 et 5 et les lignes 10, 13 et 20.</li>
+</ul>
+</li>
 <li>Une autre méthode rapide, mais plus expressive, consiste à appeler le tableau, suivi du symbole <code>$</code>, puis le nom de la colonne, e.g.&nbsp;<code>chicoute$Site</code>.</li>
 </ul>
 <blockquote class="blockquote">
@@ -1202,20 +1190,18 @@ dbl (26): ID, Site, Latitude_m, Longitude_m, Rendement_g_5m2, TotalRamet_nom...
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-tab-auto-complete" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="images/04_auto-complete-cols.png" class="img-fluid figure-img" width="154"></p>
-<figcaption class="figure-caption">Figure&nbsp;3.4: Autocomplétion dans RStudio.</figcaption>
-</figure>
+<figure class="figure"><p><img src="images/04_auto-complete-cols.png" class="img-fluid figure-img" width="154"></p>
+<figcaption class="figure-caption">Figure&nbsp;3.4: Autocomplétion dans RStudio.</figcaption></figure>
 </div>
 </div>
 </div>
 <ul>
 <li>Vous pouvez aussi inscrire le nom de la colonne, ou du vecteur des colonnes, entre des crochets suivant le nom du tableau, c’est-à-dire <code>chicoute[c("Site", "Latitude_m", "Longitude_m")]</code>.</li>
-<li>Enfin, dans une séquence d’opérations en mode pipeline (chaque opération est mise à la suite de la précédente en plaçant le <em>pipe</em> <code>|&gt;</code> entre chacune), il peut être préférable de sélectionner des colonnes avec la fonction <code>select()</code>, i.e.</li>
+<li>Enfin, dans une séquence d’opérations en mode pipeline (chaque opération est mise à la suite de la précédente en plaçant le <em>pipe</em> <code>|&gt;</code> entre chacune), il peut être préférable de sélectionner des colonnes avec la fonction <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code>, i.e.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>chicoute <span class="sc">|&gt;</span> </span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Site, Latitude_m, Longitude_m)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">chicoute</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">Site</span>, <span class="va">Latitude_m</span>, <span class="va">Longitude_m</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <blockquote class="blockquote">
 <p><strong>Note sur le mode <em>pipeline</em> :</strong> Le <em>pipe</em> <code>|&gt;</code> a été introduit dans R-base en 2021. Auparavant, on utilisait la fonction <code>%&gt;%</code> introduite dans le module magrittr, inclus dans tidyverse. La plupart du temps, les deux fonctionnent sensiblement de la même façon, mais il existe quelques différences dans leur interaction avec certaines fonctions. Puisque <code>|&gt;</code> fait partie de R-base, je vous suggère de l’utiliser par défaut, mais il est fort probable que vous trouviez l’ancienne version <code>%&gt;%</code> lors de vos recherches sur internet (ou même dans ce guide si j’oublie d’effectuer les modifications). Pour insérer un <em>pipe</em>, il suffit d’utiliser le raccourci clavier <strong><code>Ctrl + Shift + M</code></strong>. Vous pouvez modifier la forme par défaut dans les options de RStudio, comme sur la <a href="#fig-tab-pipe">Figure&nbsp;<span>3.5</span></a>.</p>
@@ -1223,23 +1209,21 @@ dbl (26): ID, Site, Latitude_m, Longitude_m, Rendement_g_5m2, TotalRamet_nom...
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-tab-pipe" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="images/04_pipe.png" class="img-fluid figure-img" width="780"></p>
-<figcaption class="figure-caption">Figure&nbsp;3.5: Modifier le <em>pipe</em> par défaut dans RStudio.</figcaption>
-</figure>
+<figure class="figure"><p><img src="images/04_pipe.png" class="img-fluid figure-img" width="780"></p>
+<figcaption class="figure-caption">Figure&nbsp;3.5: Modifier le <em>pipe</em> par défaut dans RStudio.</figcaption></figure>
 </div>
 </div>
 </div>
-<p>La fonction <code>select()</code> permet aussi de travailler en exclusion. Ainsi pour enlever des colonnes, on placera un <code>-</code> (signe de soustraction) devant le nom de la colonne.</p>
+<p>La fonction <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> permet aussi de travailler en exclusion. Ainsi pour enlever des colonnes, on placera un <code>-</code> (signe de soustraction) devant le nom de la colonne.</p>
 <p>⚠️ <strong>Attention</strong>. Plusieurs modules utilisent la fonction <code>select</code> (et <code>filter</code>, plus bas). Lorsque vous lancez <code>select</code> et que vous obtenez un message d’erreur comme</p>
 <pre><code>Error in select(., ends_with("pourc")) : 
   argument inutilisé (ends_with("pourc"))</code></pre>
-<p>il se pourrait bien que R utilise la fonction <code>select</code> d’un autre module. Pour spécifier que vous désirez la fonction <code>select</code> du module <strong><code>dplyr</code></strong>, spécifiez <code>dplyr::select</code>.</p>
-<p>D’autre arguments de <code>select()</code> permettent une sélection rapide. Par exemple, pour obtenir les colonnes contenant des pourcentages:</p>
+<p>il se pourrait bien que R utilise la fonction <code>select</code> d’un autre module. Pour spécifier que vous désirez la fonction <code>select</code> du module <strong><code>dplyr</code></strong>, spécifiez <code><a href="https://dplyr.tidyverse.org/reference/select.html">dplyr::select</a></code>.</p>
+<p>D’autre arguments de <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> permettent une sélection rapide. Par exemple, pour obtenir les colonnes contenant des pourcentages:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>chicoute <span class="sc">|&gt;</span> </span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">ends_with</span>(<span class="st">"pourc"</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">chicoute</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">ends_with</a></span><span class="op">(</span><span class="st">"pourc"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 13
   C_pourc N_pourc P_pourc K_pourc Ca_pourc Mg_pourc S_pourc B_pourc Cu_pourc
@@ -1251,18 +1235,15 @@ dbl (26): ID, Site, Latitude_m, Longitude_m, Rendement_g_5m2, TotalRamet_nom...
 #   Al_pourc &lt;dbl&gt;</code></pre>
 </div>
 </div>
-</section>
-<section id="filtrer" class="level4" data-number="3.5.2.2">
-<h4 data-number="3.5.2.2" class="anchored" data-anchor-id="filtrer"><span class="header-section-number">3.5.2.2</span> Filtrer</h4>
+</section><section id="filtrer" class="level4" data-number="3.5.2.2"><h4 data-number="3.5.2.2" class="anchored" data-anchor-id="filtrer">
+<span class="header-section-number">3.5.2.2</span> Filtrer</h4>
 <p>Comme c’est le cas de la sélection, on pourra filtrer un tableau de plusieurs manières. J’ai déjà présenté comment filtrer selon les indices des lignes. Les autres manières reposent néanmoins sur une opération logique <code>==</code>, <code>&lt;</code>, <code>&gt;</code> ou <code>%in%</code> (le %in% signifie <em>se trouve parmi</em> et peut être suivi d’un vecteur de valeurs que l’on désire accepter).</p>
 <p>Les conditions booléennes peuvent être combinées avec les opérateurs <em>et</em>, <code>&amp;</code>, et <em>ou</em>, <code>|</code>. Pour rappel,</p>
 <table class="table">
-<thead>
-<tr class="header">
+<thead><tr class="header">
 <th>Opération</th>
 <th>Résultat</th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
 <td>Vrai <strong>et</strong> Vrai</td>
@@ -1291,16 +1272,17 @@ dbl (26): ID, Site, Latitude_m, Longitude_m, Rendement_g_5m2, TotalRamet_nom...
 </tbody>
 </table>
 <ul>
-<li>La méthode classique consiste à appliquer une opération logique entre les crochets, par exemple <code>chicoute[chicoute$CodeTourbiere == "BEAU", ]</code></li>
-<li>La méthode <em>tidyverse</em>, plus pratique en mode pipeline, passe par la fonction <code>filter()</code>, i.e.</li>
+<li>La méthode classique consiste à appliquer une opération logique entre les crochets, par exemple <code>chicoute[chicoute$CodeTourbiere == "BEAU", ]</code>
+</li>
+<li>La méthode <em>tidyverse</em>, plus pratique en mode pipeline, passe par la fonction <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code>, i.e.</li>
 </ul>
 <pre><code>chicoute |&gt; 
   filter(CodeTourbiere == "BEAU")</code></pre>
 <p>Combiner le tout.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>chicoute <span class="sc">|&gt;</span> </span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Ca_pourc <span class="sc">&lt;</span> <span class="fl">0.4</span> <span class="sc">&amp;</span> CodeTourbiere <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"BEAU"</span>, <span class="st">"MB"</span>, <span class="st">"WTP"</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">contains</span>(<span class="st">"pourc"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">chicoute</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">Ca_pourc</span> <span class="op">&lt;</span> <span class="fl">0.4</span> <span class="op">&amp;</span> <span class="va">CodeTourbiere</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"BEAU"</span>, <span class="st">"MB"</span>, <span class="st">"WTP"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">contains</a></span><span class="op">(</span><span class="st">"pourc"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 13
   C_pourc N_pourc P_pourc K_pourc Ca_pourc Mg_pourc S_pourc B_pourc Cu_pourc
@@ -1313,62 +1295,59 @@ dbl (26): ID, Site, Latitude_m, Longitude_m, Rendement_g_5m2, TotalRamet_nom...
 #   Al_pourc &lt;dbl&gt;</code></pre>
 </div>
 </div>
-</section>
-</section>
-<section id="le-format-long-et-le-format-large" class="level3" data-number="3.5.3">
-<h3 data-number="3.5.3" class="anchored" data-anchor-id="le-format-long-et-le-format-large"><span class="header-section-number">3.5.3</span> Le format long et le format large</h3>
+</section></section><section id="le-format-long-et-le-format-large" class="level3" data-number="3.5.3"><h3 data-number="3.5.3" class="anchored" data-anchor-id="le-format-long-et-le-format-large">
+<span class="header-section-number">3.5.3</span> Le format long et le format large</h3>
 <p>Dans le tableau <code>chicoute</code>, chaque élément possède sa propre colonne. Si l’on voulait mettre en graphique les boxplot des facettes de concentrations d’azote, de phosphore et de potassium dans les différentes tourbières, il faudrait obtenir une seule colonne de concentrations.</p>
-<p>Pour ce faire, nous utiliserons la fonction <code>pivot_longer()</code>. L’argument obligatoire (excluant le tableau, qui est implicite dans la chaîne d’opérations), est <code>cols</code>, le nom des colonnes à allonger. Pour obtenir des noms de colonnes allongées personnalisées, on spécifie le nom des variables consistant aux anciens noms de colonnes avec <code>names_to</code> et celui de la nouvelle colonne contenant les valeurs dans <code>values_to</code>. La suite consiste à décrire les colonnes à inclure ou à exclure. Dans le cas qui suit, j’exclue CodeTourbiere de la refonte et j’utilise <code>slice_sample()</code> pour présenter un échantillon aléatoire du résultat. Notez la ligne comprenant la fonction <code>mutate</code>, que l’on verra plus loin. Cette fonction ajoute une colonne au tableau. Dans ce cas-ci, j’ajoute une colonne constituée d’une séquence de nombres allant de 1 au nombre de lignes du tableau (il y en a 90). Cet identifiant unique pour chaque ligne permettra de reconstituer par la suite le tableau initial.</p>
+<p>Pour ce faire, nous utiliserons la fonction <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code>. L’argument obligatoire (excluant le tableau, qui est implicite dans la chaîne d’opérations), est <code>cols</code>, le nom des colonnes à allonger. Pour obtenir des noms de colonnes allongées personnalisées, on spécifie le nom des variables consistant aux anciens noms de colonnes avec <code>names_to</code> et celui de la nouvelle colonne contenant les valeurs dans <code>values_to</code>. La suite consiste à décrire les colonnes à inclure ou à exclure. Dans le cas qui suit, j’exclue CodeTourbiere de la refonte et j’utilise <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_sample()</a></code> pour présenter un échantillon aléatoire du résultat. Notez la ligne comprenant la fonction <code>mutate</code>, que l’on verra plus loin. Cette fonction ajoute une colonne au tableau. Dans ce cas-ci, j’ajoute une colonne constituée d’une séquence de nombres allant de 1 au nombre de lignes du tableau (il y en a 90). Cet identifiant unique pour chaque ligne permettra de reconstituer par la suite le tableau initial.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>chicoute_long <span class="ot">&lt;-</span> chicoute <span class="sc">|&gt;</span> </span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(CodeTourbiere, N_pourc, P_pourc, K_pourc) <span class="sc">|&gt;</span> </span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ID =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">n</span>())  <span class="sc">|&gt;</span>  <span class="co"># mutate ajoute une colonne au tableau</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># pour l'identifiant, on peut aussi utiliser la commande cur_group_rows()</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">contains</span>(<span class="st">"pourc"</span>), <span class="at">names_to =</span> <span class="st">"nutrient"</span>, <span class="at">values_to =</span> <span class="st">"concentration"</span>)</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>chicoute_long <span class="sc">|&gt;</span>  <span class="fu">slice_sample</span>(<span class="at">n =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">chicoute_long</span> <span class="op">&lt;-</span> <span class="va">chicoute</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">CodeTourbiere</span>, <span class="va">N_pourc</span>, <span class="va">P_pourc</span>, <span class="va">K_pourc</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>ID <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>  <span class="op">|&gt;</span>  <span class="co"># mutate ajoute une colonne au tableau</span></span>
+<span>  <span class="co"># pour l'identifiant, on peut aussi utiliser la commande cur_group_rows()</span></span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span>cols <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">contains</a></span><span class="op">(</span><span class="st">"pourc"</span><span class="op">)</span>, names_to <span class="op">=</span> <span class="st">"nutrient"</span>, values_to <span class="op">=</span> <span class="st">"concentration"</span><span class="op">)</span></span>
+<span><span class="va">chicoute_long</span> <span class="op">|&gt;</span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_sample</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 10 × 4
    CodeTourbiere    ID nutrient concentration
    &lt;chr&gt;         &lt;int&gt; &lt;chr&gt;            &lt;dbl&gt;
- 1 2                21 P_pourc          0.233
- 2 1                75 K_pourc          0.684
- 3 2                12 K_pourc          1.24 
- 4 BEAU              1 K_pourc          1.21 
- 5 SSP              59 P_pourc          0.136
- 6 2                11 P_pourc          0.138
- 7 MB               32 N_pourc          2.09 
- 8 1                84 K_pourc          1.32 
- 9 SSP              57 N_pourc          1.66 
-10 1                78 N_pourc          2.31 </code></pre>
+ 1 1                76 K_pourc          0.683
+ 2 1                75 P_pourc          0.132
+ 3 1                71 P_pourc          0.169
+ 4 1                72 N_pourc          2.77 
+ 5 BP               10 P_pourc          0.153
+ 6 1                83 P_pourc          0.132
+ 7 NTP              53 K_pourc          0.345
+ 8 NESP             43 N_pourc          1.53 
+ 9 BS2              63 N_pourc          1.78 
+10 2                25 N_pourc          2.65 </code></pre>
 </div>
 </div>
-<p>L’opération inverse est <code>pivot_wider()</code>, avec laquelle nous sélectionnons une colonne spécifiant les nouvelles colonnes à construire (<code>names_from</code>) ainsi que les valeurs à placer dans ces colonnes (<code>values_from</code>).</p>
+<p>L’opération inverse est <code><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider()</a></code>, avec laquelle nous sélectionnons une colonne spécifiant les nouvelles colonnes à construire (<code>names_from</code>) ainsi que les valeurs à placer dans ces colonnes (<code>values_from</code>).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>chicoute_large <span class="ot">&lt;-</span> chicoute_long <span class="sc">|&gt;</span> </span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> nutrient, <span class="at">values_from =</span> concentration)</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>chicoute_large <span class="sc">|&gt;</span>  <span class="fu">slice_sample</span>(<span class="at">n =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">chicoute_large</span> <span class="op">&lt;-</span> <span class="va">chicoute_long</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider</a></span><span class="op">(</span>names_from <span class="op">=</span> <span class="va">nutrient</span>, values_from <span class="op">=</span> <span class="va">concentration</span><span class="op">)</span></span>
+<span><span class="va">chicoute_large</span> <span class="op">|&gt;</span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_sample</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 10 × 5
    CodeTourbiere    ID N_pourc P_pourc K_pourc
    &lt;chr&gt;         &lt;int&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
- 1 2                19    2.62  0.213    1.21 
- 2 NESP             41    1.73  0.148    0.851
- 3 BP                8    1.77  0.166    0.778
- 4 1                67    2.22  0.175    0.871
- 5 MB               35    2.11  0.0847   0.913
- 6 NTP              55    1.88  0.0776   0.419
- 7 2                17    2.61  0.142    1.01 
- 8 NBM              50    2.42  0.156    0.825
- 9 NESP             44    1.75  0.120    1.13 
-10 MR               38    1.95  0.113    0.906</code></pre>
+ 1 2                24    2.72  0.181    1.14 
+ 2 1                85    1.98  0.141    1.16 
+ 3 2                25    2.65  0.172    1.24 
+ 4 1                72    2.77  0.206    1.18 
+ 5 1                81    2.06  0.141    0.713
+ 6 BEAU              2    2.18  0.0985   1.22 
+ 7 1                66    2.63  0.186    0.988
+ 8 NESP             45    1.86  0.142    0.807
+ 9 BP                8    1.77  0.166    0.778
+10 2                19    2.62  0.213    1.21 </code></pre>
 </div>
 </div>
-</section>
-<section id="combiner-des-tableaux" class="level3" data-number="3.5.4">
-<h3 data-number="3.5.4" class="anchored" data-anchor-id="combiner-des-tableaux"><span class="header-section-number">3.5.4</span> Combiner des tableaux</h3>
+</section><section id="combiner-des-tableaux" class="level3" data-number="3.5.4"><h3 data-number="3.5.4" class="anchored" data-anchor-id="combiner-des-tableaux">
+<span class="header-section-number">3.5.4</span> Combiner des tableaux</h3>
 <p>Nous avons introduit plus haut la notion de base de données. Nous voudrions peut-être utiliser le code des tourbières pour inclure leur nom, le type d’essai mené à ces tourbières, etc. Importons d’abord le tableau des noms liés aux codes.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>tourbieres <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(<span class="st">"data/chicoute_tourbieres.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tourbieres</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv2</a></span><span class="op">(</span><span class="st">"data/chicoute_tourbieres.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>ℹ Using "','" as decimal and "'.'" as grouping mark. Use `read_delim()` for more control.</code></pre>
 </div>
@@ -1381,7 +1360,7 @@ chr (4): Tourbiere, CodeTourbiere, Type, TypeCulture
 ℹ Use `spec()` to retrieve the full column specification for this data.
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>tourbieres</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tourbieres</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 11 × 4
    Tourbiere               CodeTourbiere Type        TypeCulture
@@ -1401,9 +1380,9 @@ chr (4): Tourbiere, CodeTourbiere, Type, TypeCulture
 </div>
 <p>Notre information est organisée en deux tableaux, liés par la colonne <code>CodeTourbiere</code>. Comment fusionner l’information pour qu’elle puisse être utilisée dans son ensemble? La fonction <code>left_join</code> effectue cette opération typique avec les bases de données.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>chicoute_merge <span class="ot">&lt;-</span> <span class="fu">left_join</span>(<span class="at">x =</span> chicoute, <span class="at">y =</span> tourbieres, <span class="at">by =</span> <span class="st">"CodeTourbiere"</span>)</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ou bien chicoute |&gt;  left_join(y = tourbieres, by = "CodeTourbiere")</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>chicoute_merge <span class="sc">|&gt;</span>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">chicoute_merge</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">chicoute</span>, y <span class="op">=</span> <span class="va">tourbieres</span>, by <span class="op">=</span> <span class="st">"CodeTourbiere"</span><span class="op">)</span></span>
+<span><span class="co"># ou bien chicoute |&gt;  left_join(y = tourbieres, by = "CodeTourbiere")</span></span>
+<span><span class="va">chicoute_merge</span> <span class="op">|&gt;</span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_head</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 34
      ID CodeTourbiere Ordre  Site Traitement DemiParcelle SousTraitement
@@ -1431,28 +1410,32 @@ chr (4): Tourbiere, CodeTourbiere, Type, TypeCulture
 <p><img src="images/04_animated-inner-join.gif" class="img-fluid"></p>
 <p><code>full_join(x, y)</code>garde toutes les lignes et les colonnes de x et y.</p>
 <p><img src="images/04_animated-full-join.gif" class="img-fluid"></p>
-</section>
-<section id="opérations-sur-les-tableaux" class="level3" data-number="3.5.5">
-<h3 data-number="3.5.5" class="anchored" data-anchor-id="opérations-sur-les-tableaux"><span class="header-section-number">3.5.5</span> Opérations sur les tableaux</h3>
+</section><section id="opérations-sur-les-tableaux" class="level3" data-number="3.5.5"><h3 data-number="3.5.5" class="anchored" data-anchor-id="opérations-sur-les-tableaux">
+<span class="header-section-number">3.5.5</span> Opérations sur les tableaux</h3>
 <p>Les tableaux peuvent être segmentés en éléments sur lesquels on calculera ce qui nous chante.</p>
 <p>On pourrait vouloir obtenir :</p>
 <ul>
-<li>la somme avec la function <code>sum()</code></li>
-<li>la moyenne avec la function <code>mean()</code> ou la médiane avec la fonction <code>median()</code></li>
-<li>l’écart-type avec la function <code>sd()</code></li>
-<li>les maximum et minimum avec les fonctions <code>min()</code> et <code>max()</code></li>
-<li>un décompte d’occurrence avec la fonction <code>n()</code> ou <code>count()</code></li>
+<li>la somme avec la function <code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code>
+</li>
+<li>la moyenne avec la function <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code> ou la médiane avec la fonction <code><a href="https://rdrr.io/r/stats/median.html">median()</a></code>
+</li>
+<li>l’écart-type avec la function <code><a href="https://rdrr.io/r/stats/sd.html">sd()</a></code>
+</li>
+<li>les maximum et minimum avec les fonctions <code><a href="https://rdrr.io/r/base/Extremes.html">min()</a></code> et <code><a href="https://rdrr.io/r/base/Extremes.html">max()</a></code>
+</li>
+<li>un décompte d’occurrence avec la fonction <code><a href="https://dplyr.tidyverse.org/reference/context.html">n()</a></code> ou <code><a href="https://dplyr.tidyverse.org/reference/count.html">count()</a></code>
+</li>
 </ul>
 <p>Par exemple,</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(chicoute<span class="sc">$</span>Rendement_g_5m2, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">chicoute</span><span class="op">$</span><span class="va">Rendement_g_5m2</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 13.32851</code></pre>
 </div>
 </div>
-<p><strong>En mode classique</strong>, pour effectuer des opérations sur des tableaux, on utilisera la fonction <code>apply()</code>. Cette fonction prend, comme arguments, le tableau, l’axe (opération par ligne = 1, opération par colonne = 2), puis la fonction à appliquer.</p>
+<p><strong>En mode classique</strong>, pour effectuer des opérations sur des tableaux, on utilisera la fonction <code><a href="https://rdrr.io/r/base/apply.html">apply()</a></code>. Cette fonction prend, comme arguments, le tableau, l’axe (opération par ligne = 1, opération par colonne = 2), puis la fonction à appliquer.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(chicoute <span class="sc">|&gt;</span>  <span class="fu">select</span>(<span class="fu">contains</span>(<span class="st">"pourc"</span>)), <span class="dv">2</span>, mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="va">chicoute</span> <span class="op">|&gt;</span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">contains</a></span><span class="op">(</span><span class="st">"pourc"</span><span class="op">)</span><span class="op">)</span>, <span class="fl">2</span>, <span class="va">mean</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     C_pourc      N_pourc      P_pourc      K_pourc     Ca_pourc     Mg_pourc 
 5.027911e+01 2.199411e+00 1.388959e-01 8.887000e-01 3.884391e-01 4.980142e-01 
@@ -1464,7 +1447,7 @@ chr (4): Tourbiere, CodeTourbiere, Type, TypeCulture
 </div>
 <p>Les opérations peuvent aussi être effectuées par ligne, par exemple une somme (je garde seulement les 10 premiers résultats).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(chicoute <span class="sc">|&gt;</span>  <span class="fu">select</span>(<span class="fu">contains</span>(<span class="st">"pourc"</span>)), <span class="dv">1</span>, sum)[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="va">chicoute</span> <span class="op">|&gt;</span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">contains</a></span><span class="op">(</span><span class="st">"pourc"</span><span class="op">)</span><span class="op">)</span>, <span class="fl">1</span>, <span class="va">sum</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] 55.64299 55.76767 54.78856 55.84453 57.89671 55.53603 55.62526 55.10991
  [9] 55.06295 55.16774</code></pre>
@@ -1472,10 +1455,10 @@ chr (4): Tourbiere, CodeTourbiere, Type, TypeCulture
 </div>
 <p>La fonction à appliquer peut être personnalisée, par exemple:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  chicoute <span class="sc">|&gt;</span>  <span class="fu">select</span>(<span class="fu">contains</span>(<span class="st">"pourc"</span>)), <span class="dv">2</span>,</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">function</span>(x) (<span class="fu">prod</span>(x))<span class="sc">^</span>(<span class="dv">1</span> <span class="sc">/</span> <span class="fu">length</span>(x))</span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span></span>
+<span>  <span class="va">chicoute</span> <span class="op">|&gt;</span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">contains</a></span><span class="op">(</span><span class="st">"pourc"</span><span class="op">)</span><span class="op">)</span>, <span class="fl">2</span>,</span>
+<span>  <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/prod.html">prod</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">^</span><span class="op">(</span><span class="fl">1</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     C_pourc      N_pourc      P_pourc      K_pourc     Ca_pourc     Mg_pourc 
 50.253429104  2.165246915  0.133754530  0.846193827  0.376192724  0.491763884 
@@ -1485,43 +1468,51 @@ chr (4): Tourbiere, CodeTourbiere, Type, TypeCulture
  0.002450982 </code></pre>
 </div>
 </div>
-<p>Vous reconnaissez cette fonction? C’était la moyenne géométrique (la fonction <code>prod()</code> étant le produit d’un vecteur).</p>
+<p>Vous reconnaissez cette fonction? C’était la moyenne géométrique (la fonction <code><a href="https://rdrr.io/r/base/prod.html">prod()</a></code> étant le produit d’un vecteur).</p>
 <p><strong>En mode tidyverse</strong>, on aura besoin principalement des fonction suivantes:</p>
 <ul>
-<li><code>group_by()</code> pour effectuer des opérations par groupe, l’opération <code>group_by()</code> sépare le tableau en plusieurs petits tableaux, en attendant de les recombiner. C’est un peu l’équivalent des facettes avec le module de visualisation ggplot2, que nous explorons au <a href="04-visualisation.html">chapitre&nbsp;<span>4</span></a>.</li>
-<li><code>summarise()</code> pour réduire plusieurs valeurs en une seule, il applique un calcul sur le tableau ou s’il y a lieu sur chaque petit tableau segmenté. Il en existe quelques variantes.
+<li>
+<code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> pour effectuer des opérations par groupe, l’opération <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> sépare le tableau en plusieurs petits tableaux, en attendant de les recombiner. C’est un peu l’équivalent des facettes avec le module de visualisation ggplot2, que nous explorons au <a href="04-visualisation.html">chapitre&nbsp;<span>4</span></a>.</li>
+<li>
+<code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> pour réduire plusieurs valeurs en une seule, il applique un calcul sur le tableau ou s’il y a lieu sur chaque petit tableau segmenté. Il en existe quelques variantes.
 <ul>
-<li><code>summarise_all()</code> applique la fonction à toutes les colonnes</li>
-<li><code>summarise_at()</code> applique la fonction aux colonnes spécifiées</li>
-<li><code>summarise_if()</code> applique la fonction aux colonnes qui ressortent comme <code>TRUE</code> selon une opération booléenne</li>
-</ul></li>
-<li><code>mutate()</code> pour ajouter une nouvelle colonne
+<li>
+<code><a href="https://dplyr.tidyverse.org/reference/summarise_all.html">summarise_all()</a></code> applique la fonction à toutes les colonnes</li>
+<li>
+<code><a href="https://dplyr.tidyverse.org/reference/summarise_all.html">summarise_at()</a></code> applique la fonction aux colonnes spécifiées</li>
+<li>
+<code><a href="https://dplyr.tidyverse.org/reference/summarise_all.html">summarise_if()</a></code> applique la fonction aux colonnes qui ressortent comme <code>TRUE</code> selon une opération booléenne</li>
+</ul>
+</li>
+<li>
+<code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> pour ajouter une nouvelle colonne
 <ul>
-<li>Si l’on désire ajouter une colonne à un tableau, par exemple le sommaire calculé avec <code>summarise()</code>. À l’inverse, la fonction <code>transmute()</code> retournera seulement le résultat, sans le tableau à partir duquel il a été calculé. De même que <code>summarise()</code>, <code>mutate()</code> et <code>transmute()</code> possèdent leurs équivalents <code>_all()</code>, <code>_at()</code> et <code>_if()</code>.</li>
-</ul></li>
-<li><code>arrange()</code> pour réordonner le tableau
+<li>Si l’on désire ajouter une colonne à un tableau, par exemple le sommaire calculé avec <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code>. À l’inverse, la fonction <code><a href="https://dplyr.tidyverse.org/reference/transmute.html">transmute()</a></code> retournera seulement le résultat, sans le tableau à partir duquel il a été calculé. De même que <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> et <code><a href="https://dplyr.tidyverse.org/reference/transmute.html">transmute()</a></code> possèdent leurs équivalents <code>_all()</code>, <code>_at()</code> et <code>_if()</code>.</li>
+</ul>
+</li>
+<li>
+<code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code> pour réordonner le tableau
 <ul>
 <li>Cette fonction est parfois utile lors de la mise en page de tableaux ou de graphiques. Il ne s’agit pas d’une opération sur un tableau, mais plutôt un changement d’affichage en changeant l’ordre d’apparition des données.</li>
-</ul></li>
+</ul>
+</li>
 </ul>
 <p>Ces opérations sont décrites dans l’aide-mémoire <a href="https://rstudio.github.io/cheatsheets/data-transformation.pdf"><em>Data Transformation Cheat Sheet</em></a> (<a href="#fig-tab-trans-cs">Figure&nbsp;<span>3.6</span></a>).</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-tab-trans-cs" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="images/04_data-transformation-cs.png" class="img-fluid figure-img" width="764"></p>
-<figcaption class="figure-caption">Figure&nbsp;3.6: Aide-mémoire pour la transformation des données, <a href="https://rstudio.github.io/cheatsheets/data-transformation.pdf">https://rstudio.github.io/cheatsheets/data-transformation.pdf</a></figcaption>
-</figure>
+<figure class="figure"><p><img src="images/04_data-transformation-cs.png" class="img-fluid figure-img" width="764"></p>
+<figcaption class="figure-caption">Figure&nbsp;3.6: Aide-mémoire pour la transformation des données, <a href="https://rstudio.github.io/cheatsheets/data-transformation.pdf">https://rstudio.github.io/cheatsheets/data-transformation.pdf</a></figcaption></figure>
 </div>
 </div>
 </div>
 <p>Pour effectuer des statistiques par colonne, on utilisera <code>summarise</code> pour des statistiques effectuées sur une seule colonne. <code>summarise</code> peut prendre le nombre désiré de statistiques dont la sortie est un scalaire.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>chicoute <span class="sc">|&gt;</span> </span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">moyenne =</span> <span class="fu">mean</span>(TotalFloral_nombre_m2, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">ecart_type =</span> <span class="fu">sd</span>(TotalFloral_nombre_m2, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">chicoute</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span></span>
+<span>    moyenne <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">TotalFloral_nombre_m2</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
+<span>    ecart_type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">TotalFloral_nombre_m2</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 2
   moyenne ecart_type
@@ -1529,11 +1520,11 @@ chr (4): Tourbiere, CodeTourbiere, Type, TypeCulture
 1    52.1       40.4</code></pre>
 </div>
 </div>
-<p>Si l’on désire un sommaire sur toutes les variables sélectionnées, on utilisera <code>summarise_all()</code>. Pour spécifier que l’on désire la moyenne et l’écart-type, on inscrit les noms des fonctions dans <code>list()</code>.</p>
+<p>Si l’on désire un sommaire sur toutes les variables sélectionnées, on utilisera <code><a href="https://dplyr.tidyverse.org/reference/summarise_all.html">summarise_all()</a></code>. Pour spécifier que l’on désire la moyenne et l’écart-type, on inscrit les noms des fonctions dans <code><a href="https://rdrr.io/r/base/list.html">list()</a></code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>chicoute <span class="sc">|&gt;</span> </span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">contains</span>(<span class="st">"pourc"</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise_all</span>(<span class="fu">list</span>(mean, sd))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">chicoute</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">contains</a></span><span class="op">(</span><span class="st">"pourc"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise_all.html">summarise_all</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">mean</span>, <span class="va">sd</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 26
   C_pourc_fn1 N_pourc_fn1 P_pourc_fn1 K_pourc_fn1 Ca_pourc_fn1 Mg_pourc_fn1
@@ -1548,14 +1539,14 @@ chr (4): Tourbiere, CodeTourbiere, Type, TypeCulture
 #   Mn_pourc_fn2 &lt;dbl&gt;, Fe_pourc_fn2 &lt;dbl&gt;, Al_pourc_fn2 &lt;dbl&gt;</code></pre>
 </div>
 </div>
-<p>On utilisera <code>group_by()</code> pour segmenter le tableau, et ainsi obtenir des statistiques pour chaque groupe.</p>
+<p>On utilisera <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> pour segmenter le tableau, et ainsi obtenir des statistiques pour chaque groupe.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>chicoute <span class="sc">|&gt;</span> </span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(CodeTourbiere) <span class="sc">|&gt;</span> </span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">moyenne =</span> <span class="fu">mean</span>(TotalFloral_nombre_m2, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">ecart_type =</span> <span class="fu">sd</span>(TotalFloral_nombre_m2, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">chicoute</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">CodeTourbiere</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span></span>
+<span>    moyenne <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">TotalFloral_nombre_m2</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
+<span>    ecart_type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">TotalFloral_nombre_m2</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 12 × 3
    CodeTourbiere moyenne ecart_type
@@ -1576,10 +1567,10 @@ chr (4): Tourbiere, CodeTourbiere, Type, TypeCulture
 </div>
 <p>Dans le cas de <code>summarise_all</code>, les résultats s’affichent de la même manière.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>chicoute <span class="sc">|&gt;</span> </span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(CodeTourbiere) <span class="sc">|&gt;</span> </span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(N_pourc, P_pourc, K_pourc) <span class="sc">|&gt;</span> </span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise_all</span>(<span class="fu">list</span>(mean, sd))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">chicoute</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">CodeTourbiere</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">N_pourc</span>, <span class="va">P_pourc</span>, <span class="va">K_pourc</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise_all.html">summarise_all</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">mean</span>, <span class="va">sd</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Adding missing grouping variables: `CodeTourbiere`</code></pre>
 </div>
@@ -1602,11 +1593,11 @@ chr (4): Tourbiere, CodeTourbiere, Type, TypeCulture
 # ℹ 1 more variable: K_pourc_fn2 &lt;dbl&gt;</code></pre>
 </div>
 </div>
-<p>Pour obtenir des statistiques à chaque ligne, mieux vaut utiliser <code>apply()</code>, tel que vu précédemment. Le point, <code>.</code>, représente le tableau dans une fonction qui n’a pas été conçue pour fonctionner de facto avec <strong><code>dplyr</code></strong>.</p>
+<p>Pour obtenir des statistiques à chaque ligne, mieux vaut utiliser <code><a href="https://rdrr.io/r/base/apply.html">apply()</a></code>, tel que vu précédemment. Le point, <code>.</code>, représente le tableau dans une fonction qui n’a pas été conçue pour fonctionner de facto avec <strong><code>dplyr</code></strong>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>chicoute <span class="sc">|&gt;</span> </span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">contains</span>(<span class="st">"pourc"</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">apply</span>(<span class="dv">1</span>, sum)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">chicoute</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">contains</a></span><span class="op">(</span><span class="st">"pourc"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="fl">1</span>, <span class="va">sum</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] 55.64299 55.76767 54.78856 55.84453 57.89671 55.53603 55.62526 55.10991
  [9] 55.06295 55.16774 56.41123 55.47917 55.43537 55.79175 55.44561 54.85448
@@ -1624,18 +1615,18 @@ chr (4): Tourbiere, CodeTourbiere, Type, TypeCulture
 </div>
 <p>Prenons ce tableau des espèces menacées issu de l’Union internationale pour la conservation de la nature <a href="https://stats.oecd.org/Index.aspx?DataSetCode=WILD_LIFE">distribué par l’OCDE</a>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"tidyverse"</span>)</span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>especes_menacees <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/WILD_LIFE_14012020030114795.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://tidyverse.tidyverse.org">"tidyverse"</a></span><span class="op">)</span></span>
+<span><span class="va">especes_menacees</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/WILD_LIFE_14012020030114795.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Nous exécutons le pipeline suivant.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>especes_menacees <span class="sc">|&gt;</span> </span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(IUCN <span class="sc">==</span> <span class="st">"CRITICAL"</span>, SPEC <span class="sc">==</span> <span class="st">"VASCULAR_PLANT"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(Country, Value) <span class="sc">|&gt;</span> </span>
-<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(Country) <span class="sc">|&gt;</span> </span>
-<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">n_critical_plants =</span> <span class="fu">sum</span>(Value)) <span class="sc">|&gt;</span> </span>
-<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(<span class="fu">desc</span>(n_critical_plants)) <span class="sc">|&gt;</span> </span>
-<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">especes_menacees</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">IUCN</span> <span class="op">==</span> <span class="st">"CRITICAL"</span>, <span class="va">SPEC</span> <span class="op">==</span> <span class="st">"VASCULAR_PLANT"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">Country</span>, <span class="va">Value</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">Country</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>n_critical_plants <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">Value</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">n_critical_plants</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_head</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 10 × 2
    Country         n_critical_plants
@@ -1667,37 +1658,36 @@ trier les pays en nombre décroissant de décompte d'espèces, puis
 
 afficher le top 10</code></pre>
 <p>Notez qu’il aurait aussi été possible d’utiliser la fonction <code>dplyr::slice_max(n_critical_plants, n = 10)</code> pour afficher directement le top 10, sans faire le tri préalable.</p>
-</section>
-<section id="exemple-difficile" class="level3" data-number="3.5.6">
-<h3 data-number="3.5.6" class="anchored" data-anchor-id="exemple-difficile"><span class="header-section-number">3.5.6</span> Exemple (difficile)</h3>
+</section><section id="exemple-difficile" class="level3" data-number="3.5.6"><h3 data-number="3.5.6" class="anchored" data-anchor-id="exemple-difficile">
+<span class="header-section-number">3.5.6</span> Exemple (difficile)</h3>
 <p>Pour revenir à notre tableau <code>chicoute</code>, imaginez que vous aviez une station météo (station_A) située aux coordonnées (490640, 5702453) et que vous désiriez calculer la distance entre l’observation et la station. Prenez du temps pour réfléchir à la manière dont vous procéderez…</p>
 <hr>
 <p>On pourra créer une fonction qui mesure la distance entre un point x, y et les coordonnées de la station A…</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>dist_station_A <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y) {</span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">sqrt</span>((x <span class="sc">-</span> <span class="dv">490640</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> (y <span class="sc">-</span> <span class="dv">5702453</span>)<span class="sc">^</span><span class="dv">2</span>))</span>
-<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dist_station_A</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="op">(</span><span class="va">x</span> <span class="op">-</span> <span class="fl">490640</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span> <span class="op">+</span> <span class="op">(</span><span class="va">y</span> <span class="op">-</span> <span class="fl">5702453</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>… puis ajouter une colonne avec mutate grâce à une fonction prenant les arguments x et y spécifiés.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>chicoute <span class="sc">|&gt;</span> </span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">dist =</span> <span class="fu">dist_station_A</span>(<span class="at">x =</span> Longitude_m, <span class="at">y =</span> Latitude_m)) <span class="sc">|&gt;</span> </span>
-<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(ID, CodeTourbiere, Longitude_m, Latitude_m, dist) <span class="sc">|&gt;</span> </span>
-<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_sample</span>(<span class="at">n =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">chicoute</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>dist <span class="op">=</span> <span class="fu">dist_station_A</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Longitude_m</span>, y <span class="op">=</span> <span class="va">Latitude_m</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">ID</span>, <span class="va">CodeTourbiere</span>, <span class="va">Longitude_m</span>, <span class="va">Latitude_m</span>, <span class="va">dist</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_sample</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 10 × 5
-      ID CodeTourbiere Longitude_m Latitude_m     dist
-   &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;
- 1    64 BS2                486530    5702199  4118.  
- 2    41 NESP               484875    5701888  5793.  
- 3    79 1                  486499    5702076  4158.  
- 4    53 NTP                487562    5704093  3488.  
- 5    14 2                  486538    5702562  4103.  
- 6     3 BEAU               490638    5702461     8.25
- 7    17 2                  486501    5702627  4143.  
- 8    26 2                  486315    5702540  4326.  
- 9    38 MR                 459880    5701971 30764.  
-10    28 2                  486353    5702478  4287.  </code></pre>
+      ID CodeTourbiere Longitude_m Latitude_m   dist
+   &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt;      &lt;dbl&gt;  &lt;dbl&gt;
+ 1    82 1                  486505    5702162  4145.
+ 2     6 BP                 484865    5706394  6992.
+ 3    33 MB                 491947    5699330  3385.
+ 4    21 2                  486524    5702537  4117.
+ 5    81 1                  486504    5702081  4153.
+ 6    35 MB                 491949    5699362  3357.
+ 7    18 2                  486501    5702627  4143.
+ 8    13 2                  486538    5702562  4103.
+ 9    39 MR                 459894    5701966 30750.
+10    25 2                  486315    5702540  4326.</code></pre>
 </div>
 </div>
 <p>Nous pourrions procéder de la même manière pour fusionner des données climatiques. Le tableau <code>chicoute</code> ne possède pas d’indicateurs climatiques, mais il est possible de les soutirer de stations météo placées près des sites. Ces données ne sont pas disponibles pour le tableau de la chicouté, alors j’utiliserai des données fictives pour l’exemple.</p>
@@ -1709,14 +1699,14 @@ afficher le top 10</code></pre>
 </ol>
 <p>Ces opérations demandent habituellement du tâtonnement. Il serait surprenant que même une personne expérimentée soit en mesure de compiler ces opérations sans obtenir de message d’erreur, et retravailler jusqu’à obtenir le résultat souhaité. L’objectif de cette section est de vous présenter un flux de travail que vous pourriez être amenés à effectuer et de fournir quelques éléments nouveaux pour mener à bien une opération. Il peut être frustrant de ne pas saisir toutes les opérations: passez à travers cette section sans jugement. Si vous devez vous frotter à un problème semblable, vous saurez que vous trouverez dans ce manuel une recette intéressante.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>mes_stations <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">Station =</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>),</span>
-<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">Longitude_m =</span> <span class="fu">c</span>(<span class="dv">490640</span>, <span class="dv">484870</span>, <span class="dv">485929</span>),</span>
-<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">Latitude_m =</span> <span class="fu">c</span>(<span class="dv">5702453</span>, <span class="dv">5701870</span>, <span class="dv">5696421</span>),</span>
-<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">t_moy_C =</span> <span class="fu">c</span>(<span class="fl">13.8</span>, <span class="fl">18.2</span>, <span class="fl">16.30</span>),</span>
-<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">prec_tot_mm =</span> <span class="fu">c</span>(<span class="dv">687</span>, <span class="dv">714</span>, <span class="dv">732</span>)</span>
-<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a>mes_stations</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mes_stations</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>  Station <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span><span class="op">)</span>,</span>
+<span>  Longitude_m <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">490640</span>, <span class="fl">484870</span>, <span class="fl">485929</span><span class="op">)</span>,</span>
+<span>  Latitude_m <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5702453</span>, <span class="fl">5701870</span>, <span class="fl">5696421</span><span class="op">)</span>,</span>
+<span>  t_moy_C <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">13.8</span>, <span class="fl">18.2</span>, <span class="fl">16.30</span><span class="op">)</span>,</span>
+<span>  prec_tot_mm <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">687</span>, <span class="fl">714</span>, <span class="fl">732</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="va">mes_stations</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Station Longitude_m Latitude_m t_moy_C prec_tot_mm
 1       A      490640    5702453    13.8         687
@@ -1726,33 +1716,33 @@ afficher le top 10</code></pre>
 </div>
 <p>La fonction suivante calcule la distance entre des coordonnées x et y et chaque station d’un tableau de stations, puis retourne le nom de la station dont la distance est la moindre.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>dist_station <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y, stations_df) {</span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># stations est le tableau des stations à trois colonnes</span></span>
-<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 1iere: nom de la station</span></span>
-<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 2ieme: longitude</span></span>
-<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 3ieme: latitude</span></span>
-<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>  distance <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
-<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(stations_df)) {</span>
-<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a>    distance[i] <span class="ot">&lt;-</span> <span class="fu">sqrt</span>((x <span class="sc">-</span> stations_df[i, <span class="dv">2</span>])<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> (y <span class="sc">-</span> stations_df[i, <span class="dv">3</span>])<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a>  nom_station <span class="ot">&lt;-</span> <span class="fu">as.character</span>(stations_df<span class="sc">$</span>Station[<span class="fu">which.min</span>(distance)])</span>
-<span id="cb52-11"><a href="#cb52-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(nom_station)</span>
-<span id="cb52-12"><a href="#cb52-12" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dist_station</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, <span class="va">stations_df</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="co"># stations est le tableau des stations à trois colonnes</span></span>
+<span>  <span class="co"># 1iere: nom de la station</span></span>
+<span>  <span class="co"># 2ieme: longitude</span></span>
+<span>  <span class="co"># 3ieme: latitude</span></span>
+<span>  <span class="va">distance</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>  <span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">stations_df</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="va">distance</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="op">(</span><span class="va">x</span> <span class="op">-</span> <span class="va">stations_df</span><span class="op">[</span><span class="va">i</span>, <span class="fl">2</span><span class="op">]</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span> <span class="op">+</span> <span class="op">(</span><span class="va">y</span> <span class="op">-</span> <span class="va">stations_df</span><span class="op">[</span><span class="va">i</span>, <span class="fl">3</span><span class="op">]</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span></span>
+<span>  <span class="op">}</span></span>
+<span>  <span class="va">nom_station</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="va">stations_df</span><span class="op">$</span><span class="va">Station</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.min.html">which.min</a></span><span class="op">(</span><span class="va">distance</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">nom_station</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Testons la fonction avec des coordonnées.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dist_station</span>(<span class="at">x =</span> <span class="dv">459875</span>, <span class="at">y =</span> <span class="dv">5701988</span>, <span class="at">stations_df =</span> mes_stations)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">dist_station</span><span class="op">(</span>x <span class="op">=</span> <span class="fl">459875</span>, y <span class="op">=</span> <span class="fl">5701988</span>, stations_df <span class="op">=</span> <span class="va">mes_stations</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "B"</code></pre>
 </div>
 </div>
 <p>Nous appliquons cette fonction à toutes les lignes du tableau, puis en retournons un échantillon.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>chicoute <span class="sc">|&gt;</span> </span>
-<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Station =</span> <span class="fu">dist_station</span>(<span class="at">x =</span> Longitude_m, <span class="at">y =</span> Latitude_m, <span class="at">stations_df =</span> mes_stations)) <span class="sc">|&gt;</span> </span>
-<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(ID, CodeTourbiere, Longitude_m, Latitude_m, Station) <span class="sc">|&gt;</span> </span>
-<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_sample</span>(<span class="at">n =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">chicoute</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rowwise.html">rowwise</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Station <span class="op">=</span> <span class="fu">dist_station</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Longitude_m</span>, y <span class="op">=</span> <span class="va">Latitude_m</span>, stations_df <span class="op">=</span> <span class="va">mes_stations</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">ID</span>, <span class="va">CodeTourbiere</span>, <span class="va">Longitude_m</span>, <span class="va">Latitude_m</span>, <span class="va">Station</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_sample</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 90 × 5
 # Rowwise: 
@@ -1771,13 +1761,13 @@ afficher le top 10</code></pre>
 # ℹ 80 more rows</code></pre>
 </div>
 </div>
-<p>Cela semble fonctionner. On peut y ajouter un <code>left_join()</code> pour joindre les données météo au tableau principal.</p>
+<p>Cela semble fonctionner. On peut y ajouter un <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join()</a></code> pour joindre les données météo au tableau principal.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>chicoute_weather <span class="ot">&lt;-</span> chicoute <span class="sc">|&gt;</span> </span>
-<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Station =</span> <span class="fu">dist_station</span>(<span class="at">x =</span> Longitude_m, <span class="at">y =</span> Latitude_m, <span class="at">stations_df =</span> mes_stations)) <span class="sc">|&gt;</span> </span>
-<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(<span class="at">y =</span> mes_stations, <span class="at">by =</span> <span class="st">"Station"</span>)</span>
-<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>chicoute_weather <span class="sc">|&gt;</span>  <span class="fu">slice_sample</span>(<span class="at">n =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">chicoute_weather</span> <span class="op">&lt;-</span> <span class="va">chicoute</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rowwise.html">rowwise</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Station <span class="op">=</span> <span class="fu">dist_station</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Longitude_m</span>, y <span class="op">=</span> <span class="va">Latitude_m</span>, stations_df <span class="op">=</span> <span class="va">mes_stations</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">mes_stations</span>, by <span class="op">=</span> <span class="st">"Station"</span><span class="op">)</span></span>
+<span><span class="va">chicoute_weather</span> <span class="op">|&gt;</span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_sample</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 90 × 36
 # Rowwise: 
@@ -1802,38 +1792,29 @@ afficher le top 10</code></pre>
 #   SterileFleur_nombre_m2 &lt;dbl&gt;, C_pourc &lt;dbl&gt;, N_pourc &lt;dbl&gt;, …</code></pre>
 </div>
 </div>
-</section>
-<section id="exporter-un-tableau" class="level3" data-number="3.5.7">
-<h3 data-number="3.5.7" class="anchored" data-anchor-id="exporter-un-tableau"><span class="header-section-number">3.5.7</span> Exporter un tableau</h3>
-<p>Simplement avec <code>write_csv()</code>.</p>
+</section><section id="exporter-un-tableau" class="level3" data-number="3.5.7"><h3 data-number="3.5.7" class="anchored" data-anchor-id="exporter-un-tableau">
+<span class="header-section-number">3.5.7</span> Exporter un tableau</h3>
+<p>Simplement avec <code><a href="https://readr.tidyverse.org/reference/write_delim.html">write_csv()</a></code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(chicoute_weather, <span class="st">"data/chicoute_weather.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://readr.tidyverse.org/reference/write_delim.html">write_csv</a></span><span class="op">(</span><span class="va">chicoute_weather</span>, <span class="st">"data/chicoute_weather.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="aller-plus-loin-dans-le-tidyverse" class="level3" data-number="3.5.8">
-<h3 data-number="3.5.8" class="anchored" data-anchor-id="aller-plus-loin-dans-le-tidyverse"><span class="header-section-number">3.5.8</span> Aller plus loin dans le tidyverse</h3>
+</section><section id="aller-plus-loin-dans-le-tidyverse" class="level3" data-number="3.5.8"><h3 data-number="3.5.8" class="anchored" data-anchor-id="aller-plus-loin-dans-le-tidyverse">
+<span class="header-section-number">3.5.8</span> Aller plus loin dans le tidyverse</h3>
 <p>Le livre <a href="https://r4ds.hadley.nz/">R for data science (2e)</a>, de Hadley Wickham et Garrett Grolemund (couverture à la <a href="#fig-wickham-book">Figure&nbsp;<span>3.7</span></a>), est un incontournable.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-wickham-book" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="images/04_wickhamcover.jpg" class="img-fluid figure-img" style="width:30.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;3.7: Couverture du libre de Hadley Wickham, Mine Çetinkaya-Rundel et Garrett Grolemund, Source: https://r4ds.hadley.nz/</figcaption>
-</figure>
+<figure class="figure"><p><img src="images/04_wickhamcover.jpg" class="img-fluid figure-img" style="width:30.0%"></p>
+<figcaption class="figure-caption">Figure&nbsp;3.7: Couverture du libre de Hadley Wickham, Mine Çetinkaya-Rundel et Garrett Grolemund, Source: https://r4ds.hadley.nz/</figcaption></figure>
 </div>
 </div>
 </div>
-</section>
-</section>
-<section id="références" class="level2" data-number="3.6">
-<h2 data-number="3.6" class="anchored" data-anchor-id="références"><span class="header-section-number">3.6</span> Références</h2>
+</section></section><section id="références" class="level2" data-number="3.6"><h2 data-number="3.6" class="anchored" data-anchor-id="références">
+<span class="header-section-number">3.6</span> Références</h2>
 <p>Parent L.E., Parent, S.É., Herbert-Gentile, V., Naess, K. et Lapointe, L. 2013. Mineral Balance Plasticity of Cloudberry (Rubus chamaemorus) in Quebec-Labrador Bogs. American Journal of Plant Sciences, 4, 1508-1520. DOI: <a href="http://dx.doi.org/10.4236/ajps.2013.47183">10.4236/ajps.2013.47183</a></p>
 
 
-</section>
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -2065,9 +2046,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="./02-R.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">La science des données avec R</span></span>
       </a>          
@@ -2079,7 +2058,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-left">Analyse et modélisation d’agroécosystèmes est construit avec <a href="https://quarto.org/">Quarto</a>.</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">Lien vers le <a href="https://essicolo.github.io/ecologie-mathematique-R/">manuel original</a>.</div>
+  </div>
+</footer>
 
 
 </body></html>

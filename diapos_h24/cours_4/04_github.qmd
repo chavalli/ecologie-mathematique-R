@@ -1,0 +1,332 @@
+---
+title: "Science ouverte et reproductibilité"
+author:
+  - name: "Charles Frenette-Vallières"
+date: "2024-02-05"
+format: 
+  revealjs:
+    theme: simple
+    highlight: kate
+    transition: slide
+    center: true
+    css: custom.css
+    logo: images/ul.png
+    scrollable: true
+echo: true
+---
+
+# La science ouverte
+
+## La science ouverte
+
+Vous êtes-vous déjà retrouvé devant une image de ce genre?
+
+![](images/purchase-pdf.png){fig-align="center"}
+
+## La science ouverte
+
+Puis, lorsque vous accédez finalement à l'article et parcourez la section Méthodologie, vous découvrez avec joie que les données originales sont disponibles...
+
+![](images/data-access.png){fig-align="center" width="10%"}
+
+## La science ouverte
+
+Pour finalement vous rendre compte que le lien ne fonctionne pas et que même en fouillant dans la base de données du site vous n'arrivez pas à trouver les dites données.
+
+![](images/data-access-site.png){fig-align="center"}
+
+## La science ouverte
+
+-   Méthodologie ouverte ([Protocol Exchange](https://protocolexchange.researchsquare.com/))
+-   Données ouvertes
+-   Code source ouvert
+-   Révision ouverte
+-   Accès ouvert ([Sci-Hub](https://fr.wikipedia.org/wiki/Sci-Hub))
+
+## La science ouverte
+
+Un exemple de science ouverte :
+
+-   Accès aux données brutes
+-   Accès au code source
+-   Accès gratuit à l'article
+
+![[Jeanne et al., 2019](https://github.com/essicolo/2019_soil-bacterial-microbiome-potato)](images/exemple-code-ouvert.png){fig-align="center"}
+
+## Plan
+
+1.  Un code reproductible
+2.  Programmation littéraire avec les formats Markdown
+3.  Archivage et suivi de version avec *Git*
+4.  Environnement de travail reproductible avec *renv*
+5.  Exemples reproductibles, le *reprex*
+6.  Fermeture
+
+## Objectifs spécifiques
+
+À la fin de ce chapitre, vous
+
+-   saurez exprimer l'importance et les enjeux de la science ouverte
+-   saurez arranger vos données (format csv) et votre code (format notebook) afin de rendre vos recherches reproductibles
+-   saurez comment créer un dépôt sur GitHub, puis administrer son développement
+
+# 1. Un code reproductible
+
+## Un code reproductible
+
+::: columns
+::: {.column width="75%"}
+1.   Commencez votre analyse à partir d'une copie des données brutes, dans un format ouvert (csv, json, sqlite, etc.). 
+1.    Toute opération sur les données devrait être effectuée avec du code, non pas manuellement. 
+1.    Séparez vos opérations en unités logiques thématiques. Par exemplem (i) charger, fusionner et nettoyer les données, (ii) analyser les données, (iii) créer des fichiers comme des tableaux et des figures.
+:::
+
+::: {.column width="25%"}
+[![](images/bes_frontpage.png)](https://www.britishecologicalsociety.org/wp-content/uploads/2017/12/guide-to-reproducible-code.pdf)
+:::
+:::
+
+## Un code reproductible
+
+::: columns
+::: {.column width="75%"}
+4.   Éliminez la duplication du code en créant des fonctions personnalisées.
+1.   Documentez votre code et vos données à même les feuilles de calcul ou dans un fichier de documentation séparé.
+1.   Tout fichier intermédiaire devrait être séparé de vos données brutes.
+:::
+
+::: {.column width="25%"}
+[![](images/bes_frontpage.png)](https://www.britishecologicalsociety.org/wp-content/uploads/2017/12/guide-to-reproducible-code.pdf)
+:::
+:::
+
+## La structure d'un projet
+
+Un projet de calcul devrait être contenu en un seul dossier.
+
+``` 
+
+📁 2019_abeille-canneberge
+```
+
+- Note : Le nom du dossier ne contient ni espaces, ni caractères spéciaux.
+- Pour bien classer et retrouver mes projets, j'utilise d'abord, puis un titre descriptif du projet.
+
+## La structure d'un projet
+
+::: columns
+::: {.column width="60%"}
+Dans le dossier principal du projet, on devrait retrouver des dossiers contenant les différents éléments du projet.
+:::
+
+::: {.column width="40%"}
+```         
+
+📂 2019_abeille-canneberge
+|-📁 documentation
+|-📁 manuscrit
+|-📁 photos
+|-📁 rstats
+|-📁 source
+```
+:::
+:::
+
+## La structure d'un projet
+
+::: columns
+::: {.column width="60%"}
+Le dossier `📂 rstats` contient le code, les données et les sorties de votre projet. Remarquez la notation des fichiers de script `📄 01_nom.R`. En théorie, vous devriez pouvoir compresser (*zip*) votre dossier et le partager.
+:::
+
+::: {.column width="40%"}
+```         
+
+📂 rstats
+|-📁 data
+|-📁 images
+|-📁 lib
+|-📁 tables
+📄 bees.Rproj
+📄 01_clean-data.R
+📄 02_data-mining.R
+📄 03_data-analysis.R
+📄 04_data-modeling.R
+📄 README.md
+```
+:::
+:::
+
+## Chemin d'accès
+
+Important : Dans votre code, tous les chemins d'accès devraient être **relatifs** au projet, plutôt que le nom complet de votre ordinateur.
+
+```{r}
+#| results: false
+library(tidyverse)
+read_csv("data/heather.csv")
+read_csv("~/Documents/github/ecologie-mathematique-R/diapos_h24/cours_4/data/heather.csv")
+```
+
+
+# 2. Programmation littéraire avec les formats Markdown
+
+## Commenter le code
+
+Un code reproductible est un code bien décrit. Vous pouvez commenter votre code à même votre fichier de script `.R` pour expliquer les étapes principales. Cela fonctionne bien pour les plus petits projets.
+
+```         
+#############
+## Titre 1 ##
+#############
+
+# Titre 2
+## Titre 3
+data <- read_csv("data/abeilles.csv") # commentaire particulier
+```
+
+## Les formats Markdown
+
+Pour les plus gros projets, le format [markdown](https://daringfireball.net/projects/markdown/) devient très utile. Les principaux outils sont R Markdown et Quarto, mais les deux utilisent principalement les mêmes balises.
+
+::: columns
+::: {.column width="50%"}
+
+[![](https://github.com/rstudio/rmarkdown/raw/main/man/figures/logo.png)](https://rmarkdown.rstudio.com/)
+
+:::
+
+::: {.column width="50%"}
+
+[![](https://quarto.org/quarto.png)](https://quarto.org/)
+
+:::
+:::
+
+## Balises markdown principales
+
+**Italique**. Astérisques simples `*`. Par exemple, "`Texte en *italique*`" devient "Texte en *italique*"
+
+**Gras**. Doubles astérisques `**`. Par exemple, "`Texte en **gras**`" devient "Texte en **gras**".
+
+**Largeur fixe**. Accents graves. Par exemple, "`` Texte de `code` ``" devient "Texte de `code`"
+
+## Balises markdown principales
+
+**Listes**. 
+
+::: columns
+::: {.column width="50%"}
+Pour effectuer une liste numérotée, utilisez le chiffre `1.`
+
+```         
+1. Paul
+1. Leto
+1. Alia
+```
+devient
+
+1.  Paul
+2.  Leto
+3.  Alia
+:::
+
+::: {.column width="50%"}
+De même, pour une liste à puces, changez le `1.` par le `-` ou le `*`.
+
+```         
+- Paul
+- Leto
+- Alia
+```
+devient
+
+- Paul
+- Leto
+- Alia
+:::
+:::
+
+## Balises markdown principales
+
+**Entêtes**. Les titres sont précédés par des `#`. Un `#` pour un titre 1, deux `##` pour un titre 2, etc. Par exemple,
+
+```         
+
+# Titre 1
+## Titre 2
+### Titre 3
+### Titre 3
+## Titre 2
+# Titre 1
+```
+
+Insérera les titres appropriés (que je n'insère pas pour ne pas bousiller la structure de ce texte).
+
+## Balises markdown principales
+
+**Liens**. Pour insérer des liens, le texte est entre crochets directement suivi du lien entre parenthèses. Par exemple, "`Visitez le site des [notes de cours](https://chavalli.github.io/ecologie-mathematique-R/)`" devient "Visitez le site des [notes de cours](https://chavalli.github.io/ecologie-mathematique-R/)".
+
+**Équations**. Les équations suivent la syntaxe Latex entre deux `$$`. Par exemple, `$c = \sqrt{a^2 + b^2}$` devient $c = \sqrt{a^2 + b^2}$.
+
+**Images**. Pour insérer une image, `![nom de l'image](images/image.png)`.
+
+## R Markdown
+
+[notes de cours](https://chavalli.github.io/ecologie-mathematique-R/05-github.html#r-markdown) ->
+
+## Quarto markdown
+
+![Dessin de la présentation [*Hello, Quarto*](https://mine.quarto.pub/hello-quarto/#/hello-quarto-title) par [Julia Lowndes](https://jules32.github.io/) et [Mine Çetinkaya-Rundel](https://mine-cr.com/), présentée à la conférence RStudio de 2022. Illustrés par [@Allison Horst](https://twitter.com/allison_horst).](https://github.com/allisonhorst/stats-illustrations/blob/main/julie-mine-quarto-keynote/quarto_schematic.png?raw=true)
+
+## Quarto markdown
+
+![Dessin de la présentation [*Hello, Quarto*](https://mine.quarto.pub/hello-quarto/#/hello-quarto-title) par [Julia Lowndes](https://jules32.github.io/) et [Mine Çetinkaya-Rundel](https://mine-cr.com/), présentée à la conférence RStudio de 2022. Illustrés par [@Allison Horst](https://twitter.com/allison_horst).](https://github.com/allisonhorst/stats-illustrations/blob/main/julie-mine-quarto-keynote/qmd_render_schema.png?raw=true)
+
+## Quarto markdown
+
+[notes de cours](https://chavalli.github.io/ecologie-mathematique-R/05-github.html#quarto-markdown) ->
+
+# 3. Archivage et suivi de version avec *Git*
+
+## Archivage et suivi de version avec *Git*
+
+Git vous permet de publier efficacement vos données, votre code et votre documentation en un seul endroit.
+
+[notes de cours](https://chavalli.github.io/ecologie-mathematique-R/05-github.html#sec-intro-git) ->
+
+# 4. Environnement de travail reproductible avec *renv*
+
+## Environnement de travail reproductible avec *renv*
+
+*renv* vous permet de garder la trace des versions de votre logiciel et de vos modules au moment où votre code a été développé, comme une image.
+
+[notes de cours](https://chavalli.github.io/ecologie-mathematique-R/05-github.html#sec-git-renv) ->
+
+# 5. Exemples reproductibles, le *reprex*
+
+## Exemples reproductibles, le *reprex*
+
+
+
+# 6. Pour terminer
+
+## Pour terminer
+
+Pratiquez-vous avec vos propres données!
+
+Lectures :
+
+-   [Chapitre 5 des notes de cours](https://chavalli.github.io/ecologie-mathematique-R/05-github.html)
+
+## Objectifs spécifiques
+
+À la fin de ce chapitre, vous
+
+-   comprendrez les règles guidant la création et la gestion des tableaux,
+-   saurez importer et exporter des données et
+-   saurez effectuer des opérations en cascade avec le module tidyverse, dont
+    -   des filtres sur les lignes,
+    -   des sélections de colonnes,
+    -   des sommaires statistiques et
+    -   des jointures entre tableaux.

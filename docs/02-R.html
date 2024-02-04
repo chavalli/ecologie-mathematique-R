@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.3.450">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
 <title>Analyse et modélisation d’agroécosystèmes sur R - 2&nbsp; La science des données avec R</title>
 <style>
 code{white-space: pre-wrap;}
@@ -56,7 +53,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
-
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
@@ -74,8 +70,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -94,21 +89,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script>
-
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<link rel="stylesheet" href="styles.css">
+}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 </head>
-
 <body class="nav-sidebar floating">
 
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
@@ -119,17 +106,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <i class="bi bi-search"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Analyse et modélisation d’agroécosystèmes sur R</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/chavalli/ecologie-mathematique-R/tree/h2024" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
 </div>
     </div>
       </div>
@@ -140,7 +128,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Préface</span></a>
@@ -243,43 +231,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </li>
     </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+</div>
+</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#statistiques-ou-science-des-données" id="toc-statistiques-ou-science-des-données" class="nav-link active" data-scroll-target="#statistiques-ou-science-des-données"><span class="header-section-number">2.1</span> Statistiques ou science des données?</a></li>
-  <li><a href="#débuter-en-r" id="toc-débuter-en-r" class="nav-link" data-scroll-target="#débuter-en-r"><span class="header-section-number">2.2</span> Débuter en R</a></li>
-  <li><a href="#préparer-son-flux-de-travail" id="toc-préparer-son-flux-de-travail" class="nav-link" data-scroll-target="#préparer-son-flux-de-travail"><span class="header-section-number">2.3</span> Préparer son flux de travail</a>
+<li><a href="#statistiques-ou-science-des-donn%C3%A9es" id="toc-statistiques-ou-science-des-données" class="nav-link active" data-scroll-target="#statistiques-ou-science-des-donn%C3%A9es"><span class="header-section-number">2.1</span> Statistiques ou science des données?</a></li>
+  <li><a href="#d%C3%A9buter-en-r" id="toc-débuter-en-r" class="nav-link" data-scroll-target="#d%C3%A9buter-en-r"><span class="header-section-number">2.2</span> Débuter en R</a></li>
+  <li>
+<a href="#pr%C3%A9parer-son-flux-de-travail" id="toc-préparer-son-flux-de-travail" class="nav-link" data-scroll-target="#pr%C3%A9parer-son-flux-de-travail"><span class="header-section-number">2.3</span> Préparer son flux de travail</a>
   <ul class="collapse">
-  <li><a href="#installation-classique" id="toc-installation-classique" class="nav-link" data-scroll-target="#installation-classique"><span class="header-section-number">2.3.1</span> Installation classique</a></li>
+<li><a href="#installation-classique" id="toc-installation-classique" class="nav-link" data-scroll-target="#installation-classique"><span class="header-section-number">2.3.1</span> Installation classique</a></li>
   <li><a href="#installation-avec-anaconda" id="toc-installation-avec-anaconda" class="nav-link" data-scroll-target="#installation-avec-anaconda"><span class="header-section-number">2.3.2</span> Installation avec Anaconda</a></li>
   <li><a href="#utilisation-infonuagique" id="toc-utilisation-infonuagique" class="nav-link" data-scroll-target="#utilisation-infonuagique"><span class="header-section-number">2.3.3</span> Utilisation infonuagique</a></li>
-  </ul></li>
-  <li><a href="#premiers-pas-avec-r" id="toc-premiers-pas-avec-r" class="nav-link" data-scroll-target="#premiers-pas-avec-r"><span class="header-section-number">2.4</span> Premiers pas avec R</a>
+  </ul>
+</li>
+  <li>
+<a href="#premiers-pas-avec-r" id="toc-premiers-pas-avec-r" class="nav-link" data-scroll-target="#premiers-pas-avec-r"><span class="header-section-number">2.4</span> Premiers pas avec R</a>
   <ul class="collapse">
-  <li><a href="#types-de-données" id="toc-types-de-données" class="nav-link" data-scroll-target="#types-de-données"><span class="header-section-number">2.4.1</span> Types de données</a></li>
-  <li><a href="#les-collections-de-données" id="toc-les-collections-de-données" class="nav-link" data-scroll-target="#les-collections-de-données"><span class="header-section-number">2.4.2</span> Les collections de données</a></li>
+<li><a href="#types-de-donn%C3%A9es" id="toc-types-de-données" class="nav-link" data-scroll-target="#types-de-donn%C3%A9es"><span class="header-section-number">2.4.1</span> Types de données</a></li>
+  <li><a href="#les-collections-de-donn%C3%A9es" id="toc-les-collections-de-données" class="nav-link" data-scroll-target="#les-collections-de-donn%C3%A9es"><span class="header-section-number">2.4.2</span> Les collections de données</a></li>
   <li><a href="#les-fonctions" id="toc-les-fonctions" class="nav-link" data-scroll-target="#les-fonctions"><span class="header-section-number">2.4.3</span> Les fonctions</a></li>
   <li><a href="#les-boucles" id="toc-les-boucles" class="nav-link" data-scroll-target="#les-boucles"><span class="header-section-number">2.4.4</span> Les boucles</a></li>
   <li><a href="#conditions-if-else-if-else" id="toc-conditions-if-else-if-else" class="nav-link" data-scroll-target="#conditions-if-else-if-else"><span class="header-section-number">2.4.5</span> Conditions: <code>if</code>, <code>else if</code>, <code>else</code></a></li>
   <li><a href="#installer-et-charger-un-module" id="toc-installer-et-charger-un-module" class="nav-link" data-scroll-target="#installer-et-charger-un-module"><span class="header-section-number">2.4.6</span> Installer et charger un module</a></li>
-  </ul></li>
+  </ul>
+</li>
   <li><a href="#enfin" id="toc-enfin" class="nav-link" data-scroll-target="#enfin"><span class="header-section-number">2.5</span> Enfin…</a></li>
   <li><a href="#petit-truc" id="toc-petit-truc" class="nav-link" data-scroll-target="#petit-truc"><span class="header-section-number">2.6</span> Petit truc!</a></li>
   <li><a href="#extra-jupyter" id="toc-extra-jupyter" class="nav-link" data-scroll-target="#extra-jupyter"><span class="header-section-number">2.7</span> Extra: Utiliser R avec Jupyter</a></li>
-  </ul>
-</nav>
+  </ul></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <h1 class="title"><span id="sec-R" class="quarto-section-identifier"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">La science des données avec R</span></span></h1>
 </div>
 
@@ -293,9 +279,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
-</header>
-
-<hr>
+</header><hr>
 <p><strong>Objectifs spécifiques</strong>:</p>
 <p>À la fin de ce chapitre, vous</p>
 <ul>
@@ -310,16 +294,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-R-data-flow-chart" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="images/02_science-des-donnees-flow_.png" class="img-fluid figure-img" style="width:100.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;2.1: Flux des données en sciences des données.</figcaption>
-</figure>
+<figure class="figure"><p><img src="images/02_science-des-donnees-flow_.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption class="figure-caption">Figure&nbsp;2.1: Flux des données en sciences des données.</figcaption></figure>
 </div>
 </div>
 </div>
 <p>Le grand cadre spécifie <strong>Programmer</strong>. Oui, vous aurez besoin d’écrire du code. Mais comme je l’ai indiqué dans le premier chapitre, ceci n’est pas un cours de programmation et je préférerai les approches intuitives.</p>
-<section id="statistiques-ou-science-des-données" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="statistiques-ou-science-des-données"><span class="header-section-number">2.1</span> Statistiques ou science des données?</h2>
+<section id="statistiques-ou-science-des-données" class="level2" data-number="2.1"><h2 data-number="2.1" class="anchored" data-anchor-id="statistiques-ou-science-des-données">
+<span class="header-section-number">2.1</span> Statistiques ou science des données?</h2>
 <p>Selon <a href="http://whitlockschluter.zoology.ubc.ca/">Whitlock et Schluter (2015)</a>, la statistique est l’<em>étude des méthodes pour décrire et mesurer des aspects de la nature à partir d’échantillon</em>. Pour <a href="https://r4ds.hadley.nz/intro">Grolemund et Wickham (2023)</a>, la science des données est <em>une discipline excitante permettant de transformer des données brutes en compréhension, perspectives et connaissances</em>. Oui, <em>excitante</em>! La différence entre les deux champs d’expertise est subtile, et certaines personnes n’y voient qu’une différence de ton.</p>
 <blockquote class="twitter-tweet blockquote" data-lang="fr">
 <p lang="en" dir="ltr">
@@ -327,20 +309,16 @@ Data Science is statistics on a Mac.
 </p>
 — Big Data Borat (<span class="citation" data-cites="BigDataBorat">@BigDataBorat</span>) <a href="https://twitter.com/BigDataBorat/status/372350993255518208?ref_src=twsrc%5Etfw">27 août 2013</a>
 </blockquote>
-<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-<p>Confinées à ses applications traditionnelles, les statistiques sont davantage vouées à la définition de dispositifs expérimentaux et à l’exécution de tests d’hypothèses, alors que la science des données est moins linéaire, en particulier dans sa phase d’analyse, où de nouvelles questions (donc de nouvelles hypothèses) peuvent être posées au fur et à mesure de l’analyse. Cela arrive généralement davantage lorsque l’on fait face à de nombreuses observations sur lesquelles de nombreux paramètres sont mesurés.</p>
+<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script><p>Confinées à ses applications traditionnelles, les statistiques sont davantage vouées à la définition de dispositifs expérimentaux et à l’exécution de tests d’hypothèses, alors que la science des données est moins linéaire, en particulier dans sa phase d’analyse, où de nouvelles questions (donc de nouvelles hypothèses) peuvent être posées au fur et à mesure de l’analyse. Cela arrive généralement davantage lorsque l’on fait face à de nombreuses observations sur lesquelles de nombreux paramètres sont mesurés.</p>
 <p>La quantité de données et de mesures auxquelles nous avons aujourd’hui accès grâce aux technologies de mesure et de stockage relativement peu dispendieux rend la science des données une discipline particulièrement attrayante, pour ne pas dire <a href="https://hbr.org/2012/10/data-scientist-the-sexiest-job-of-the-21st-century">sexy</a>.</p>
-</section>
-<section id="débuter-en-r" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="débuter-en-r"><span class="header-section-number">2.2</span> Débuter en R</h2>
+</section><section id="débuter-en-r" class="level2" data-number="2.2"><h2 data-number="2.2" class="anchored" data-anchor-id="débuter-en-r">
+<span class="header-section-number">2.2</span> Débuter en R</h2>
 <p><a href="https://www.r-project.org">R</a> est un langage de programmation dérivé du langage S, qui fut initialement lancé en 1976.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-R-logo" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="images/02_R_logo.svg.png" class="img-fluid figure-img" style="width:25.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;2.2: Logo officiel du language R.</figcaption>
-</figure>
+<figure class="figure"><p><img src="images/02_R_logo.svg.png" class="img-fluid figure-img" style="width:25.0%"></p>
+<figcaption class="figure-caption">Figure&nbsp;2.2: Logo officiel du language R.</figcaption></figure>
 </div>
 </div>
 </div>
@@ -349,24 +327,21 @@ Data Science is statistics on a Mac.
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-R-first-and-then" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="images/02_r_first_then.png" class="img-fluid figure-img" style="width:100.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;2.3: R avant et maintenant, Illustration de <a href="https://github.com/allisonhorst/stats-illustrations">Allison Horst</a></figcaption>
-</figure>
+<figure class="figure"><p><img src="images/02_r_first_then.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption class="figure-caption">Figure&nbsp;2.3: R avant et maintenant, Illustration de <a href="https://github.com/allisonhorst/stats-illustrations">Allison Horst</a></figcaption></figure>
 </div>
 </div>
 </div>
-</section>
-<section id="préparer-son-flux-de-travail" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="préparer-son-flux-de-travail"><span class="header-section-number">2.3</span> Préparer son flux de travail</h2>
+</section><section id="préparer-son-flux-de-travail" class="level2" data-number="2.3"><h2 data-number="2.3" class="anchored" data-anchor-id="préparer-son-flux-de-travail">
+<span class="header-section-number">2.3</span> Préparer son flux de travail</h2>
 <p>Il existe de nombreuses manières d’utiliser R. Parmi celles-ci, j’en couvrirai 3:</p>
 <ul>
 <li>Installation classique (installation suggérée)</li>
 <li>Installation avec Anaconda</li>
 <li>Utilisation infonuagique</li>
 </ul>
-<section id="installation-classique" class="level3" data-number="2.3.1">
-<h3 data-number="2.3.1" class="anchored" data-anchor-id="installation-classique"><span class="header-section-number">2.3.1</span> Installation classique</h3>
+<section id="installation-classique" class="level3" data-number="2.3.1"><h3 data-number="2.3.1" class="anchored" data-anchor-id="installation-classique">
+<span class="header-section-number">2.3.1</span> Installation classique</h3>
 <p><strong>Installation suggérée</strong>. Sur Windows ou Mac, dirigez-vous <a href="https://cloud.r-project.org/">ici</a>, téléchargez et installez. Sur Linux, ouvrez votre gestionnaire d’application, chercher <code>r-base</code> (Ubuntu, Debian), <code>R-base</code> (openSuse) ou <code>R-core</code> (Fedora) et installez-le (assurez-vous que les librairies suivantes sont aussi installées: <code>gcc</code>, <code>gcc-fortran</code>, <code>gcc-c++</code> et <code>make</code>), vous aurez peut-être besoin d’installer des librairies supplémentaires pour faire fonctionner certains modules.</p>
 <blockquote class="blockquote">
 <p><strong>Note</strong>. Les modules présentés dans ce cours devraient être disponibles sur Linux, Windows et Mac. Ce n’est pas le cas pour tous les modules R. La plupart fonctionnent néanmoins sur Linux, dont les systèmes d’opération (je recommande <a href="https://www.ubuntu.com/download/desktop">Ubuntu</a> ou l’une de ses dérivées comme <a href="https://elementary.io/">elementary OS</a>) sont de bonnes options pour le calcul scientifique.</p>
@@ -375,10 +350,8 @@ Data Science is statistics on a Mac.
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-R-terminal" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="images/02_terminal-prompt.png" class="img-fluid figure-img" style="width:100.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;2.4: R dans le terminal.</figcaption>
-</figure>
+<figure class="figure"><p><img src="images/02_terminal-prompt.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption class="figure-caption">Figure&nbsp;2.4: R dans le terminal.</figcaption></figure>
 </div>
 </div>
 </div>
@@ -387,10 +360,8 @@ Data Science is statistics on a Mac.
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-R-rstudio" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="images/02_rstudio.png" class="img-fluid figure-img" style="width:100.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;2.5: Fenêtre de RStudio.</figcaption>
-</figure>
+<figure class="figure"><p><img src="images/02_rstudio.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption class="figure-caption">Figure&nbsp;2.5: Fenêtre de RStudio.</figcaption></figure>
 </div>
 </div>
 </div>
@@ -404,38 +375,30 @@ Data Science is statistics on a Mac.
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-R-fifi" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="https://media.giphy.com/media/GmaV9oet9MAmI/giphy.gif" class="img-fluid figure-img" style="width:100.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;2.6: Scène de Fifi Brindacier (<a href="https://fr.wikipedia.org/wiki/Fifi_Brindacier">Astrid Lindgren, 1945</a>).</figcaption>
-</figure>
+<figure class="figure"><p><img src="https://media.giphy.com/media/GmaV9oet9MAmI/giphy.gif" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption class="figure-caption">Figure&nbsp;2.6: Scène de Fifi Brindacier (<a href="https://fr.wikipedia.org/wiki/Fifi_Brindacier">Astrid Lindgren, 1945</a>).</figcaption></figure>
 </div>
 </div>
 </div>
-</section>
-<section id="installation-avec-anaconda" class="level3" data-number="2.3.2">
-<h3 data-number="2.3.2" class="anchored" data-anchor-id="installation-avec-anaconda"><span class="header-section-number">2.3.2</span> Installation avec Anaconda</h3>
+</section><section id="installation-avec-anaconda" class="level3" data-number="2.3.2"><h3 data-number="2.3.2" class="anchored" data-anchor-id="installation-avec-anaconda">
+<span class="header-section-number">2.3.2</span> Installation avec Anaconda</h3>
 <p>Si vous cherchez une trousse complète d’analyse de données, comprenant R et Python, vous pourrez préférer <a href="https://www.anaconda.com/download">Anaconda</a>. Une fois installée, vous pourrez isoler un environnement de travail sur R, ou même isoler des environnements de travail particuliers pour vos projets. Une manière conviviale de créer des environnements de travail est de passer par l’interface <em>Anaconda navigator</em>, que vous lancerez soit dans le menu Windows, soit en ligne de commande <code>anaconda-navigator</code> sous Mac et Linux, puis d’installer <code>r-essentials</code>, <code>rstudio</code> et <code>jupyterlab</code> dans l’onglet <em>Environment</em>. Vous pourrez aussi installer <code>RStudio</code> et <code>Jupyter lab</code> via l’onglet <em>Home</em> de <code>Anaconda navigator</code>. Dans l’environnement de base, installez le package <code>nb_conda_kernels</code> pour vous assurer que tous les noyaux (R, Python, etc.) installés dans les environnements de travail soient automatiquement accessibles dans Jupyter. Si vous désirez utiliser dans Jupyter la version de R installée avec l’installation classique, référez-vous au guide présenté <a href="#extra-jupyter">en extra au bas de la page</a>.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-R-anaconda" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="images/02_anaconda-navigator.png" class="img-fluid figure-img" style="width:100.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;2.7: Anaconda navigator.</figcaption>
-</figure>
+<figure class="figure"><p><img src="images/02_anaconda-navigator.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption class="figure-caption">Figure&nbsp;2.7: Anaconda navigator.</figcaption></figure>
 </div>
 </div>
 </div>
 <p><a href="https://jupyter.org/"><em>Jupyter lab</em></a> est une interface notebook semblable à <em>Quarto</em> - les format <em>Jupyter</em> (<code>*.ipynb</code>) et <em>Quarto</em> (<code>*.qmd</code>) sont par ailleurs convertibles grâce au module <a href="https://jupytext.readthedocs.io/en/latest/formats-markdown.html">jupytext</a>. L’utilisation de R en Anaconda n’est pas tout à fait au point, et pourrait poser problème pour l’installation de certains modules. Si vous optez pour cette option, préparez-vous à avoir à bidouiller un peu. Plusieurs préfèrent Jupyter à RStudio (ce n’est pas mon cas).</p>
-</section>
-<section id="utilisation-infonuagique" class="level3" data-number="2.3.3">
-<h3 data-number="2.3.3" class="anchored" data-anchor-id="utilisation-infonuagique"><span class="header-section-number">2.3.3</span> Utilisation infonuagique</h3>
+</section><section id="utilisation-infonuagique" class="level3" data-number="2.3.3"><h3 data-number="2.3.3" class="anchored" data-anchor-id="utilisation-infonuagique">
+<span class="header-section-number">2.3.3</span> Utilisation infonuagique</h3>
 <p>Pas besoin d’avoir une machine super puissante pour travailler en R. Il existe <a href="https://github.com/markusschanta/awesome-jupyter#hosted-notebook-solutions">une multitude de services infonuagiques</a> (dans le <em>cloud</em>) vous permettant de lancer vos calculs sur des serveurs plutôt que sur votre Chromebook ou votre vieux laptop déglingué. Certains services sont gratuits, et d’autres souvent plus élaborés sont payants. Vous pouvez utiliser gratuitement <a href="https://notebooks.azure.com">Azure Notebooks</a> ou un <a href="https://stackoverflow.com/a/54595286">tour de passe-passe</a> pour faire fonctionner Google colab en R. Une option gratuite de <a href="https://cocalc.com/">CoCalc</a> vient avec un agressant bandeau rouge vif qui disparait avec l’option payante.</p>
 <p>À mon avis, le service <a href="https://nextjournal.com"><strong>Nextjournal</strong></a> est celui d’entre tous qui possède en ce moment les meilleures qualités dans sa version gratuite. Vous pourrez y travailler en mode collaboratif, comme dans Google docs. En outre, vous pouvez lancer ces notes de cours en les important dans Nextjournal. Vous devrez toutefois déposer les données dans l’interface, puis à chaque session installer les modules spécialisés. Le service gratuit offre peu de puissance de calcul, mais pour effectuer les applications de base, ça devrait être suffisant. La vidéo ci-dessous monter comment importer les notes de cours dans Nextjournal.</p>
 <p><video src="videos/nextjournal.webm" class="img-fluid" controls=""><a href="videos/nextjournal.webm">Video</a></video></p>
-</section>
-</section>
-<section id="premiers-pas-avec-r" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="premiers-pas-avec-r"><span class="header-section-number">2.4</span> Premiers pas avec R</h2>
+</section></section><section id="premiers-pas-avec-r" class="level2" data-number="2.4"><h2 data-number="2.4" class="anchored" data-anchor-id="premiers-pas-avec-r">
+<span class="header-section-number">2.4</span> Premiers pas avec R</h2>
 <p>R ne fonctionne pas avec des menus, en faisant danser une souris sous une musique de clics. Vous devrez donc entrer des commandes avec votre clavier, que vous apprendrez par cœur au fur et à mesure, ou que vous retrouverez en lançant des recherches sur internet. Par expérience personnelle, lorsque je travaille avec R, j’ai toujours un navigateur ouvert prêt à recevoir une question.</p>
 <p>Les étapes qui suivent sont des premiers pas. Elles ne feront pas de vous des <em>ceintures noires</em> de la programmation. La plupart des utilisateurs de R ont appris en se pratiquant sur leurs données, en se butant sur des obstacles, en apprenant comment les surmonter ou les contourner…</p>
 <p>Pour l’instant, ouvrez seulement un interpréteur de commande, et lancez R. Voyons si R est aussi libre qu’on le prétend.</p>
@@ -443,7 +406,7 @@ Data Science is statistics on a Mac.
 <p>“La liberté, c’est la liberté de dire que deux et deux font quatre. Si cela est accordé, tout le reste suit.” - George Orwell, 1984</p>
 </blockquote>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">2</span> <span class="op">+</span> <span class="fl">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 4</code></pre>
 </div>
@@ -452,34 +415,34 @@ Data Science is statistics on a Mac.
 <p><img width="200" src="images/02_braveheart224.png"></p>
 <p>Les opérations mathématiques sont effectuées telles que l’on devrait s’attendre.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fl">67.1</span> <span class="sc">-</span> <span class="fl">43.3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">67.1</span> <span class="op">-</span> <span class="fl">43.3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 23.8</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">*</span> <span class="dv">4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">2</span> <span class="op">*</span> <span class="fl">4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 8</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">/</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">1</span> <span class="op">/</span> <span class="fl">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.5</code></pre>
 </div>
 </div>
 <p>L’exposant peut être noté <code>^</code>, comme c’est le cas dans <em>Excel</em>, ou <code>**</code> comme c’est le cas en Python.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">^</span><span class="dv">4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">2</span><span class="op">^</span><span class="fl">4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 16</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">**</span><span class="dv">4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">2</span><span class="op">**</span><span class="fl">4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 16</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">/</span> <span class="dv">2</span> <span class="co"># utilisez des espaces de part et d'autre des opérateurs (sauf pour l'exposant) pour éclaircir le code</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">1</span> <span class="op">/</span> <span class="fl">2</span> <span class="co"># utilisez des espaces de part et d'autre des opérateurs (sauf pour l'exposant) pour éclaircir le code</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.5</code></pre>
 </div>
@@ -487,46 +450,46 @@ Data Science is statistics on a Mac.
 <p>R ne lit pas ce qui suit le caractère <code>#</code>. Cela vous laisse l’opportunité de commenter un code comprenant une séquence de plusieurs lignes. Remarquez également que la dernière opération comporte des espaces entre les nombres et l’opérateur <code>/</code>. Dans ce cas (ce n’est pas toujours le cas), les espaces ne signifient rien: ils aident seulement à éclaircir le code. Il existe des guides pour l’écriture de code en R. Je recommande <strong>fortement</strong> de suivre <strong>méticuleusement</strong> le guide de style de <a href="https://style.tidyverse.org">tidyverse</a>.</p>
 <p>Assigner des objets à des variables est fondamental en programmation. En R, on assigne traditionnellement avec la flèche <code>&lt;-</code>, mais vous verrez parfois le <code>=</code>, qui est davantage utilisé comme standard dans d’autres langages de programmation. Par exemple.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fl">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>Truc</strong>. Essayez d’inverser la flèche, e.g.&nbsp;<code>3 -&gt; a</code>.</p>
 <p>Techniquement, <code>a</code> pointe vers le nombre entier 3. Conséquemment, on peut effectuer des opérations sur <code>a</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>a <span class="sc">*</span> <span class="dv">6</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">a</span> <span class="op">*</span> <span class="fl">6</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 18</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>A <span class="sc">+</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">A</span> <span class="op">+</span> <span class="fl">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Le message d’erreur nous dit que <code>A</code> n’est pas défini. Sa version minuscule, <code>a</code>, l’est pourtant. La raison est que R considère la <em>case</em> dans la définition des objets. Utiliser la mauvaise case mène donc à des erreurs.</p>
 <p><strong>Note</strong>. Les messages d’erreur ne sont pas toujours clairs, mais vous apprendrez à les comprendre. Dans tous les cas, ils sont fait pour vous aider. Lisez-les attentivement!</p>
 <p>En général, le nom d’une variable doit toujours commencer par une lettre, et ne doit pas contenir de caractères réservés (espaces, <code>+</code>, <code>*</code>). Dans la définition des variables, plusieurs utilisent des symboles <code>.</code> pour délimiter les mots, mais la barre de soulignement <code>_</code> est à préférer. En effet, dans d’autres langages de programmation comme Python, le <code>.</code> a une autre signification: son utilisation est à éviter autant que possible. De même, évitez l’utilisation de majuscules pour nommer vos objets (voir le guide de style de <a href="https://style.tidyverse.org/syntax.html#object-names">tidyverse</a> pour nommer les objets).</p>
 <p><strong>Note</strong>. À ce stade, vous serez probablement plus à l’aise de copier-coller ces commandes dans votre terminal.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>rendement_arbre <span class="ot">&lt;-</span> <span class="dv">50</span> <span class="co"># pomme/arbre</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>nombre_arbre <span class="ot">&lt;-</span> <span class="dv">300</span> <span class="co"># arbre</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>nombre_pomme <span class="ot">&lt;-</span> rendement_arbre <span class="sc">*</span> nombre_arbre</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>nombre_pomme</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">rendement_arbre</span> <span class="op">&lt;-</span> <span class="fl">50</span> <span class="co"># pomme/arbre</span></span>
+<span><span class="va">nombre_arbre</span> <span class="op">&lt;-</span> <span class="fl">300</span> <span class="co"># arbre</span></span>
+<span><span class="va">nombre_pomme</span> <span class="op">&lt;-</span> <span class="va">rendement_arbre</span> <span class="op">*</span> <span class="va">nombre_arbre</span></span>
+<span><span class="va">nombre_pomme</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 15000</code></pre>
 </div>
 </div>
 <p>Comme chez la plupart des langages de programmation, R respecte les conventions des <a href="https://fr.wikipedia.org/wiki/Ordre_des_op%C3%A9rations">priorités des opérations mathéatiques</a>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="sc">-</span> <span class="dv">9</span><span class="sc">^</span><span class="fl">0.5</span> <span class="sc">*</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">10</span> <span class="op">-</span> <span class="fl">9</span><span class="op">^</span><span class="fl">0.5</span> <span class="op">*</span> <span class="fl">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 4</code></pre>
 </div>
 </div>
-<section id="types-de-données" class="level3" data-number="2.4.1">
-<h3 data-number="2.4.1" class="anchored" data-anchor-id="types-de-données"><span class="header-section-number">2.4.1</span> Types de données</h3>
+<section id="types-de-données" class="level3" data-number="2.4.1"><h3 data-number="2.4.1" class="anchored" data-anchor-id="types-de-données">
+<span class="header-section-number">2.4.1</span> Types de données</h3>
 <p>Jusqu’à maintenant, nous n’avons utilisé que des <strong>nombres entiers</strong> (<em>integer</em> ou <code>int</code>) et des <strong>nombres réels</strong> (<em>numeric</em> ou <code>float64</code>). R inclut d’autres types. La <strong>chaîne de caractère</strong> (<em>string</em> ou <em>character</em>) contient un ou plusieurs symboles. Elle est définie entre des doubles guillemets <code>" "</code> ou des apostrophes <code>' '</code>. Il n’existe pas de standard sur l’utilisation de l’un ou de l’autre, mais en règle générale, on utilise les apostrophes pour les expressions courtes, contenant un simple mot ou une séquence de lettres, et les guillemets pour les phrases. Une raison pour cela: les guillemets sont utiles pour insérer des apostrophes dans une chaîne de caractère.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="st">"L'ours"</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="st">"polaire"</span></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(a, b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">a</span> <span class="op">&lt;-</span> <span class="st">"L'ours"</span></span>
+<span><span class="va">b</span> <span class="op">&lt;-</span> <span class="st">"polaire"</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">a</span>, <span class="va">b</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "L'ours polaire"</code></pre>
 </div>
@@ -534,53 +497,52 @@ Data Science is statistics on a Mac.
 <p>On <em>colle</em> <code>a</code> et <code>b</code> avec la fonction <code>paste</code>. Notez que l’objet <code>a</code> a été défini précédemment. Il est possible en R de réassigner une variable, mais cela peut porter à confusion, jusqu’à générer des erreurs de calcul si une variable n’est pas assignée à l’objet auquel on voulait référer.</p>
 <p>Combien de caractères contient la chaîne <code>"L'ours polaire"</code>? R sait compter. Demandons-lui.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="fu">paste</span>(a, b)</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nchar</span>(c)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">c</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">a</span>, <span class="va">b</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/nchar.html">nchar</a></span><span class="op">(</span><span class="va">c</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 14</code></pre>
 </div>
 </div>
-<p>Quatorze, c’est bien cela (comptez “L’ours polaire”, en incluant l’espace). Comme <code>paste</code>, <code>nchar</code> est une fonction incluse par défaut dans l’environnement de travail de R: plus précisément, ces fonctions sont incluses dans le module <code>base</code>, inclut par défaut lorsque R est lancé. La fonction est appelée en écrivant <code>nchar()</code>. Mais une fonction de quoi? Des <em>arguments</em>, qui se trouvent entre les parenthèses. Dans ce cas, il y a un seul argument: <code>c</code>.</p>
+<p>Quatorze, c’est bien cela (comptez “L’ours polaire”, en incluant l’espace). Comme <code>paste</code>, <code>nchar</code> est une fonction incluse par défaut dans l’environnement de travail de R: plus précisément, ces fonctions sont incluses dans le module <code>base</code>, inclut par défaut lorsque R est lancé. La fonction est appelée en écrivant <code><a href="https://rdrr.io/r/base/nchar.html">nchar()</a></code>. Mais une fonction de quoi? Des <em>arguments</em>, qui se trouvent entre les parenthèses. Dans ce cas, il y a un seul argument: <code>c</code>.</p>
 <p>En calcul scientifique, il est courant de lancer des requêtes déterminant si un résultat est vrai ou faux.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">17</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>a <span class="sc">&lt;</span> <span class="dv">10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fl">17</span></span>
+<span><span class="va">a</span> <span class="op">&lt;</span> <span class="fl">10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] FALSE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>a <span class="sc">&gt;</span> <span class="dv">10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">a</span> <span class="op">&gt;</span> <span class="fl">10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>a <span class="sc">==</span> <span class="dv">10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">a</span> <span class="op">==</span> <span class="fl">10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] FALSE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>a <span class="sc">!=</span> <span class="dv">10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">a</span> <span class="op">!=</span> <span class="fl">10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>a <span class="sc">==</span> <span class="dv">17</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">a</span> <span class="op">==</span> <span class="fl">17</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span>(a <span class="sc">==</span> <span class="dv">17</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">!</span><span class="op">(</span><span class="va">a</span> <span class="op">==</span> <span class="fl">17</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] FALSE</code></pre>
 </div>
 </div>
 <p>Je viens d’introduire un nouveau type de donnée: les données booléennes (<em>boolean</em>, ou <code>logical</code>), qui ne peuvent prendre que deux états - <code>TRUE</code> ou <code>FALSE</code>. En même temps, j’ai utilisé la fonction <code>print</code> parce que dans mon carnet, seule la dernière opération permet d’afficher le résultat. Si l’on veut forcer une sortie, on utilise <code>print</code>. Puis, on a vu plus haut que le symbole <code>=</code> est réservé pour assigner des objets: pour les tests d’égalité, on utilise le double égal, <code>==</code>, ou <code>!=</code> pour la non-égalité. Enfin, pour inverser une donnée de type booléenne, on utilise le point d’exclamation <code>!</code>.</p>
-</section>
-<section id="les-collections-de-données" class="level3" data-number="2.4.2">
-<h3 data-number="2.4.2" class="anchored" data-anchor-id="les-collections-de-données"><span class="header-section-number">2.4.2</span> Les collections de données</h3>
+</section><section id="les-collections-de-données" class="level3" data-number="2.4.2"><h3 data-number="2.4.2" class="anchored" data-anchor-id="les-collections-de-données">
+<span class="header-section-number">2.4.2</span> Les collections de données</h3>
 <p>Les exercices précédents ont permis de présenter les types de données offerts par défaut sur R qui sont les plus importants pour le calcul scientifique: <code>int</code> (<em>integer</em>, ou nombre entier), <code>numeric</code> (nombre réel), <code>character</code> (<em>string</em>, ou chaîne de caractère) et <code>logical</code> (booléen). D’autres s’ajouteront tout au long du cours, comme les catégories (<code>factor</code>) et les unités de temps (date-heure).</p>
 <p>Lorsque l’on procède à des opérations de calcul en science, nous utilisons rarement des valeurs uniques. Nous préférons les organiser et les traiter en collections. Par défaut, R offre quatre types importants de collections: les <strong>vecteurs</strong>, les <strong>matrices</strong>, les <strong>listes</strong> et les <strong>tableaux</strong>.</p>
-<section id="vecteurs" class="level4" data-number="2.4.2.1">
-<h4 data-number="2.4.2.1" class="anchored" data-anchor-id="vecteurs"><span class="header-section-number">2.4.2.1</span> Vecteurs</h4>
-<p>D’abord, les <strong>vecteurs</strong> sont une série de variables de même type. Un vecteur est délimité par la fonction <code>c( )</code> (<code>c</code> pour <strong>c</strong>oncaténation). Les éléments de la liste sont séparés par des virgules.</p>
+<section id="vecteurs" class="level4" data-number="2.4.2.1"><h4 data-number="2.4.2.1" class="anchored" data-anchor-id="vecteurs">
+<span class="header-section-number">2.4.2.1</span> Vecteurs</h4>
+<p>D’abord, les <strong>vecteurs</strong> sont une série de variables de même type. Un vecteur est délimité par la fonction <code><a href="https://rdrr.io/r/base/c.html">c( )</a></code> (<code>c</code> pour <strong>c</strong>oncaténation). Les éléments de la liste sont séparés par des virgules.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>espece <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Petromyzon marinus"</span>, <span class="st">"Lepisosteus osseus"</span>, <span class="st">"Amia calva"</span>, <span class="st">"Hiodon tergisus"</span>)</span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>espece</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">espece</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Petromyzon marinus"</span>, <span class="st">"Lepisosteus osseus"</span>, <span class="st">"Amia calva"</span>, <span class="st">"Hiodon tergisus"</span><span class="op">)</span></span>
+<span><span class="va">espece</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Petromyzon marinus" "Lepisosteus osseus" "Amia calva"        
 [4] "Hiodon tergisus"   </code></pre>
@@ -588,34 +550,34 @@ Data Science is statistics on a Mac.
 </div>
 <p>Pour accéder aux éléments d’une liste, one appelle la liste suivie de la position de l’objet désiré entre crochets.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>espece[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">espece</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Petromyzon marinus"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>espece[<span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">espece</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Lepisosteus osseus"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>espece[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">espece</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Petromyzon marinus" "Lepisosteus osseus" "Amia calva"        </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>espece[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">espece</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span><span class="op">)</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Petromyzon marinus" "Amia calva"        </code></pre>
 </div>
 </div>
 <p>On peut noter que le premier élément de la liste est noté <code>1</code>, et non <code>0</code> comme c’est le cas de la plupart de langages. Le raccourcis <code>1:3</code> crée une liste de nombres entiers de <code>1</code> à <code>3</code> inclusivement, c’est-à-dire l’équivalent de <code>c(1, 2, 3)</code>. En effet, on crée une liste d’indices pour soutirer des éléments d’une liste. On peut utiliser le symbole de soustraction pour retirer un ou plusieurs éléments d’un vecteur.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>espece[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">espece</span><span class="op">[</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span><span class="op">)</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Lepisosteus osseus" "Hiodon tergisus"   </code></pre>
 </div>
 </div>
-<p>Pour ajouter un élément à notre liste, on peut utiliser la fonction <code>c( )</code>.</p>
+<p>Pour ajouter un élément à notre liste, on peut utiliser la fonction <code><a href="https://rdrr.io/r/base/c.html">c( )</a></code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>espece <span class="ot">&lt;-</span> <span class="fu">c</span>(espece, <span class="st">"Cyprinus carpio"</span>)</span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>espece</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">espece</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">espece</span>, <span class="st">"Cyprinus carpio"</span><span class="op">)</span></span>
+<span><span class="va">espece</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Petromyzon marinus" "Lepisosteus osseus" "Amia calva"        
 [4] "Hiodon tergisus"    "Cyprinus carpio"   </code></pre>
@@ -624,21 +586,20 @@ Data Science is statistics on a Mac.
 <p>Notez que l’on efface l’objet <code>espece</code> par une concaténation de l’objet <code>espece</code>, précédemment définie, et d’un autre élément.</p>
 <p>En lançant <code>espece[3] &lt;- "Lepomis gibbosus"</code>, il est possible de changer un élément de la liste.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>espece[<span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="st">"Lepomis gibbosus"</span></span>
-<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>espece</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">espece</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"Lepomis gibbosus"</span></span>
+<span><span class="va">espece</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Petromyzon marinus" "Lepisosteus osseus" "Lepomis gibbosus"  
 [4] "Hiodon tergisus"    "Cyprinus carpio"   </code></pre>
 </div>
 </div>
-</section>
-<section id="matrices" class="level4" data-number="2.4.2.2">
-<h4 data-number="2.4.2.2" class="anchored" data-anchor-id="matrices"><span class="header-section-number">2.4.2.2</span> Matrices</h4>
+</section><section id="matrices" class="level4" data-number="2.4.2.2"><h4 data-number="2.4.2.2" class="anchored" data-anchor-id="matrices">
+<span class="header-section-number">2.4.2.2</span> Matrices</h4>
 <p>Une <strong>matrice</strong> est un vecteur de dimension plus élevée que 1. En écologie, on dépasse rarement la deuxième dimension, quoi que les matrices en <code>N</code> dimensions soient courantes en modélisation mathématique. Je ne considérerai pour le moment que des matrices <code>2D</code>. Comme c’est la cas des vecteurs, les matrices contiennent des valeurs de même type. En R, on peut attribuer aux matrices <code>2D</code> des noms de ligne et de colonne.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>mat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">11</span>, <span class="dv">12</span>), </span>
-<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">ncol =</span> <span class="dv">3</span>)</span>
-<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>mat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">6</span>, <span class="fl">7</span>, <span class="fl">8</span>, <span class="fl">9</span>, <span class="fl">10</span>, <span class="fl">11</span>, <span class="fl">12</span><span class="op">)</span>, </span>
+<span>              ncol <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="va">mat</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     [,1] [,2] [,3]
 [1,]    1    5    9
@@ -648,9 +609,9 @@ Data Science is statistics on a Mac.
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(mat) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>)</span>
-<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(mat) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"site_1"</span>, <span class="st">"site_2"</span>, <span class="st">"site_3"</span>, <span class="st">"site_4"</span>)</span>
-<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>mat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">mat</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">mat</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"site_1"</span>, <span class="st">"site_2"</span>, <span class="st">"site_3"</span>, <span class="st">"site_4"</span><span class="op">)</span></span>
+<span><span class="va">mat</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       A B  C
 site_1 1 5  9
@@ -661,29 +622,28 @@ site_4 4 8 12</code></pre>
 </div>
 <p>On peut soutirer les noms de colonne et les noms de ligne. Le résultat est un vecteur.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(mat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">mat</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "A" "B" "C"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(mat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">mat</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "site_1" "site_2" "site_3" "site_4"</code></pre>
 </div>
 </div>
-</section>
-<section id="listes" class="level4" data-number="2.4.2.3">
-<h4 data-number="2.4.2.3" class="anchored" data-anchor-id="listes"><span class="header-section-number">2.4.2.3</span> Listes</h4>
+</section><section id="listes" class="level4" data-number="2.4.2.3"><h4 data-number="2.4.2.3" class="anchored" data-anchor-id="listes">
+<span class="header-section-number">2.4.2.3</span> Listes</h4>
 <p>Les <strong>listes</strong> sont des collections hétérogènes dans lesquelles on peut placer les objets désirés, sans distinction: elles peuvent même inclure d’autres listes. Chacun des éléments de la liste peut être identifié par une clé.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>ma_liste <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
-<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">especes =</span> <span class="fu">c</span>(</span>
-<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Petromyzon marinus"</span>, <span class="st">"Lepisosteus osseus"</span>,</span>
-<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Amia calva"</span>, <span class="st">"Hiodon tergisus"</span></span>
-<span id="cb63-5"><a href="#cb63-5" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb63-6"><a href="#cb63-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">site =</span> <span class="st">"A101"</span>,</span>
-<span id="cb63-7"><a href="#cb63-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">stations_meteos =</span> <span class="fu">c</span>(<span class="st">"746583"</span>, <span class="st">"783786"</span>, <span class="st">"856363"</span>)</span>
-<span id="cb63-8"><a href="#cb63-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb63-9"><a href="#cb63-9" aria-hidden="true" tabindex="-1"></a>ma_liste</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ma_liste</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
+<span>  especes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>    <span class="st">"Petromyzon marinus"</span>, <span class="st">"Lepisosteus osseus"</span>,</span>
+<span>    <span class="st">"Amia calva"</span>, <span class="st">"Hiodon tergisus"</span></span>
+<span>  <span class="op">)</span>,</span>
+<span>  site <span class="op">=</span> <span class="st">"A101"</span>,</span>
+<span>  stations_meteos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"746583"</span>, <span class="st">"783786"</span>, <span class="st">"856363"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="va">ma_liste</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$especes
 [1] "Petromyzon marinus" "Lepisosteus osseus" "Amia calva"        
@@ -698,32 +658,31 @@ $stations_meteos
 </div>
 <p>Les éléments de la liste peuvent être soutirés par le nom de la clé ou par l’indice, de cette manière.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>ma_liste<span class="sc">$</span>especes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb65"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ma_liste</span><span class="op">$</span><span class="va">especes</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Petromyzon marinus" "Lepisosteus osseus" "Amia calva"        
 [4] "Hiodon tergisus"   </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>ma_liste[[<span class="dv">1</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb67"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ma_liste</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Petromyzon marinus" "Lepisosteus osseus" "Amia calva"        
 [4] "Hiodon tergisus"   </code></pre>
 </div>
 </div>
 <p><strong>Exercice</strong>. Accéder au deuxième élément du vecteur d’espèces dans la liste ma_liste.</p>
-</section>
-<section id="tableaux" class="level4" data-number="2.4.2.4">
-<h4 data-number="2.4.2.4" class="anchored" data-anchor-id="tableaux"><span class="header-section-number">2.4.2.4</span> Tableaux</h4>
+</section><section id="tableaux" class="level4" data-number="2.4.2.4"><h4 data-number="2.4.2.4" class="anchored" data-anchor-id="tableaux">
+<span class="header-section-number">2.4.2.4</span> Tableaux</h4>
 <p>Enfin, le type de collection de données le plus important est le tableau, ou <code>data.frame</code>. Techniquement, il s’agit d’une liste composée de vecteurs de même longueur. Chaque colonne peut ainsi prendre un type de donnée indépendamment des autres colonnes.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>tableau <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">espece =</span> <span class="fu">c</span>(</span>
-<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Petromyzon marinus"</span>, <span class="st">"Lepisosteus osseus"</span>,</span>
-<span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Amia calva"</span>, <span class="st">"Hiodon tergisus"</span></span>
-<span id="cb69-5"><a href="#cb69-5" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb69-6"><a href="#cb69-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">poids =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">13</span>, <span class="dv">21</span>, <span class="dv">4</span>),</span>
-<span id="cb69-7"><a href="#cb69-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">longueur =</span> <span class="fu">c</span>(<span class="dv">35</span>, <span class="dv">44</span>, <span class="dv">50</span>, <span class="dv">8</span>)</span>
-<span id="cb69-8"><a href="#cb69-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb69-9"><a href="#cb69-9" aria-hidden="true" tabindex="-1"></a>tableau</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb69"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tableau</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>  espece <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>    <span class="st">"Petromyzon marinus"</span>, <span class="st">"Lepisosteus osseus"</span>,</span>
+<span>    <span class="st">"Amia calva"</span>, <span class="st">"Hiodon tergisus"</span></span>
+<span>  <span class="op">)</span>,</span>
+<span>  poids <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">13</span>, <span class="fl">21</span>, <span class="fl">4</span><span class="op">)</span>,</span>
+<span>  longueur <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">35</span>, <span class="fl">44</span>, <span class="fl">50</span>, <span class="fl">8</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="va">tableau</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>              espece poids longueur
 1 Petromyzon marinus    10       35
@@ -734,7 +693,7 @@ $stations_meteos
 </div>
 <p>En programmation classique en R (nous verrons plus loin la méthode <code>tidyverse</code>), les éléments d’un tableau se manipulent comme ceux d’une matrice et les colonnes peuvent être appelés comme les éléments d’une liste.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>tableau[, <span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb71"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tableau</span><span class="op">[</span>, <span class="fl">2</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  poids longueur
 1    10       35
@@ -742,14 +701,14 @@ $stations_meteos
 3    21       50
 4     4        8</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>tableau<span class="sc">$</span>poids</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb73"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tableau</span><span class="op">$</span><span class="va">poids</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 10 13 21  4</code></pre>
 </div>
 </div>
 <p>Vous verrez aussi, quoi que rarement, ce format, qui à la différence du format <code>$</code> génère un tableau.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>tableau[<span class="st">"poids"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb75"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tableau</span><span class="op">[</span><span class="st">"poids"</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  poids
 1    10
@@ -759,69 +718,64 @@ $stations_meteos
 </div>
 </div>
 <p>Le tableau est le format de collection à privilégier pour manipuler des données. Récemment, le format de tableau <code>tibble</code> a été créé par l’équipe de RStudio pour offrir un format plus moderne.</p>
-</section>
-</section>
-<section id="les-fonctions" class="level3" data-number="2.4.3">
-<h3 data-number="2.4.3" class="anchored" data-anchor-id="les-fonctions"><span class="header-section-number">2.4.3</span> Les fonctions</h3>
+</section></section><section id="les-fonctions" class="level3" data-number="2.4.3"><h3 data-number="2.4.3" class="anchored" data-anchor-id="les-fonctions">
+<span class="header-section-number">2.4.3</span> Les fonctions</h3>
 <p>Lorsque vous écrivez une commande suivit de parenthèses, comme <code>data.frame(especes = ...)</code>, vous demandez à R de passer à l’action en appelant une fonction. De manière très générale, une fonction transforme quelque chose en quelque chose d’autre (<a href="#fig-intro-fonction">Figure&nbsp;<span>2.8</span></a>).</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-intro-fonction" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="images/02_fonctions_io_.png" class="img-fluid figure-img" style="width:60.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;2.8: Schéma simplifié d’une fonction.</figcaption>
-</figure>
+<figure class="figure"><p><img src="images/02_fonctions_io_.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption class="figure-caption">Figure&nbsp;2.8: Schéma simplifié d’une fonction.</figcaption></figure>
 </div>
 </div>
 </div>
-<p>Par exemple, la fonction <code>mean()</code> prend une collection de nombre comme entrée, puis en sort vous devinez quoi.</p>
+<p>Par exemple, la fonction <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code> prend une collection de nombre comme entrée, puis en sort vous devinez quoi.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(tableau<span class="sc">$</span>poids)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb77"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">tableau</span><span class="op">$</span><span class="va">poids</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 12</code></pre>
 </div>
 </div>
 <p>Les entrées sont appelés les <strong>arguments</strong> de la fonction. Leur définition est toujours disponible dans la documentation.</p>
-<p><strong>Exercice</strong>. Familiarisez-vous avec la documentation de R en lançant <code>?mean</code>. Truc: si vous avez pris de l’avance et que vous travaillez déjà en RStudio, mettez le terme en surbrillance, puis appuyez sur F1.</p>
-<p>Vous verrez dans la documentation que la fonction <code>mean()</code> demande trois arguments, <code>x</code>, <code>trim</code> et <code>na.rm</code>. Or nous avons seulement placé un vecteur, sans spécifier d’argument!</p>
+<p><strong>Exercice</strong>. Familiarisez-vous avec la documentation de R en lançant <code><a href="https://rdrr.io/r/base/mean.html">?mean</a></code>. Truc: si vous avez pris de l’avance et que vous travaillez déjà en RStudio, mettez le terme en surbrillance, puis appuyez sur F1.</p>
+<p>Vous verrez dans la documentation que la fonction <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code> demande trois arguments, <code>x</code>, <code>trim</code> et <code>na.rm</code>. Or nous avons seulement placé un vecteur, sans spécifier d’argument!</p>
 <p>En effet. En l’absence d’une définition des arguments, R supposera que les arguments dans la parenthèse, séparés par une virgule, sont présentés dans le même ordre que celui spécifié dans la définition de la fonction (celle qui est présentée dans le fichier d’aide). Dans le cas qui nous intéresse, <code>mean(tableau$poids)</code> est équivalent à <code>mean(x = tableau$poids)</code>.</p>
 <p>Maintenant, selon la fiche d’aide, l’argument <code>na.rm</code> est un valeur logique spécifiant si oui (<code>TRUE</code>) ou non (<code>FALSE</code>) les valeurs manquantes doivent être considérées (une moyenne d’un vecteur comprenant au moins un <code>NA</code> sera de <code>NA</code>). En ne spécifiant rien, R prend la valeur par défaut, telle que spécifiée dans la documentation. Il en va de même pour l’argument <code>trim</code>, qui permet d’élaguer des valeurs extrêmes. Dans la fiche d’aide, <code>mean(x, trim = 0, na.rm = FALSE, ...)</code> signifie que par défaut, l’argument <code>x</code> est vide (il doit donc être spécifié), l’argument <code>trim</code> est de 0 et l’argument <code>na.rm</code> est <code>FALSE</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">c</span>(<span class="dv">6</span>, <span class="dv">1</span>, <span class="dv">7</span>, <span class="dv">4</span>, <span class="dv">9</span>, <span class="cn">NA</span>, <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb79"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">6</span>, <span class="fl">1</span>, <span class="fl">7</span>, <span class="fl">4</span>, <span class="fl">9</span>, <span class="cn">NA</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] NA</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">c</span>(<span class="dv">6</span>, <span class="dv">1</span>, <span class="dv">7</span>, <span class="dv">4</span>, <span class="dv">9</span>, <span class="cn">NA</span>, <span class="dv">1</span>), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb81"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">6</span>, <span class="fl">1</span>, <span class="fl">7</span>, <span class="fl">4</span>, <span class="fl">9</span>, <span class="cn">NA</span>, <span class="fl">1</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 4.666667</code></pre>
 </div>
 </div>
 <p>Vous n’êtes pas emprisonné par les fonctions offertes par R. Vous pouvez installer des modules qui complètent les fonctions de base de R: on le verra un peu plus loin dans ce chapitre. Mais pour l’instant, voyons comment vous pouvez créer vos propres fonctions. Disons que vous voulez créer une fonction qui calcule la sortie de <span class="math inline">\(x^3-2y+a\)</span>. Pour obtenir la réponse, on a besoin des arguments <code>x</code>, <code>y</code> et <code>a</code>. La sortie de la fonction est ici triviale: la réponse de l’équation. L’opération <code>function</code> permet de prendre ça en charge.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>operation_f <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y, <span class="at">a =</span> <span class="dv">10</span>) {</span>
-<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(x<span class="sc">^</span><span class="dv">3</span> <span class="sc">-</span> <span class="dv">2</span> <span class="sc">*</span> y <span class="sc">+</span> a)</span>
-<span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb83"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">operation_f</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, <span class="va">a</span> <span class="op">=</span> <span class="fl">10</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">x</span><span class="op">^</span><span class="fl">3</span> <span class="op">-</span> <span class="fl">2</span> <span class="op">*</span> <span class="va">y</span> <span class="op">+</span> <span class="va">a</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Notez que <code>a</code> a une valeur par défaut. La sortie de la fonction est ce qui se trouve entre les parenthèses de <code>return</code>. Vous pouvez maintenant utiliser la fonction operation_f au besoin.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">operation_f</span>(<span class="at">x =</span> <span class="dv">2</span>, <span class="at">y =</span> <span class="dv">3</span>, <span class="at">a =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb84"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">operation_f</span><span class="op">(</span>x <span class="op">=</span> <span class="fl">2</span>, y <span class="op">=</span> <span class="fl">3</span>, a <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 3</code></pre>
 </div>
 </div>
 <p>Une telle fonction est peu utile. Mais l’utilisation de fonctions personnalisées vous permettra d’éviter de répéter la même opération plusieurs fois dans un flux de travail, en évitant de générer trop de code, donc aussi de potentielles erreurs. Personnellement, j’utilise les fonctions surtout pour générer des graphiques personnalisés.</p>
 <p><strong>Exercice</strong>. Afin d’acquérir de l’autonomie, vous devrez être en mesure de trouver le nom des commandes dont vous avez besoin pour effectuer la tâche que vous désirez effectuer. Cela peut causer des frustrations, mais vous vous sentirez toujours plus à l’aise avec R jour après jour. L’exercice ici est de trouver par vous-même la commande qui vous permettra mesurer la longueur d’un vecteur.</p>
-</section>
-<section id="les-boucles" class="level3" data-number="2.4.4">
-<h3 data-number="2.4.4" class="anchored" data-anchor-id="les-boucles"><span class="header-section-number">2.4.4</span> Les boucles</h3>
+</section><section id="les-boucles" class="level3" data-number="2.4.4"><h3 data-number="2.4.4" class="anchored" data-anchor-id="les-boucles">
+<span class="header-section-number">2.4.4</span> Les boucles</h3>
 <p>Les boucles permettent d’effectuer une même suite d’opérations sur plusieurs objets. Pour faire suite à notre exemple, nous désirons obtenir le résultat de l’opération <em>f</em> pour des paramètres que nous enregistrons dans ce tableau.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a>params <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">6</span>),</span>
-<span id="cb86-3"><a href="#cb86-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">1</span>, <span class="dv">0</span>),</span>
-<span id="cb86-4"><a href="#cb86-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">a =</span> <span class="fu">c</span>(<span class="dv">6</span>, <span class="dv">1</span>, <span class="dv">8</span>, <span class="dv">2</span>, <span class="dv">5</span>)</span>
-<span id="cb86-5"><a href="#cb86-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb86-6"><a href="#cb86-6" aria-hidden="true" tabindex="-1"></a>params</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb86"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>  x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">1</span>, <span class="fl">5</span>, <span class="fl">6</span><span class="op">)</span>,</span>
+<span>  y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">8</span>, <span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span>,</span>
+<span>  a <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">6</span>, <span class="fl">1</span>, <span class="fl">8</span>, <span class="fl">2</span>, <span class="fl">5</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="va">params</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  x y a
 1 2 3 6
@@ -833,20 +787,20 @@ $stations_meteos
 </div>
 <p>Nous créons un vecteur vide, puis nous effectuons une itération ligne par ligne en remplissant le vecteur.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a>operation_res <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
-<span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(params)) {</span>
-<span id="cb88-3"><a href="#cb88-3" aria-hidden="true" tabindex="-1"></a>  operation_res[i] <span class="ot">&lt;-</span> <span class="fu">operation_f</span>(<span class="at">x =</span> params[i, <span class="dv">1</span>], <span class="at">y =</span> params[i, <span class="dv">2</span>], <span class="at">a =</span> params[i, <span class="dv">3</span>])</span>
-<span id="cb88-4"><a href="#cb88-4" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb88-5"><a href="#cb88-5" aria-hidden="true" tabindex="-1"></a>operation_res</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb88"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">operation_res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">params</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">operation_res</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu">operation_f</span><span class="op">(</span>x <span class="op">=</span> <span class="va">params</span><span class="op">[</span><span class="va">i</span>, <span class="fl">1</span><span class="op">]</span>, y <span class="op">=</span> <span class="va">params</span><span class="op">[</span><span class="va">i</span>, <span class="fl">2</span><span class="op">]</span>, a <span class="op">=</span> <span class="va">params</span><span class="op">[</span><span class="va">i</span>, <span class="fl">3</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="va">operation_res</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1]   8  57  -7 125 221</code></pre>
 </div>
 </div>
-<p>En faisant varier <code>i</code> sur des valeurs du vecteur donné par la séquence de nombres entiers de 1 au nombre de ligne du tableau de paramètres, nous demandons à R d’effectuer la suite d’opération entre les accolades <code>{}</code>. À chaque boucle, <code>i</code> prend une valeur de la séquence. <code>i</code> est utilisé ici comme indice de la ligne à soutirer du tableau <code>params</code>, qui correspond à l’indice dans le vecteur operation_res.</p>
+<p>En faisant varier <code>i</code> sur des valeurs du vecteur donné par la séquence de nombres entiers de 1 au nombre de ligne du tableau de paramètres, nous demandons à R d’effectuer la suite d’opération entre les accolades <code><a href="https://rdrr.io/r/base/Paren.html">{}</a></code>. À chaque boucle, <code>i</code> prend une valeur de la séquence. <code>i</code> est utilisé ici comme indice de la ligne à soutirer du tableau <code>params</code>, qui correspond à l’indice dans le vecteur operation_res.</p>
 <p>Ainsi, chaque résultat est calculé dans l’ordre des lignes du tableau de paramètres et l’on pourra très bien y coller nos résultats:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a>params<span class="sc">$</span>resultats <span class="ot">&lt;-</span> operation_res</span>
-<span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a>params</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb90"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">params</span><span class="op">$</span><span class="va">resultats</span> <span class="op">&lt;-</span> <span class="va">operation_res</span></span>
+<span><span class="va">params</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  x y a resultats
 1 2 3 6         8
@@ -860,11 +814,11 @@ $stations_meteos
 <p>Les boucles <code>for</code> vous permettront par exemple de générer en peu de temps 10, 100, 1000 graphiques (autant que vous voulez), chacun issu de simulations obtenues à partir de conditions initiales différentes, et de les enregistrer dans un répertoire sur votre ordinateur. Un travail qui pourrait prendre des semaines sur Excel peut être effectué en R en quelques secondes.</p>
 <p>Un second outil est disponible pour les itérations: les boucles <strong><code>while</code></strong>. Elles effectuent une opération tant qu’un critère n’est pas atteint. Elles sont utiles pour les opérations où l’on cherche une convergence. Je les couvre rapidement puisqu’elles sont rarement utilisées dans les flux de travail courants. En voici un petit exemple.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">100</span></span>
-<span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> (x <span class="sc">&gt;</span> <span class="fl">1.1</span>) {</span>
-<span id="cb92-3"><a href="#cb92-3" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(x)</span>
-<span id="cb92-4"><a href="#cb92-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(x)</span>
-<span id="cb92-5"><a href="#cb92-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb92"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">100</span></span>
+<span><span class="kw">while</span> <span class="op">(</span><span class="va">x</span> <span class="op">&gt;</span> <span class="fl">1.1</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 10
 [1] 3.162278
@@ -875,48 +829,47 @@ $stations_meteos
 </div>
 </div>
 <p>Nous avons initié x à une valeur de 100. Puis, tant que (<code>while</code>) le test <code>x &gt; 1.1</code> est vrai, attribuer à <code>x</code> la nouvelle valeur calculée en extrayant la racine de la valeur précédente de <code>x</code>. Enfin, indiquer la valeur avec <code>print</code>.</p>
-</section>
-<section id="conditions-if-else-if-else" class="level3" data-number="2.4.5">
-<h3 data-number="2.4.5" class="anchored" data-anchor-id="conditions-if-else-if-else"><span class="header-section-number">2.4.5</span> Conditions: <code>if</code>, <code>else if</code>, <code>else</code></h3>
+</section><section id="conditions-if-else-if-else" class="level3" data-number="2.4.5"><h3 data-number="2.4.5" class="anchored" data-anchor-id="conditions-if-else-if-else">
+<span class="header-section-number">2.4.5</span> Conditions: <code>if</code>, <code>else if</code>, <code>else</code>
+</h3>
 <blockquote class="blockquote">
 <p>Si la condition 1 est remplie, effectuer une suite d’instructions 1. Si la condition 1 n’est pas remplie, et si la condition 2 est remplie, effectuer la suite d’instructions 2. Sinon, effectuer la suite d’instruction 3.</p>
 </blockquote>
 <p>Voilà comment on exprime une suite de conditions. Prenons l’exemple simple d’une discrétisation d’une valeur continue. Si <span class="math inline">\(x&lt;10\)</span>, il est classé comme faible. Si <span class="math inline">\(10 \leq x &lt;20\)</span>, il est classé comme moyen. Si <span class="math inline">\(x \geq 20\)</span>, il est classé comme élevé. Plaçons cette classification dans une fonction.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a>classification <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">lim1 =</span> <span class="dv">10</span>, <span class="at">lim2 =</span> <span class="dv">20</span>) {</span>
-<span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (x <span class="sc">&lt;</span> lim1) {</span>
-<span id="cb94-3"><a href="#cb94-3" aria-hidden="true" tabindex="-1"></a>    categorie <span class="ot">&lt;-</span> <span class="st">"faible"</span></span>
-<span id="cb94-4"><a href="#cb94-4" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (x <span class="sc">&lt;</span> lim2) {</span>
-<span id="cb94-5"><a href="#cb94-5" aria-hidden="true" tabindex="-1"></a>    categorie <span class="ot">&lt;-</span> <span class="st">"moyen"</span></span>
-<span id="cb94-6"><a href="#cb94-6" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb94-7"><a href="#cb94-7" aria-hidden="true" tabindex="-1"></a>    categorie <span class="ot">&lt;-</span> <span class="st">"élevé"</span></span>
-<span id="cb94-8"><a href="#cb94-8" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb94-9"><a href="#cb94-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(categorie)</span>
-<span id="cb94-10"><a href="#cb94-10" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb94-11"><a href="#cb94-11" aria-hidden="true" tabindex="-1"></a><span class="fu">classification</span>(<span class="sc">-</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb94"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">classification</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">lim1</span> <span class="op">=</span> <span class="fl">10</span>, <span class="va">lim2</span> <span class="op">=</span> <span class="fl">20</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="kw">if</span> <span class="op">(</span><span class="va">x</span> <span class="op">&lt;</span> <span class="va">lim1</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="va">categorie</span> <span class="op">&lt;-</span> <span class="st">"faible"</span></span>
+<span>  <span class="op">}</span> <span class="kw">else</span> <span class="kw">if</span> <span class="op">(</span><span class="va">x</span> <span class="op">&lt;</span> <span class="va">lim2</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="va">categorie</span> <span class="op">&lt;-</span> <span class="st">"moyen"</span></span>
+<span>  <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
+<span>    <span class="va">categorie</span> <span class="op">&lt;-</span> <span class="st">"élevé"</span></span>
+<span>  <span class="op">}</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">categorie</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="fu">classification</span><span class="op">(</span><span class="op">-</span><span class="fl">10</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "faible"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="fu">classification</span>(<span class="fl">15.4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb96"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">classification</span><span class="op">(</span><span class="fl">15.4</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "moyen"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="fu">classification</span>(<span class="dv">1000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb98"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">classification</span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "élevé"</code></pre>
 </div>
 </div>
 <p>Une condition est définie avec le <code>if</code>, suivi du test à vrai ou faux entre parenthèses. Si le test retourne un <em>vrai</em> (<code>TRUE</code>), l’instruction entre accolades est exécutée. Si elle est fausse, on passe au suivant.</p>
 <p><strong>Exercice</strong>. Explorer les commandes <code>ifelse</code> et <code>cut</code> et réfléchissez à la manière qu’elles pourraient être utilisées pour effectuer une discrétisation plus efficacement qu’avec les <code>if</code> et les <code>else</code>.</p>
-</section>
-<section id="installer-et-charger-un-module" class="level3" data-number="2.4.6">
-<h3 data-number="2.4.6" class="anchored" data-anchor-id="installer-et-charger-un-module"><span class="header-section-number">2.4.6</span> Installer et charger un module</h3>
+</section><section id="installer-et-charger-un-module" class="level3" data-number="2.4.6"><h3 data-number="2.4.6" class="anchored" data-anchor-id="installer-et-charger-un-module">
+<span class="header-section-number">2.4.6</span> Installer et charger un module</h3>
 <p>La plupart des opérations d’ordre général (comme les racines carrées, les tests statistiques, la gestion de matrices et de tableau, les graphiques, etc.) sont accessibles grâce aux modules de base de R, qui sont installés et chargés par défaut lors du démarrage de R. Des équipes de travail ont néanmoins développé plusieurs modules pour répondre à leurs besoins spécialisés, et les ont laissés disponibles au grand public dans des modules que vous pouvez installer d’un dépôt CRAN (le AppStore de R), d’un dépôt Anaconda (le AppStore de Anaconda, si vous utilisez cette plate-forme), d’un dépôt Github (dépôts décentralisés), etc.</p>
 <p>RStudio possède un pratique bouton <em>Install</em> qui vous permet d’y inscrire une liste de modules. Le navigateur anaconda offre aussi une interface d’installation. La commande R pour installer un module est <code>install.packages("ggplot2")</code>, si par exemple vous désirez installer <code>ggplot2</code>, le module graphique par excellence en R. C’est la commande que RStudio lancera tout seul si vous lui demandez d’installer <code>ggplot2</code>.</p>
 <p>Les modules sont l’équivalent des applications spécialisées que vous installez sur un téléphone mobile. Pour les utiliser, il faut les ouvrir.</p>
 <p>Généralement, j’ouvre toutes les applications nécessaires à mon flux de travail au tout début de ma feuille de calcul (la prochaine cellule retournera un message d’erreur si les packages ne sont pas installés).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"tidyverse"</span>) <span class="co"># méta-package qui charge entre autres dplyr et ggplot2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb100"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://tidyverse.tidyverse.org">"tidyverse"</a></span><span class="op">)</span> <span class="co"># méta-package qui charge entre autres dplyr et ggplot2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ✔ dplyr     1.1.3     ✔ readr     2.1.4
@@ -929,13 +882,13 @@ $stations_meteos
 ✖ dplyr::lag()    masks stats::lag()
 ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"vegan"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb102"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/vegandevs/vegan">"vegan"</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Le chargement a nécessité le package : permute
 Le chargement a nécessité le package : lattice
 This is vegan 2.6-4</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"nlme"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb104"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://svn.r-project.org/R-packages/trunk/nlme/">"nlme"</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>
 Attachement du package : 'nlme'
@@ -945,45 +898,42 @@ L'objet suivant est masqué depuis 'package:dplyr':
     collapse</code></pre>
 </div>
 </div>
-<p>Les modules sont installés sur votre ordinateur à un endroit que vous pourrez retrouver avec la commande <code>.libPaths()</code></p>
+<p>Les modules sont installés sur votre ordinateur à un endroit que vous pourrez retrouver avec la commande <code><a href="https://rdrr.io/r/base/libPaths.html">.libPaths()</a></code></p>
 <p><strong>Exercice</strong>. À partir d’ici jusqu’à la fin du cours, nous utiliserons RStudio. Ouvrez-le et familiarisez-vous avec l’interface! Quelques petits trucs:</p>
 <ul>
 <li>pour lancer une ligne, placez votre curseur sur la ligne, puis appuyez sur Ctrl+Enter</li>
 <li>pour lancer une partie de code précise, mettez le en surbrillance, puis Ctrl+Enter</li>
 <li>utilisez toujours le gestionnaire de projets, en haut à droite!</li>
-<li>installez le module <strong><code>tidyverse</code></strong></li>
+<li>installez le module <strong><code>tidyverse</code></strong>
+</li>
 <li>lancez <code>data("iris")</code> pour obtenir un tableau d’exercice, puis cliquez sur l’objet dans la fenêtre environnement</li>
-</ul>
-</section>
-</section>
-<section id="enfin" class="level2" data-number="2.5">
-<h2 data-number="2.5" class="anchored" data-anchor-id="enfin"><span class="header-section-number">2.5</span> Enfin…</h2>
+</ul></section></section><section id="enfin" class="level2" data-number="2.5"><h2 data-number="2.5" class="anchored" data-anchor-id="enfin">
+<span class="header-section-number">2.5</span> Enfin…</h2>
 <p>Comme une langue, on n’apprend à s’exprimer en un langage informatique qu’en se mettant à l’épreuve, ce que vous ferez tout au long de ce cours. Pour vous encourager, voici quelques trucs pour apprendre à coder en R.</p>
 <ul>
-<li><strong>R n’aime pas l’ambiguïté</strong>. Une simple virgule mal placée et il ne sait plus quoi faire. Cela peut être frustrant au début, mais cette rigidité est nécessaire pour effectuer du calcul scientifique.</li>
-<li><strong>Le copier-coller est votre ami</strong>. En gardant à l’esprit que vous être responsable de votre code et que vous respectez les droits d’auteur, n’ayez pas peur de copier-coller des lignes de code et de personnaliser par la suite.</li>
-<li><strong>L’erreur que vous obtenez: d’autres l’ont obtenue avant vous</strong>. Le site de question-réponse <a href="https://stackoverflow.com/questions/tagged/r">stackoverflow</a> est une ressource inestimable où des gens ayant posté des questions ont reçu des réponses d’experts (les meilleures réponses et les meilleures questions apparaissent en premier). Apprenez à chercher intelligemment des réponses en formulant précisément vos questions!</li>
-<li><strong>Étudiez et pratiquez</strong>. Les messages d’erreur en R sont courants, même chez les personnes expérimentées. La meilleure manière d’apprendre une langue est de la parler, d’étudier ses susceptibilités, de les tester dans une conversation, etc.</li>
-</ul>
-</section>
-<section id="petit-truc" class="level2" data-number="2.6">
-<h2 data-number="2.6" class="anchored" data-anchor-id="petit-truc"><span class="header-section-number">2.6</span> Petit truc!</h2>
+<li>
+<strong>R n’aime pas l’ambiguïté</strong>. Une simple virgule mal placée et il ne sait plus quoi faire. Cela peut être frustrant au début, mais cette rigidité est nécessaire pour effectuer du calcul scientifique.</li>
+<li>
+<strong>Le copier-coller est votre ami</strong>. En gardant à l’esprit que vous être responsable de votre code et que vous respectez les droits d’auteur, n’ayez pas peur de copier-coller des lignes de code et de personnaliser par la suite.</li>
+<li>
+<strong>L’erreur que vous obtenez: d’autres l’ont obtenue avant vous</strong>. Le site de question-réponse <a href="https://stackoverflow.com/questions/tagged/r">stackoverflow</a> est une ressource inestimable où des gens ayant posté des questions ont reçu des réponses d’experts (les meilleures réponses et les meilleures questions apparaissent en premier). Apprenez à chercher intelligemment des réponses en formulant précisément vos questions!</li>
+<li>
+<strong>Étudiez et pratiquez</strong>. Les messages d’erreur en R sont courants, même chez les personnes expérimentées. La meilleure manière d’apprendre une langue est de la parler, d’étudier ses susceptibilités, de les tester dans une conversation, etc.</li>
+</ul></section><section id="petit-truc" class="level2" data-number="2.6"><h2 data-number="2.6" class="anchored" data-anchor-id="petit-truc">
+<span class="header-section-number">2.6</span> Petit truc!</h2>
 <p>RStudio peut être implémenté avec des extensions. L’une d’elle permet d’ajuster votre style de code. Par exemple, vous voulez vous assurer que toutes les allocations sont bien effectuées avec des <code>&lt;-</code> et non pas des <code>=</code>, qu’il y a bien des espaces de part et d’autre de <code>&lt;-</code>, que les retours de lignes sont bien placés, etc. Installez le module <strong><code>styler</code></strong>, et des options apparaîtront dans le menu <code>Addins</code> comme à la <a href="#fig-intro-styler">Figure&nbsp;<span>2.9</span></a>.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-intro-styler" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="images/02_styler.png" class="img-fluid figure-img" style="width:40.0%"></p>
-<figcaption class="figure-caption">Figure&nbsp;2.9: L’extension styler permet de formater votre code dans un style particulier</figcaption>
-</figure>
+<figure class="figure"><p><img src="images/02_styler.png" class="img-fluid figure-img" style="width:40.0%"></p>
+<figcaption class="figure-caption">Figure&nbsp;2.9: L’extension styler permet de formater votre code dans un style particulier</figcaption></figure>
 </div>
 </div>
 </div>
-</section>
-<section id="extra-jupyter" class="level2" data-number="2.7">
-<h2 data-number="2.7" class="anchored" data-anchor-id="extra-jupyter"><span class="header-section-number">2.7</span> Extra: Utiliser R avec Jupyter</h2>
-<p>Pour utiliser R dans Jupyter notebook ou Jupyter lab, vous devez installer le module <strong><code>IRkernel</code></strong> dans la version de R que vous désirez utiliser avec Jupyter, puis de lancer la commande <code>IRkernel::installspec()</code>. La prochaine fois que vous ouvrirez Jupyter, le noyau de R devrait apparaître.</p>
-<p>Je n’ai aucune expérience sur Mac, mais semble-t-il cela fonctionne comme en Linux. Ouvrez R à partir d’un terminal (R + Enter), puis lancez <code>IRkernel::installspec()</code> après avoir installé <strong><code>IRkernel</code></strong>. Si vous travaillez en Windows, il vous faudra lancer R par son chemin complet dans l’invite de commande de Anaconda (<em>Anaconda Powershell Prompt</em>). Par exemple, ouvrir <em>Anaconda Powershell Prompt</em>, puis, si votre installation de R se trouve dans <code>C:\Program Files\R\R-3.6.2</code>,</p>
+</section><section id="extra-jupyter" class="level2" data-number="2.7"><h2 data-number="2.7" class="anchored" data-anchor-id="extra-jupyter">
+<span class="header-section-number">2.7</span> Extra: Utiliser R avec Jupyter</h2>
+<p>Pour utiliser R dans Jupyter notebook ou Jupyter lab, vous devez installer le module <strong><code>IRkernel</code></strong> dans la version de R que vous désirez utiliser avec Jupyter, puis de lancer la commande <code><a href="https://rdrr.io/pkg/IRkernel/man/installspec.html">IRkernel::installspec()</a></code>. La prochaine fois que vous ouvrirez Jupyter, le noyau de R devrait apparaître.</p>
+<p>Je n’ai aucune expérience sur Mac, mais semble-t-il cela fonctionne comme en Linux. Ouvrez R à partir d’un terminal (R + Enter), puis lancez <code><a href="https://rdrr.io/pkg/IRkernel/man/installspec.html">IRkernel::installspec()</a></code> après avoir installé <strong><code>IRkernel</code></strong>. Si vous travaillez en Windows, il vous faudra lancer R par son chemin complet dans l’invite de commande de Anaconda (<em>Anaconda Powershell Prompt</em>). Par exemple, ouvrir <em>Anaconda Powershell Prompt</em>, puis, si votre installation de R se trouve dans <code>C:\Program Files\R\R-3.6.2</code>,</p>
 <pre><code>(base) PS C:\Users\fifi&gt; cd "C:\Program Files\R\R-3.6.2\bin"
 (base) PS C:\Program Files\R\R-3.6.2\bin&gt; .\R.exe
 
@@ -1021,10 +971,7 @@ Les packages binaires téléchargés sont dans
 &gt; qui()</code></pre>
 
 
-</section>
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -1256,10 +1203,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script>
-
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="./01-intro.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span>
       </a>          
@@ -1271,7 +1215,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-left">Analyse et modélisation d’agroécosystèmes est construit avec <a href="https://quarto.org/">Quarto</a>.</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">Lien vers le <a href="https://essicolo.github.io/ecologie-mathematique-R/">manuel original</a>.</div>
+  </div>
+</footer>
 
 
 </body></html>
