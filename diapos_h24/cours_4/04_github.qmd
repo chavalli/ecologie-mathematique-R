@@ -78,7 +78,7 @@ Un exemple de science ouverte :
 ::: {.column width="75%"}
 1.   Commencez votre analyse à partir d'une copie des données brutes, dans un format ouvert (csv, json, sqlite, etc.). 
 1.    Toute opération sur les données devrait être effectuée avec du code, non pas manuellement. 
-1.    Séparez vos opérations en unités logiques thématiques. Par exemplem (i) charger, fusionner et nettoyer les données, (ii) analyser les données, (iii) créer des fichiers comme des tableaux et des figures.
+1.    Séparez vos opérations en unités logiques thématiques. Par exemple (i) charger, fusionner et nettoyer les données, (ii) analyser les données, (iii) créer des fichiers comme des tableaux et des figures.
 :::
 
 ::: {.column width="25%"}
@@ -311,22 +311,20 @@ Git vous permet de publier efficacement vos données, votre code et votre docume
 
 # 6. Pour terminer
 
+## Retour sur les objectifs
+
+À la fin de ce chapitre, vous
+
+-   saurez exprimer l'importance et les enjeux de la science ouverte
+-   saurez arranger vos données (format csv) et votre code (format notebook) afin de rendre vos recherches reproductibles
+-   saurez comment créer un dépôt sur GitHub, puis administrer son développement
+
 ## Pour terminer
 
-Pratiquez-vous avec vos propres données!
+Assurez-vous d'avoir un code reproductible en structurant adéquatement vos projets et votre code.
+Explorez les outils markdown.
+Explorez les répertoires github, et essayer de créer votre propre répertoire!
 
 Lectures :
 
 -   [Chapitre 5 des notes de cours](https://chavalli.github.io/ecologie-mathematique-R/05-github.html)
-
-## Objectifs spécifiques
-
-À la fin de ce chapitre, vous
-
--   comprendrez les règles guidant la création et la gestion des tableaux,
--   saurez importer et exporter des données et
--   saurez effectuer des opérations en cascade avec le module tidyverse, dont
-    -   des filtres sur les lignes,
-    -   des sélections de colonnes,
-    -   des sommaires statistiques et
-    -   des jointures entre tableaux.

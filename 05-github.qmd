@@ -355,6 +355,8 @@ format:
     toc: true
 ```
 
+![Aide-mémoire de [Quarto](https://rstudio.github.io/cheatsheets/quarto.pdf)](https://github.com/rstudio/cheatsheets/blob/main/pngs/quarto.png?raw=true)
+
 #### Éditeur visuel
 
 Enfin, un des grands avantages de Quarto en termes d'accessibilité est l'éditeur visuel. Personnellement, je préfère généralement travailler avec l'éditeur de code Source, qui me permet de mieux voir ce qu'il se passe exactement et d'avoir un meilleur contrôle sur le formatage. Toutefois, il m'arrive de passer à l'éditeur visuel lorsque j'ignore comment introduire certains éléments.
