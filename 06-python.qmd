@@ -23,7 +23,7 @@ Dans les dernières années Python est devenu l'un des outils les plus utilisés
 
 - **scikit-learn** : C'est une des modules les plus utilisés pour l'apprentissage automatique. `scikit-learn` a des innombrables algorithmes d’apprentissage supervisé et non-supervisé utilisés pour la classification ou la régression.
 
-## Installation
+# Installation
 
 Il y a différentes façons d'installer Python dans un ordinateur. Dans le cas de Mac et Linux Python vient par défaut avec ces systèmes d'exploitation. Dans le cas de windows il faut le télécharger et l'installer. Une façon d'installer Python sur windows est de télécharger le fichier d'installation directement du site web de [Python](https://www.python.org/downloads/), une fois le fichier téléchargé, l'exécuter et suivre les instructions pour l'installation.
 
@@ -33,5 +33,23 @@ Une autre alternative pour télécharger Python est à partir de [Anaconda](http
 
 2. Télécharger une version minimale appellé **Miniconda** qui ne vient qu'avec Python et conda.
 
-Les deux différences principales entre Anaconda et Miniconda sont (1) l'espace réquis pour l'installation qui est de 3 GO et 400 MO, respectivement, et (2) le temps d'installation puisque ça prends moins de temps d'installer Miniconda que Anaconda. L'utilisateur peut choisir Anaconda si n'a pas d'expérience et s'il ne veut pas se préoccuper à installer des modules. L'installation de Miniconda est récommandé pour des utilisateurs qui sont plus experimentés et qui savent déjà quels modules ils vont utiliser. Enfin, si l'ordinateur n'a pas beaucoup d'espace, il est recommandé d'installer Miniconda qui occupe moins d'espace.
+Les deux différences principales entre Anaconda et Miniconda sont (1) l'espace réquis pour l'installation qui est de 3 GO et 400 MO, respectivement, et (2) le temps d'installation puisque ça prends moins de temps à installer Miniconda que Anaconda. L'utilisateur peut choisir Anaconda si n'a pas d'expérience et s'il ne veut pas se préoccuper à installer des modules. L'installation de Miniconda est récommandé pour des utilisateurs qui sont plus experimentés et qui savent déjà quels modules ils vont utiliser. Enfin, si l'ordinateur n'a pas beaucoup d'espace, il est recommandé d'installer Miniconda. Dans ce manuel, les exemples d'éxecution de Python et l'installation des modules se fera à partir d'un terminal de commande nommé « Anaconda prompt ».
+
+# Anaconda prompt
+
+
+
+
+
+- conda bash
+- "Bonjour monde"
+- Rstudio et Python
+- VS Code
+- Operations Python
+- Types d'objets
+- Boucles
+- Fonctions
+- Les gestionnaires de modules
+- Numpy, Pandas, Visualisation
+- Fin
 
