@@ -397,15 +397,15 @@ D'autres types de jointures sont possibles, et décrites en détails dans la [do
 
 `right_join(x, y)` colle y à x seulement ce qui dans x correspond à ce que l'on trouve dans y.
 
-![](images/04_animated-right-join.gif) 
+![](images/04_animated-right-join.gif)
 
 `inner_join(x, y)` colle x et y en excluant les lignes où au moins une variable de jointure est absente dans x et y.
 
-![](images/04_animated-inner-join.gif) 
+![](images/04_animated-inner-join.gif)
 
 `full_join(x, y)`garde toutes les lignes et les colonnes de x et y.
 
-![](images/04_animated-full-join.gif) 
+![](images/04_animated-full-join.gif)
 
 ### Opérations sur les tableaux
 

@@ -1,13 +1,20 @@
 project:
   type: book
   output-dir: docs
-
+  
 book:
   title: "Analyse et modélisation d'agroécosystèmes sur R"
+  reader-mode: true
+  page-footer:
+    left: |
+      Analyse et modélisation d'agroécosystèmes est construit 
+      avec <a href="https://quarto.org/">Quarto</a>.
+    right: |
+      Lien vers le <a href="https://essicolo.github.io/ecologie-mathematique-R/">manuel original</a>.
   author:
   - name: "Essi Parent"
-  # - name: "Charles Frenette-Vallières"
-  # - name: "Andrés Felipe Silva Dimate"
+  - name: "Charles Frenette-Vallières"
+  - name: "Andrés Felipe Silva Dimate"
   date: today
   date-format: iso
   repo-url: https://github.com/chavalli/ecologie-mathematique-R/tree/h2024
@@ -33,14 +40,47 @@ book:
     - 14-donnees-spatiales.qmd
     - 15-modelisation.qmd
   cover-image: images/cover.png
-  output-file: "ecologie-mathematique-R"
-
+  
 format:
   html:
     theme: flatly
-    css: styles.css
+    code-link: true
+    # css: styles.css
     toc: true
-    # embed-resources: true
+  # embed-resources: true
   # pdf:
-  #   documentclass: scrbook
-  # epub: default
+  #   documentclass: scrreprt
+  #   keep-tex: true
+  #   toc: true
+  #   toc-depth: 3
+  #   toc-title: "Table of contents"
+  #   lof: true
+  #   lot: true
+  #   number-sections: true
+  #   number-depth: 2
+  #   papersize: a4
+  #   
+  #   geometry:
+  #   - inner=3cm
+  #   - outer=4cm
+  #   - top=3cm
+  #   - bottom=4cm
+  #   - headsep=22pt
+  #   - headheight=11pt
+  #   - footskip=33pt
+  #   - ignorehead
+  #   - ignorefoot
+  #   - heightrounded
+  #   indent: false
+  #   pdfengine: xelatex
+  #   fontsize: 11pt
+  #   
+  #   mainfont: "Times New Roman"
+  #   sansfont: "Arial"
+  #   monofont: "Courier New"
+  #   # mathfont: "TeX Gyre Termes Math"
+  # 
+  # 
+  # #   output-file: "ecologie-mathematique-R"
+  #   prefer-html: false
+  #   # toc: true

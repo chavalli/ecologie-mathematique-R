@@ -8,9 +8,10 @@ Voici la liste des modifications principales apportées jusqu'à présent par ra
 
 -   Migration du livre complet au format [Quarto](https://quarto.org/) (versus [RMarkdown](https://rmarkdown.rstudio.com/) pour l'ancienne version)
 -   Remplacement des *pipes* de tidyverse **`%>%`** par la version **` |> `** introduite en 2021 dans r-base
--   Correction des liens internet et des *CheatSheets* qui ont changé d'adresse
+-   Correction des liens internet qui ont changé d'adresse
 -   Utilisation des nouvelles éditions des manuels de référence (par exemple [R for data science (2e)](https://r4ds.hadley.nz/) ou [Forecasting: Principles and Practice (3rd ed)](https://otexts.com/fpp3/))
--   Remplacement de certaines fonctions qui ne sont plus maintenues par leurs options plus à jour (par exemple `sample_n()` remplacé par `slice_sample()`)
+-   Remplacement de certaines fonctions qui ne sont plus maintenues (ex. `slice_sample()` remplace `sample_n()`)
+-   Remplacement de certains modules (ex. `renv` remplace `Packrat`)
 
 ## Table des matières
 

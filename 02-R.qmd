@@ -109,6 +109,7 @@ En haut à droite se trouve un menu *Project (None)*. Il s'agit d'un menu de vos
 - En haut à droite, les différents onglets indiquent où vous en êtes dans vos calculs. En particulier, la liste sous *Environment* indique les objets qui ont été générés ou chargés jusqu'alors.
 - En bas à droite, on retrouve des onglets de nature variés. *Files* contient les sous-dossiers et fichiers du dossier de projets. *Plots* est l'endroit où apparaîtront vos graphiques. *Packages* contient la liste des modules déjà installés, ainsi qu'un outil de gestion des modules pour leur installation, leur désinstallation et leur mise à jour. *Help* affiche les fiches d'aide des fonctions (pour obtenir de l'aide sur une fonction dans RStudio, surlignez la fonction dans votre feuille de calcul, puis appuyez sur `F1`). Enfin, l'onglet *Viewer* affichera les sorties HTML, en particulier les graphiques interactifs que vous générerez par exemple avec le module `plotly`, ou alors le rendu de votre fichier *Quarto*. Si votre environnement de travail était un avion, R serait le moteur et RStudio serait le cockpit!
 
+
 ```{r}
 #| label: fig-R-fifi
 #| out-width: 100%
