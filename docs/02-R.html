@@ -305,9 +305,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Selon <a href="http://whitlockschluter.zoology.ubc.ca/">Whitlock et Schluter (2015)</a>, la statistique est l’<em>étude des méthodes pour décrire et mesurer des aspects de la nature à partir d’échantillon</em>. Pour <a href="https://r4ds.hadley.nz/intro">Grolemund et Wickham (2023)</a>, la science des données est <em>une discipline excitante permettant de transformer des données brutes en compréhension, perspectives et connaissances</em>. Oui, <em>excitante</em>! La différence entre les deux champs d’expertise est subtile, et certaines personnes n’y voient qu’une différence de ton.</p>
 <blockquote class="twitter-tweet blockquote" data-lang="fr">
 <p lang="en" dir="ltr">
-Data Science is statistics on a Mac.
 </p>
-— Big Data Borat (<span class="citation" data-cites="BigDataBorat">@BigDataBorat</span>) <a href="https://twitter.com/BigDataBorat/status/372350993255518208?ref_src=twsrc%5Etfw">27 août 2013</a>
+<p>Data Science is statistics on a Mac.</p>
+
+<p>— Big Data Borat (<span class="citation" data-cites="BigDataBorat">@BigDataBorat</span>) <a href="https://twitter.com/BigDataBorat/status/372350993255518208?ref_src=twsrc%5Etfw">27 août 2013</a></p>
 </blockquote>
 <script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script><p>Confinées à ses applications traditionnelles, les statistiques sont davantage vouées à la définition de dispositifs expérimentaux et à l’exécution de tests d’hypothèses, alors que la science des données est moins linéaire, en particulier dans sa phase d’analyse, où de nouvelles questions (donc de nouvelles hypothèses) peuvent être posées au fur et à mesure de l’analyse. Cela arrive généralement davantage lorsque l’on fait face à de nombreuses observations sur lesquelles de nombreux paramètres sont mesurés.</p>
 <p>La quantité de données et de mesures auxquelles nous avons aujourd’hui accès grâce aux technologies de mesure et de stockage relativement peu dispendieux rend la science des données une discipline particulièrement attrayante, pour ne pas dire <a href="https://hbr.org/2012/10/data-scientist-the-sexiest-job-of-the-21st-century">sexy</a>.</p>
@@ -412,7 +413,7 @@ Data Science is statistics on a Mac.
 </div>
 </div>
 <p>Et voilà.</p>
-<p><img width="200" src="images/02_braveheart224.png"></p>
+<p><img src="images/02_braveheart224.png" width="200"></p>
 <p>Les opérations mathématiques sont effectuées telles que l’on devrait s’attendre.</p>
 <div class="cell">
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">67.1</span> <span class="op">-</span> <span class="fl">43.3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -872,8 +873,8 @@ $stations_meteos
 <div class="sourceCode" id="cb100"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://tidyverse.tidyverse.org">"tidyverse"</a></span><span class="op">)</span> <span class="co"># méta-package qui charge entre autres dplyr et ggplot2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.3     ✔ readr     2.1.4
-✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
 ✔ ggplot2   3.4.4     ✔ tibble    3.2.1
 ✔ lubridate 1.9.3     ✔ tidyr     1.3.0
 ✔ purrr     1.0.2     
@@ -884,16 +885,16 @@ $stations_meteos
 </div>
 <div class="sourceCode" id="cb102"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/vegandevs/vegan">"vegan"</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Le chargement a nécessité le package : permute
-Le chargement a nécessité le package : lattice
+<pre><code>Loading required package: permute
+Loading required package: lattice
 This is vegan 2.6-4</code></pre>
 </div>
 <div class="sourceCode" id="cb104"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://svn.r-project.org/R-packages/trunk/nlme/">"nlme"</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>
-Attachement du package : 'nlme'
+Attaching package: 'nlme'
 
-L'objet suivant est masqué depuis 'package:dplyr':
+The following object is masked from 'package:dplyr':
 
     collapse</code></pre>
 </div>
@@ -932,8 +933,8 @@ L'objet suivant est masqué depuis 'package:dplyr':
 </div>
 </section><section id="extra-jupyter" class="level2" data-number="2.7"><h2 data-number="2.7" class="anchored" data-anchor-id="extra-jupyter">
 <span class="header-section-number">2.7</span> Extra: Utiliser R avec Jupyter</h2>
-<p>Pour utiliser R dans Jupyter notebook ou Jupyter lab, vous devez installer le module <strong><code>IRkernel</code></strong> dans la version de R que vous désirez utiliser avec Jupyter, puis de lancer la commande <code><a href="https://rdrr.io/pkg/IRkernel/man/installspec.html">IRkernel::installspec()</a></code>. La prochaine fois que vous ouvrirez Jupyter, le noyau de R devrait apparaître.</p>
-<p>Je n’ai aucune expérience sur Mac, mais semble-t-il cela fonctionne comme en Linux. Ouvrez R à partir d’un terminal (R + Enter), puis lancez <code><a href="https://rdrr.io/pkg/IRkernel/man/installspec.html">IRkernel::installspec()</a></code> après avoir installé <strong><code>IRkernel</code></strong>. Si vous travaillez en Windows, il vous faudra lancer R par son chemin complet dans l’invite de commande de Anaconda (<em>Anaconda Powershell Prompt</em>). Par exemple, ouvrir <em>Anaconda Powershell Prompt</em>, puis, si votre installation de R se trouve dans <code>C:\Program Files\R\R-3.6.2</code>,</p>
+<p>Pour utiliser R dans Jupyter notebook ou Jupyter lab, vous devez installer le module <strong><code>IRkernel</code></strong> dans la version de R que vous désirez utiliser avec Jupyter, puis de lancer la commande <code>IRkernel::installspec()</code>. La prochaine fois que vous ouvrirez Jupyter, le noyau de R devrait apparaître.</p>
+<p>Je n’ai aucune expérience sur Mac, mais semble-t-il cela fonctionne comme en Linux. Ouvrez R à partir d’un terminal (R + Enter), puis lancez <code>IRkernel::installspec()</code> après avoir installé <strong><code>IRkernel</code></strong>. Si vous travaillez en Windows, il vous faudra lancer R par son chemin complet dans l’invite de commande de Anaconda (<em>Anaconda Powershell Prompt</em>). Par exemple, ouvrir <em>Anaconda Powershell Prompt</em>, puis, si votre installation de R se trouve dans <code>C:\Program Files\R\R-3.6.2</code>,</p>
 <pre><code>(base) PS C:\Users\fifi&gt; cd "C:\Program Files\R\R-3.6.2\bin"
 (base) PS C:\Program Files\R\R-3.6.2\bin&gt; .\R.exe
 

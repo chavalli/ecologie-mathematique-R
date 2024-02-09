@@ -1,18 +1,18 @@
 # La science des données avec R {#sec-R}
 
----
+------------------------------------------------------------------------
 
- **Objectifs spécifiques**:
+**Objectifs spécifiques**:
 
 À la fin de ce chapitre, vous
 
-- saurez contextualiser la science des données par rapport aux statistiques,
-- serez en mesure de vous lancer dans un environnement de programmation R,
-- serez en mesure d'effectuer des opérations de base en R,
-- saurez différencier les grands types d'objets de R et
-- saurez installer et charger des modules complémentaire.
+-   saurez contextualiser la science des données par rapport aux statistiques,
+-   serez en mesure de vous lancer dans un environnement de programmation R,
+-   serez en mesure d'effectuer des opérations de base en R,
+-   saurez différencier les grands types d'objets de R et
+-   saurez installer et charger des modules complémentaire.
 
----
+------------------------------------------------------------------------
 
 Un projet en science des données comprend trois grandes étapes. D'abord, vous devez **collecter des données** et les compiler adéquatement. Cela peut consister à télécharger des données existantes, exécuter un dispositif expérimental ou effectuer une recensement (étude observationnelle). Compiler les données dans un format qui puisse être importé est une tâche souvent longue et fastidieuse. Puis, vous **investiguez les données** collectées, c'est-à-dire que vous les visualisez, vous appliquez des modèles et testez des hypothèses. Enfin, la **communication des résultats** consiste à présenter les connaissances qui émergent de votre analyse sous forme visuelle et narrative, *avec un langage adapté à la personne qui vous écoute*, qu'elle soit experte ou novice, réviseure de revue savante ou gestionnaire [Grolemund et Wickham (2023)](https://r4ds.hadley.nz/intro) propose la structure d'analyse de la @fig-R-data-flow-chart, avec de légères modifications de ma part.
 
@@ -31,9 +31,21 @@ Le grand cadre spécifie **Programmer**. Oui, vous aurez besoin d'écrire du cod
 
 Selon [Whitlock et Schluter (2015)](http://whitlockschluter.zoology.ubc.ca/), la statistique est l'*étude des méthodes pour décrire et mesurer des aspects de la nature à partir d'échantillon*. Pour [Grolemund et Wickham (2023)](https://r4ds.hadley.nz/intro), la science des données est *une discipline excitante permettant de transformer des données brutes en compréhension, perspectives et connaissances*. Oui, *excitante*! La différence entre les deux champs d'expertise est subtile, et certaines personnes n'y voient qu'une différence de ton.
 
-<blockquote class="twitter-tweet" data-lang="fr"><p lang="en" dir="ltr">Data Science is statistics on a Mac.</p>&mdash; Big Data Borat (@BigDataBorat) <a href="https://twitter.com/BigDataBorat/status/372350993255518208?ref_src=twsrc%5Etfw">27 août 2013</a></blockquote>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet" data-lang="fr">
 
+<p lang="en" dir="ltr">
+
+Data Science is statistics on a Mac.
+
+</p>
+
+— Big Data Borat (@BigDataBorat) <a href="https://twitter.com/BigDataBorat/status/372350993255518208?ref_src=twsrc%5Etfw">27 août 2013</a>
+
+</blockquote>
+
+```{=html}
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+```
 Confinées à ses applications traditionnelles, les statistiques sont davantage vouées à la définition de dispositifs expérimentaux et à l'exécution de tests d'hypothèses, alors que la science des données est moins linéaire, en particulier dans sa phase d'analyse, où de nouvelles questions (donc de nouvelles hypothèses) peuvent être posées au fur et à mesure de l'analyse. Cela arrive généralement davantage lorsque l'on fait face à de nombreuses observations sur lesquelles de nombreux paramètres sont mesurés.
 
 La quantité de données et de mesures auxquelles nous avons aujourd'hui accès grâce aux technologies de mesure et de stockage relativement peu dispendieux rend la science des données une discipline particulièrement attrayante, pour ne pas dire [sexy](https://hbr.org/2012/10/data-scientist-the-sexiest-job-of-the-21st-century).
@@ -68,9 +80,9 @@ knitr::include_graphics("images/02_r_first_then.png")
 
 Il existe de nombreuses manières d'utiliser R. Parmi celles-ci, j'en couvrirai 3:
 
-- Installation classique (installation suggérée)
-- Installation avec Anaconda
-- Utilisation infonuagique
+-   Installation classique (installation suggérée)
+-   Installation avec Anaconda
+-   Utilisation infonuagique
 
 ### Installation classique
 
@@ -104,11 +116,10 @@ knitr::include_graphics("images/02_rstudio.png")
 
 En haut à droite se trouve un menu *Project (None)*. Il s'agit d'un menu de vos projets. Je recommande d'utiliser ces projets avec RStudio, qui vous permettront de mieux gérer vos sessions de travail, en particulier en lien avec les chemins vers vos données, graphiques, etc., que vous pouvez gérer relativement à l'emplacement de votre dossier de projet plutôt qu'à l'emplacement des fichiers sur votre machine: nous verrons plus en détails au [chapitre @sec-git].
 
-- En haut à gauche, vous avez vos feuilles de calcul, qui apparaîtront en tant qu'onglets. Une feuille de calcul *R script* est une série de commandes que vous lancez en séquence. Il peut aussi s'agir d'un document *Quarto* si vous choisissez de travailler ainsi. Ce format vous permettra de d'écrire du texte en format [*Markdown*](https://quarto.org/docs/authoring/markdown-basics.html) entre des blocs de code. Il est question du format *Quarto* au [chapitre @sec-git]).
-- En bas à gauche apparaît la Console, où vous voyez les commandes envoyées à R ainsi que ses sorties.
-- En haut à droite, les différents onglets indiquent où vous en êtes dans vos calculs. En particulier, la liste sous *Environment* indique les objets qui ont été générés ou chargés jusqu'alors.
-- En bas à droite, on retrouve des onglets de nature variés. *Files* contient les sous-dossiers et fichiers du dossier de projets. *Plots* est l'endroit où apparaîtront vos graphiques. *Packages* contient la liste des modules déjà installés, ainsi qu'un outil de gestion des modules pour leur installation, leur désinstallation et leur mise à jour. *Help* affiche les fiches d'aide des fonctions (pour obtenir de l'aide sur une fonction dans RStudio, surlignez la fonction dans votre feuille de calcul, puis appuyez sur `F1`). Enfin, l'onglet *Viewer* affichera les sorties HTML, en particulier les graphiques interactifs que vous générerez par exemple avec le module `plotly`, ou alors le rendu de votre fichier *Quarto*. Si votre environnement de travail était un avion, R serait le moteur et RStudio serait le cockpit!
-
+-   En haut à gauche, vous avez vos feuilles de calcul, qui apparaîtront en tant qu'onglets. Une feuille de calcul *R script* est une série de commandes que vous lancez en séquence. Il peut aussi s'agir d'un document *Quarto* si vous choisissez de travailler ainsi. Ce format vous permettra de d'écrire du texte en format [*Markdown*](https://quarto.org/docs/authoring/markdown-basics.html) entre des blocs de code. Il est question du format *Quarto* au [chapitre @sec-git]).
+-   En bas à gauche apparaît la Console, où vous voyez les commandes envoyées à R ainsi que ses sorties.
+-   En haut à droite, les différents onglets indiquent où vous en êtes dans vos calculs. En particulier, la liste sous *Environment* indique les objets qui ont été générés ou chargés jusqu'alors.
+-   En bas à droite, on retrouve des onglets de nature variés. *Files* contient les sous-dossiers et fichiers du dossier de projets. *Plots* est l'endroit où apparaîtront vos graphiques. *Packages* contient la liste des modules déjà installés, ainsi qu'un outil de gestion des modules pour leur installation, leur désinstallation et leur mise à jour. *Help* affiche les fiches d'aide des fonctions (pour obtenir de l'aide sur une fonction dans RStudio, surlignez la fonction dans votre feuille de calcul, puis appuyez sur `F1`). Enfin, l'onglet *Viewer* affichera les sorties HTML, en particulier les graphiques interactifs que vous générerez par exemple avec le module `plotly`, ou alors le rendu de votre fichier *Quarto*. Si votre environnement de travail était un avion, R serait le moteur et RStudio serait le cockpit!
 
 ```{r}
 #| label: fig-R-fifi
@@ -132,7 +143,7 @@ Si vous cherchez une trousse complète d'analyse de données, comprenant R et Py
 knitr::include_graphics("images/02_anaconda-navigator.png")
 ```
 
-[*Jupyter lab*](https://jupyter.org/) est une interface notebook semblable à *Quarto*  - les format *Jupyter* (`*.ipynb`) et *Quarto* (`*.qmd`) sont par ailleurs convertibles grâce au module [jupytext](https://jupytext.readthedocs.io/en/latest/formats-markdown.html). L'utilisation de R en Anaconda n'est pas tout à fait au point, et pourrait poser problème pour l'installation de certains modules. Si vous optez pour cette option, préparez-vous à avoir à bidouiller un peu. Plusieurs préfèrent Jupyter à RStudio (ce n'est pas mon cas).
+[*Jupyter lab*](https://jupyter.org/) est une interface notebook semblable à *Quarto* - les format *Jupyter* (`*.ipynb`) et *Quarto* (`*.qmd`) sont par ailleurs convertibles grâce au module [jupytext](https://jupytext.readthedocs.io/en/latest/formats-markdown.html). L'utilisation de R en Anaconda n'est pas tout à fait au point, et pourrait poser problème pour l'installation de certains modules. Si vous optez pour cette option, préparez-vous à avoir à bidouiller un peu. Plusieurs préfèrent Jupyter à RStudio (ce n'est pas mon cas).
 
 ### Utilisation infonuagique
 
@@ -159,7 +170,7 @@ Pour l'instant, ouvrez seulement un interpréteur de commande, et lancez R. Voyo
 
 Et voilà.
 
-<img width="200" src="images/02_braveheart224.png">
+<img src="images/02_braveheart224.png" width="200"/>
 
 Les opérations mathématiques sont effectuées telles que l'on devrait s'attendre.
 
@@ -534,20 +545,20 @@ Les modules sont installés sur votre ordinateur à un endroit que vous pourrez 
 
 **Exercice**. À partir d'ici jusqu'à la fin du cours, nous utiliserons RStudio. Ouvrez-le et familiarisez-vous avec l'interface! Quelques petits trucs:
 
-- pour lancer une ligne, placez votre curseur sur la ligne, puis appuyez sur Ctrl+Enter
-- pour lancer une partie de code précise, mettez le en surbrillance, puis Ctrl+Enter
-- utilisez toujours le gestionnaire de projets, en haut à droite!
-- installez le module **`tidyverse`**
-- lancez `data("iris")` pour obtenir un tableau d'exercice, puis cliquez sur l'objet dans la fenêtre environnement
+-   pour lancer une ligne, placez votre curseur sur la ligne, puis appuyez sur Ctrl+Enter
+-   pour lancer une partie de code précise, mettez le en surbrillance, puis Ctrl+Enter
+-   utilisez toujours le gestionnaire de projets, en haut à droite!
+-   installez le module **`tidyverse`**
+-   lancez `data("iris")` pour obtenir un tableau d'exercice, puis cliquez sur l'objet dans la fenêtre environnement
 
 ## Enfin...
 
 Comme une langue, on n'apprend à s'exprimer en un langage informatique qu'en se mettant à l'épreuve, ce que vous ferez tout au long de ce cours. Pour vous encourager, voici quelques trucs pour apprendre à coder en R.
 
-- **R n'aime pas l’ambiguïté**. Une simple virgule mal placée et il ne sait plus quoi faire. Cela peut être frustrant au début, mais cette rigidité est nécessaire pour effectuer du calcul scientifique.
-- **Le copier-coller est votre ami**. En gardant à l'esprit que vous être responsable de votre code et que vous respectez les droits d'auteur, n'ayez pas peur de copier-coller des lignes de code et de personnaliser par la suite.
-- **L'erreur que vous obtenez: d'autres l'ont obtenue avant vous**. Le site de question-réponse [stackoverflow](https://stackoverflow.com/questions/tagged/r) est une ressource inestimable où des gens ayant posté des questions ont reçu des réponses d'experts (les meilleures réponses et les meilleures questions apparaissent en premier). Apprenez à chercher intelligemment des réponses en formulant précisément vos questions!
-- **Étudiez et pratiquez**. Les messages d'erreur en R sont courants, même chez les personnes expérimentées. La meilleure manière d'apprendre une langue est de la parler, d'étudier ses susceptibilités, de les tester dans une conversation, etc.
+-   **R n'aime pas l’ambiguïté**. Une simple virgule mal placée et il ne sait plus quoi faire. Cela peut être frustrant au début, mais cette rigidité est nécessaire pour effectuer du calcul scientifique.
+-   **Le copier-coller est votre ami**. En gardant à l'esprit que vous être responsable de votre code et que vous respectez les droits d'auteur, n'ayez pas peur de copier-coller des lignes de code et de personnaliser par la suite.
+-   **L'erreur que vous obtenez: d'autres l'ont obtenue avant vous**. Le site de question-réponse [stackoverflow](https://stackoverflow.com/questions/tagged/r) est une ressource inestimable où des gens ayant posté des questions ont reçu des réponses d'experts (les meilleures réponses et les meilleures questions apparaissent en premier). Apprenez à chercher intelligemment des réponses en formulant précisément vos questions!
+-   **Étudiez et pratiquez**. Les messages d'erreur en R sont courants, même chez les personnes expérimentées. La meilleure manière d'apprendre une langue est de la parler, d'étudier ses susceptibilités, de les tester dans une conversation, etc.
 
 ## Petit truc!
 
@@ -566,9 +577,9 @@ knitr::include_graphics("images/02_styler.png")
 
 Pour utiliser R dans Jupyter notebook ou Jupyter lab, vous devez installer le module **`IRkernel`** dans la version de R que vous désirez utiliser avec Jupyter, puis de lancer la commande `IRkernel::installspec()`. La prochaine fois que vous ouvrirez Jupyter, le noyau de R devrait apparaître.
 
-Je n'ai aucune expérience sur Mac, mais semble-t-il cela fonctionne comme en Linux. Ouvrez R à partir d'un terminal (R + Enter), puis lancez `IRkernel::installspec()` après avoir installé **`IRkernel`**. Si vous travaillez en Windows, il vous faudra lancer R par son chemin complet dans l'invite de commande de Anaconda (*Anaconda Powershell Prompt*). Par exemple, ouvrir *Anaconda Powershell Prompt*, puis, si votre installation de R se trouve dans `C:\Program Files\R\R-3.6.2`, 
+Je n'ai aucune expérience sur Mac, mais semble-t-il cela fonctionne comme en Linux. Ouvrez R à partir d'un terminal (R + Enter), puis lancez `IRkernel::installspec()` après avoir installé **`IRkernel`**. Si vous travaillez en Windows, il vous faudra lancer R par son chemin complet dans l'invite de commande de Anaconda (*Anaconda Powershell Prompt*). Par exemple, ouvrir *Anaconda Powershell Prompt*, puis, si votre installation de R se trouve dans `C:\Program Files\R\R-3.6.2`,
 
-```
+```         
 (base) PS C:\Users\fifi> cd "C:\Program Files\R\R-3.6.2\bin"
 (base) PS C:\Program Files\R\R-3.6.2\bin> .\R.exe
 
@@ -609,4 +620,3 @@ Les packages binaires téléchargés sont dans
 ```{r intro-rmlist, include=FALSE}
 rm(list = ls())
 ```
-
