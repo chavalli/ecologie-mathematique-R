@@ -355,5 +355,33 @@
     "title": "16  Modélisation de mécanismes écologiques",
     "section": "",
     "text": "À venir"
+  },
+  {
+    "objectID": "06-python.html#quest-ce-que-python",
+    "href": "06-python.html#quest-ce-que-python",
+    "title": "6  Introduction à Python",
+    "section": "6.1 Qu’est-ce que Python ?",
+    "text": "6.1 Qu’est-ce que Python ?\nPython est un langage de programmation de haute niveau (comme R), ce langage est apparu en février 1991 et a été créé par Guido van Rossum. Un des objectifs principaux de Van Rossum était de créer un langage libre, simple et intuitive, mais puissant comme d’autres langages déjà existants. Python a été amplement adopté partout dans le monde et est devenu un des langages de programmation plus populaires d’après différentes rangs comme les indices TIOBE et PYPL et les tendances des questions dans Stack Overflow.\nDans les dernières années Python est devenu l’un des outils les plus utilisés pour le calcul scientifique et pour l’analyse de données, même si ce langage n’était pas conçu spécifiquement pour ces tâches. L’utilisation de Python dans la science de données a été poussé par le développement de différents modules qui permettent la manipulation et l’analyse de données, certains des modules les plus populaires pour l’analyse de données en python sont :\n\nnumpy : Ce module permet de manipuler et de stocker de façon efficiente les données dans des objets connus comme tableaux (en anglais, array).\npandas : Permet de travailler avec des données tabulaires avec des étiquettes de file et de colonne, l’objet primaire de ce module est le DataFrame.\nmatplotlib : C’est le module le plus utilisé pour la visualisation de données sur Python, il peut être considéré comme le module de base pour la visualisation en Python.\nSciPy : Ce module a différentes fonctions pour la computation scientifique comme le calcul numérique, le traitement de signaux et d’images, et certains statistiques.\nscikit-learn : C’est une des modules les plus utilisés pour l’apprentissage automatique. scikit-learn a des innombrables algorithmes d’apprentissage supervisé et non-supervisé utilisés pour la classification ou la régression."
+  },
+  {
+    "objectID": "06-python.html#installation",
+    "href": "06-python.html#installation",
+    "title": "6  Introduction à Python",
+    "section": "6.2 Installation",
+    "text": "6.2 Installation\nIl y a différentes façons d’installer Python dans un ordinateur. Dans le cas de Mac et Linux Python vient par défaut avec ces systèmes d’exploitation. Dans le cas de windows il faut le télécharger et l’installer. Une façon d’installer Python sur windows est de télécharger le fichier d’installation directement du site web de Python, une fois le fichier téléchargé, l’exécuter et suivre les instructions pour l’installation.\nUne autre alternative pour télécharger Python est à partir de Anaconda. Anaconda c’est une distribution de Python, dont l’objectif est de simplifier la gestion et le déploiement des modules. Le gestionnaire de modules de Anaconda s’appelle conda. Il y a deux options pour installer Anaconda sur un ordinateur :\n\nTélécharger la version complète qui vient avec Python, conda et 1 500 modules pre-installés.\nTélécharger une version minimale appellé Miniconda qui ne vient qu’avec Python et conda.\n\nLes deux différences principales entre Anaconda et Miniconda sont (1) l’espace réquis pour l’installation qui est de 3 GO et 400 MO, respectivement, et (2) le temps d’installation puisque ça prends moins de temps à installer Miniconda que Anaconda. L’utilisateur peut choisir Anaconda si n’a pas d’expérience et s’il ne veut pas se préoccuper à installer des modules. L’installation de Miniconda est récommandé pour des utilisateurs qui sont plus experimentés et qui savent déjà quels modules ils vont utiliser. Enfin, si l’ordinateur n’a pas beaucoup d’espace, il est recommandé d’installer Miniconda. Dans ce manuel, les exemples d’éxecution de Python et l’installation des modules se fera à partir d’un terminal de commande nommé « Anaconda prompt »."
+  },
+  {
+    "objectID": "06-python.html#chapitre-en-construction",
+    "href": "06-python.html#chapitre-en-construction",
+    "title": "6  Introduction à Python",
+    "section": "6.3 Chapitre en construction",
+    "text": "6.3 Chapitre en construction"
+  },
+  {
+    "objectID": "06-python.html#anaconda-prompt",
+    "href": "06-python.html#anaconda-prompt",
+    "title": "6  Introduction à Python",
+    "section": "6.4 Anaconda prompt",
+    "text": "6.4 Anaconda prompt\n\nconda bash\n“Bonjour monde”\nRstudio et Python\nVS Code\nOperations Python\nTypes d’objets\nBoucles\nFonctions\nLes gestionnaires de modules\nNumpy, Pandas, Visualisation\nFin"
   }
 ]
