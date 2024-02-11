@@ -210,7 +210,16 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#quest-ce-que-python" id="toc-quest-ce-que-python" class="nav-link active" data-scroll-target="#quest-ce-que-python"><span class="header-section-number">6.1</span> Qu’est-ce que Python ?</a></li>
+  <li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation"><span class="header-section-number">6.2</span> Installation</a></li>
+  <li><a href="#chapitre-en-construction" id="toc-chapitre-en-construction" class="nav-link" data-scroll-target="#chapitre-en-construction"><span class="header-section-number">6.3</span> Chapitre en construction</a></li>
+  <li><a href="#anaconda-prompt" id="toc-anaconda-prompt" class="nav-link" data-scroll-target="#anaconda-prompt"><span class="header-section-number">6.4</span> Anaconda prompt</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -234,9 +243,50 @@ ul.task-list li input[type="checkbox"] {
 
 <hr>
 <p>Il peut arriver que, pour une raison ou une autre, vous puissiez bénéficier de travailler avec Python. Par exemple, si vous travaillez en géomatique avec QGIS ou même ArcGIS, Python peut être utilisé pour faire vos manipulations de données et vos analyses spatiales. Le fonctionnement de Python ressemble assez à R et vous remarquerez qu’une fois la première barrière de programmation franchie, les langages subséquents sont beaucoup plus faciles à assimiler.</p>
-<p>L’auteur de ce manuel, Essi Parent, a publié l’automne dernier une <a href="https://github.com/essicolo/introduction-au-calcul-numerique-avec-python">introduction au calcul numérique avec Python</a>. Pour le consulter, vous pouvez soit créer une fork sur votre github et cloner le répertoire, ou alors consulter les fichiers directement dans le navigateur. Il est possible que la présente section soit bonifiée au cours de la session, mais à première vue le répertoire de Essi semble concis et bien fait. Sinon, comme pour R, il existe plusieurs bons manuels, en anglais toutefois. Rappelez-vous que cette section est facultative; vous pourrez y revenir dans le futur lorsque le besoin se présentera!</p>
+<p>Cette section contient une brief introduction à Python. L’auteur de ce manuel, Essi Parent, a publié l’automne dernier une <a href="https://github.com/essicolo/introduction-au-calcul-numerique-avec-python">introduction au calcul numérique avec Python</a>. Le manuel de Essi semble concis et bien fait et vous permettra d’approfondir plus sur l’utilisation de Python. Sinon, comme pour R, il existe plusieurs bons manuels, en anglais toutefois.Pour le consulter, vous pouvez soit créer une fork sur votre github et cloner le répertoire, ou alors consulter les fichiers directement dans le navigateur. Rappelez-vous que cette section est facultative; vous pourrez y revenir dans le futur lorsque le besoin se présentera!</p>
+<section id="quest-ce-que-python" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="quest-ce-que-python"><span class="header-section-number">6.1</span> Qu’est-ce que Python ?</h2>
+<p>Python est un langage de programmation de haute niveau (comme R), ce langage est apparu en février 1991 et a été créé par Guido van Rossum. Un des objectifs principaux de Van Rossum était de créer un langage libre, simple et intuitive, mais puissant comme d’autres langages déjà existants. Python a été amplement adopté partout dans le monde et est devenu un des langages de programmation plus populaires d’après différentes rangs comme les indices <a href="https://www.tiobe.com/tiobe-index/" class="external" target="_blank">TIOBE</a> et <a href="https://pypl.github.io/PYPL.html" class="external" target="_blank">PYPL</a> et les tendances des questions dans <a href="https://bit.ly/3HKnTa9" class="external" target="_blank">Stack Overflow</a>.</p>
+<p>Dans les dernières années Python est devenu l’un des outils les plus utilisés pour le calcul scientifique et pour l’analyse de données, même si ce langage n’était pas conçu spécifiquement pour ces tâches. L’utilisation de Python dans la science de données a été poussé par le développement de différents modules qui permettent la manipulation et l’analyse de données, certains des modules les plus populaires pour l’analyse de données en python sont :</p>
+<ul>
+<li><p><strong>numpy</strong> : Ce module permet de manipuler et de stocker de façon efficiente les données dans des objets connus comme <code>tableaux</code> (en anglais, <code>array</code>).</p></li>
+<li><p><strong>pandas</strong> : Permet de travailler avec des données tabulaires avec des étiquettes de file et de colonne, l’objet primaire de ce module est le <code>DataFrame</code>.</p></li>
+<li><p><strong>matplotlib</strong> : C’est le module le plus utilisé pour la visualisation de données sur Python, il peut être considéré comme le module de base pour la visualisation en Python.</p></li>
+<li><p><strong>SciPy</strong> : Ce module a différentes fonctions pour la computation scientifique comme le calcul numérique, le traitement de signaux et d’images, et certains statistiques.</p></li>
+<li><p><strong>scikit-learn</strong> : C’est une des modules les plus utilisés pour l’apprentissage automatique. <code>scikit-learn</code> a des innombrables algorithmes d’apprentissage supervisé et non-supervisé utilisés pour la classification ou la régression.</p></li>
+</ul>
+</section>
+<section id="installation" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="installation"><span class="header-section-number">6.2</span> Installation</h2>
+<p>Il y a différentes façons d’installer Python dans un ordinateur. Dans le cas de Mac et Linux Python vient par défaut avec ces systèmes d’exploitation. Dans le cas de windows il faut le télécharger et l’installer. Une façon d’installer Python sur windows est de télécharger le fichier d’installation directement du site web de <a href="https://www.python.org/downloads/">Python</a>, une fois le fichier téléchargé, l’exécuter et suivre les instructions pour l’installation.</p>
+<p>Une autre alternative pour télécharger Python est à partir de <a href="https://www.anaconda.com/">Anaconda</a>. Anaconda c’est une distribution de Python, dont l’objectif est de simplifier la gestion et le déploiement des modules. Le gestionnaire de modules de Anaconda s’appelle <code>conda</code>. Il y a deux options pour installer Anaconda sur un ordinateur :</p>
+<ol type="1">
+<li><p>Télécharger la version complète qui vient avec Python, conda et 1 500 modules pre-installés.</p></li>
+<li><p>Télécharger une version minimale appellé <strong>Miniconda</strong> qui ne vient qu’avec Python et conda.</p></li>
+</ol>
+<p>Les deux différences principales entre Anaconda et Miniconda sont (1) l’espace réquis pour l’installation qui est de 3 GO et 400 MO, respectivement, et (2) le temps d’installation puisque ça prends moins de temps à installer Miniconda que Anaconda. L’utilisateur peut choisir Anaconda si n’a pas d’expérience et s’il ne veut pas se préoccuper à installer des modules. L’installation de Miniconda est récommandé pour des utilisateurs qui sont plus experimentés et qui savent déjà quels modules ils vont utiliser. Enfin, si l’ordinateur n’a pas beaucoup d’espace, il est recommandé d’installer Miniconda. Dans ce manuel, les exemples d’éxecution de Python et l’installation des modules se fera à partir d’un terminal de commande nommé « Anaconda prompt ».</p>
+</section>
+<section id="chapitre-en-construction" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="chapitre-en-construction"><span class="header-section-number">6.3</span> Chapitre en construction</h2>
+</section>
+<section id="anaconda-prompt" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="anaconda-prompt"><span class="header-section-number">6.4</span> Anaconda prompt</h2>
+<ul>
+<li>conda bash</li>
+<li>“Bonjour monde”</li>
+<li>Rstudio et Python</li>
+<li>VS Code</li>
+<li>Operations Python</li>
+<li>Types d’objets</li>
+<li>Boucles</li>
+<li>Fonctions</li>
+<li>Les gestionnaires de modules</li>
+<li>Numpy, Pandas, Visualisation</li>
+<li>Fin</li>
+</ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

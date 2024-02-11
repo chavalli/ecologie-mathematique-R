@@ -1304,16 +1304,16 @@ dbl (26): ID, Site, Latitude_m, Longitude_m, Rendement_g_5m2, TotalRamet_nom...
 <pre><code># A tibble: 10 × 4
    CodeTourbiere    ID nutrient concentration
    &lt;chr&gt;         &lt;int&gt; &lt;chr&gt;            &lt;dbl&gt;
- 1 BS2              64 K_pourc          1.28 
- 2 2                24 P_pourc          0.181
- 3 BS2              61 N_pourc          2.62 
- 4 1                71 K_pourc          0.892
- 5 BP                9 P_pourc          0.156
- 6 1                76 K_pourc          0.683
- 7 2                23 N_pourc          2.86 
- 8 2                29 N_pourc          2.70 
- 9 1                71 P_pourc          0.169
-10 BP                8 N_pourc          1.77 </code></pre>
+ 1 WTP              90 P_pourc         0.0848
+ 2 MR               39 P_pourc         0.122 
+ 3 2                27 N_pourc         2.84  
+ 4 2                11 P_pourc         0.138 
+ 5 NBM              46 N_pourc         1.60  
+ 6 WTP              88 N_pourc         1.63  
+ 7 2                18 N_pourc         2.97  
+ 8 BP                9 N_pourc         2.16  
+ 9 MR               40 P_pourc         0.148 
+10 NBM              48 P_pourc         0.118 </code></pre>
 </div>
 </div>
 <p>L’opération inverse est <code><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider()</a></code>, avec laquelle nous sélectionnons une colonne spécifiant les nouvelles colonnes à construire (<code>names_from</code>) ainsi que les valeurs à placer dans ces colonnes (<code>values_from</code>).</p>
@@ -1325,16 +1325,16 @@ dbl (26): ID, Site, Latitude_m, Longitude_m, Rendement_g_5m2, TotalRamet_nom...
 <pre><code># A tibble: 10 × 5
    CodeTourbiere    ID N_pourc P_pourc K_pourc
    &lt;chr&gt;         &lt;int&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
- 1 WTP              87    1.72  0.0760   0.557
- 2 BEAU              1    1.72  0.108    1.21 
- 3 2                27    2.84  0.173    1.27 
- 4 BP                6    2.13  0.151    0.729
- 5 NTP              54    1.67  0.0869   0.456
- 6 1                85    1.98  0.141    1.16 
- 7 BS2              65    1.68  0.0721   1.09 
- 8 NESP             41    1.73  0.148    0.851
- 9 2                30    2.26  0.176    0.627
-10 2                11    2.91  0.138    1.19 </code></pre>
+ 1 NTP              52    1.88  0.0807   0.394
+ 2 SSP              59    1.99  0.136    0.734
+ 3 NESP             42    1.92  0.134    1.09 
+ 4 1                75    2.55  0.132    0.684
+ 5 WTP              90    1.81  0.0848   0.713
+ 6 NTP              55    1.88  0.0776   0.419
+ 7 BEAU              1    1.72  0.108    1.21 
+ 8 1                78    2.31  0.156    0.833
+ 9 2                16    2.78  0.167    0.831
+10 1                67    2.22  0.175    0.871</code></pre>
 </div>
 </div>
 </section><section id="combiner-des-tableaux" class="level3" data-number="3.5.4"><h3 data-number="3.5.4" class="anchored" data-anchor-id="combiner-des-tableaux">
@@ -1670,18 +1670,18 @@ afficher le top 10</code></pre>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_sample</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 10 × 5
-      ID CodeTourbiere Longitude_m Latitude_m   dist
-   &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt;      &lt;dbl&gt;  &lt;dbl&gt;
- 1    19 2                  486517    5702537  4124.
- 2    85 1                  486514    5702160  4136.
- 3    36 MR                 459875    5701988 30769.
- 4    30 2                  486350    5702494  4290.
- 5    37 MR                 459873    5701987 30771.
- 6    80 1                  486504    5702081  4153.
- 7     4 BEAU               490647    5702453     7 
- 8     8 BP                 484742    5702280  5901.
- 9    53 NTP                487562    5704093  3488.
-10    34 MB                 491955    5699332  3387.</code></pre>
+      ID CodeTourbiere Longitude_m Latitude_m     dist
+   &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;
+ 1    63 BS2                486545    5702197  4103.  
+ 2    17 2                  486501    5702627  4143.  
+ 3    36 MR                 459875    5701988 30769.  
+ 4    51 NTP                487575    5704088  3474.  
+ 5     2 BEAU               490634    5702452     6.08
+ 6    38 MR                 459880    5701971 30764.  
+ 7    39 MR                 459894    5701966 30750.  
+ 8    40 MR                 459915    5701994 30728.  
+ 9    23 2                  486327    5702544  4314.  
+10    74 1                  486458    5702106  4196.  </code></pre>
 </div>
 </div>
 <p>Nous pourrions procéder de la même manière pour fusionner des données climatiques. Le tableau <code>chicoute</code> ne possède pas d’indicateurs climatiques, mais il est possible de les soutirer de stations météo placées près des sites. Ces données ne sont pas disponibles pour le tableau de la chicouté, alors j’utiliserai des données fictives pour l’exemple.</p>
