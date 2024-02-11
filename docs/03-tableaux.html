@@ -184,50 +184,44 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./08-regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Régression</span></span></a>
+  <a href="./08-explorer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Explorer R</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./09-explorer.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Explorer R</span></span></a>
+  <a href="./09-ordination.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Association, partitionnement et ordination</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./10-ordination.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Association, partitionnement et ordination</span></span></a>
+  <a href="./10-imputation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Détection de valeurs aberrantes et imputation de données manquantes</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./11-imputation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Détection de valeurs aberrantes et imputation de données manquantes</span></span></a>
+  <a href="./11-series-temporelles.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Les séries temporelles</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./12-series-temporelles.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Les séries temporelles</span></span></a>
+  <a href="./12-autoapprentissage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Introduction à l’autoapprentissage</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./13-autoapprentissage.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Introduction à l’autoapprentissage</span></span></a>
+  <a href="./13-donnees-spatiales.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Les données géospatiales</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./14-donnees-spatiales.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Les données géospatiales</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./15-modelisation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Modélisation de mécanismes écologiques</span></span></a>
+  <a href="./14-modelisation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Modélisation de mécanismes écologiques</span></span></a>
   </div>
 </li>
     </ul>
@@ -324,7 +318,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="cell-output cell-output-stderr">
 <pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.3     ✔ readr     2.1.4
+✔ dplyr     1.1.4     ✔ readr     2.1.4
 ✔ forcats   1.0.0     ✔ stringr   1.5.0
 ✔ ggplot2   3.4.4     ✔ tibble    3.2.1
 ✔ lubridate 1.9.3     ✔ tidyr     1.3.0
@@ -1310,16 +1304,16 @@ dbl (26): ID, Site, Latitude_m, Longitude_m, Rendement_g_5m2, TotalRamet_nom...
 <pre><code># A tibble: 10 × 4
    CodeTourbiere    ID nutrient concentration
    &lt;chr&gt;         &lt;int&gt; &lt;chr&gt;            &lt;dbl&gt;
- 1 BEAU              4 P_pourc         0.0909
- 2 MB               33 K_pourc         0.530 
- 3 SSP              57 P_pourc         0.128 
- 4 2                11 P_pourc         0.138 
- 5 BEAU              1 P_pourc         0.108 
- 6 WTP              87 P_pourc         0.0760
- 7 SSP              60 K_pourc         0.767 
- 8 WTP              86 N_pourc         1.98  
- 9 2                14 P_pourc         0.207 
-10 BEAU              4 K_pourc         1.19  </code></pre>
+ 1 BS2              64 K_pourc          1.28 
+ 2 2                24 P_pourc          0.181
+ 3 BS2              61 N_pourc          2.62 
+ 4 1                71 K_pourc          0.892
+ 5 BP                9 P_pourc          0.156
+ 6 1                76 K_pourc          0.683
+ 7 2                23 N_pourc          2.86 
+ 8 2                29 N_pourc          2.70 
+ 9 1                71 P_pourc          0.169
+10 BP                8 N_pourc          1.77 </code></pre>
 </div>
 </div>
 <p>L’opération inverse est <code><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider()</a></code>, avec laquelle nous sélectionnons une colonne spécifiant les nouvelles colonnes à construire (<code>names_from</code>) ainsi que les valeurs à placer dans ces colonnes (<code>values_from</code>).</p>
@@ -1331,15 +1325,15 @@ dbl (26): ID, Site, Latitude_m, Longitude_m, Rendement_g_5m2, TotalRamet_nom...
 <pre><code># A tibble: 10 × 5
    CodeTourbiere    ID N_pourc P_pourc K_pourc
    &lt;chr&gt;         &lt;int&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
- 1 1                80    2.22  0.150    0.928
- 2 2                19    2.62  0.213    1.21 
- 3 2                16    2.78  0.167    0.831
- 4 BS2              63    1.78  0.118    1.54 
- 5 WTP              86    1.98  0.0892   0.648
- 6 MR               37    1.90  0.129    0.958
- 7 BS2              61    2.62  0.108    0.632
- 8 MR               39    1.95  0.122    0.696
- 9 MB               31    2.07  0.128    0.740
+ 1 WTP              87    1.72  0.0760   0.557
+ 2 BEAU              1    1.72  0.108    1.21 
+ 3 2                27    2.84  0.173    1.27 
+ 4 BP                6    2.13  0.151    0.729
+ 5 NTP              54    1.67  0.0869   0.456
+ 6 1                85    1.98  0.141    1.16 
+ 7 BS2              65    1.68  0.0721   1.09 
+ 8 NESP             41    1.73  0.148    0.851
+ 9 2                30    2.26  0.176    0.627
 10 2                11    2.91  0.138    1.19 </code></pre>
 </div>
 </div>
@@ -1678,16 +1672,16 @@ afficher le top 10</code></pre>
 <pre><code># A tibble: 10 × 5
       ID CodeTourbiere Longitude_m Latitude_m   dist
    &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt;      &lt;dbl&gt;  &lt;dbl&gt;
- 1    85 1                  486514    5702160  4136.
- 2    80 1                  486504    5702081  4153.
- 3    17 2                  486501    5702627  4143.
- 4    86 WTP                487075    5700788  3935.
- 5    43 NESP               484866    5701866  5804.
- 6    83 1                  486505    5702162  4145.
- 7    38 MR                 459880    5701971 30764.
- 8    24 2                  486327    5702544  4314.
- 9    62 BS2                486564    5702189  4085.
-10    12 2                  486522    5702582  4120.</code></pre>
+ 1    19 2                  486517    5702537  4124.
+ 2    85 1                  486514    5702160  4136.
+ 3    36 MR                 459875    5701988 30769.
+ 4    30 2                  486350    5702494  4290.
+ 5    37 MR                 459873    5701987 30771.
+ 6    80 1                  486504    5702081  4153.
+ 7     4 BEAU               490647    5702453     7 
+ 8     8 BP                 484742    5702280  5901.
+ 9    53 NTP                487562    5704093  3488.
+10    34 MB                 491955    5699332  3387.</code></pre>
 </div>
 </div>
 <p>Nous pourrions procéder de la même manière pour fusionner des données climatiques. Le tableau <code>chicoute</code> ne possède pas d’indicateurs climatiques, mais il est possible de les soutirer de stations météo placées près des sites. Ces données ne sont pas disponibles pour le tableau de la chicouté, alors j’utiliserai des données fictives pour l’exemple.</p>

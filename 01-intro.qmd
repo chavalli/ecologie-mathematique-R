@@ -119,8 +119,6 @@ Je favorise une approche intuitive aux développements mathématiques. Nous abor
 
 **[Chapitre @sec-bayes] - Biostatistiques bayésiennes (section facultative)**. Une très brève introduction pour qui est intéressé à l'analyse bayésienne.
 
-**[Chapitre @sec-regr] - Régression**. À venir.
-
 **[Chapitre @sec-expl] - Explorer R**. La science des données évolue rapidement. Vous gagnerez à vous tenir au courrant de son évolution, et immanquablement vous vous buterez sur des opérations qui vous sembleront insolubles. Ce chapitre vous accompagnera à rester à jour sur le développement de R, à poser de bonnes questions et proposera des modules intéressants en écologie mathématique.
 
 **[Chapitre @sec-ord] - Association, partitionnement et ordination**. Les écosystèmes diffèrent, mais en quoi sont-ils semblables, et en quoi dffèrent-ils? Ces questions importantes peuvent être abordés par l'écologie numérique, domaine d'étude au sein duquel l'association, le partitionnement et l'ordination sont des outils prédominants.
