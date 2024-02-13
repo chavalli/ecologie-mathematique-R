@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.3.450">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
 <title>Analyse et modélisation d’agroécosystèmes sur R - 9&nbsp; Explorer R</title>
 <style>
 code{white-space: pre-wrap;}
@@ -20,8 +17,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
-
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
@@ -40,8 +70,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -60,18 +89,13 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script>
-
-
+}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 </head>
-
 <body class="nav-sidebar floating">
 
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
@@ -82,13 +106,9 @@ ul.task-list li input[type="checkbox"] {
         <i class="bi bi-search"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Analyse et modélisation d’agroécosystèmes sur R</a> 
         <div class="sidebar-tools-main">
@@ -108,7 +128,7 @@ ul.task-list li input[type="checkbox"] {
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Préface</span></a>
@@ -205,18 +225,48 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
     </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+</div>
+</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+<li>
+<a href="#r-sur-le-web" id="toc-r-sur-le-web" class="nav-link active" data-scroll-target="#r-sur-le-web"><span class="header-section-number">9.1</span> R sur le web</a>
+  <ul class="collapse">
+<li><a href="#github" id="toc-github" class="nav-link" data-scroll-target="#github"><span class="header-section-number">9.1.1</span> GitHub</a></li>
+  <li><a href="#twitter" id="toc-twitter" class="nav-link" data-scroll-target="#twitter"><span class="header-section-number">9.1.2</span> Twitter</a></li>
+  <li><a href="#nouvelles" id="toc-nouvelles" class="nav-link" data-scroll-target="#nouvelles"><span class="header-section-number">9.1.3</span> Nouvelles</a></li>
+  <li><a href="#des-questions" id="toc-des-questions" class="nav-link" data-scroll-target="#des-questions"><span class="header-section-number">9.1.4</span> Des questions?</a></li>
+  <li><a href="#participer" id="toc-participer" class="nav-link" data-scroll-target="#participer"><span class="header-section-number">9.1.5</span> Participer</a></li>
+  <li><a href="#mise-en-garde" id="toc-mise-en-garde" class="nav-link" data-scroll-target="#mise-en-garde"><span class="header-section-number">9.1.6</span> Mise en garde</a></li>
+  <li><a href="#prendre-tout-%C3%A7a-en-note" id="toc-prendre-tout-ça-en-note" class="nav-link" data-scroll-target="#prendre-tout-%C3%A7a-en-note"><span class="header-section-number">9.1.7</span> Prendre tout ça en note</a></li>
+  </ul>
+</li>
+  <li><a href="#r-en-chaire-et-en-os" id="toc-r-en-chaire-et-en-os" class="nav-link" data-scroll-target="#r-en-chaire-et-en-os"><span class="header-section-number">9.2</span> R en chaire et en os</a></li>
+  <li>
+<a href="#quelques-outils-en-%C3%A9cologie-math%C3%A9matique-avec-r" id="toc-quelques-outils-en-écologie-mathématique-avec-r" class="nav-link" data-scroll-target="#quelques-outils-en-%C3%A9cologie-math%C3%A9matique-avec-r"><span class="header-section-number">9.3</span> Quelques outils en écologie mathématique avec R</a>
+  <ul class="collapse">
+<li><a href="#pr%C3%A9traitement-des-donn%C3%A9es" id="toc-prétraitement-des-données" class="nav-link" data-scroll-target="#pr%C3%A9traitement-des-donn%C3%A9es"><span class="header-section-number">9.3.1</span> Prétraitement des données</a></li>
+  <li><a href="#acqu%C3%A9rir-des-donn%C3%A9es-m%C3%A9t%C3%A9o" id="toc-acquérir-des-données-météo" class="nav-link" data-scroll-target="#acqu%C3%A9rir-des-donn%C3%A9es-m%C3%A9t%C3%A9o"><span class="header-section-number">9.3.2</span> Acquérir des données météo</a></li>
+  <li><a href="#p%C3%A9dom%C3%A9trie-avec-r" id="toc-pédométrie-avec-r" class="nav-link" data-scroll-target="#p%C3%A9dom%C3%A9trie-avec-r"><span class="header-section-number">9.3.3</span> Pédométrie avec R</a></li>
+  <li><a href="#m%C3%A9ta-analyses-en-r" id="toc-méta-analyses-en-r" class="nav-link" data-scroll-target="#m%C3%A9ta-analyses-en-r"><span class="header-section-number">9.3.4</span> Méta-analyses en R</a></li>
+  <li><a href="#cr%C3%A9er-des-applications-avec-r" id="toc-créer-des-applications-avec-r" class="nav-link" data-scroll-target="#cr%C3%A9er-des-applications-avec-r"><span class="header-section-number">9.3.5</span> Créer des applications avec R</a></li>
+  <li><a href="#travailler-en-python" id="toc-travailler-en-python" class="nav-link" data-scroll-target="#travailler-en-python"><span class="header-section-number">9.3.6</span> Travailler en Python</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#bonus-ia-g%C3%A9n%C3%A9rative" id="toc-bonus-ia-générative" class="nav-link" data-scroll-target="#bonus-ia-g%C3%A9n%C3%A9rative"><span class="header-section-number">9.4</span> Bonus : IA Générative</a>
+  <ul class="collapse">
+<li><a href="#utilisation-en-r%C3%A9daction-scientifique" id="toc-utilisation-en-rédaction-scientifique" class="nav-link" data-scroll-target="#utilisation-en-r%C3%A9daction-scientifique"><span class="header-section-number">9.4.1</span> Utilisation en rédaction scientifique</a></li>
+  <li><a href="#et-maintenant-pour-lutiliser-sur-r" id="toc-et-maintenant-pour-lutiliser-sur-r" class="nav-link" data-scroll-target="#et-maintenant-pour-lutiliser-sur-r"><span class="header-section-number">9.4.2</span> Et maintenant… Pour l’utiliser sur R?</a></li>
+  </ul>
+</li>
+  </ul></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <h1 class="title"><span id="sec-expl" class="quarto-section-identifier"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Explorer R</span></span></h1>
 </div>
 
@@ -230,15 +280,1112 @@ ul.task-list li input[type="checkbox"] {
   </div>
   
 
-</header>
-
+</header><p>L’apprentissage de R peut être étourdissant. Cette section est une petite pause fourre-tout qui vous introduira aux nombreuses possibilités de R.</p>
 <hr>
-<p>À venir</p>
+<p><strong>Objectifs spécifiques</strong>:</p>
+<p>À la fin de ce chapitre, vous</p>
+<ul>
+<li>serez en mesure d’identifier les sources d’information principales sur le développement de R et de ses modules</li>
+<li>comprendrez l’importance du prétraitement des données, en particulier dans le cadre de l’analyse de données compositionnelles, et saurez effectuer un prétraitement adéquat</li>
+<li>saurez comment acquérir des données météo d’Environnement Canada avec le module <a href="http://ropensci.github.io/weathercan/">weathercan</a>
+</li>
+<li>saurez identifier les modules d’analyse de sols (<a href="https://github.com/julienmoeys/soiltexture">soiltexture</a> et <a href="http://ncss-tech.github.io/aqp/docs/">aqp</a>)</li>
+<li>saurez comment débuter un projet de méta-analyse et de déploiement d’un logiciel sur R</li>
+<li>saurez utiliser le module d’intégration d’IA générative <code>chattr</code> et connaîtrez les enjeux liés à cette technologie</li>
+</ul>
+<hr>
+<p>Pour certains, le langage R est un labyrinthe. Pour d’autres, c’est une myriade de portes ouvertes. Si vous lisez ce manuel, vous vous êtes peut-être engagé dans un labyrinthe dans l’objectif d’y trouver la clé qui dévérouillera une porte bien précise qui mène à un trésor, un objet magique… ou un diplôme. Peut-être aussi prendrez-vous le goût d’errer dans ce labyrinthe, explorant ses débouchés, pour y dénicher au hasard des petits outils et des débouchés.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="images/08_zelda.gif" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption class="figure-caption">Séquence du jeu vidéo <em>The legend of Zelda</em>, source inconnue.</figcaption></figure>
+</div>
+</div>
+</div>
+<p>Cette section est un amalgame de plusieurs outils de R pertinents en analyse écologique.</p>
+<blockquote class="blockquote">
+<p><strong>Note :</strong> Contrairement au reste du manuel, ce chapitre a été laissé presque intact par rapport à la version originale, à l’exception de l’ajout d’une section portant sur l’IA générative. Il est donc possible que certains liens ou outils ne soient plus à jour; je repasserai un peu plus tard pour les corriger, mais d’ici là n’hésitez pas à fouiller sur internet pour retrouver les outils qui vous intéressent.</p>
+</blockquote>
+<section id="r-sur-le-web" class="level2" data-number="9.1"><h2 data-number="9.1" class="anchored" data-anchor-id="r-sur-le-web">
+<span class="header-section-number">9.1</span> R sur le web</h2>
+<p>Dans un environnement de travail en évolution rapide et constante, il est difficile de considérer que ses compétences sont abouties. Rester informé sur le développement de R vous permettra de dénicher de résoudre des problèmes persistants de manière plus efficace ou par de nouvelles avenues, et vous offrira même l’occasion de dénicher des problèmes dont vous ne soupçonniez pas l’existance. Plusieurs sources d’information vous permettront de vous tenir à jour sur le développement de R, de ses environnement de travail (RStudio, Jupyter, Atom, etc.) et des nouveaux modules qui s’y greffent. Plus largement, vous gagnerez à vous informer sur les dernières tendances en calcul scientifique sur d’autres plate-forme que R (Python, Javascript, Julia, etc.). Évidemment, nos tâches quotidiennes ne nous permettent pas de tout suivre. Même si vous pouviez n’attrapper qu’1% du défilement, ce sera déjà 1% de plus que rien du tout.</p>
+<blockquote class="blockquote">
+<p>Évidemment, rester au courant aide parce que vous en apprenez davantage sur les outils et leurs applications. Mais ça aide aussi parce que ça vous permet de connaître des gens et des organisations! Il est très utile de savoir qui travaille sur quoi et où se déroulent les développements sur un sujet donné, car si vous cherchez consciemment quelque chose plus tard, ça vous aidera à trouver votre chemin plus facilement. - Maëlle Salmon, <a href="https://masalmon.eu/2019/01/25/uptodate/">Keeping up to date with R news</a> (ma traduction)</p>
+</blockquote>
+<p>Je vous propose une liste de ressources. Ne vous y tenez surtout pas: discartez ce qui ne vous convient pas, et partez à l’aventure!</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="images/08_hobbit.gif" class="img-fluid figure-img" style="width:70.0%"></p>
+<figcaption class="figure-caption">Tiré du film <em>The Hobbit: An Unexpected Journey</em>, de Peter Jackson (2012).</figcaption></figure>
+</div>
+</div>
+</div>
+<section id="github" class="level3" data-number="9.1.1"><h3 data-number="9.1.1" class="anchored" data-anchor-id="github">
+<span class="header-section-number">9.1.1</span> GitHub</h3>
+<p>Nous avons vu <a href="05-github.html">chapitre&nbsp;<span>5</span></a> l’importance d’utilser des outils d’archivage et de suivi de version, comme <em>git</em>, dans le déploiement de la <em>science ouverte</em>. En effet, <a href="https://www.github.com">GitHub</a> est une plate-forme <em>git</em> sur Internet, acquise par Microsoft, qui est devenue un réseau social de développement informatique. <a href="https://github.com/topics/r">De nombreux modules de R y sont développés</a>. Au <a href="05-github.html">chapitre&nbsp;<span>5</span></a>, vous avez appris à y ouvrir un compte et à y archiver du contenu. Vous pourrez alors <strong>suivre</strong> (dans le même sens que sur d’autres réseaux sociaux) le développement de projets et suivre les travaux des personnes qui vous semblent d’intérêt.</p>
+</section><section id="twitter" class="level3" data-number="9.1.2"><h3 data-number="9.1.2" class="anchored" data-anchor-id="twitter">
+<span class="header-section-number">9.1.2</span> Twitter</h3>
+<p>Le <em>hashtag</em> <code>#rstats</code> rassemble sur <a href="https://twitter.com/hashtag/rstats?src=hash">Twitter</a> ce qui se tweete sur le sujet. On y retrouve les comptes de <a href="https://twitter.com/Rbloggers">R-bloggers</a>, <a href="https://twitter.com/rstudio">RStudio</a> et <a href="https://twitter.com/rOpenSci">rOpenSci</a>. Certaines communautés y sont aussi actives, comme <a href="https://twitter.com/R4DScommunity">R4DS online learning community</a>, qui partage des nouvelles sur R, et <a href="https://twitter.com/RLadiesGlobal">R-Ladies Global</a>, qui vise à amener davantage de diversité à la communauté de R. Des comptes thématiques comme <a href="https://twitter.com/daily_r_sheets">Daily R Cheatsheets</a>, <a href="https://twitter.com/rfortherest">R for the Rest of Us</a> et <a href="https://twitter.com/RLangPackage">One R Package a Day</a> permettent de découvrir quotidiennement de nouvelles possibilités. Enfin, plusieurs personnes contribuent positivement à la communauté R. <a href="https://twitter.com/hadleywickham">Hadley Wickham</a> brille parmi les étoiles de R. Les comptes de <a href="https://twitter.com/dataandme">Mara Averick</a>, <a href="https://twitter.com/ClausWilke">Claus Wilke</a> et <a href="https://twitter.com/drob">David Robinson</a> sont aussi intéressants. Enfin, <a href="https://twitter.com/thomasp85">Thomas Lin Pedersen</a>, qui travaille en visualisation chez RStudio, crée des oeuvres d’art génératif avec R et <strong><code>ggplot2</code></strong>.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="https://www.data-imaginist.com/art/005_genesis/genesis338.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<figcaption class="figure-caption">genesis338, une oeuvre de <a href="https://www.data-imaginist.com/art">Thomas Lin Pedersen</a> créée avec <strong><code>ggplot2</code></strong>.</figcaption></figure>
+</div>
+</div>
+</div>
+</section><section id="nouvelles" class="level3" data-number="9.1.3"><h3 data-number="9.1.3" class="anchored" data-anchor-id="nouvelles">
+<span class="header-section-number">9.1.3</span> Nouvelles</h3>
+<p>Le site d’aggrégation <a href="https://www.r-bloggers.com/">R-bloggers</a>, mis à jour quotidiennement, republie des articles en anglais tirés d’un peu partout sur la toile. On y trouve principalement des tutoriels et des annonces de nouveaux développement. Deux fois par mois, l’organisation <a href="https://news.ropensci.org/">rOpenSci</a> offre un portrait de l’univ-R (#dadjoke), ce que <a href="https://rweekly.org/">R Weekely</a> offre de manière hebdomadaire (l’information sera probablement redondante). Le tidyverse a quant à lui son propre <a href="https://www.tidyverse.org/articles/">blogue</a>.</p>
+</section><section id="des-questions" class="level3" data-number="9.1.4"><h3 data-number="9.1.4" class="anchored" data-anchor-id="des-questions">
+<span class="header-section-number">9.1.4</span> Des questions?</h3>
+<p>Bien que davantage voués à la résolution de problème qu’ à l’exploration de nouvelles opportunités, <a href="https://stackoverflow.com/questions/tagged/r">Stackoverflow</a> et <a href="https://stats.stackexchange.com/questions/tagged/r">Cross Validated</a> sont des plate-forme prisées. De plus, la liste de courriels <a href="https://www.mail-archive.com/r-sig-ecology@r-project.org/info.html">r-sig-ecology</a> permet des échanges entre professionnels et novices en analyse de données écologiques avec R.</p>
+</section><section id="participer" class="level3" data-number="9.1.5"><h3 data-number="9.1.5" class="anchored" data-anchor-id="participer">
+<span class="header-section-number">9.1.5</span> Participer</h3>
+<p>R est un logiciel basé sur une communauté de développement, d’utilisation et de vulgarisation. Des personnes offrent généreusement du temps de support. Si vous vous sentez à l’aise, offrez aussi le vôtre!</p>
+</section><section id="mise-en-garde" class="level3" data-number="9.1.6"><h3 data-number="9.1.6" class="anchored" data-anchor-id="mise-en-garde">
+<span class="header-section-number">9.1.6</span> Mise en garde</h3>
+<p>Les modules de R sont développés par quiconque le veut bien: leur qualité n’est pas nécessairement auditée. Souvent, ils ne sont vérifiés que par une vigilance communautaire: dans ce cas, vous êtes les cobailles. Ce qui n’est pas nécessairement une mauvaise chose, mais cela nécessite de prendre ses précautions. Dans sa conférence <a href="https://maelle.github.io/fluctuat_nec_mergitur">How to be a resilient R user</a>, <a href="https://twitter.com/ma_salmon">Maëlle Salmon</a> propose quelques guides pour juger de la qualité d’un module.</p>
+<p><strong>1. Le module est-il activement développé?</strong></p>
+<p>Bien!</p>
+<p><img src="images/08_2019-01-14-facebook-prophet.png" class="img-fluid"></p>
+<p>Attention!</p>
+<p><img src="images/08_2019-01-14_mlammens_meteR.png" class="img-fluid"></p>
+<p><strong>2. Le module est-il bien testé?</strong></p>
+<p>Vérifiez si le module a fait l’objet d’une publication scientifique, s’il a été utilisé avec succès dans la littérature ou dans des documents crédibles.</p>
+<p><strong>3. Le module est-il bien documenté?</strong></p>
+<p>Un site internet dédié est-il utilisé pour documenter l’utilisation du module? Les fichiers d’aide sont-ils complets, et sont-ils de bonne qualité?</p>
+<p><strong>4. Le module est-il largement utilisé?</strong></p>
+<p>Un module peu populaire n’est pas nécessessairement de mauvaise qualité: peut-être est-il seulement destiné à des applications de niche. S’il n’est pas un indicateur à lui seul de la solidité ou la validité d’un module, une masse critique indique que le module a passé sous la surveillance de plusieurs utilisateurs. Dans GitHub, ceci peut être évalué par le nombre d’étoiles attribué au module (équivalent à un J’aime).</p>
+<p><img src="images/08_peu-etoiles.png" class="img-fluid"><img src="images/08_bcp-etoiles.png" class="img-fluid"></p>
+<p><strong>5. Le module est-il développé par une personne ou une organisation crédible?</strong></p>
+<p>On peut affirmer sans trop se compromettre que l’équipe de RStudio développe des modules de confiance. Tout comme il faudrait se méfier d’un module développé par une personne anonyme.</p>
+<p>Le module <a href="https://github.com/ropenscilabs/packagemetrics">packagemetrics</a> permet d’évaluer ces critères.</p>
+<div class="cell">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># devtools::install_github("ropenscilabs/packagemetrics")</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"packagemetrics"</span><span class="op">)</span></span>
+<span><span class="va">pm</span> <span class="op">&lt;-</span> <span class="fu">package_list_metrics</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"dplyr"</span>, <span class="st">"ggplot2"</span>, <span class="st">"vegan"</span>, <span class="st">"greta"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu">metrics_table</span><span class="op">(</span><span class="va">pm</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="prendre-tout-ça-en-note" class="level3" data-number="9.1.7"><h3 data-number="9.1.7" class="anchored" data-anchor-id="prendre-tout-ça-en-note">
+<span class="header-section-number">9.1.7</span> Prendre tout ça en note</h3>
+<p>Un logiciel de prise de notes (il en existe plein, mais je vous suggère d’opter pour les options encryptées) pourrait vous être utile pour retrouver l’information soutirée de vos flux d’information. Mais certaines personnes consignent simplement leurs informations dans un carnet ou un document de traitement de texte.</p>
+</section></section><section id="r-en-chaire-et-en-os" class="level2" data-number="9.2"><h2 data-number="9.2" class="anchored" data-anchor-id="r-en-chaire-et-en-os">
+<span class="header-section-number">9.2</span> R en chaire et en os</h2>
+<p>L’Université Laval (institution auprès de laquelle ce manuel est développé) est hôte à tous les 2 ans de la conférence <a href="http://raquebec.ulaval.ca">R à Québec</a>. La prochaine conférence aura lieu en 2021.</p>
+</section><section id="quelques-outils-en-écologie-mathématique-avec-r" class="level2" data-number="9.3"><h2 data-number="9.3" class="anchored" data-anchor-id="quelques-outils-en-écologie-mathématique-avec-r">
+<span class="header-section-number">9.3</span> Quelques outils en écologie mathématique avec R</h2>
+<section id="prétraitement-des-données" class="level3" data-number="9.3.1"><h3 data-number="9.3.1" class="anchored" data-anchor-id="prétraitement-des-données">
+<span class="header-section-number">9.3.1</span> Prétraitement des données</h3>
+<p>Il arrive souvent ques les données brutes ne soient pas exprimées de manière appropriée ou optimale pour l’analyse statistique ou la modélisation. Vous devrez alors effectuer un prétraitement sur ces données. Lors du <a href="07a-biostats.html">chapitre&nbsp;<span>7</span></a>, nous avons abordé la mise à l’échelle, où des variables numériques étaient transformées pour avoir une moyenne de zéro et un écart-type de 1. Cette opération permettait d’apprécier les coefficients et leur incertitude sur une même échelle. L’encodage catégorielle a quant à lui permi d’utiliser des méthodes quantitatives sur des données qualitatives. Dans les deux cas, nous n’avons pas utilisé le terme, mais il s’agissait d’un <strong>prétraitement</strong>, c’est-à-dire une transformation des données préalable à l’analyse ou la modélisation.</p>
+<p>Un prétraitement peut consister simplement en une transformation logarithmique ou exponentielle. Nous verrons les transformations les plus communes comme la standardisation, la mise à l’échelle sur une étendue et la normalisation. Puis nous verrons comment ces opérations de prétraitement sont offertes dans le module <a href="https://tidymodels.github.io/recipes/"><strong><code>recipes</code></strong></a>.</p>
+<p><strong><code>recipes</code></strong> n’est pas en mesure d’effectuer toutes les transformations imaginables. Pour des opérations plus spécialisées, si vos données forment une partie d’un tout (exprimées en pourcentages ou fractions), vous devriez probablement utiliser un prétraitement grâce aux outils de l’<strong>analyse compositionnelle</strong>. Avant de les aborder, nous allons traiter des transformations de base.</p>
+<section id="standardisation" class="level4" data-number="9.3.1.1"><h4 data-number="9.3.1.1" class="anchored" data-anchor-id="standardisation">
+<span class="header-section-number">9.3.1.1</span> Standardisation</h4>
+<p>La standardisation consiste à centrer vos données à une moyenne de 0 et à les échelonner à une variance de 1, c’est-à-dire</p>
+<p><span class="math display">\[x_{standard} = \frac{x - \bar{x}}{\sigma}\]</span></p>
+<p>où <span class="math inline">\(\bar{x}\)</span> est la moyenne du vecteur <span class="math inline">\(x\)</span> et où <span class="math inline">\(\sigma\)</span> est son écart-type.</p>
+<p>Ce prétraitement des données peut s’avérér utile lorsque la modélisation tient compte de l’échelle de vos mesures (par exemple, les paramètres de régression vus au <a href="07a-biostats.html">chapitre&nbsp;<span>7</span></a> ou les distances que nous verrons au <a href="09-ordination.html">chapitre&nbsp;<span>10</span></a>). En effet, les pentes d’une régression linéaire multiple ne pourront être comparées entre elles que si elles sont une même échelle. Par exemple, on veut modéliser la consommation en miles au gallon (<code>mpg</code>) de voitures en fonction de leur puissance (<code>hp</code>), le temps en secondes pour parcourir un quart de mile (<code>qsec</code>) et le nombre de cylindre.</p>
+<div class="cell">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"mtcars"</span><span class="op">)</span></span>
+<span><span class="va">modl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span> <span class="op">+</span> <span class="va">qsec</span> <span class="op">+</span> <span class="va">cyl</span>, <span class="va">mtcars</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">modl</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = mpg ~ hp + qsec + cyl, data = mtcars)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-4.3223 -1.9483 -0.5656  1.5452  7.7773 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 55.30540    9.03697   6.120 1.33e-06 ***
+hp          -0.03552    0.01622  -2.190  0.03700 *  
+qsec        -0.89424    0.42755  -2.092  0.04567 *  
+cyl         -2.26960    0.54505  -4.164  0.00027 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 3.003 on 28 degrees of freedom
+Multiple R-squared:  0.7757,    Adjusted R-squared:  0.7517 
+F-statistic: 32.29 on 3 and 28 DF,  p-value: 3.135e-09</code></pre>
+</div>
+</div>
+<p>Les pentes signifient que la distance parcourue par gallon d’essence diminue de 0.03552 miles au gallon pour chaque HP, de 0.89242 par seconde au quart de mile et de 2.2696 par cyclindre additionnel. L’interprétation est conviviale à cette échelle. Mais lequel de ces effets est le plus important? L <code>t value</code> indique que ce seraient les cylindres. Mais pour juger l’importance en terme de pente, il vaudrait mieux standardiser.</p>
+<div class="cell">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://tidyverse.tidyverse.org">"tidyverse"</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.4.4     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.0
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">standardise</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">(</span><span class="va">x</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
+<span><span class="va">mtcars_sc</span> <span class="op">&lt;-</span> <span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate_all.html">mutate_if</a></span><span class="op">(</span><span class="va">is.numeric</span>, <span class="va">standardise</span><span class="op">)</span> <span class="co"># ou bien scale(mtcars, center = TRUE, scale = TRUE)</span></span>
+<span><span class="va">modl_sc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span> <span class="op">+</span> <span class="va">qsec</span> <span class="op">+</span> <span class="va">cyl</span>, <span class="va">mtcars_sc</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">modl_sc</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = mpg ~ hp + qsec + cyl, data = mtcars_sc)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.71716 -0.32326 -0.09384  0.25639  1.29042 
+
+Coefficients:
+              Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  1.061e-16  8.808e-02   0.000  1.00000    
+hp          -4.041e-01  1.845e-01  -2.190  0.03700 *  
+qsec        -2.651e-01  1.268e-01  -2.092  0.04567 *  
+cyl         -6.725e-01  1.615e-01  -4.164  0.00027 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.4983 on 28 degrees of freedom
+Multiple R-squared:  0.7757,    Adjusted R-squared:  0.7517 
+F-statistic: 32.29 on 3 and 28 DF,  p-value: 3.135e-09</code></pre>
+</div>
+</div>
+<p>Les valeurs des pentes ne peuvent plus être interprétées directement, mais peuvent maintenant être comparées entre elles. Dans ce cas, le nombre de cilyndres a en effet une importance plus grande que la puissance et le temps pour parcourir un 1/4 de mile.</p>
+<p>Les algorithmes basés sur des distances auront, de même, avantage à être standardisés.</p>
+</section><section id="à-léchelle-de-la-plage" class="level4" data-number="9.3.1.2"><h4 data-number="9.3.1.2" class="anchored" data-anchor-id="à-léchelle-de-la-plage">
+<span class="header-section-number">9.3.1.2</span> À l’échelle de la plage</h4>
+<p>Si vous désirez préserver le zéro dans le cas de données positives ou plus généralement vous voulez que vos données prétraitées soient positives, vous pouvez les transformer à l’échelle de la plage, c’est-à-dire les forcer à s’étaler de 0 à 1:</p>
+<p><span class="math display">\[ x_{range01} = \frac{x - x_{min}}{x_{max} - x_{min}}  \]</span></p>
+<p>Cette transformation est sensible aux valeurs aberrantes, et une fois le vecteur transformé les valeurs aberrantes seront toutefois plus difficiles à détecter.</p>
+<div class="cell">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">range_01</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">(</span><span class="va">x</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">/</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate_all.html">mutate_if</a></span><span class="op">(</span><span class="va">is.numeric</span>, <span class="va">range_01</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="co"># en fait, toutes les colonnes sont numériques, alors mutate_all aurait pu être utilisé au lieu de mutate_if</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_n</a></span><span class="op">(</span><span class="fl">4</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                       mpg cyl      disp         hp      drat        wt
+Dodge Challenger 0.2170213   1 0.6158643 0.34628975 0.0000000 0.5131680
+Merc 230         0.5276596   0 0.1738588 0.15194346 0.5345622 0.4185630
+Merc 240D        0.5957447   0 0.1885757 0.03533569 0.4285714 0.4287906
+Ford Pantera L   0.2297872   1 0.6981791 0.74911661 0.6728111 0.4236768
+                      qsec vs am gear      carb
+Dodge Challenger 0.2821429  0  0  0.0 0.1428571
+Merc 230         1.0000000  1  0  0.5 0.1428571
+Merc 240D        0.6547619  1  0  0.5 0.1428571
+Ford Pantera L   0.0000000  0  1  1.0 0.4285714</code></pre>
+</div>
+</div>
+</section><section id="normaliser" class="level4" data-number="9.3.1.3"><h4 data-number="9.3.1.3" class="anchored" data-anchor-id="normaliser">
+<span class="header-section-number">9.3.1.3</span> Normaliser</h4>
+<p>Le terme <em>normaliser</em> est associer à des opérations différentes dans la littérature. Nous prendrons la nomenclature de <a href="https://scikit-learn.org/stable/modules/preprocessing.html#normalization">scikit-learn</a>, pour qui la normalisation consiste à faire en sorte que la longueur du vecteur (sa norme, d’où <em>normaliser</em>) soit unitaire. Cette opération est le plus souvent utilisée par observation (ligne), non pas par variable (colonne). Il existe plusieurs manières de mesures la distance d’un vecteur, mais la plus commune est la distance euclidienne. La seule fois que j’ai eu à utiliser ce prétraitement était en analyse spectrale (<a href="https://www.springer.com/us/book/9783642178405#otherversion=9783642178412">Chemometrics with R, Ron Wehrens, 2011, chapitre 3.5</a>). En R,</p>
+<div class="cell">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/khliland/pls">"pls"</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attachement du package : 'pls'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>L'objet suivant est masqué depuis 'package:stats':
+
+    loadings</code></pre>
+</div>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"gasoline"</span><span class="op">)</span></span>
+<span><span class="va">spectro</span> <span class="op">&lt;-</span> <span class="va">gasoline</span><span class="op">$</span><span class="va">NIR</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/class.html">unclass</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">normalise</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="va">x</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">x</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">spectro_norm</span> <span class="op">&lt;-</span> <span class="va">spectro</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rowwise.html">rowwise</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="co"># différentes approches possibles pour les opérations sur les lignes</span></span>
+<span>  <span class="fu">normalise</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">spectro_norm</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         900 nm        902 nm        904 nm        906 nm
+1 -0.0011224834 -0.0010265446 -0.0009434425 -0.0008314021
+2 -0.0009890637 -0.0008856332 -0.0007977676 -0.0006912734
+3 -0.0010481029 -0.0009227116 -0.0008269742 -0.0007035061
+4 -0.0010444801 -0.0009446277 -0.0008623530 -0.0007718261</code></pre>
+</div>
+</div>
+</section><section id="le-module-recipes" class="level4" data-number="9.3.1.4"><h4 data-number="9.3.1.4" class="anchored" data-anchor-id="le-module-recipes">
+<span class="header-section-number">9.3.1.4</span> Le module <strong><code>recipes</code></strong>
+</h4>
+<p>Nous avons vu comment standardiser avec notre propre fonction. Certaines personnes préfèrent utiliser la fonction <code><a href="https://rdrr.io/pkg/compositions/man/scale.html">scale()</a></code>. Mais une nouvelle approche est en train de s’installer, avec le module <strong><code>recipes</code></strong>, un module de l’ombrelle <strong><code>tidymodels</code></strong>, un méta module en développement visant à faire de R un outil de modélisation plus convivial.</p>
+<p><strong><code>recipes</code></strong> fonctionne en mode <em>tidyverse</em>, c’est-à-dire en suites d’opérations. <a href="https://tidymodels.github.io/recipes/reference/index.html">De nombreuses fonctions</a> sont offertes, dont des fonctions d’imputation, que nous verrons au chapitre @ref(chapitre-outliers). Nous couvrirons ici la standardisation et la mise à l’échelle, juste pour l’apéro 🍳.</p>
+<p>Le module ne s’appelle pas <em>recette</em> pour rien. Il fonctionne en trois étapes:</p>
+<ol type="1">
+<li>Monter la liste des ingrédients: spécifier ce qu’il faut faire</li>
+<li>Mélanger les ingrédients: transformer tout ce qu’il faut faire en une procédure</li>
+<li>Cuire les ingrédients: appliquer la procédure à un tableau.</li>
+</ol>
+<p>Voici une petite application sur le tableau <code>lasrosas.corn</code>.</p>
+<div class="cell">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://tidymodels.tidymodels.org">"tidymodels"</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching packages ────────────────────────────────────── tidymodels 1.1.1 ──</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>✔ broom        1.0.5     ✔ rsample      1.2.0
+✔ dials        1.2.0     ✔ tune         1.1.2
+✔ infer        1.0.5     ✔ workflows    1.1.3
+✔ modeldata    1.2.0     ✔ workflowsets 1.0.1
+✔ parsnip      1.1.1     ✔ yardstick    1.2.0
+✔ recipes      1.0.8     </code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Conflicts ───────────────────────────────────────── tidymodels_conflicts() ──
+✖ scales::discard() masks purrr::discard()
+✖ dplyr::filter()   masks stats::filter()
+✖ recipes::fixed()  masks stringr::fixed()
+✖ dplyr::lag()      masks stats::lag()
+✖ yardstick::spec() masks readr::spec()
+✖ recipes::step()   masks stats::step()
+• Use tidymodels_prefer() to resolve common conflicts.</code></pre>
+</div>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">lasrosas.corn</span>, package <span class="op">=</span> <span class="st">"agridat"</span><span class="op">)</span></span>
+<span><span class="va">lasrosas.corn</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  year       lat      long yield nitro topo     bv rep nf
+1 1999 -33.05113 -63.84886 72.14 131.5    W 162.60  R1 N5
+2 1999 -33.05115 -63.84879 73.79 131.5    W 170.49  R1 N5
+3 1999 -33.05116 -63.84872 77.25 131.5    W 168.39  R1 N5
+4 1999 -33.05117 -63.84865 76.35 131.5    W 176.68  R1 N5
+5 1999 -33.05118 -63.84858 75.55 131.5    W 171.46  R1 N5
+6 1999 -33.05120 -63.84851 70.24 131.5    W 170.56  R1 N5</code></pre>
+</div>
+</div>
+<p>Disons que pour mon modèle statistique, ma variable de sortie est le rendement (<code>yield</code>), que je désire lier à la dose d’azote (<code>nitro</code>), à un indicateur de la teneur en matière organique du sol (<code>bv</code>) et à la topographie (<code>topo</code>).</p>
+<p>Mais pour rendre le modèle prédictif (et non pas seulement descriptif), je dois l’évaluer sur des données qui n’ont pas servies à lisser le modèle (nous verrons en plus de détails ça au <a href="14-modelisation.html">chapitre&nbsp;<span>15</span></a>). Je vais donc séparer mon tableau au hasard en un tableau d’entraînement comprenant 70% des observations et un autre pour tester le modèle comprenant le 30% restant.</p>
+<div class="cell">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">train_test_split</span> <span class="op">&lt;-</span> <span class="va">lasrosas.corn</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">yield</span>, <span class="va">nitro</span>, <span class="va">bv</span>, <span class="va">topo</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu">initial_split</span><span class="op">(</span>prop <span class="op">=</span> <span class="fl">0.7</span><span class="op">)</span></span>
+<span><span class="va">train_df</span> <span class="op">&lt;-</span> <span class="fu">training</span><span class="op">(</span><span class="va">train_test_split</span><span class="op">)</span></span>
+<span><span class="va">test_df</span> <span class="op">&lt;-</span> <span class="fu">testing</span><span class="op">(</span><span class="va">train_test_split</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Voici ma recette. Je l’expliquerai tout de suite après.</p>
+<div class="cell">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">recette</span> <span class="op">&lt;-</span> <span class="fu">recipe</span><span class="op">(</span><span class="va">yield</span> <span class="op">~</span> <span class="va">.</span>, data <span class="op">=</span> <span class="va">train_df</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu">step_zv</span><span class="op">(</span><span class="fu">all_numeric</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu">step_normalize</span><span class="op">(</span><span class="fu">all_numeric</span><span class="op">(</span><span class="op">)</span>, <span class="op">-</span><span class="fu">all_outcomes</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="co"># step_downsample(topo) %&gt;%</span></span>
+<span>  <span class="fu">step_dummy</span><span class="op">(</span><span class="va">topo</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu">prep</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>La recette peut se baser sur l’interface formule - souvenez-vous que le <code>.</code> signifie “toutes les autres variables du tableau”. Elle se base toujours sur le jeu d’entraînement. La prochaine étape (souvenez-vous que <code>%&gt;%</code> signifie “puis” ou “ensuite”) consiste à retirer les variables dont la variance est non-nulle, ce qui est pratique pour éviter que la standardisation divise par <span class="math inline">\(0\)</span>. Cette étape est appliquée à toutes les variables numériques <code>all_numeric()</code>. Ensuite, je standardise avec la fonction <code>step_normalize()</code> - il y a beaucoup de confusion entre la notion de standardisation et de normalisation dans les fonctions comme dans la littérature. Dans cette fonction, je spécifie que la standardisation n’est applicable que sur les entrées numériques du modèle (<code>all_numeric(), -all_outcomes()</code>). L’étape <code>step_downsample()</code> retire des obsservations pour faire en sorte que les catégories d’une variable apparaissent toutes en même nombre. Bien que l’interface-formule de R s’en occupe automatiquement, je spécifie ensuite que je désire que la variable <code>topo</code> subisse un encodage catégoriel. Puis je mélange mes ingrédients avec la fonction <code>prep()</code>. J’obtiens un objet de type recette.</p>
+<div class="cell">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">recette</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code></code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Recipe ──────────────────────────────────────────────────────────────────────</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code></code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Inputs </code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Number of variables by role</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>outcome:   1
+predictor: 3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code></code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Training information </code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Training data contained 2410 data points and no incomplete rows.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code></code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Operations </code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>• Zero variance filter removed: &lt;none&gt; | Trained</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>• Centering and scaling for: nitro and bv | Trained</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>• Dummy variables from: topo | Trained</code></pre>
+</div>
+</div>
+<p>La recette étant bien mélangée, on peut en extraire le jus avec la fonction <code>bake()</code>, qui permet de générer le tableau transformé.</p>
+<div class="cell">
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">test_proc</span> <span class="op">&lt;-</span> <span class="fu">bake</span><span class="op">(</span><span class="va">recette</span>, <span class="va">test_df</span><span class="op">)</span></span>
+<span><span class="va">test_proc</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_n</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 6
+    nitro     bv yield topo_HT topo_LO topo_W
+    &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
+1  0.0472 -0.580  65.7       0       1      0
+2 -1.50   -0.251  65.8       0       0      1
+3  0.984  -0.896  82.8       0       1      0
+4  1.58   -0.182  68.6       0       0      0
+5  0.0472  0.287  64.4       0       0      0</code></pre>
+</div>
+</div>
+<p>La fonction <code>bake()</code> peut aussi être appliquée au données d’entraînement, mais certaines étapes de recette doivent passer par des opérations particulières, comme <code>step_downsample()</code> Il est donc préférable, pour les données d’entrâinement, d’en extraire le jus avec la fonction <code>juice()</code>.</p>
+<div class="cell">
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">train_proc</span> <span class="op">&lt;-</span> <span class="fu">bake</span><span class="op">(</span><span class="va">recette</span>, <span class="va">train_df</span><span class="op">)</span></span>
+<span><span class="va">train_proc</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_n</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 6
+    nitro     bv yield topo_HT topo_LO topo_W
+    &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
+1  0.0472  0.152  56.5       1       0      0
+2  0.0472 -0.561  60.9       0       1      0
+3  1.42   -0.128  91.1       0       0      1
+4 -1.50    0.929  55.0       0       0      0
+5  0.984  -0.410  69.8       0       0      0</code></pre>
+</div>
+</div>
+<p>Le tableau <code>train_proc</code> peut être envoyé dans un modèle de votre choix! Par exemple,</p>
+<div class="cell">
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">yield</span> <span class="op">~</span> <span class="va">.</span>, <span class="va">train_proc</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = yield ~ ., data = train_proc)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-46.833 -11.058  -2.252  10.599  46.033 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  77.8351     0.6029 129.094  &lt; 2e-16 ***
+nitro         2.4849     0.2807   8.852  &lt; 2e-16 ***
+bv           -5.0771     0.3462 -14.667  &lt; 2e-16 ***
+topo_HT     -24.2382     0.9225 -26.276  &lt; 2e-16 ***
+topo_LO       2.5057     0.8399   2.983  0.00288 ** 
+topo_W      -10.5824     0.7940 -13.328  &lt; 2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 13.77 on 2404 degrees of freedom
+Multiple R-squared:  0.5067,    Adjusted R-squared:  0.5057 
+F-statistic: 493.9 on 5 and 2404 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+</section><section id="analyse-compositionnelle-en-r" class="level4" data-number="9.3.1.5"><h4 data-number="9.3.1.5" class="anchored" data-anchor-id="analyse-compositionnelle-en-r">
+<span class="header-section-number">9.3.1.5</span> Analyse compositionnelle en R</h4>
+<p>En 1898, le statisticien Karl Pearson nota que des corrélations étaient induites lorsque l’on effectuait des ratios par rapport à une variable commune.</p>
+<p><img src="images/08_pearson1897.png" class="img-fluid" alt="Karl Pearson, 1897"> Source <a href="https://royalsocietypublishing.org/doi/pdf/10.1098/rspl.1896.0076">Karl Pearson, 1897. Mathematical contributions to the theory of evolution.—on a form of spurious correlation which may arise when indices are used in the measurement of organs. Proceedings of the royal society of London</a></p>
+<p>Faisons l’exercice! Nous générons au hasard 1000 données (comme le proposait Pearson) pour trois dimensions: le fémur, le tibia et l’humérus. Ces dimensions ne sont pas générées par des distributions corrélées.</p>
+<div class="cell">
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">3570536</span><span class="op">)</span></span>
+<span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">1000</span></span>
+<span><span class="va">bones</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>femur <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">n</span>, <span class="fl">10</span>, <span class="fl">3</span><span class="op">)</span>,</span>
+<span>                tibia <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">n</span>, <span class="fl">8</span>, <span class="fl">2</span><span class="op">)</span>,</span>
+<span>                humerus <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">n</span>, <span class="fl">6</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">bones</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="08-explorer_files/figure-html/expl-coda-bones-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">bones</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>               femur        tibia      humerus
+femur    1.000000000 -0.069006171  0.002652292
+tibia   -0.069006171  1.000000000 -0.008994704
+humerus  0.002652292 -0.008994704  1.000000000</code></pre>
+</div>
+</div>
+<p>Pourtant, si j’utilise des ratios allométriques avec l’humérus comme base,</p>
+<div class="cell">
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">bones_r</span> <span class="op">&lt;-</span> <span class="va">bones</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/transmute.html">transmute</a></span><span class="op">(</span>fh <span class="op">=</span> <span class="va">femur</span><span class="op">/</span><span class="va">humerus</span>,</span>
+<span>            th <span class="op">=</span> <span class="va">tibia</span><span class="op">/</span><span class="va">humerus</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">bones_r</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/text.html">text</a></span><span class="op">(</span><span class="fl">30</span>, <span class="fl">20</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"corrélation ="</span>, <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">bones_r</span><span class="op">$</span><span class="va">fh</span>, <span class="va">bones_r</span><span class="op">$</span><span class="va">th</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span>, col <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="08-explorer_files/figure-html/expl-bones-allo-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Nous avons induit ce que Pearson appelait une fausse corrélation (<em>spurious correlation</em>). En 1960, <a href="https://doi.org/10.1029/JZ065i012p04185">Chayes</a> proposa que de telles fausses corrélations sont induites non seulement sur des ratios de valeurs absolues, mais aussi sur des ratios d’une somme totale. Par exemple, dans une composition simple de deux types d’utilisation du territoire, si une proportion augmente, l’autre doit nécessairement diminuer.</p>
+<div class="cell">
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">100</span></span>
+<span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>A <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="va">n</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>B <span class="op">=</span> <span class="fl">1</span> <span class="op">-</span> <span class="va">A</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">A</span>, y<span class="op">=</span><span class="va">B</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="08-explorer_files/figure-html/expl-bones-corr-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Les variables exprimées relativement à une somme totale sont dites <em>compositionnelles</em>. Elles possèdent les caractéristiques suivantes.</p>
+<ol type="1">
+<li>
+<strong>Redondance d’information</strong>. Un système de deux proportions ne contient qu’une seule variable du fait que l’on puisse déduire l’une en soutrayant l’autre de la somme totale. Un vecteur compositionnel contient de l’information redondante. Pourtant, effectuer des statistiques sur l’une plutôt que sur l’autre donnera des résultats différents.</li>
+<li>
+<strong>Dépendance d’échelle</strong>. Les statistiques devraient être indépendantes de la somme totale utilisée. Pourtant, elles différeront sur l’on utilise par exemple, une proportion des mâles d’une part et des femelles d’autre part, ou la proportion de la somme des deux, de même que les résultats d’un test sanguin différera si l’on utilise une base sèche ou une base humide.</li>
+<li>
+<strong>Distribution théorique des données</strong>. Étant donnée que les proportions sont confinées entre 0 et 1 (ou 100%, ou une somme totale quelconque), la distribution normale (qui s’étend de -∞ à +∞) n’est souvent pas appropriée. On pourra utiliser la distribution de Dirichlet ou la distribution logitique-normale, mais d’autres approches sont souvent plus pratiques.</li>
+</ol>
+<p>Pour illustrer l’effet de la distribution, voyons un diagramme ternaire incluant le sable, le limon et l’argile. En utilisant des écart-types univariés, nous obtenons l’ellipse en rouge, qui non seulement représente peu l’étalement des données, mais elle dépasse les bornes du triangle, admettant ainsi des proportions négatives. En bleu, la distribution logistique normale (issue des méthodes présentées plus loin dans cette section) convient davantage.</p>
+<p><img src="images/08_ternaire-sd.png" class="img-fluid"></p>
+<p>Les conséquences d’effectuer des statistiques linéaires sur des données compositionnelles brutes peuvent être majeures. En outre, <a href="http://dx.doi.org/10.1144/GSL.SP.2006.264.01.01">Pawlowksy-Glahn et Egozcue (2006)</a>, s’appuyant en outre sur Rock (1988), note les problèmes suivants (exprimés en mes mots).</p>
+<ol type="1">
+<li>les régressions, les regroupements et les analyses en composantes principales peuvent avoir peu ou pas de signification</li>
+<li>les propriétés des distributions peuvent être générées par l’opération de fermeture de la composition (s’assurer que le total des proportions donne 100%)</li>
+<li>les résultats d’analyses discriminantes linéaires sont propices à être illusoires</li>
+<li>tous les coefficients de corrélation seront affectés à des degrés inconnus</li>
+<li>les résultats des tests d’hypothèses seront intrinsèquement faussés</li>
+</ol>
+<p>Pour contourner ces problèmes, il faut d’abord aborder les données compositionnelles pour ce qu’elles sont: des données intrinsèquement multivariées. Elles sont un nuage de point, et non pas une collection de variables individuelles. Ceci qui n’empêche pas d’effectuer des analyses consciencieusement sous des angles particuliers.</p>
+<p>En R, on pourra aisément rapporter une composition en somme unitaire grâce à la fonction <code>apply</code>. Mais auparavant, chargeons le module <code>compositions</code> (n’oubliez pas de l’installer au préalable) pour accéder à des données fictives de proportions de sable, limon et argile dans des sédiments.</p>
+<div class="cell">
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="http://www.stat.boogaart.de/compositions/">"compositions"</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"ArcticLake"</span><span class="op">)</span></span>
+<span><span class="va">ArcticLake</span> <span class="op">&lt;-</span> <span class="va">ArcticLake</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">ArcticLake</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 4
+   sand  silt  clay depth
+  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1  77.5  19.5   3    10.4
+2  71.9  24.9   3.2  11.7
+3  50.7  36.1  13.2  12.8
+4  52.2  40.9   6.6  13  
+5  70    26.5   3.5  15.7
+6  66.5  32.2   1.3  16.3</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">comp</span> <span class="op">&lt;-</span> <span class="va">ArcticLake</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">depth</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="va">.</span>, <span class="fl">1</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="va">x</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">comp</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          sand      silt      clay
+[1,] 0.7750000 0.1950000 0.0300000
+[2,] 0.7190000 0.2490000 0.0320000
+[3,] 0.5070000 0.3610000 0.1320000
+[4,] 0.5235707 0.4102307 0.0661986
+[5,] 0.7000000 0.2650000 0.0350000</code></pre>
+</div>
+</div>
+<p>On pourra aussi utiliser la fonction <code>acomp</code> (pour Aitchison-composition) pour fermer la composition à une somme de 1.</p>
+<div class="cell">
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">comp</span> <span class="op">&lt;-</span> <span class="va">ArcticLake</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">depth</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/compositions/man/acomp.html">acomp</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span></span>
+<span><span class="va">comp</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     sand        silt        clay       
+[1,] "0.7750000" "0.1950000" "0.0300000"
+[2,] "0.7190000" "0.2490000" "0.0320000"
+[3,] "0.5070000" "0.3610000" "0.1320000"
+[4,] "0.5235707" "0.4102307" "0.0661986"
+[5,] "0.7000000" "0.2650000" "0.0350000"
+attr(,"class")
+[1] "acomp"</code></pre>
+</div>
+</div>
+<p>Cette stratégie a pour avantage d’attribuer à la variable <code>comp</code> la classe <code>acomp</code>, qui automatise les opérations dans l’espace compositionnel (que l’on nomme aussi le <em>simplex</em>). La représentation ternaire est souvent utilisée pour présenter des compositions. Toutefois, il est difficile d’interpréter les compositions de plus de trois parties. La classe <code>acomp</code> automatise aussi la représentation teranaire.</p>
+<div class="cell">
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">comp</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="08-explorer_files/figure-html/expl-coda-tern-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Afin de transposer cet espace clôt en un espace ouvert, on pourra diviser chaque proportion par une proportion de référence choisie parmi n’importe quelle proportion. Du coup, on retire une dimension redondante! Dans ce ratio, on choisit d’utiliser la proportion de référence au dénominateur, ce qui est arbitraire. En utilisant le log du ratio, l’inverse du ratio ne sera qu’un changement de signe, ce qui est pratique en statistiques linéaries. Cette solution, proposée par Aitchison (1986), s’applique non seulement sur les compositions à deux composantes, mais sur toute composition. Il s’agit alors d’utiliser une composition de référence pour effecteur les ratios. Pour une composition de <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span>, <span class="math inline">\(C\)</span>, <span class="math inline">\(D\)</span> et <span class="math inline">\(E\)</span>:</p>
+<p><span class="math display">\[alr_A = log \left( \frac{A}{E} \right), alr_B = log \left( \frac{B}{E} \right), alr_C = log \left( \frac{C}{E} \right), alr_D = log \left( \frac{D}{E} \right)\]</span></p>
+<p>Dans R, la colonne de référence est par défaut la <strong>dernière colonne de la matrice des compositions</strong>.</p>
+<div class="cell">
+<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">add_lr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/compositions/man/alr.html">alr</a></span><span class="op">(</span><span class="va">comp</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Cette dernière stratégie se nomme les <strong>log-ratios aditifs</strong> (<span class="math inline">\(alr\)</span> pour <em>additive log-ratio</em>). Bien que valide pour effectuer des tests statistiques, cette stratégie a le désavantage de dépendre de la décision arbitraire de la composante à utiliser au numérateur. Deuxième restriction des <em>alr</em>: les axes de l’espace des <em>alr</em> n’étant pas orthogonaux, ils ne peuvent pas être utilisés pour effectuer des statistiques basées sur les distances (que nous couvrirons au <a href="09-ordination.html">chapitre&nbsp;<span>10</span></a>).</p>
+<p>L’autre stratégie proposée par Aitchison était d’effectuer un log-ratio entre chaque composante et la moyenne géométrique de toutes les composantes. Cette transformation se nomme le <strong>log-ratio centré</strong> (<span class="math inline">\(clr\)</span>, pour <em>centered log-ratio</em>)</p>
+<p><span class="math display">\[clr_i = log \left( \frac{x_i}{g \left( x \right)} \right)\]</span></p>
+<p>En R,</p>
+<div class="cell">
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cen_lr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/compositions/man/clr.html">clr</a></span><span class="op">(</span><span class="va">comp</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Avec des CLRs, les distances sont valides. Mais… nous restons avec le problème de la redondance d’information. En fait, la somme de chacunes des lignes d’une matrice de clr est de 0. Pas très pratique lorsque l’on effectue des statistiques incluant une inversion de la matrice de covariance (distance de Mahalanobis, géostatistiques, etc.)</p>
+<pre><code>cen_lr %&gt;% 
+  cov() %&gt;% 
+  solve()
+ Error in solve.default(.) : le système est numériquement singulier : conditionnement de la réciproque = 4.44407e-17</code></pre>
+<p>Enfin, une autre méthode de transformation développée par Egoscue et al.&nbsp;(2003), les log-ratios isométriques (ou <em>isometric log-ratios, ilr</em>) projette les compositions comprenant D composantes dans un espace restreint de D-1 dimensions orthonormées. Ces dimensions doivent doivent être préalablement établie dans un dendrogramme de bifurcation, où chaque composante ou groupe de composante est successivement divisé en deux embranchement. La manière d’arranger ces balances importe peu, mais on aura avantage à créer des balances interprétables.</p>
+<p>Le diagramme de balances peut être encodé dans une partition binaire séquentielle (ou <em>sequential bianry partition, sbp</em>). Une <em>sbp</em> est une matrice de contraste ou chaque ligne représente une partition entre deux variables ou groupes de variables. Une composante étiquettée <code>+1</code> correspondra au groupe du numérateur, une composante étiquettée <code>-1</code> au dénominateur et une composante étiquettée <code>0</code> sera exclue de la partition (<a href="http://dx.doi.org/10.3389/fpls.2013.00039">Parent et al., 2013</a>). J’ai reformulé la fonction CoDaDendrogram pour que l’on puisse ajouter des informations intéressantes sur les balants horizontaux. Cette fonction est disponible sur github.</p>
+<div class="cell">
+<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/source.html">source</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/essicolo/AgFun/master/codadend2.R"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">sbp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>,<span class="op">-</span><span class="fl">1</span>,</span>
+<span>                <span class="fl">1</span>,<span class="op">-</span><span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span>,</span>
+<span>              byrow <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>              ncol <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">CoDaDendrogram2</span><span class="op">(</span><span class="va">comp</span>, V <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/compositions/man/gsimerge2signary.html">gsi.buildilrBase</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">sbp</span><span class="op">)</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>,</span>
+<span>                equal.height <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="08-explorer_files/figure-html/expl-sbp-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Si la SBP est plus imposante, il pourrait être plus aisé de monter dans un chiffrier, puis de l’importer dans R via un fichier csv.</p>
+<p>Le calcul des ILRs est effectué comme suit.</p>
+<p><span class="math display">\[ilr_j = \sqrt{\frac{n_j^+ n_j^-}{n_j^+ + n_j^-}} log \left( \frac{g \left( c_j^+ \right)}{g \left( c_j^+ \right)} \right)\]</span></p>
+<p>ou, à la ligne <span class="math inline">\(j\)</span> de la SBP, <span class="math inline">\(n_j^+\)</span> et <span class="math inline">\(n_j^-\)</span> sont respectivement le nombre de composantes au numérateur et au dénominateur, <span class="math inline">\(g \left( c_j^+ \right)\)</span> est la moyenne géométrique des composantes au numérateur et <span class="math inline">\(g \left( c_j^- \right)\)</span> est la moyenne géométrique des composantes au dénominateur.</p>
+<p>Les balances sont conventionnellement notées <code>[A,B | C,D]</code>, ou les composantes <code>A</code> et <code>B</code> au dénominateur sont balancées avec les composantes <code>C</code> and <code>D</code> au numérateur. Une balance positive signifie que la moyenne géométrique des concentrations au numérateur est supérieur à celle au dénominateur, et inversement, alors qu’une balance nulle signifie que les moyennes géométriques sont égales (équilibre). Ainsi, en modélisation linéaire, un coefficient positif sur <code>[A,B | C,D]</code> signifie que l’augmentation de l’importance de <code>C</code> et <code>D</code> comparativement à <code>A</code> et <code>B</code> est associé à une augmentation de la variable réponse du modèle.</p>
+<p>En R,</p>
+<div class="cell">
+<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">iso_lr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/compositions/man/ilr.html">ilr</a></span><span class="op">(</span><span class="va">comp</span>, V <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/compositions/man/gsimerge2signary.html">gsi.buildilrBase</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">sbp</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Notez la forme <code>gsi.buildilrBase(t(sbp))</code> est une opération pour obtenir la matrice d’orthonormalité à partir de la SBP.</p>
+<p>Les ILRs sont des balances multivariées sur lesquelles on pourra effectuer des statistiques linéaries. Bien que l’interprétation des résultats comme collection d’interprétations sur des balances univariées pourra être affectée par la structure de la SBP, ni les statistiques linéaires multivariées, ni la distance entre les points ne seront affectés. En effet, chaque variante de la SBP est une rotation (d’un facteur de 60°) par rapport à l’origine:</p>
+<div class="cell">
+<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/source.html">source</a></span><span class="op">(</span><span class="st">"lib/ilr-rotation-sbp.R"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><img src="images/08_ilr-rotation.png" class="img-fluid"></p>
+<p>Pour les transformations inverses, vous pourrez utiliser les fonctions <code>alrInv</code>, <code>clrInv</code> et <code>ilrInv</code>. Dans tous les cas, si vous tenez à garder la trace de vos données dans leur format original, vous aurez avantage à ajouter à votre vecteur compositionnel la valeur de remplissage, constitué d’un amalgame des composantes non mesurées. Par exemple,</p>
+<div class="cell">
+<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pourc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>N <span class="op">=</span> <span class="fl">0.03</span>, P <span class="op">=</span> <span class="fl">0.001</span>, K <span class="op">=</span> <span class="fl">0.01</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/compositions/man/acomp.html">acomp</a></span><span class="op">(</span><span class="va">pourc</span><span class="op">)</span> <span class="co"># vous perdez la trace des proportions originales</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>           N            P            K 
+"0.73170732" "0.02439024" "0.24390244" 
+attr(,"class")
+[1] "acomp"</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pourc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>N <span class="op">=</span> <span class="fl">0.03</span>, P <span class="op">=</span> <span class="fl">0.001</span>, K <span class="op">=</span> <span class="fl">0.01</span><span class="op">)</span></span>
+<span><span class="va">Fv</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">pourc</span><span class="op">)</span></span>
+<span><span class="va">comp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/compositions/man/acomp.html">acomp</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">pourc</span>, Fv <span class="op">=</span> <span class="va">Fv</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">comp</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      N       P       K      Fv 
+"0.030" "0.001" "0.010" "0.959" 
+attr(,"class")
+[1] "acomp"</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">iso_lr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/compositions/man/ilr.html">ilr</a></span><span class="op">(</span><span class="va">comp</span><span class="op">)</span> <span class="co"># avec une sbp par défaut</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/compositions/man/ilr.html">ilrInv</a></span><span class="op">(</span><span class="va">iso_lr</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      N       P       K      Fv 
+"0.030" "0.001" "0.010" "0.959" 
+attr(,"class")
+[1] "acomp"</code></pre>
+</div>
+</div>
+<p>Si vos données font partie d’un tout, je vous recommande chaudement d’utiliser des méthodes compositionnelles autant pour l’analyse que la modélisation. Pour en savoir davantage, le livre <em>Compositional data analysis with R</em>, de van den Boogart et Tolosana-Delgado, est disponible en format électronique à la bibliothèque de l’Université Laval.</p>
+<p>Pour aller plus loin, j’ai écri un billet à ce sujet (auquel à ce jour il manque toujours un cas d’étude): <a href="https://www.authorea.com/users/23640/articles/281937-we-should-use-balances-and-machine-learning-to-diagnose-ionomes">We should use balances and machine learning to diagnose ionomes</a>.</p>
+</section></section><section id="acquérir-des-données-météo" class="level3" data-number="9.3.2"><h3 data-number="9.3.2" class="anchored" data-anchor-id="acquérir-des-données-météo">
+<span class="header-section-number">9.3.2</span> Acquérir des données météo</h3>
+<p>Une tâche commune en écologie est de lier des observations à la météo… qui sont rarement collectés lors d’expériences. <a href="https://meteo.gc.ca/">Environnement Canada</a> possède sont réseau de stations. Les données sont disponibles sur internet en libre accès. Vous pouvez chercher des stations, effectuer des requêtes et télécharger des fichiers csv. Pour un petit tableau, la tâche est plutôt triviale. Mais ça devient rapidement laborieux à mesure que l’on doit rechercher de nombreuses données.</p>
+<p>Le module <a href="http://ropensci.github.io/weathercan/">weathercan</a>, développé par Steffi LaZerte, permet d’effectuer des requêtes rapidement à partir des coordonnées de votre site expérimental. Par exemple, si je cherche une station météo fournissant des données horaires situé à moins de 20 km du sommet du Mont-Bellevue, à Sherbrooke, aux coordonnées [latitude 45.35, longitude -71.90],</p>
+<div class="cell">
+<div class="sourceCode" id="cb68"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://docs.ropensci.org/weathercan/">"weathercan"</a></span><span class="op">)</span></span>
+<span><span class="va">station_site</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/weathercan/reference/stations_search.html">stations_search</a></span><span class="op">(</span>coords <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">45.35</span>, <span class="op">-</span><span class="fl">71.90</span><span class="op">)</span>, dist <span class="op">=</span> <span class="fl">20</span>, interval <span class="op">=</span> <span class="st">"hour"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The stations data frame hasn't been updated in over 4 weeks. Consider running `stations_dl()` to check for updates and make sure you have the most recent stations list available
+The stations data frame hasn't been updated in over 4 weeks. Consider running `stations_dl()` to check for updates and make sure you have the most recent stations list available</code></pre>
+</div>
+<div class="sourceCode" id="cb70"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">station_site</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 17
+  prov  station_name station_id climate_id WMO_id TC_id   lat   lon  elev tz    
+  &lt;chr&gt; &lt;chr&gt;             &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; 
+1 QC    LENNOXVILLE        5397 7024280     71611 WQH    45.4 -71.8  181  Etc/G…
+2 QC    SHERBROOKE        48371 7028123     71610 YSC    45.4 -71.7  241. Etc/G…
+3 QC    SHERBROOKE A       5530 7028124     71610 YSC    45.4 -71.7  241. Etc/G…
+4 QC    SHERBROOKE A      30171 7028126        NA GSC    45.4 -71.7  241. Etc/G…
+# ℹ 7 more variables: interval &lt;chr&gt;, start &lt;dbl&gt;, end &lt;dbl&gt;, normals &lt;lgl&gt;,
+#   normals_1981_2010 &lt;lgl&gt;, normals_1971_2000 &lt;lgl&gt;, distance &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p>Je prends en note l’identifiant de la station désirée (ou des stations, disons 5397 et 48371), puis je lance une requête pour obtenir la météo horaire entre les dates désirées.</p>
+<div class="cell">
+<div class="sourceCode" id="cb72"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mont_bellevue</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/weathercan/reference/weather_dl.html">weather_dl</a></span><span class="op">(</span>station_ids <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5397</span>, <span class="fl">48371</span><span class="op">)</span>,</span>
+<span>                            start <span class="op">=</span> <span class="st">"2019-02-01"</span>,</span>
+<span>                            end <span class="op">=</span> <span class="st">"2019-02-07"</span>,</span>
+<span>                            interval <span class="op">=</span> <span class="st">"hour"</span>,</span>
+<span>                            verbose <span class="op">=</span> <span class="cn">TRUE</span>, </span>
+<span>                            time_disp <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The stations data frame hasn't been updated in over 4 weeks. Consider running `stations_dl()` to check for updates and make sure you have the most recent stations list available</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Getting station: 5397</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Formatting station data: 5397</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Adding header data: 5397</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Getting station: 48371</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Formatting station data: 48371</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Adding header data: 48371</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Trimming missing values before and after</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>As of weathercan v0.3.0 time display is either local time or UTC
+See Details under ?weather_dl for more information.
+This message is shown once per session</code></pre>
+</div>
+<div class="sourceCode" id="cb82"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mont_bellevue</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 37
+  station_name station_id station_operator prov    lat   lon  elev climate_id
+  &lt;chr&gt;             &lt;dbl&gt; &lt;lgl&gt;            &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;     
+1 LENNOXVILLE        5397 NA               QC     45.4 -71.8   181 7024280   
+2 LENNOXVILLE        5397 NA               QC     45.4 -71.8   181 7024280   
+3 LENNOXVILLE        5397 NA               QC     45.4 -71.8   181 7024280   
+4 LENNOXVILLE        5397 NA               QC     45.4 -71.8   181 7024280   
+5 LENNOXVILLE        5397 NA               QC     45.4 -71.8   181 7024280   
+# ℹ 29 more variables: WMO_id &lt;chr&gt;, TC_id &lt;chr&gt;, date &lt;date&gt;, time &lt;dttm&gt;,
+#   year &lt;chr&gt;, month &lt;chr&gt;, day &lt;chr&gt;, hour &lt;chr&gt;, weather &lt;chr&gt;, hmdx &lt;dbl&gt;,
+#   hmdx_flag &lt;chr&gt;, precip_amt &lt;dbl&gt;, precip_amt_flag &lt;chr&gt;, pressure &lt;dbl&gt;,
+#   pressure_flag &lt;chr&gt;, rel_hum &lt;dbl&gt;, rel_hum_flag &lt;chr&gt;, temp &lt;dbl&gt;,
+#   temp_dew &lt;dbl&gt;, temp_dew_flag &lt;chr&gt;, temp_flag &lt;chr&gt;, visib &lt;dbl&gt;,
+#   visib_flag &lt;chr&gt;, wind_chill &lt;dbl&gt;, wind_chill_flag &lt;chr&gt;, wind_dir &lt;dbl&gt;,
+#   wind_dir_flag &lt;chr&gt;, wind_spd &lt;dbl&gt;, wind_spd_flag &lt;chr&gt;</code></pre>
+</div>
+</div>
+<p>Et voilà.</p>
+<div class="cell">
+<div class="sourceCode" id="cb84"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mont_bellevue</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">time</span>, y <span class="op">=</span> <span class="va">temp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="va">station_name</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="08-explorer_files/figure-html/expl-weathercan-plot-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section><section id="pédométrie-avec-r" class="level3" data-number="9.3.3"><h3 data-number="9.3.3" class="anchored" data-anchor-id="pédométrie-avec-r">
+<span class="header-section-number">9.3.3</span> Pédométrie avec R</h3>
+<p><em>Cette section a été écrite par <a href="https://www.researchgate.net/profile/Michael_Leblanc7">Michael Leblanc</a>.</em> Je n’y ai appliqué que quelques retouches esthétiques.</p>
+<p>Plusieurs fonctionnalités ont été développées sur R afin d’aider les <em>pédométriciens</em> à visualiser, explorer et traiter les données numériques en science des sols. Voici quelques exemples.</p>
+<section id="texture-du-sol" class="level4" data-number="9.3.3.1"><h4 data-number="9.3.3.1" class="anchored" data-anchor-id="texture-du-sol">
+<span class="header-section-number">9.3.3.1</span> Texture du sol</h4>
+<p>La texture du sol est définie par sa composition granulométrique, habituellement représentée par trois fractions (sable, limon, argile), laquelle peut être généralisée en classe texturale. La définition des classes texturales diffère d’un système ou d’un pays à l’autre comme en témoigne l’article <a href="http://www.afes.fr/wp-content/uploads/2017/10/EGS_15_2_richerdeforges.pdf">Perdus dans le triangle des textures (Richer de Forges et al.&nbsp;2008)</a>. La définition des fractions granulométriques peut également différer selon le domaine d’étude (ingénierie, pédologie) ou le pays. Par exemple, le diamètre du limon est de 0,002 mm à 0,05 mm dans le système canadien, américain et français alors qu’il est de 0,002 mm à 0,02 mm dans le système australien et de 0,002 mm à 0,063 mm dans le système allemand. Il est donc important de vérifier la méthodologie et le système de classification utilisés pour interpréter les données de texture du sol. Le module <code>soilTexture</code> propose des fonctions permettant d’aborder ces multiples définitions.</p>
+<div class="cell">
+<div class="sourceCode" id="cb85"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/julienmoeys/soiltexture">"soiltexture"</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="les-triangles-texturaux" class="level5" data-number="9.3.3.1.1"><h5 data-number="9.3.3.1.1" class="anchored" data-anchor-id="les-triangles-texturaux">
+<span class="header-section-number">9.3.3.1.1</span> Les triangles texturaux</h5>
+<p>Avec la fonction <code>TT.plot</code>, vous pouvez présenter vos données granulométriques dans un triangle textural tel que défini par les différents systèmes nationaux. Auparavant, créons un objet comprenant des textures aléatoires.</p>
+<div class="cell">
+<div class="sourceCode" id="cb86"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">848341</span><span class="op">)</span> <span class="co"># random.org</span></span>
+<span><span class="va">rand_text</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/soiltexture/man/TT.dataset.html">TT.dataset</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">100</span>, seed.val<span class="op">=</span><span class="fl">29</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">rand_text</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       CLAY     SILT      SAND          Z
+1 54.650857 40.37101  4.978129 13.2477582
+2 44.745954 40.81782 14.436221 20.8433109
+3 18.192509 48.26752 33.539970  7.1814626
+4 17.750492 40.14405 42.105458 -0.2077358
+5 65.518360 23.36110 11.120538 10.8656027
+6  6.610293 22.45353 70.936173  3.7108567</code></pre>
+</div>
+</div>
+<p>Avec le module soiltexture, les tableaux de texture doivent inclure les intitullés exactes CLAY, SILT et SAND (notez les majuscules). Les points des textures générées peuvent être portés dans des diagrammes ternaires texturaux de différents systèmes de classification, par exemple le système canadioen et le système USDA.</p>
+<div class="cell">
+<div class="sourceCode" id="cb88"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/soiltexture/man/TT.plot.html">TT.plot</a></span><span class="op">(</span>class.sys <span class="op">=</span> <span class="st">"CA.FR.TT"</span>, </span>
+<span>        tri.data <span class="op">=</span> <span class="va">rand_text</span>,</span>
+<span>        col <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/soiltexture/man/TT.plot.html">TT.plot</a></span><span class="op">(</span>class.sys <span class="op">=</span> <span class="st">"USDA.TT"</span>, </span>
+<span>        tri.data <span class="op">=</span> <span class="va">rand_text</span>,</span>
+<span>        col <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="08-explorer_files/figure-html/expl-sol-tern-1.png" class="img-fluid" width="1536"></p>
+</div>
+</div>
+<p>Les paramètres de la figure (titres, polices, style de la grille, etc.) peuvent être personnalisés avec les <a href="https://www.rdocumentation.org/packages/soiltexture/versions/1.5.1/topics/TT.plot">arguments TT.plot</a>.</p>
+</section><section id="les-classes-texturales" class="level5" data-number="9.3.3.1.2"><h5 data-number="9.3.3.1.2" class="anchored" data-anchor-id="les-classes-texturales">
+<span class="header-section-number">9.3.3.1.2</span> Les classes texturales</h5>
+<p>La fonction <code>TT.points.in.classes</code> est utile pour désigner la classe texturale à partir des données granulométriques, en spécifiant bien le système de classification désiré.</p>
+<div class="cell">
+<div class="sourceCode" id="cb89"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/soiltexture/man/TT.points.in.classes.html">TT.points.in.classes</a></span><span class="op">(</span></span>
+<span>  tri.data <span class="op">=</span> <span class="va">rand_text</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="op">]</span>, <span class="co"># </span></span>
+<span>  class.sys <span class="op">=</span> <span class="st">"CA.FR.TT"</span>,</span>
+<span>  PiC.type <span class="op">=</span> <span class="st">"t"</span></span>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "ALi" "ALi" "L"   "L"   "ALo" "LS"  "ALo" "A"   "LLi" "LSA"</code></pre>
+</div>
+</div>
+<p>Plusieurs autres fonctions sont proposées par <code>soiltexture</code> afin de visualiser, classifier et transformer les données de texture du sol : <a href="https://www.rdocumentation.org/packages/soiltexture/versions/1.5.1">Functions in soiltexture</a>. Julien Moeys (2018) propose également le tutoriel <a href="https://cran.r-project.org/web/packages/soiltexture/vignettes/soiltexture_vignette.pdf"><em>The soil texture wizard: a tutorial</em></a>.</p>
+</section></section><section id="profils-de-sols" class="level4" data-number="9.3.3.2"><h4 data-number="9.3.3.2" class="anchored" data-anchor-id="profils-de-sols">
+<span class="header-section-number">9.3.3.2</span> Profils de sols</h4>
+<p>Le profil de sols est une entité décrite par une séquence de couches ou d’horizons avec différentes caractéristiques morphologiques. Le module AQP, pour <a href="http://ncss-tech.github.io/AQP/"><em>Algorithms for Quantitative Pedology</em></a>, propose des fonctions de visualisation, d’agrégation et de classification permettant d’aborder la complexité inhérente aux informations pédologiques.</p>
+<section id="la-visualisation-de-profils" class="level5" data-number="9.3.3.2.1"><h5 data-number="9.3.3.2.1" class="anchored" data-anchor-id="la-visualisation-de-profils">
+<span class="header-section-number">9.3.3.2.1</span> La visualisation de profils</h5>
+<p>Vous devez d’abord structurer vos données dans un tableau (<code>data.frame</code>) incluant minimalement ces trois colonnes :</p>
+<ol type="1">
+<li>Identifiant unique du profil (groupes d’horizons) (<code>id</code>)</li>
+<li>Limites supérieures de l’horizon (<code>top</code>)</li>
+<li>Limites inférieures de l’horizon (<code>down</code>)</li>
+</ol>
+<p>Vos données morphologiques, physico-chimiques, etc., sont incluses dans les autres colonnes. Chargeons un fichier pédologique à titre d’exemple.</p>
+<div class="cell">
+<div class="sourceCode" id="cb91"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">profils</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/08_pedometric-profile.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 44 Columns: 9
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (2): horizon, hue
+dbl (7): id, top, bottom, value, chroma, pH.CaCl2, C.CNS.pc
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode" id="cb93"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">profils</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 9
+     id horizon   top bottom hue   value chroma pH.CaCl2 C.CNS.pc
+  &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+1     1 Ap1         0     23 10YR      2      3     4.78     2.71
+2     1 Ap2        23     34 10YR      2      2     4.74     2.2 
+3     1 Bfcj       34     46 7.5YR     4      5     4.79     2.4 
+4     1 BC         46     83 2.5Y      4      5     4.93     0.22
+5     1 C          83    100 2.5Y      5      4     4.82     0.18
+6     2 Ap          0     29 10YR      2      2     4.6      4.22</code></pre>
+</div>
+</div>
+<p>La fonction <code>munsell2rgb</code> permet de convertir le code de couleur <em>Munsell</em> en format <em>RGB</em>.</p>
+<div class="cell">
+<div class="sourceCode" id="cb95"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/ncss-tech/aqp">"aqp"</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>This is aqp 2.0.2</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attachement du package : 'aqp'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Les objets suivants sont masqués depuis 'package:dplyr':
+
+    combine, slice</code></pre>
+</div>
+<div class="sourceCode" id="cb99"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">profils</span><span class="op">$</span><span class="va">soil_color</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">profils</span>, <span class="fu"><a href="https://rdrr.io/pkg/aqp/man/munsell2rgb.html">munsell2rgb</a></span><span class="op">(</span><span class="va">hue</span>, <span class="va">value</span>, <span class="va">chroma</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Préalablement à la visualisation, le tableau est transformé en objet <code>SoilProfileCollection</code> par la fonction <code>depths</code>. Pour ce faire, le tableau doit être un pur <code>data.frame</code>, non pas un <code>tibble</code>.</p>
+<div class="cell">
+<div class="sourceCode" id="cb100"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">profils</span> <span class="op">&lt;-</span> <span class="va">profils</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/aqp/man/depths.html">depths</a></span><span class="op">(</span><span class="va">profils</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">id</span> <span class="op">~</span> <span class="va">top</span> <span class="op">+</span> <span class="va">bottom</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>La fonction <code>plot</code> détectera le type d’objet et appellera la fonction de visualisation en conséquence.</p>
+<div class="cell">
+<div class="sourceCode" id="cb101"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span><span class="op">(</span><span class="va">profils</span>, name<span class="op">=</span><span class="st">"horizon"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/title.html">title</a></span><span class="op">(</span><span class="st">'Couleur des horizons'</span>, cex.main<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span><span class="op">(</span><span class="va">profils</span>, name<span class="op">=</span><span class="st">"horizon"</span>, color<span class="op">=</span><span class="st">'C.CNS.pc'</span>, col.label<span class="op">=</span><span class="st">'C total (%)'</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span><span class="op">(</span><span class="va">profils</span>, name<span class="op">=</span><span class="st">"horizon"</span>, color<span class="op">=</span><span class="st">'pH.CaCl2'</span>, col.label<span class="op">=</span><span class="st">'pH CaCl2'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="08-explorer_files/figure-html/expl-sol-profils-plot-1.png" class="img-fluid" width="1152"></p>
+</div>
+</div>
+<p>De multiples figures thématiques peuvent être générées afin de représenter les particuliarités des profils. Pour aller plus loin, consultez les guides <a href="http://ncss-tech.github.io/AQP/aqp/aqp-intro.html"><em>Introduction to SoilProfileCollection Objects</em></a> et <a href="http://ncss-tech.github.io/AQP/aqp/SPC-plotting-ideas.html"><em>Generating Sketches from SPC Objects</em></a>.</p>
+</section><section id="les-plans-verticaux-depth-functions" class="level5" data-number="9.3.3.2.2"><h5 data-number="9.3.3.2.2" class="anchored" data-anchor-id="les-plans-verticaux-depth-functions">
+<span class="header-section-number">9.3.3.2.2</span> Les plans verticaux (depth functions)</h5>
+<p>Les plans verticaux sont des diagrammes qui permettent d’interpréter les données en fonction de la profondeur. La fonction <code>slab</code> permet le calcul de statistiques descriptives par intervalles de profondeur réguliers, lesquelles permettent de visualiser la variabilité verticale des propriétés des sols.</p>
+<div class="cell">
+<div class="sourceCode" id="cb102"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">agg</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/aqp/man/slab.html">slab</a></span><span class="op">(</span><span class="va">profils</span>, fm <span class="op">=</span> <span class="op">~</span> <span class="va">C.CNS.pc</span> <span class="op">+</span> <span class="va">pH.CaCl2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>La visualisation est générée par le module graphique ggplot2</p>
+<div class="cell">
+<div class="sourceCode" id="cb103"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">agg</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="op">-</span><span class="va">top</span>, y <span class="op">=</span> <span class="va">p.q50</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html">facet_grid</a></span><span class="op">(</span><span class="va">.</span> <span class="op">~</span> <span class="va">variable</span>, scale <span class="op">=</span> <span class="st">"free"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_ribbon.html">geom_ribbon</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>ymin <span class="op">=</span>  <span class="va">p.q25</span>, ymax <span class="op">=</span> <span class="va">p.q75</span><span class="op">)</span>, fill <span class="op">=</span> <span class="st">"grey75"</span>, alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_path</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Profondeur (cm)"</span>,</span>
+<span>       y <span class="op">=</span> <span class="st">"Médiane bordée des 25e and 75e percentiles"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="08-explorer_files/figure-html/expl-sol-agg-ggplot-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section><section id="le-regroupement-de-profils" class="level5" data-number="9.3.3.2.3"><h5 data-number="9.3.3.2.3" class="anchored" data-anchor-id="le-regroupement-de-profils">
+<span class="header-section-number">9.3.3.2.3</span> Le regroupement de profils</h5>
+<p>Le calcul des distances de dissimilarité entre les profils avec <code>profile_compare</code> permet la construction de dendrogramme et le regroupement des profils. Notez que nous survolerons au <a href="09-ordination.html">chapitre&nbsp;<span>10</span></a> les concepts de dissimilarité et de partitionnement.</p>
+<div class="cell">
+<div class="sourceCode" id="cb104"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://svn.r-project.org/R-packages/trunk/cluster/">"cluster"</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="http://mvtnorm.R-forge.R-project.org">"mvtnorm"</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/ncss-tech/sharpshootR">"sharpshootR"</a></span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Registered S3 method overwritten by 'vegan':
+  method          from   
+  print.nullmodel parsnip</code></pre>
+</div>
+<div class="sourceCode" id="cb106"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://r.igraph.org/">"igraph"</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attachement du package : 'igraph'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>L'objet suivant est masqué depuis 'package:compositions':
+
+    normalize</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Les objets suivants sont masqués depuis 'package:dials':
+
+    degree, neighbors</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Les objets suivants sont masqués depuis 'package:lubridate':
+
+    %--%, union</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Les objets suivants sont masqués depuis 'package:dplyr':
+
+    as_data_frame, groups, union</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Les objets suivants sont masqués depuis 'package:purrr':
+
+    compose, simplify</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>L'objet suivant est masqué depuis 'package:tidyr':
+
+    crossing</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>L'objet suivant est masqué depuis 'package:tibble':
+
+    as_data_frame</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Les objets suivants sont masqués depuis 'package:stats':
+
+    decompose, spectrum</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>L'objet suivant est masqué depuis 'package:base':
+
+    union</code></pre>
+</div>
+<div class="sourceCode" id="cb117"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># remotes::install_github("ncss-tech/sharpshootR")</span></span>
+<span><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/aqp/man/profile_compare.html">profile_compare</a></span><span class="op">(</span><span class="va">profils</span>, vars<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'C.CNS.pc'</span>, <span class="st">'pH.CaCl2'</span><span class="op">)</span>, k<span class="op">=</span><span class="fl">0</span>, max_d<span class="op">=</span><span class="fl">40</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: 'profile_compare' est obsolète.
+Utilisez plutôt ‘NCSP’.
+Voir help("Deprecated")</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: profile_compare() has been deprecated, please use NCSP()</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Computing dissimilarity matrices from 10 profiles</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code> [0.08 Mb]</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: SPC / distance matrix IDs out of order, soon to be fixed (#7)</code></pre>
+</div>
+<div class="sourceCode" id="cb123"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">d_diana</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/cluster/man/diana.html">diana</a></span><span class="op">(</span><span class="va">d</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/sharpshootR/man/plotProfileDendrogram.html">plotProfileDendrogram</a></span><span class="op">(</span><span class="va">profils</span>, name<span class="op">=</span><span class="st">"horizon"</span>, <span class="va">d_diana</span>,</span>
+<span>                      scaling.factor <span class="op">=</span> <span class="fl">0.3</span>, y.offset <span class="op">=</span> <span class="fl">5</span>,</span>
+<span>                      color<span class="op">=</span><span class="st">'pH.CaCl2'</span>,  col.label<span class="op">=</span><span class="st">'pH CaCl2'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>profile IDs and clustering IDs are not in the same order</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="08-explorer_files/figure-html/expl-sol-cluster-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section><section id="diagramme-de-relations-entre-les-horizons" class="level5" data-number="9.3.3.2.4"><h5 data-number="9.3.3.2.4" class="anchored" data-anchor-id="diagramme-de-relations-entre-les-horizons">
+<span class="header-section-number">9.3.3.2.4</span> Diagramme de relations entre les horizons</h5>
+<p>Il est possible de visualiser les transitions d’horizon les plus probables dans un groupe de profils de sols.</p>
+<div class="cell">
+<div class="sourceCode" id="cb125"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/aqp/man/hzTransitionProbabilities.html">hzTransitionProbabilities</a></span><span class="op">(</span><span class="va">profils</span>, name<span class="op">=</span><span class="st">"horizon"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: ties in transition probability matrix</code></pre>
+</div>
+<div class="sourceCode" id="cb127"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>, mfcol <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span><span class="op">(</span><span class="va">profils</span>, name<span class="op">=</span><span class="st">"horizon"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/sharpshootR/man/plotSoilRelationGraph.html">plotSoilRelationGraph</a></span><span class="op">(</span><span class="va">tp</span>, graph.mode <span class="op">=</span> <span class="st">"directed"</span>, edge.arrow.size <span class="op">=</span> <span class="fl">0.5</span>, edge.scaling.factor <span class="op">=</span> <span class="fl">2</span>, vertex.label.cex <span class="op">=</span> <span class="fl">0.75</span>, </span>
+<span>                      vertex.label.family <span class="op">=</span> <span class="st">"sans"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="08-explorer_files/figure-html/expl-sol-relations-1.png" class="img-fluid" width="960"></p>
+</div>
+</div>
+<p>Consultez <a href="http://ncss-tech.github.io/AQP/">AQP project</a> pour des présentations, des tutoriels et des exemples de figures qui montrent les nombreuses possibilités du package <code>AQP</code>.</p>
+</section></section></section><section id="méta-analyses-en-r" class="level3" data-number="9.3.4"><h3 data-number="9.3.4" class="anchored" data-anchor-id="méta-analyses-en-r">
+<span class="header-section-number">9.3.4</span> Méta-analyses en R</h3>
+<p>Je conseille les livres <a href="https://www.wiley.com/en-us/Introduction+to+Meta+Analysis-p-9780470057247"><em>Introduction to Meta-Analysis</em></a>, <a href="https://www.springer.com/us/book/9783319214153"><em>Meta-analysis with R</em></a> et <a href="https://press.princeton.edu/titles/10045.html"><em>Handbook of Meta-analysis in Ecology and Evolution</em></a> pour les méta-analyses sur des écosystèmes. Le module metafor est un ioncournable pour effectuer des métaanalyses en R. On ne passe pas tout à fait à côté si l’on utilise le module meta, lui-même basé en partie sur metafor. Le module meta a touttefois l’avantage d’être simple d’utilisation. Par exemple, pour une méta-analyse d’une réponse continue,</p>
+<div class="cell">
+<div class="sourceCode" id="cb128"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/guido-s/meta/">"meta"</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Le chargement a nécessité le package : metadat</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading 'meta' package (version 7.0-0).
+Type 'help(meta)' for a brief overview.
+Readers of 'Meta-Analysis with R (Use R!)' should install
+older version of 'meta' package: https://tinyurl.com/dt4y5drs</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attachement du package : 'meta'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>L'objet suivant est masqué _par_ '.GlobalEnv':
+
+    ci</code></pre>
+</div>
+<div class="sourceCode" id="cb133"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">Fleiss1993cont</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Fleiss1993cont"</code></pre>
+</div>
+<div class="sourceCode" id="cb135"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">meta_analyse</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/meta/man/metacont.html">metacont</a></span><span class="op">(</span>n.e <span class="op">=</span> <span class="va">n.psyc</span>, mean.e <span class="op">=</span> <span class="va">mean.psyc</span>, sd.e <span class="op">=</span> <span class="va">sd.psyc</span>, </span>
+<span>                        n.c <span class="op">=</span> <span class="va">n.cont</span>, mean.c <span class="op">=</span> <span class="va">mean.cont</span>, sd.c <span class="op">=</span> <span class="va">sd.cont</span>,</span>
+<span>                        comb.fixed <span class="op">=</span> <span class="cn">T</span>, comb.random <span class="op">=</span> <span class="cn">T</span>, studlab <span class="op">=</span> <span class="va">study</span>,</span>
+<span>                        data <span class="op">=</span> <span class="va">Fleiss1993cont</span>, sm <span class="op">=</span> <span class="st">"SMD"</span><span class="op">)</span></span>
+<span><span class="va">meta_analyse</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Number of studies: k = 5
+Number of observations: o = 232 (o.e = 106, o.c = 126)
+
+                         SMD             95%-CI     z p-value
+Common effect model  -0.3434 [-0.6068; -0.0801] -2.56  0.0106
+Random effects model -0.3434 [-0.6068; -0.0801] -2.56  0.0106
+
+Quantifying heterogeneity:
+ tau^2 = 0 [0.0000; 0.7255]; tau = 0 [0.0000; 0.8518]
+ I^2 = 0.0% [0.0%; 79.2%]; H = 1.00 [1.00; 2.19]
+
+Test of heterogeneity:
+    Q d.f. p-value
+ 3.68    4  0.4514
+
+Details on meta-analytical method:
+- Inverse variance method
+- Restricted maximum-likelihood estimator for tau^2
+- Q-Profile method for confidence interval of tau^2 and tau
+- Hedges' g (bias corrected standardised mean difference; using exact formulae)</code></pre>
+</div>
+</div>
+<p>Et pour effectuer un <em>forest plot</em>,</p>
+<div class="cell">
+<div class="sourceCode" id="cb137"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://wviechtb.github.io/metafor/reference/forest.html">forest</a></span><span class="op">(</span><span class="va">meta_analyse</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="08-explorer_files/figure-html/expl-meta-plot-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section><section id="créer-des-applications-avec-r" class="level3" data-number="9.3.5"><h3 data-number="9.3.5" class="anchored" data-anchor-id="créer-des-applications-avec-r">
+<span class="header-section-number">9.3.5</span> Créer des applications avec R</h3>
+<p>RStudio vous permet de déployer vos résultats sous forme d’applications web grâce à son module <a href="https://www.rstudio.com/products/shiny/">shiny</a>. Pour ce faire, le seul préalable est de savoir programmer en R. En agençant une interface avec des <em>inputs</em> (listes de sélection, des boîtes de dialogue, des sélecteurs, des boutons, etc.) avec des modèles que vous développez, vous pourrez créer des interfaces intéractives.</p>
+<p>Pour créer une application shiny, vous devez créer une partie pour l’interface (<code>ui</code>) et une autre pour le calcul (<code>server</code>). Je n’irai pas dans les détails, étant donnée qu’il s’agit d’un sujet à part entière. Pour aller plus loin, visitez le site du projet <a href="https://www.rstudio.com/products/shiny/">shiny</a>.</p>
+<pre><code><a href="https://shiny.posit.co/">library("shiny")
+
+ui &lt;- basicPage(
+  sliderInput("A", "Asymptote:", min = 0, max = 100, value = 50),
+  sliderInput("E", "Environnement:", min = -10, max = 100, value = 20),
+  sliderInput("R", "Taux:", min = 0, max = 0.1, value = 0.035),
+  sliderInput("prix_dose", "Prix dose:", min = 0, max = 5, value = 1),
+  sliderInput("prix_vente", "Prix vente:", min = 0, max = 200, value = 100),
+  sliderInput("dose", "Dose:", min = 0, max = 300, value = c(0, 200)),
+  plotOutput("distPlot")
+)
+
+server &lt;- function(input, output) {
+  mitsch_f &lt;- reactive({
+    input$A * (1 - exp(-input$R * (seq(input$dose[1], input$dose[2], length = 100) + input$E)))
+  })
+  
+  mitsch_opt &lt;- reactive({
+    (log((input$A * input$R * input$prix_vente) / input$prix_dose - input$E * input$R) / input$R )
+  })
+  
+  
+  output$distPlot &lt;- renderPlot({
+    plot(seq(input$dose[1], input$dose[2], length = 100), mitsch_f(), type = "l", ylim = c(0, 100))
+    abline(v = mitsch_opt() )
+    text(mitsch_opt(), 2, paste("Dose optimale:", round(mitsch_opt(), 0)))
+  })
+}
+
+shinyApp(ui, server)</a></code></pre>
+<p>Une fois l’application créée, il est possible de la déployer sur le site shninyapps.io. D’abord créer une application shiny dans RStudio: File &gt; New File &gt; Shiny Web App. Écrivez votre code dans le fichier app.R (dans ce cas, ce peut être un copier-coller), puis cliquez sur Run App en haut à droite de la fenêtre d’édition du code. Lorsque l’application fonctionne, vous pourrez la publier via RStudio en cliquant sur le bouton Publish dans la fenêtre Viewer (vous devez au préalable avoir un comte sur shinyapp.io).</p>
+<p>Une application sera publique et sera ouverte. https://essicolo.shinyapps.io/Mitscherlich/</p>
+<p>Pour déployer en mode privé, vous devrez débourser pour un forfait ou installer votre propre serveur.</p>
+</section><section id="travailler-en-python" class="level3" data-number="9.3.6"><h3 data-number="9.3.6" class="anchored" data-anchor-id="travailler-en-python">
+<span class="header-section-number">9.3.6</span> Travailler en Python</h3>
+<p>Le <a href="07b-bayes.html">chapitre&nbsp;<span>8</span></a> a présenté un module pour les statistiques bayésiennes nécessitant un environnement Python. Il s’agissait de faire fonctionner un module en R qui, à l’interne, effectue ses calculs en Python. Rien ne vous empêche d’effectuer des calculs directement en Python à même l’interface de RStudio.</p>
+<p>Note : Nous avons aussi ajouté une section facultative d’introduction à Python au <a href="06-python.html">chapitre&nbsp;<span>6</span></a> si vous souhaitez aller plus loin.</p>
+<p>Il vous faudra d’abord installer Python et les modules de calcul que vous désirez. Il existe plusieurs distributions de Python. Parmi elles, Anaconda est probablement la plus intuitive à installer. Choisissez d’abord <a href="https://www.anaconda.com/download">Anaconda</a> (~500 Mo) ou <a href="https://conda.io/miniconda.html">Miniconda</a> pour une installation minimale (~60 Mo) - si vous installez Miniconda, vous devrez aussi installer les modules nécessaires pour le calcul. Installez aussi le module <a href="https://rstudio.github.io/reticulate/"><strong><code>reticulate</code></strong></a> de R, de sorte que vous puissiez communiquer avec Python. Anaconda fonctionne avec des environnements de calcul. Chaque environnement possède sa propre version de Python et ses propres modules: cela vous permet d’isoler vos environnements et de contrôler la version des modules. Vous pouvez connecter R à l’environnement de base créé lors de l’installation d’Anaconda, ou bien en créer un autre. Pour en créer un nouveau, incluant une liste de modules de calcul,</p>
+<p><code>#{r message=FALSE} library("reticulate") conda_create(envname = "monprojet", packages = c("python", "numpy", "scipy", "matplotlib", "pandas", "scikit-learn"))</code></p>
+<p>Connectez-vous à votre environnement Python, par exemple j’utilise l’environnement par défaut <code>anaconda3</code>.</p>
+<p><code>#{r expl-connecter-python} library("reticulate") conda_list() use_condaenv("anaconda3", required = TRUE)</code></p>
+<p>Supposons que vous travailliez en R markdown. Pour lancer un bloc de code en Python, indiquez <code>python</code> au lieu de <code>r</code> dans l’entête. Il faudra que les modules <strong><code>numpy</code></strong>, <strong><code>pandas</code></strong> et <strong><code>matplotlib</code></strong> soient installé dans votre environnement Python</p>
+<p><code>#{python expl-py-matplotlib} import numpy as np import pandas as pd import matplotlib.pyplot as plt a = np.linspace(0, 30, 101) b = np.sin(a) plt.plot(a, b) plt.title("Un graphique en Matplotlib dans RStudio")</code></p>
+<p>Pour récupérer une variable Python en R, précédez la variable de <code>py$</code>.</p>
+<p><code>#{r expl-importer-var-py} plot(py$a, py$b, type = "l", main = "Un graphique en R avec \n des variables définies en Python")</code></p>
+<p>Idem, pour récupérer un objet R en Python, .</p>
+<p><code>#{python expl-importer-var-r} r.iris.head(6)</code></p>
+<p>Vous aurez ainsi accès aux fonctionnalités de Python et R dans un même flux de travail. Python n’est pas si diférent de R, mais il vous faudra déployer des efforts pour approvoiser le serpent. Pour débuter en Python, je suggère <a href="https://jakevdp.github.io/PythonDataScienceHandbook/"><em>Python Data Science Handbook</em></a>, de <a href="https://twitter.com/jakevdp">Jake VanderPlas</a>. Pour en savoir plus sur le travail en R et en Python dans RSutdio, référez-vous à la <a href="https://rstudio.github.io/reticulate/">documentation du module <strong><code>reticulate</code></strong></a>.</p>
+</section></section><section id="bonus-ia-générative" class="level2" data-number="9.4"><h2 data-number="9.4" class="anchored" data-anchor-id="bonus-ia-générative">
+<span class="header-section-number">9.4</span> Bonus : IA Générative</h2>
+<p>En 2024, les robots conversationnels font les manchettes régulièrement, et nous promettent des <a href="https://www.ledevoir.com/economie/801437/apres-chatgpt-openai-promet-superpouvoirs-tous">Superpouvoirs</a>. En effet, l’IA générative a le potentiel d’accélérer votre flux de travail et de rédiger pour vous des sections de code. Le fonctionnement repose sur des algorithmes d’autoapprentissage : La puissance de calcul permet désormais d’entraîner les modèles avec une quantité phénoménale de documents, si bien que les modèles <em>apprennent</em> de nous. Ils peuvent ensuite générer du texte, des blocs de code, des images; à condition de leur poser les bonnes questions! En effet, les modèles ne sont pas capables (pour l’instant!) de créer de la nouveauté, et ils dépendent de ce qui existe déjà dans leur entraînement. La vitesse de développement de ces outils est exponentielle, si bien que dernièrement, toutes les grandes entreprises semblent vouloir créer leur propre IA.</p>
+<p>Toutefois, les risques liés à cette technologie sont tels que la communauté scientifique <a href="https://futureoflife.org/open-letter/stoppons-les-experimentations-sur-les-ia-une-lettre-ouverte/">appelle à une pause dans son développement</a>, le temps de s’organiser pour la recevoir adéquatement. Les <a href="https://futureoflife.org/open-letter/ai-principles/">principes d’Asilomar</a>, premiers principes de gouvernance en IA, fournissent un premier jet de la direction souhaitée par les experts dans le domaine : Loin de viser des outils non dirigés et autonomes, l’intelligence artificielle devrait être bénéfique, utile, sécuritaire, transparente et non-subversive, tout en profitant au plus grand nombre de personnes possible et au bien commun (je résume ici, mais vous pouvez consulter les principes sur le site mentionné plus haut).</p>
+<p>Il existe plusieurs modèles de language, et la plupart d’entre eux sont pour l’instant propriétaires, incluant le fameux ChatGPT d’OpenAI. À ce sujet, certains scientifiques suggèrent d’<a href="https://doi.org/10.1038/d41586-023-01295-4">éviter l’attrait des modèles propriétaires et de travailler au développement de modèles <em>opensource</em></a>, le but étant notamment de favoriser une meilleure reproductibilité (les modèles propriétaires sont appelés à être modifiés sans pré-avis, ce qui rend difficile la reproduction des résultats). De plus, les modèles propriétaires ont tendance à recueillir vos données de recherche et vos données personnelles pour s’entraîner, si bien que des questions sur l’éthique et la vie privée se posent.</p>
+<section id="utilisation-en-rédaction-scientifique" class="level3" data-number="9.4.1"><h3 data-number="9.4.1" class="anchored" data-anchor-id="utilisation-en-rédaction-scientifique">
+<span class="header-section-number">9.4.1</span> Utilisation en rédaction scientifique</h3>
+<p>L’utilisation de l’IA générative demeure controversée pour une utilisation en rédaction scientifique. En effet, en plus des questionnements éthiques et des erreurs potentielles et fréquentes, <a href="https://doi.org/10.1021/acsnano.3c01544">les IA génératives sont incapables de comprendre ou de générer de nouvelles informations ou d’effectuer une analyse profonde, ce qui pourrait limiter la discussion dans un article scientifique</a>. Si vous souhaitez tout de même les utiliser, je vous suggère de respecter les <a href="https://doi.org/10.1021/acsnano.3c01544">recommandations suivantes</a> (ma traduction) :</p>
+<ol type="1">
+<li>
+<strong>Reconnaître leur utilisation dans la section appropriée</strong> (typiquement <em>Acknowledgments</em>), indiquer les endroits dans le manuscrit où l’IA a été utilisée et fournir les requêtes (<em>prompt</em>) et les questions posées au modèle dans le matériel supplémentaire.</li>
+<li>
+<strong>Souvenez-vous (ainsi que vos co-auteurs) que les sorties des modèles d’IA ne représentent qu’un brouillon <em>très</em> préliminaire, au mieux.</strong> La sortie est incomplète, peut comporter de l’information incorrecte, et chaque phrase ainsi que chaque affirmation doit être considérée de façon critique. Vérifiez, vérifiez, et vérifiez encore. Ensuite, vérifiez une fois de plus.</li>
+<li>
+<strong>N’utilisez pas les sorties des modèles de façon textuelles.</strong> Il ne s’agit pas de vos mots. Le robot pourrait avoir réutilisé du texte provenant d’autre sources, ce qui mènerait à du plagiat involontaire.</li>
+<li>
+<strong>Toutes les citations recommandées par une IA générative doivent être vérifiées dans le document original</strong> puisque les robots conversationnels sont réputés pour générer des citations erronées.</li>
+<li>
+<strong>N’incluez pas le robot conversationnel comme un co-auteur.</strong> Il ne peut pas générer de nouvelles idées ou rédiger une discussion à partir de nouveaux résultats, éléments qui demeurent du domaine des humains. Il ne s’agit que d’un outil, comme plusieurs autres programmes, pour aider la formulation et la rédaction de manuscrits (et j’ajouterais de codes).</li>
+<li>
+<strong>L’IA générative ne peut pas être tenue responsable de toute affirmation ou manquement à l’éthique.</strong> Ce sont tous les auteurs d’un manuscrit qui partagent cette responsabilité.</li>
+<li>
+<strong>Et le plus important, ne laissez pas les robots conversationnels écraser votre créativité et votre réflexion profonde.</strong> Utilisez les pour ouvrir vos horizons et susciter de nouvelles idées!</li>
+</ol>
+<p>Ces recommandations sont pour l’utilisation d’un texte, mes elles s’appliquent aussi pour votre code.</p>
+</section><section id="et-maintenant-pour-lutiliser-sur-r" class="level3" data-number="9.4.2"><h3 data-number="9.4.2" class="anchored" data-anchor-id="et-maintenant-pour-lutiliser-sur-r">
+<span class="header-section-number">9.4.2</span> Et maintenant… Pour l’utiliser sur R?</h3>
+<p>Sous R, il existe plusieurs options, mais j’ai seulement essayé le module <a href="https://mlverse.github.io/chattr/"><strong><code>chattr</code></strong></a>, qui permet d’intégrer les modèles directement dans votre interface RStudio. Vous pouvez simplement suivre les étapes d’installation, puis vous créer un compte et générer une clé secrète d’activation auprès d’OpenAI si vous utilisez les modèles GPTs avec la commande <code>Sys.setenv("OPENAI_API_KEY" = "####################")</code>.</p>
+<p>Je vous conseille de modifier la version par défaut de modèle puisque GPT-4 est payant (personnellement, j’ai utilisé GPT-3.5-turbo avec la commande suivante : <code>chattr::chattr_use("gpt35")</code>).</p>
+<p>Une fois installé, vous pouvez lancer <code><a href="https://mlverse.github.io/chattr/reference/chattr_app.html">chattr::chattr_app()</a></code> pour lancer l’application dans l’ongler <em>Viewer</em> de RStudio (alternativement, vous pouvez créer un raccourci-clavier à partir de l’onglet <code>Outils &gt; Modifier les raccourcis-claviers</code>). Ensuite, vous effectuez vos requêtes et GPT vous répond, comme une conversation. Vous pouvez alors copier-coller les sorties, ou alors générer un script à partir de celles-ci.</p>
+<p>Au début, pour une utilisation simple et des opérations faciles, j’ai été agréablement surpris par les réponses rapides, épurées et bien structurées de GPT-3.5. Comme dans une conversation, je lui fournissais des requêtes (<em>prompts</em>) en lui disant quoi faire, puis le robot me répondait avec une explication, un bloc de code et des commentaires sur les lignes de codes. Venaient ensuite quelques ajustements, par exemple utiliser <code>ggplot</code> au lieu de <code>plot</code> pour réaliser les graphiques, ou alors ajouter des facettes et intégrer toutes les variables sous forme de boxplots.</p>
+<p>J’ai ensuite décidé de passer au niveau supérieur et de faire des requêtes un peu plus complexes : Fais un modèle linéaire sur telles variables, crée un code pour effectuer tel calcul sur un ensemble de données situées dans un dossier, etc. À cette étape, GPT s’est emballé et a commencé à me fournir des codes en pigeant dans plusieurs modules différents, en mélangeant des méthodes récentes avec des méthodes plus anciennes et parfois désuettes. Les résultats étaient des blocs de codes souvent non fonctionnels, ou alors qui ne faisaient pas du tout ce que j’avais décrit, même après l’ajout de détails dans mes requêtes. Au bout d’un certain temps, j’avais atteint ma limite gratuite de <em>Tokens</em> (et de patience) pour le modèle GPT-3.5.</p>
+<p>Au final, à ce stade-ci, j’ai de la difficulté à recommander cet outil. Les algorithmes d’autoapprentissage qui seront présentés au <a href="12-autoapprentissage.html">chapitre&nbsp;<span>13</span></a> sont beaucoup plus intéressants selon moi puisque leur utilisation reste limitée à ce qu’on veut qu’ils fassent et que les dérives scientifiques me semblent moins importantes. L’IA générative a certainement sa place, mais nécessite une bonne connaissance initiale du sujet et des opérations à effectuer. Son rôle devrait être principalement de faciliter le travail de programmeurs ou de scientifiques aguerris, mais ils ne devraient jamais remplacer l’esprit critique, ni faire le travail pour vous.</p>
 
 
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -470,9 +1617,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="./07b-bayes.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Introduction à l’analyse bayésienne en écologie</span></span>
       </a>          
@@ -484,8 +1629,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
+<footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">Analyse et modélisation d’agroécosystèmes est construit avec <a href="https://quarto.org/">Quarto</a>.</div>   
     <div class="nav-footer-center">
       &nbsp;
@@ -493,7 +1637,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-right">Lien vers le <a href="https://essicolo.github.io/ecologie-mathematique-R/">manuel original</a>.</div>
   </div>
 </footer>
-
 
 
 </body></html>
