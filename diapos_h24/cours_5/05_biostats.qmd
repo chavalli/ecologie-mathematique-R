@@ -70,16 +70,21 @@ Que voulez-vous exprimer?
 
 <center>[Source](https://www.youtube.com/watch?v=uw1Tag08dK4&feature=youtu.be)</center>
 
+## Causalité
+
+![](images/causality.png){fig-align="center"}
+<center>Source: Whitlock et Schluter (2020), [The Analysis of Biological Data](https://whitlockschluter3e.zoology.ubc.ca/).</center>
+
 ## Où renforcer l'avion?
 
 Disposition des trous de balle sur les avions britanniques de retour de leur sortie durant la deuxième guerre mondiale.
 
 ![](images/IMG_20190206_154711.jpg){fig-align="center"}
-<center>Source: Whitlock et Schuluter (2020), [The Analysis of Biological Data](https://whitlockschluter3e.zoology.ubc.ca/).</center>
+<center>Source: Whitlock et Schluter (2014), [The Analysis of Biological Data](https://whitlockschluter.zoology.ubc.ca/).</center>
 
 ## Définitions
 
-> La **statistique** est l’étude des méthodes pour mesurer des aspects de populations à partir d’échantillons et pour quantifier l'incertitude des mesures. (ma traduction de [Whitlock et Schuluter (2020)](https://whitlockschluter3e.zoology.ubc.ca/)).
+> La **statistique** est l’étude des méthodes pour mesurer des aspects de populations à partir d’échantillons et pour quantifier l'incertitude des mesures. (ma traduction de [Whitlock et Schluter (2020)](https://whitlockschluter3e.zoology.ubc.ca/)).
 
 ## Population
 
@@ -111,7 +116,7 @@ Une **statistique** est une estimation d'un paramètre calculée à partir des d
 
 ## Statistiques fréquentielles ou bayésiennes
 
-**Fréquentielle**. Les données sont générées par des mécanismes stochastiques décrits par des distributions de probabilités, et nous cherchons à déterminer la probabilité que les données soient générées par ces mécanismes (p-valule). <-- approche la plus commune (et couverte dan ce chapitre)
+**Fréquentielle**. Les données sont générées par des mécanismes stochastiques décrits par des distributions de probabilités, et nous cherchons à déterminer la probabilité que les données soient générées par ces mécanismes (p-value). <-- approche la plus commune (et couverte dan ce chapitre)
 
 ## Statistiques fréquentielles ou bayésiennes
 
@@ -182,7 +187,7 @@ Un test d'hypothèse permet de décider si une hypothèse est confirmée ou reje
 
 ## Exemple
 
-Est-ce que les données sont conforment avec avec l'hypothèse de la vie sur Mars.
+Est-ce que les données sont conforment avec l'hypothèse de la vie sur Mars.
 
 **H0**. Il n'y a pas de vie sur Mars.
 
@@ -236,7 +241,7 @@ tt_exemple$p.value
 
 Lors d'une conférence, Dr Evil ne présentent que les résultats significatifs de ses essais au seuil de 0.05. Certains essais ne sont pas significatifs, mais bon, ceux-ci ne sont pas importants...
 
-![](images/ezgif-4-7900b0e67dff.gif)
+![](images/ezgif-4-7900b0e67dff.gif){width=200 fig-align="center"}
 
 
 ## Rappel
@@ -251,7 +256,7 @@ Lors d'une conférence, Dr Evil ne présentent que les résultats significatifs 
 
 ## p-value: p-hacking ou data dregging (4/)
 
-Modifier les données ou la question posée dans le but d'obtenir une p-value < 0.05, c'est tricher.
+Modifier les données ou la question posée dans le but d'obtenir une p&#8209;value < 0.05, c'est tricher.
 
 ## L'analyse de variance (ANOVA)
 
@@ -261,6 +266,10 @@ Comparaison des **moyennes** de plus de 2 groupes (à variance égale)
 pl_aov <- aov(Petal.Length ~ Species, iris)
 summary(pl_aov)
 ```
+
+## Question
+
+Peut-on utiliser une ANOVA pour comparer deux échantillons ? Si oui, les résultats sont-ils les mêmes si nous appliquons un test t ou une ANOVA ?
 
 ## Modélisation statistique
 
@@ -274,9 +283,9 @@ $Y$: variables de sortie / réponse / dépendante
 <font size="8">⚠️ Ne pas confondre. ⚠</font>
 ----
 
-Modèles **prédictifs**. Le modèle doit être testé sur des données qui n'ont pas servi à l'entraîner. (chapitre 12)
+Modèles **prédictifs**. Le modèle doit être testé sur des données qui n'ont pas servi à l'entraîner. (chapitre 13)
 
-Modèle **explicatif**. Le modèle sert à tester des hypothèses. (chapitres 5)
+Modèle **explicatif**. Le modèle sert à tester des hypothèses. (chapitres 7 et 8)
 
 ## Variables fixes et aléatoires
 
@@ -388,6 +397,20 @@ modlin_mult <- lm(yield ~ lat + long + nitro + topo + bv,
 summary(modlin_mult)
 ```
 
+## Types de régression linéaire multiple
+
+Trois types :
+
+- Méthode standard : Toutes les variables indépendantes (VI) rentrent au même temps.
+- Méthode hiérarchique (sequential) : L'entrée des VI selon un ordre prédeterminé.
+- Méthode statistique (Stepwise) : Entrée de VI selon un critère statistique.
+
+## Types de régression
+
+![](images/regression_types.png){fig-align="center" fig-width=100}
+
+<center><small>Source : [Tabachnick et Fidell (2013) ](https://www.pearson.com/en-us/subject-catalog/p/using-multivariate-statistics/P200000003097/9780137526543)</small></center>
+
 ## Standardiser les données pour comparer les effets
 
 ```{r}
@@ -408,7 +431,7 @@ summary(modlin_mult_sc)
 
 Une intéraction est une pente additionnelle informant sur l'effet statistique combiné de deux variables.
 
-Interface-formule: le symbole `:` appelle l'intéraction et le synbole `*` appelle les effets simples et les intéractions.
+Interface-formule: le symbole `:` appelle l'intéraction et le symbole `*` appelle les effets simples et les intéractions.
 
 ```{r}
 modlin_int_sc <- lm(yield ~ nitro*topo,

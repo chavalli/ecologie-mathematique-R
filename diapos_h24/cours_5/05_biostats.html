@@ -433,18 +433,25 @@ Andrés Silva
 <a href="https://www.youtube.com/watch?v=uw1Tag08dK4&amp;feature=youtu.be">Source</a>
 </center>
 </section>
+<section id="causalité" class="slide level2 center">
+<h2>Causalité</h2>
+<img data-src="images/causality.png" data-fig-align="center">
+<center>
+Source: Whitlock et Schluter (2020), <a href="https://whitlockschluter3e.zoology.ubc.ca/">The Analysis of Biological Data</a>.
+</center>
+</section>
 <section id="où-renforcer-lavion" class="slide level2 center">
 <h2>Où renforcer l’avion?</h2>
 <p>Disposition des trous de balle sur les avions britanniques de retour de leur sortie durant la deuxième guerre mondiale.</p>
 <img data-src="images/IMG_20190206_154711.jpg" data-fig-align="center">
 <center>
-Source: Whitlock et Schuluter (2020), <a href="https://whitlockschluter3e.zoology.ubc.ca/">The Analysis of Biological Data</a>.
+Source: Whitlock et Schluter (2014), <a href="https://whitlockschluter.zoology.ubc.ca/">The Analysis of Biological Data</a>.
 </center>
 </section>
 <section id="définitions" class="slide level2 center">
 <h2>Définitions</h2>
 <blockquote>
-<p>La <strong>statistique</strong> est l’étude des méthodes pour mesurer des aspects de populations à partir d’échantillons et pour quantifier l’incertitude des mesures. (ma traduction de <a href="https://whitlockschluter3e.zoology.ubc.ca/">Whitlock et Schuluter (2020)</a>).</p>
+<p>La <strong>statistique</strong> est l’étude des méthodes pour mesurer des aspects de populations à partir d’échantillons et pour quantifier l’incertitude des mesures. (ma traduction de <a href="https://whitlockschluter3e.zoology.ubc.ca/">Whitlock et Schluter (2020)</a>).</p>
 </blockquote>
 </section>
 <section id="population" class="slide level2 center">
@@ -475,7 +482,7 @@ Source: Whitlock et Schuluter (2020), <a href="https://whitlockschluter3e.zoolog
 </section>
 <section id="statistiques-fréquentielles-ou-bayésiennes" class="slide level2 center">
 <h2>Statistiques fréquentielles ou bayésiennes</h2>
-<p><strong>Fréquentielle</strong>. Les données sont générées par des mécanismes stochastiques décrits par des distributions de probabilités, et nous cherchons à déterminer la probabilité que les données soient générées par ces mécanismes (p-valule). &lt;– approche la plus commune (et couverte dan ce chapitre)</p>
+<p><strong>Fréquentielle</strong>. Les données sont générées par des mécanismes stochastiques décrits par des distributions de probabilités, et nous cherchons à déterminer la probabilité que les données soient générées par ces mécanismes (p-value). &lt;– approche la plus commune (et couverte dan ce chapitre)</p>
 </section>
 <section id="statistiques-fréquentielles-ou-bayésiennes-1" class="slide level2 center">
 <h2>Statistiques fréquentielles ou bayésiennes</h2>
@@ -513,7 +520,7 @@ Source: Whitlock et Schuluter (2020), <a href="https://whitlockschluter3e.zoolog
 </section>
 <section id="exemple" class="slide level2 center">
 <h2>Exemple</h2>
-<p>Est-ce que les données sont conforment avec avec l’hypothèse de la vie sur Mars.</p>
+<p>Est-ce que les données sont conforment avec l’hypothèse de la vie sur Mars.</p>
 <p><strong>H0</strong>. Il n’y a pas de vie sur Mars.</p>
 <p><strong>H1</strong>. Il y a de la vie sur Mars.</p>
 </section>
@@ -600,7 +607,7 @@ mean in group a mean in group b
 <p><strong>Un résultat montrant une p-value plus élevée que 0.05 est-il pertinent?</strong></p>
 <p>Lors d’une conférence, Dr Evil ne présentent que les résultats significatifs de ses essais au seuil de 0.05. Certains essais ne sont pas significatifs, mais bon, ceux-ci ne sont pas importants…</p>
 
-<img data-src="images/ezgif-4-7900b0e67dff.gif" class="r-stretch"></section>
+<img data-src="images/ezgif-4-7900b0e67dff.gif" width="200" class="r-stretch quarto-figure-center"></section>
 <section id="rappel" class="slide level2 center">
 <h2>Rappel</h2>
 <blockquote>
@@ -617,7 +624,7 @@ mean in group a mean in group b
 </section>
 <section id="p-value-p-hacking-ou-data-dregging-4" class="slide level2 center">
 <h2>p-value: p-hacking ou data dregging (4/)</h2>
-<p>Modifier les données ou la question posée dans le but d’obtenir une p-value &lt; 0.05, c’est tricher.</p>
+<p>Modifier les données ou la question posée dans le but d’obtenir une p‑value &lt; 0.05, c’est tricher.</p>
 </section>
 <section id="lanalyse-de-variance-anova" class="slide level2 center">
 <h2>L’analyse de variance (ANOVA)</h2>
@@ -634,6 +641,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
 </section>
+<section id="question" class="slide level2 center">
+<h2>Question</h2>
+<p>Peut-on utiliser une ANOVA pour comparer deux échantillons ? Si oui, les résultats sont-ils les mêmes si nous appliquons un test t ou une ANOVA ?</p>
+</section>
 <section id="modélisation-statistique" class="slide level2 center">
 <h2>Modélisation statistique</h2>
 <p><span class="math display">\[Y = f\left( X \right)\]</span> <span class="math inline">\(X\)</span>: variables prédictives / indépendantes / covariables / explicatives <span class="math inline">\(Y\)</span>: variables de sortie / réponse / dépendante</p>
@@ -647,8 +658,8 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </tr>
 </tbody>
 </table>
-<p>Modèles <strong>prédictifs</strong>. Le modèle doit être testé sur des données qui n’ont pas servi à l’entraîner. (chapitre 12)</p>
-<p>Modèle <strong>explicatif</strong>. Le modèle sert à tester des hypothèses. (chapitres 5)</p>
+<p>Modèles <strong>prédictifs</strong>. Le modèle doit être testé sur des données qui n’ont pas servi à l’entraîner. (chapitre 13)</p>
+<p>Modèle <strong>explicatif</strong>. Le modèle sert à tester des hypothèses. (chapitres 7 et 8)</p>
 </section>
 <section id="variables-fixes-et-aléatoires" class="slide level2 center">
 <h2>Variables fixes et aléatoires</h2>
@@ -868,6 +879,22 @@ F-statistic: 575.3 on 7 and 3435 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
 </section>
+<section id="types-de-régression-linéaire-multiple" class="slide level2 center">
+<h2>Types de régression linéaire multiple</h2>
+<p>Trois types :</p>
+<ul>
+<li>Méthode standard : Toutes les variables indépendantes (VI) rentrent au même temps.</li>
+<li>Méthode hiérarchique (sequential) : L’entrée des VI selon un ordre prédeterminé.</li>
+<li>Méthode statistique (Stepwise) : Entrée de VI selon un critère statistique.</li>
+</ul>
+</section>
+<section id="types-de-régression" class="slide level2 center">
+<h2>Types de régression</h2>
+
+<img data-src="images/regression_types.png" class="r-stretch quarto-figure-center"><center>
+<small>Source : <a href="https://www.pearson.com/en-us/subject-catalog/p/using-multivariate-statistics/P200000003097/9780137526543">Tabachnick et Fidell (2013)</a></small>
+</center>
+</section>
 <section id="standardiser-les-données-pour-comparer-les-effets" class="slide level2 center">
 <h2>Standardiser les données pour comparer les effets</h2>
 <div class="cell">
@@ -913,7 +940,7 @@ F-statistic: 575.3 on 7 and 3435 DF,  p-value: &lt; 2.2e-16</code></pre>
 <section id="intéraction" class="slide level2 center">
 <h2>Intéraction</h2>
 <p>Une intéraction est une pente additionnelle informant sur l’effet statistique combiné de deux variables.</p>
-<p>Interface-formule: le symbole <code>:</code> appelle l’intéraction et le synbole <code>*</code> appelle les effets simples et les intéractions.</p>
+<p>Interface-formule: le symbole <code>:</code> appelle l’intéraction et le symbole <code>*</code> appelle les effets simples et les intéractions.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a>modlin_int_sc <span class="ot">&lt;-</span> <span class="fu">lm</span>(yield <span class="sc">~</span> nitro<span class="sc">*</span>topo,</span>
 <span id="cb33-2"><a href="#cb33-2"></a>                    <span class="at">data =</span> lasrosas.corn_sc)</span>
