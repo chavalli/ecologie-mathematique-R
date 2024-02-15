@@ -647,14 +647,15 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </section>
 <section id="modélisation-statistique" class="slide level2 center">
 <h2>Modélisation statistique</h2>
-<p><span class="math display">\[Y = f\left( X \right)\]</span> <span class="math inline">\(X\)</span>: variables prédictives / indépendantes / covariables / explicatives <span class="math inline">\(Y\)</span>: variables de sortie / réponse / dépendante</p>
+<p><span class="math display">\[Y = f\left( X \right)\]</span> <span class="math inline">\(X\)</span>: variables prédictives / indépendantes / covariables / explicatives</p>
+<p><span class="math inline">\(Y\)</span>: variables de sortie / réponse / dépendante</p>
 </section>
 <section id="modèles-prédictifs-explicatifs" class="slide level2 center">
 <h2>Modèles prédictifs / explicatifs</h2>
 <table>
 <tbody>
 <tr class="odd">
-<td><font size="8">⚠️ Ne pas confondre. ⚠</font></td>
+<td><font size="8">⚠️ Ne pas confondre. ⚠️</font></td>
 </tr>
 </tbody>
 </table>
@@ -1021,8 +1022,8 @@ Number of Fisher Scoring iterations: 5</code></pre>
 <p><span class="math display">\[ y = A \left( 1 - e^{-R \left( E + x \right)} \right) \]</span></p>
 
 <img data-src="05_biostats_files/figure-revealjs/unnamed-chunk-28-1.png" width="960" class="r-stretch"></section>
-<section id="la-focntion-nls" class="slide level2 center">
-<h2>La focntion <code>nls</code></h2>
+<section id="la-fonction-nls" class="slide level2 center">
+<h2>La fonction <code>nls</code></h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a>modnl_1 <span class="ot">&lt;-</span>  <span class="fu">nls</span>(yield <span class="sc">~</span> A <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">exp</span>(<span class="sc">-</span>R<span class="sc">*</span>(E <span class="sc">+</span> nitro))),</span>
 <span id="cb37-2"><a href="#cb37-2"></a>                <span class="at">data =</span> engelstad.nitro,</span>

@@ -275,12 +275,13 @@ Peut-on utiliser une ANOVA pour comparer deux échantillons ? Si oui, les résul
 
 $$Y = f\left( X \right)$$
 $X$: variables prédictives / indépendantes / covariables / explicatives
+
 $Y$: variables de sortie / réponse / dépendante
 
 ## Modèles prédictifs / explicatifs
 
 ----
-<font size="8">⚠️ Ne pas confondre. ⚠</font>
+<font size="8">⚠️ Ne pas confondre. ⚠️</font>
 ----
 
 Modèles **prédictifs**. Le modèle doit être testé sur des données qui n'ont pas servi à l'entraîner. (chapitre 13)
@@ -499,7 +500,7 @@ ggplot(tibble(x, y), aes(x, y)) +
   annotate("text", x = 300, y = 35, label = "A = 75,\nE = 30,\nR = 0.02")
 ```
 
-## La focntion `nls`
+## La fonction `nls`
 
 ```{r}
 modnl_1 <-  nls(yield ~ A * (1 - exp(-R*(E + nitro))),
