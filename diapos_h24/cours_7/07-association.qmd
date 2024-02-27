@@ -56,7 +56,7 @@ doubs_env <- doubs_env %>%
 À la fin de ce chapitre, vous
 
 - serez en mesure d'effectuer des calculs permettant de mesurer des différence entre des observations, des groupes d'observation ou des variables observées
-- serez en mesure d'effection des analyses de partitionnement hiérarchiques et non-hiérarchiques
+- serez en mesure d'effectuer des analyses de partitionnement hiérarchiques et non-hiérarchiques
 - serez en mesure d'effectuer des calculs d'ordination à l'aide des techniques de réduction d'axe communes: analyse en composante principale, l'analyse de correspondance, l'analyse en coordonnées principales, analyse discriminante linéaire, l'analyse de redondance et l'analyse canonique des correspondances.
 
 ## Analyse d'associations
@@ -159,7 +159,7 @@ Pour la plupart des algorithmes, les *k-means* se basent sur la distance euclidi
 ## Non-hiérarchique: les *k-means* (2/)
 
 ```{r}
-#| 
+#| fig-align: "center"
 mcinnes_kmeans <- cascadeKM(df_mcinnes, inf.gr = 3, sup.gr = 10, criterion = "calinski")
 plot(mcinnes_kmeans)
 ```
@@ -170,7 +170,8 @@ plot(mcinnes_kmeans)
 
 ## Non-hiérarchique: *dbscan* (1/)
 
-**dbscan**:  Density-Based Spatial Clustering of Applications with Noise
+**dbscan**:  _Density-Based Spatial Clustering of Applications with Noise_
+
 Les groupes sont composés de zones où l’on retrouve plus de points (zones denses) séparées par des zones de faible densité.
 
 ## Non-hiérarchique: *dbscan* (2/) {background-color="#EEE8D5"}
@@ -397,7 +398,7 @@ Présente la perspective selon laquelle les groupes sont les plus éclatés.
 
 ```{r}
 library("ade4")
-iris_pca <- dudi.pca(df = iris %>% select(-Species),
+iris_pca <- dudi.pca(df = iris |> dplyr::select(-Species),
                      scannf = FALSE, # ne pas générer de graphique
                      scale = TRUE)
 iris_lda <- discrimin(dudi = iris_pca,
