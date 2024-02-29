@@ -388,7 +388,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://tidyverse.tidyverse.org">"tidyverse"</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.4     ✔ readr     2.1.4
+✔ dplyr     1.1.4     ✔ readr     2.1.5
 ✔ forcats   1.0.0     ✔ stringr   1.5.1
 ✔ ggplot2   3.4.4     ✔ tibble    3.2.1
 ✔ lubridate 1.9.3     ✔ tidyr     1.3.0
@@ -772,7 +772,7 @@ mean of x
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="images/07_p-hacking.png" class="img-fluid figure-img" width="456"></p>
+<figure class="figure"><p><img src="images/07_p-hacking.png" class="img-fluid figure-img"></p>
 <figcaption class="figure-caption">Un sketch humoristique de John Oliver sur le <em>p-hacking</em>, <a href="https://youtu.be/0Rnq1NpHdmw">Last week tonight, 2016</a> (en anglais)</figcaption></figure>
 </div>
 </div>
@@ -958,7 +958,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </section><section id="sec-bios-models" class="level2" data-number="7.8"><h2 data-number="7.8" class="anchored" data-anchor-id="sec-bios-models">
 <span class="header-section-number">7.8</span> Les modèles statistiques</h2>
 <p>La modélisation statistique consiste à lier de manière explicite des variables de sortie <span class="math inline">\(y\)</span> (ou variables-réponse / variables dépendantes) à des variables explicatives <span class="math inline">\(x\)</span> (ou variables prédictives / indépendantes / covariables). Les variables-réponse sont modélisées par une fonction des variables explicatives ou prédictives.</p>
-<p>Pourquoi garder les termes <em>explicatives</em> et <em>prédictives</em>? Parce que les modèles statistiques (basés sur des données et non pas sur des mécanismes) sont de deux ordres. D’abord, les modèles <strong>prédictifs</strong> sont conçus pour prédire de manière fiable une ou plusieurs variables-réponse à partir des informations contenues dans les variables qui sont, dans ce cas, prédictives (par exemple : Les séries temporelles au <a href="11-series-temporelles.html">chapitre&nbsp;<span>12</span></a>). Lorsque l’on désire tester des hypothèses pour évaluer quelles variables expliquent la réponse, on parlera de modélisation (et de variables) <strong>explicative</strong>. En inférence statistique, on évaluera les <em>corrélations</em> entre les variables explicatives et les variables-réponse. Un lien de corrélation n’est pas un lien de causalité. L’inférence causale peut en revanche être évaluée par des <a href="https://doi.org/10.1017/CBO9781139979573"><em>modèles d’équations structurelles</em></a>.</p>
+<p>Pourquoi garder les termes <em>explicatives</em> et <em>prédictives</em>? Parce que les modèles statistiques (basés sur des données et non pas sur des mécanismes) sont de deux ordres. D’abord, les modèles <strong>prédictifs</strong> sont conçus pour prédire de manière fiable une ou plusieurs variables-réponse à partir des informations contenues dans les variables qui sont, dans ce cas, prédictives (par exemple : Les séries temporelles au <span class="quarto-unresolved-ref">?sec-temps</span>). Lorsque l’on désire tester des hypothèses pour évaluer quelles variables expliquent la réponse, on parlera de modélisation (et de variables) <strong>explicative</strong>. En inférence statistique, on évaluera les <em>corrélations</em> entre les variables explicatives et les variables-réponse. Un lien de corrélation n’est pas un lien de causalité. L’inférence causale peut en revanche être évaluée par des <a href="https://doi.org/10.1017/CBO9781139979573"><em>modèles d’équations structurelles</em></a>.</p>
 <p>Cette section couvre la modélisation explicative. Les variables qui contribuent à créer les modèles peuvent être de différentes natures et distribuées selon différentes lois de probabilité. Alors que les modèles linéaires simples (<em>lm</em>) impliquent une variable-réponse distribuée de manière continue, les modèles linéaires généralisés peuvent aussi expliquer des variables de sorties discrètes.</p>
 <p>Dans les deux cas, on distinguera les variables fixes et les variables aléatoires. Les <strong>variables fixes</strong> sont les variables testées lors de l’expérience: dose du traitement, espèce/cultivar, météo, etc. Les <strong>variables aléatoires</strong> sont les sources de variation qui génèrent du bruit dans le modèle: les unités expérimentales ou le temps lors de mesures répétées. Les modèles incluant des effets fixes seulement sont des modèles à effets fixes. Généralement, les modèles incluant des variables aléatoires incluent aussi des variables fixes: on parlera alors de modèles mixtes. Nous couvrirons ces deux types de modèles.</p>
 <section id="modèles-à-effets-fixes" class="level3" data-number="7.8.1"><h3 data-number="7.8.1" class="anchored" data-anchor-id="modèles-à-effets-fixes">
@@ -1629,8 +1629,8 @@ Number of Fisher Scoring iterations: 5</code></pre>
 <span>                    UL <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/confint.html">confint</a></span><span class="op">(</span><span class="va">modglm_1</span><span class="op">)</span><span class="op">[</span>, <span class="fl">2</span><span class="op">]</span>,</span>
 <span>                    variable <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coefficients</a></span><span class="op">(</span><span class="va">modglm_1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Attente de la réalisation du profilage...
-Attente de la réalisation du profilage...</code></pre>
+<pre><code>Waiting for profiling to be done...
+Waiting for profiling to be done...</code></pre>
 </div>
 <div class="sourceCode" id="cb133"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">intervals</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1842,10 +1842,10 @@ b_p
 <div class="sourceCode" id="cb152"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://svn.r-project.org/R-packages/trunk/nlme/">"nlme"</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>
-Attachement du package : 'nlme'</code></pre>
+Attaching package: 'nlme'</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>L'objet suivant est masqué depuis 'package:dplyr':
+<pre><code>The following object is masked from 'package:dplyr':
 
     collapse</code></pre>
 </div>

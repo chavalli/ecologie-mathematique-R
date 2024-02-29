@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.550">
+<meta name="generator" content="quarto-1.3.450">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>Analyse et modélisation d’agroécosystèmes sur R - 9&nbsp; Explorer R</title>
 <style>
@@ -19,7 +19,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -76,13 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 50,
-  "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
-  ],
-  "show-item-context": false,
+  "limit": 20,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -91,59 +85,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
-    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
+}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 </head>
 <body class="nav-sidebar floating">
 
+
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./08-explorer.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Explorer R</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-        </a>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./08-explorer.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Explorer R</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
   </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Analyse et modélisation d’agroécosystèmes sur R</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/chavalli/ecologie-mathematique-R/tree/h2024" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/chavalli/ecologie-mathematique-R/tree/h2024" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -257,7 +226,7 @@ window.Quarto = {
 </li>
     </ul>
 </div>
-</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
@@ -311,7 +280,6 @@ window.Quarto = {
   </div>
   
 
-
 </header><p>L’apprentissage de R peut être étourdissant. Cette section est une petite pause fourre-tout qui vous introduira aux nombreuses possibilités de R.</p>
 <hr>
 <p><strong>Objectifs spécifiques</strong>:</p>
@@ -330,8 +298,8 @@ window.Quarto = {
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="images/08_zelda.gif" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
-<figcaption>Séquence du jeu vidéo <em>The legend of Zelda</em>, source inconnue.</figcaption></figure>
+<figure class="figure"><p><img src="images/08_zelda.gif" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption class="figure-caption">Séquence du jeu vidéo <em>The legend of Zelda</em>, source inconnue.</figcaption></figure>
 </div>
 </div>
 </div>
@@ -359,14 +327,14 @@ Notez-bien
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="images/08_hobbit.gif" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
-<figcaption>Tiré du film <em>The Hobbit: An Unexpected Journey</em>, de Peter Jackson (2012).</figcaption></figure>
+<figure class="figure"><p><img src="images/08_hobbit.gif" class="img-fluid figure-img" style="width:70.0%"></p>
+<figcaption class="figure-caption">Tiré du film <em>The Hobbit: An Unexpected Journey</em>, de Peter Jackson (2012).</figcaption></figure>
 </div>
 </div>
 </div>
 <section id="github" class="level3" data-number="9.1.1"><h3 data-number="9.1.1" class="anchored" data-anchor-id="github">
 <span class="header-section-number">9.1.1</span> GitHub</h3>
-<p>Nous avons vu <a href="05-github.html" class="quarto-xref">chapitre&nbsp;<span>5</span></a> l’importance d’utilser des outils d’archivage et de suivi de version, comme <em>git</em>, dans le déploiement de la <em>science ouverte</em>. En effet, <a href="https://www.github.com">GitHub</a> est une plateforme <em>git</em> sur Internet, acquise par Microsoft, qui est devenue un réseau social de développement informatique. <a href="https://github.com/topics/r">De nombreux modules de R y sont développés</a>. Au <a href="05-github.html" class="quarto-xref">chapitre&nbsp;<span>5</span></a>, vous avez appris à y ouvrir un compte et à y archiver du contenu. Vous pourrez alors <strong>suivre</strong> (dans le même sens que sur d’autres réseaux sociaux) le développement de projets et suivre les travaux des personnes qui vous semblent d’intérêt.</p>
+<p>Nous avons vu <a href="05-github.html">chapitre&nbsp;<span>5</span></a> l’importance d’utilser des outils d’archivage et de suivi de version, comme <em>git</em>, dans le déploiement de la <em>science ouverte</em>. En effet, <a href="https://www.github.com">GitHub</a> est une plateforme <em>git</em> sur Internet, acquise par Microsoft, qui est devenue un réseau social de développement informatique. <a href="https://github.com/topics/r">De nombreux modules de R y sont développés</a>. Au <a href="05-github.html">chapitre&nbsp;<span>5</span></a>, vous avez appris à y ouvrir un compte et à y archiver du contenu. Vous pourrez alors <strong>suivre</strong> (dans le même sens que sur d’autres réseaux sociaux) le développement de projets et suivre les travaux des personnes qui vous semblent d’intérêt.</p>
 </section><section id="x-anciennement-twitter" class="level3" data-number="9.1.2"><h3 data-number="9.1.2" class="anchored" data-anchor-id="x-anciennement-twitter">
 <span class="header-section-number">9.1.2</span> X (anciennement Twitter)</h3>
 <p>Le <em>hashtag</em> <code>#rstats</code> rassemble (ou plutôt rassemblait) sur <a href="https://twitter.com/hashtag/rstats?src=hash">Twitter</a> ce qui se publie sur le sujet. Depuis le rachat du réseau social par Elon Musk et les divers changements qui y ont été effectués, plusieurs s’en sont détournés pour privilégier des plateformes <em>opensource</em>, par exemple les réseaux sociaux décentralisés de [Mastodon](https://joinmastodon.org/fr.</p>
@@ -431,7 +399,7 @@ Notez-bien
 <span class="header-section-number">9.2</span> Quelques outils en écologie mathématique avec R</h2>
 <section id="prétraitement-des-données" class="level3" data-number="9.2.1"><h3 data-number="9.2.1" class="anchored" data-anchor-id="prétraitement-des-données">
 <span class="header-section-number">9.2.1</span> Prétraitement des données</h3>
-<p>Il arrive souvent ques les données brutes ne soient pas exprimées de manière appropriée ou optimale pour l’analyse statistique ou la modélisation. Vous devrez alors effectuer un prétraitement sur ces données. Lors du <a href="07a-biostats.html" class="quarto-xref">chapitre&nbsp;<span>7</span></a>, nous avons abordé la mise à l’échelle, où des variables numériques étaient transformées pour avoir une moyenne de zéro et un écart-type de 1. Cette opération permettait d’apprécier les coefficients et leur incertitude sur une même échelle. L’encodage catégorielle a quant à lui permi d’utiliser des méthodes quantitatives sur des données qualitatives. Dans les deux cas, nous n’avons pas utilisé le terme, mais il s’agissait d’un <strong>prétraitement</strong>, c’est-à-dire une transformation des données préalable à l’analyse ou la modélisation.</p>
+<p>Il arrive souvent ques les données brutes ne soient pas exprimées de manière appropriée ou optimale pour l’analyse statistique ou la modélisation. Vous devrez alors effectuer un prétraitement sur ces données. Lors du <a href="07a-biostats.html">chapitre&nbsp;<span>7</span></a>, nous avons abordé la mise à l’échelle, où des variables numériques étaient transformées pour avoir une moyenne de zéro et un écart-type de 1. Cette opération permettait d’apprécier les coefficients et leur incertitude sur une même échelle. L’encodage catégorielle a quant à lui permi d’utiliser des méthodes quantitatives sur des données qualitatives. Dans les deux cas, nous n’avons pas utilisé le terme, mais il s’agissait d’un <strong>prétraitement</strong>, c’est-à-dire une transformation des données préalable à l’analyse ou la modélisation.</p>
 <p>Un prétraitement peut consister simplement en une transformation logarithmique ou exponentielle. Nous verrons les transformations les plus communes comme la standardisation, la mise à l’échelle sur une étendue et la normalisation. Puis nous verrons comment ces opérations de prétraitement sont offertes dans le module <a href="https://tidymodels.github.io/recipes/"><strong><code>recipes</code></strong></a>.</p>
 <p><strong><code>recipes</code></strong> n’est pas en mesure d’effectuer toutes les transformations imaginables. Pour des opérations plus spécialisées, si vos données forment une partie d’un tout (exprimées en pourcentages ou fractions), vous devriez probablement utiliser un prétraitement grâce aux outils de l’<strong>analyse compositionnelle</strong>. Avant de les aborder, nous allons traiter des transformations de base.</p>
 <section id="standardisation" class="level4" data-number="9.2.1.1"><h4 data-number="9.2.1.1" class="anchored" data-anchor-id="standardisation">
@@ -439,7 +407,7 @@ Notez-bien
 <p>La standardisation consiste à centrer vos données à une moyenne de 0 et à les échelonner à une variance de 1, c’est-à-dire</p>
 <p><span class="math display">\[x_{standard} = \frac{x - \bar{x}}{\sigma}\]</span></p>
 <p>où <span class="math inline">\(\bar{x}\)</span> est la moyenne du vecteur <span class="math inline">\(x\)</span> et où <span class="math inline">\(\sigma\)</span> est son écart-type.</p>
-<p>Ce prétraitement des données peut s’avérér utile lorsque la modélisation tient compte de l’échelle de vos mesures (par exemple, les paramètres de régression vus au <a href="07a-biostats.html" class="quarto-xref">chapitre&nbsp;<span>7</span></a> ou les distances que nous verrons au <a href="09-ordination.html" class="quarto-xref">chapitre&nbsp;<span>10</span></a>). En effet, les pentes d’une régression linéaire multiple ne pourront être comparées entre elles que si elles sont une même échelle. Par exemple, on veut modéliser la consommation en miles au gallon (<code>mpg</code>) de voitures en fonction de leur puissance (<code>hp</code>), le temps en secondes pour parcourir un quart de mile (<code>qsec</code>) et le nombre de cylindre.</p>
+<p>Ce prétraitement des données peut s’avérér utile lorsque la modélisation tient compte de l’échelle de vos mesures (par exemple, les paramètres de régression vus au <a href="07a-biostats.html">chapitre&nbsp;<span>7</span></a> ou les distances que nous verrons au <a href="09-ordination.html">chapitre&nbsp;<span>10</span></a>). En effet, les pentes d’une régression linéaire multiple ne pourront être comparées entre elles que si elles sont une même échelle. Par exemple, on veut modéliser la consommation en miles au gallon (<code>mpg</code>) de voitures en fonction de leur puissance (<code>hp</code>), le temps en secondes pour parcourir un quart de mile (<code>qsec</code>) et le nombre de cylindre.</p>
 <div class="cell">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"mtcars"</span><span class="op">)</span></span>
 <span><span class="va">modl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span> <span class="op">+</span> <span class="va">qsec</span> <span class="op">+</span> <span class="va">cyl</span>, <span class="va">mtcars</span><span class="op">)</span></span>
@@ -474,8 +442,8 @@ F-statistic: 32.29 on 3 and 28 DF,  p-value: 3.135e-09</code></pre>
 <pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ✔ dplyr     1.1.4     ✔ readr     2.1.5
 ✔ forcats   1.0.0     ✔ stringr   1.5.1
-✔ ggplot2   3.5.0     ✔ tibble    3.2.1
-✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+✔ ggplot2   3.4.4     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.0
 ✔ purrr     1.0.2     
 ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ✖ dplyr::filter() masks stats::filter()
@@ -523,16 +491,16 @@ F-statistic: 32.29 on 3 and 28 DF,  p-value: 3.135e-09</code></pre>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate_all.html">mutate_if</a></span><span class="op">(</span><span class="va">is.numeric</span>, <span class="va">range_01</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="co"># en fait, toutes les colonnes sont numériques, alors mutate_all aurait pu être utilisé au lieu de mutate_if</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_n</a></span><span class="op">(</span><span class="fl">4</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>                         mpg cyl      disp        hp       drat         wt
-Toyota Corolla     1.0000000 0.0 0.0000000 0.0459364 0.67281106 0.08233188
-AMC Javelin        0.2042553 1.0 0.5809429 0.3462898 0.17972350 0.49143442
-Valiant            0.3276596 0.5 0.3838863 0.1872792 0.00000000 0.49782664
-Cadillac Fleetwood 0.0000000 1.0 1.0000000 0.5406360 0.07834101 0.95551010
-                        qsec vs am gear      carb
-Toyota Corolla     0.6428571  1  1  0.5 0.0000000
-AMC Javelin        0.3333333  0  0  0.0 0.1428571
-Valiant            0.6809524  1  0  0.0 0.0000000
-Cadillac Fleetwood 0.4142857  0  0  0.0 0.4285714</code></pre>
+<pre><code>                    mpg cyl       disp        hp      drat         wt      qsec
+Merc 230      0.5276596 0.0 0.17385882 0.1519435 0.5345622 0.41856303 1.0000000
+Mazda RX4 Wag 0.4510638 0.5 0.22175106 0.2049470 0.5253456 0.34824853 0.3000000
+Volvo 142E    0.4680851 0.0 0.12446994 0.2014134 0.6221198 0.32395807 0.4880952
+Honda Civic   0.8510638 0.0 0.01147418 0.0000000 1.0000000 0.02608029 0.4785714
+              vs am gear      carb
+Merc 230       1  0  0.5 0.1428571
+Mazda RX4 Wag  0  1  0.5 0.4285714
+Volvo 142E     1  1  0.5 0.1428571
+Honda Civic    1  1  0.5 0.1428571</code></pre>
 </div>
 </div>
 </section><section id="normaliser" class="level4" data-number="9.2.1.3"><h4 data-number="9.2.1.3" class="anchored" data-anchor-id="normaliser">
@@ -542,10 +510,10 @@ Cadillac Fleetwood 0.4142857  0  0  0.0 0.4285714</code></pre>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/khliland/pls">"pls"</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>
-Attachement du package : 'pls'</code></pre>
+Attaching package: 'pls'</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>L'objet suivant est masqué depuis 'package:stats':
+<pre><code>The following object is masked from 'package:stats':
 
     loadings</code></pre>
 </div>
@@ -598,7 +566,7 @@ Attachement du package : 'pls'</code></pre>
 ✖ dplyr::lag()      masks stats::lag()
 ✖ yardstick::spec() masks readr::spec()
 ✖ recipes::step()   masks stats::step()
-• Learn how to get started at https://www.tidymodels.org/start/</code></pre>
+• Use tidymodels_prefer() to resolve common conflicts.</code></pre>
 </div>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">lasrosas.corn</span>, package <span class="op">=</span> <span class="st">"agridat"</span><span class="op">)</span></span>
 <span><span class="va">lasrosas.corn</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
@@ -614,7 +582,7 @@ Attachement du package : 'pls'</code></pre>
 </div>
 </div>
 <p>Disons que pour mon modèle statistique, ma variable de sortie est le rendement (<code>yield</code>), que je désire lier à la dose d’azote (<code>nitro</code>), à un indicateur de la teneur en matière organique du sol (<code>bv</code>) et à la topographie (<code>topo</code>).</p>
-<p>Mais pour rendre le modèle prédictif (et non pas seulement descriptif), je dois l’évaluer sur des données qui n’ont pas servies à lisser le modèle (nous verrons en plus de détails ça au <a href="14-modelisation.html" class="quarto-xref">chapitre&nbsp;<span>15</span></a>). Je vais donc séparer mon tableau au hasard en un tableau d’entraînement comprenant 70% des observations et un autre pour tester le modèle comprenant le 30% restant.</p>
+<p>Mais pour rendre le modèle prédictif (et non pas seulement descriptif), je dois l’évaluer sur des données qui n’ont pas servies à lisser le modèle (nous verrons en plus de détails ça au <a href="14-modelisation.html">chapitre&nbsp;<span>15</span></a>). Je vais donc séparer mon tableau au hasard en un tableau d’entraînement comprenant 70% des observations et un autre pour tester le modèle comprenant le 30% restant.</p>
 <div class="cell">
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">train_test_split</span> <span class="op">&lt;-</span> <span class="va">lasrosas.corn</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">yield</span>, <span class="va">nitro</span>, <span class="va">bv</span>, <span class="va">topo</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
@@ -684,13 +652,13 @@ predictor: 3</code></pre>
 <span><span class="va">test_proc</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_n</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 6
-    nitro       bv yield topo_HT topo_LO topo_W
-    &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
-1 -0.620  -7.24     91.1       0       0      1
-2  1.40   -0.383   100.        0       1      0
-3  0.0171 -0.234    70.0       0       0      1
-4  1.40    0.603    82.7       0       0      1
-5  0.961   0.00834  69.8       0       0      1</code></pre>
+    nitro     bv yield topo_HT topo_LO topo_W
+    &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
+1 -0.326   0.432  46.1       1       0      0
+2  0.250  -0.698 104         0       1      0
+3  0.0319 -0.203  57.6       0       0      1
+4  0.960   1.24   60.7       1       0      0
+5  1.39    0.555  56.6       0       0      1</code></pre>
 </div>
 </div>
 <p>La fonction <code>bake()</code> peut aussi être appliquée au données d’entraînement, mais certaines étapes de recette doivent passer par des opérations particulières, comme <code>step_downsample()</code> Il est donc préférable, pour les données d’entrâinement, d’en extraire le jus avec la fonction <code>juice()</code>.</p>
@@ -699,13 +667,13 @@ predictor: 3</code></pre>
 <span><span class="va">train_proc</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_n</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 6
-   nitro      bv yield topo_HT topo_LO topo_W
-   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
-1  1.40  -1.83   101.        0       1      0
-2  0.239 -1.22   104.        0       1      0
-3 -0.620  0.106  104.        0       0      0
-4  0.961 -0.0680  63.8       0       0      1
-5  1.40  -2.06   108.        0       1      0</code></pre>
+   nitro     bv yield topo_HT topo_LO topo_W
+   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
+1  0.250 -0.296  94.6       0       1      0
+2 -0.827  0.600  59.2       0       0      0
+3  0.960 -1.84   72.1       0       1      0
+4  0.960  0.813  74.3       0       1      0
+5 -0.270 -0.275  68.1       0       0      0</code></pre>
 </div>
 </div>
 <p>Le tableau <code>train_proc</code> peut être envoyé dans un modèle de votre choix! Par exemple,</p>
@@ -719,22 +687,22 @@ lm(formula = yield ~ ., data = train_proc)
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--35.352 -10.834  -2.313   9.964  46.420 
+-46.888 -11.133  -2.347  10.705  41.205 
 
 Coefficients:
             Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)  77.3248     0.6202 124.673  &lt; 2e-16 ***
-nitro         2.4624     0.2796   8.808  &lt; 2e-16 ***
-bv           -5.2742     0.3504 -15.050  &lt; 2e-16 ***
-topo_HT     -23.6367     0.9313 -25.381  &lt; 2e-16 ***
-topo_LO       3.9607     0.8537   4.639 3.68e-06 ***
-topo_W       -9.9351     0.8014 -12.398  &lt; 2e-16 ***
+(Intercept)  77.8903     0.6199 125.654  &lt; 2e-16 ***
+nitro         2.4698     0.2842   8.689  &lt; 2e-16 ***
+bv           -5.4303     0.3568 -15.221  &lt; 2e-16 ***
+topo_HT     -23.8887     0.9537 -25.048  &lt; 2e-16 ***
+topo_LO       3.0660     0.8631   3.553 0.000389 ***
+topo_W      -10.4725     0.8029 -13.043  &lt; 2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 13.71 on 2404 degrees of freedom
-Multiple R-squared:  0.5245,    Adjusted R-squared:  0.5235 
-F-statistic: 530.3 on 5 and 2404 DF,  p-value: &lt; 2.2e-16</code></pre>
+Residual standard error: 13.95 on 2404 degrees of freedom
+Multiple R-squared:  0.5116,    Adjusted R-squared:  0.5106 
+F-statistic: 503.7 on 5 and 2404 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
 </section><section id="analyse-compositionnelle-en-r" class="level4" data-number="9.2.1.5"><h4 data-number="9.2.1.5" class="anchored" data-anchor-id="analyse-compositionnelle-en-r">
@@ -750,10 +718,7 @@ F-statistic: 530.3 on 5 and 2404 DF,  p-value: &lt; 2.2e-16</code></pre>
 <span>                humerus <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">n</span>, <span class="fl">6</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">bones</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure"><p><img src="08-explorer_files/figure-html/expl-coda-bones-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="08-explorer_files/figure-html/expl-coda-bones-1.png" class="img-fluid" width="672"></p>
 </div>
 <div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">bones</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -771,10 +736,7 @@ humerus  0.002652292 -0.008994704  1.000000000</code></pre>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">bones_r</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/text.html">text</a></span><span class="op">(</span><span class="fl">30</span>, <span class="fl">20</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"corrélation ="</span>, <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">bones_r</span><span class="op">$</span><span class="va">fh</span>, <span class="va">bones_r</span><span class="op">$</span><span class="va">th</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span>, col <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure"><p><img src="08-explorer_files/figure-html/expl-bones-allo-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="08-explorer_files/figure-html/expl-bones-allo-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Nous avons induit ce que Pearson appelait une fausse corrélation (<em>spurious correlation</em>). En 1960, <a href="https://doi.org/10.1029/JZ065i012p04185">Chayes</a> proposa que de telles fausses corrélations sont induites non seulement sur des ratios de valeurs absolues, mais aussi sur des ratios d’une somme totale. Par exemple, dans une composition simple de deux types d’utilisation du territoire, si une proportion augmente, l’autre doit nécessairement diminuer.</p>
@@ -785,10 +747,7 @@ humerus  0.002652292 -0.008994704  1.000000000</code></pre>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">A</span>, y<span class="op">=</span><span class="va">B</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure"><p><img src="08-explorer_files/figure-html/expl-bones-corr-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="08-explorer_files/figure-html/expl-bones-corr-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Les variables exprimées relativement à une somme totale sont dites <em>compositionnelles</em>. Elles possèdent les caractéristiques suivantes.</p>
@@ -865,10 +824,7 @@ attr(,"class")
 <div class="cell">
 <div class="sourceCode" id="cb55"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">comp</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure"><p><img src="08-explorer_files/figure-html/expl-coda-tern-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="08-explorer_files/figure-html/expl-coda-tern-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Afin de transposer cet espace clôt en un espace ouvert, on pourra diviser chaque proportion par une proportion de référence choisie parmi n’importe quelle proportion. Du coup, on retire une dimension redondante! Dans ce ratio, on choisit d’utiliser la proportion de référence au dénominateur, ce qui est arbitraire. En utilisant le log du ratio, l’inverse du ratio ne sera qu’un changement de signe, ce qui est pratique en statistiques linéaries. Cette solution, proposée par Aitchison (1986), s’applique non seulement sur les compositions à deux composantes, mais sur toute composition. Il s’agit alors d’utiliser une composition de référence pour effecteur les ratios. Pour une composition de <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span>, <span class="math inline">\(C\)</span>, <span class="math inline">\(D\)</span> et <span class="math inline">\(E\)</span>:</p>
@@ -877,7 +833,7 @@ attr(,"class")
 <div class="cell">
 <div class="sourceCode" id="cb56"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">add_lr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/compositions/man/alr.html">alr</a></span><span class="op">(</span><span class="va">comp</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Cette dernière stratégie se nomme les <strong>log-ratios aditifs</strong> (<span class="math inline">\(alr\)</span> pour <em>additive log-ratio</em>). Bien que valide pour effectuer des tests statistiques, cette stratégie a le désavantage de dépendre de la décision arbitraire de la composante à utiliser au numérateur. Deuxième restriction des <em>alr</em>: les axes de l’espace des <em>alr</em> n’étant pas orthogonaux, ils ne peuvent pas être utilisés pour effectuer des statistiques basées sur les distances (que nous couvrirons au <a href="09-ordination.html" class="quarto-xref">chapitre&nbsp;<span>10</span></a>).</p>
+<p>Cette dernière stratégie se nomme les <strong>log-ratios aditifs</strong> (<span class="math inline">\(alr\)</span> pour <em>additive log-ratio</em>). Bien que valide pour effectuer des tests statistiques, cette stratégie a le désavantage de dépendre de la décision arbitraire de la composante à utiliser au numérateur. Deuxième restriction des <em>alr</em>: les axes de l’espace des <em>alr</em> n’étant pas orthogonaux, ils ne peuvent pas être utilisés pour effectuer des statistiques basées sur les distances (que nous couvrirons au <a href="09-ordination.html">chapitre&nbsp;<span>10</span></a>).</p>
 <p>L’autre stratégie proposée par Aitchison était d’effectuer un log-ratio entre chaque composante et la moyenne géométrique de toutes les composantes. Cette transformation se nomme le <strong>log-ratio centré</strong> (<span class="math inline">\(clr\)</span>, pour <em>centered log-ratio</em>)</p>
 <p><span class="math display">\[clr_i = log \left( \frac{x_i}{g \left( x \right)} \right)\]</span></p>
 <p>En R,</p>
@@ -902,10 +858,7 @@ attr(,"class")
 <span><span class="fu">CoDaDendrogram2</span><span class="op">(</span><span class="va">comp</span>, V <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/compositions/man/gsimerge2signary.html">gsi.buildilrBase</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">sbp</span><span class="op">)</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>,</span>
 <span>                equal.height <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure"><p><img src="08-explorer_files/figure-html/expl-sbp-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="08-explorer_files/figure-html/expl-sbp-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Si la SBP est plus imposante, il pourrait être plus aisé de monter dans un chiffrier, puis de l’importer dans R via un fichier csv.</p>
@@ -964,8 +917,12 @@ attr(,"class")
 <p>Le module <a href="http://ropensci.github.io/weathercan/">weathercan</a>, développé par Steffi LaZerte, permet d’effectuer des requêtes rapidement à partir des coordonnées de votre site expérimental. Par exemple, si je cherche une station météo fournissant des données horaires située à moins de 20 km du sommet du Mont-Bellevue, à Sherbrooke, aux coordonnées [latitude 45.35, longitude -71.90] :</p>
 <div class="cell">
 <div class="sourceCode" id="cb68"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://docs.ropensci.org/weathercan/">"weathercan"</a></span><span class="op">)</span></span>
-<span><span class="va">station_site</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/weathercan/reference/stations_search.html">stations_search</a></span><span class="op">(</span>coords <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">45.35</span>, <span class="op">-</span><span class="fl">71.90</span><span class="op">)</span>, dist <span class="op">=</span> <span class="fl">20</span>, interval <span class="op">=</span> <span class="st">"hour"</span><span class="op">)</span></span>
-<span><span class="va">station_site</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="va">station_site</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/weathercan/reference/stations_search.html">stations_search</a></span><span class="op">(</span>coords <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">45.35</span>, <span class="op">-</span><span class="fl">71.90</span><span class="op">)</span>, dist <span class="op">=</span> <span class="fl">20</span>, interval <span class="op">=</span> <span class="st">"hour"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The stations data frame hasn't been updated in over 4 weeks. Consider running `stations_dl()` to check for updates and make sure you have the most recent stations list available
+The stations data frame hasn't been updated in over 4 weeks. Consider running `stations_dl()` to check for updates and make sure you have the most recent stations list available</code></pre>
+</div>
+<div class="sourceCode" id="cb70"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">station_site</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 17
   prov  station_name station_id climate_id WMO_id TC_id   lat   lon  elev tz    
@@ -980,12 +937,15 @@ attr(,"class")
 </div>
 <p>Je prends en note l’identifiant de la station désirée (ou des stations, disons 5397 et 48371), puis je lance une requête pour obtenir la météo horaire entre les dates désirées.</p>
 <div class="cell">
-<div class="sourceCode" id="cb70"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mont_bellevue</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/weathercan/reference/weather_dl.html">weather_dl</a></span><span class="op">(</span>station_ids <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5397</span>, <span class="fl">48371</span><span class="op">)</span>,</span>
+<div class="sourceCode" id="cb72"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mont_bellevue</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/weathercan/reference/weather_dl.html">weather_dl</a></span><span class="op">(</span>station_ids <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5397</span>, <span class="fl">48371</span><span class="op">)</span>,</span>
 <span>                            start <span class="op">=</span> <span class="st">"2024-02-16"</span>,</span>
 <span>                            end <span class="op">=</span> <span class="st">"2024-02-23"</span>,</span>
 <span>                            interval <span class="op">=</span> <span class="st">"hour"</span>,</span>
 <span>                            verbose <span class="op">=</span> <span class="cn">TRUE</span>, </span>
 <span>                            time_disp <span class="op">=</span> <span class="st">"local"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The stations data frame hasn't been updated in over 4 weeks. Consider running `stations_dl()` to check for updates and make sure you have the most recent stations list available</code></pre>
+</div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Getting station: 5397</code></pre>
 </div>
@@ -1012,7 +972,7 @@ attr(,"class")
 See Details under ?weather_dl for more information.
 This message is shown once per session</code></pre>
 </div>
-<div class="sourceCode" id="cb79"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mont_bellevue</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb82"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mont_bellevue</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 37
   station_name station_id station_operator prov    lat   lon  elev climate_id
@@ -1033,14 +993,11 @@ This message is shown once per session</code></pre>
 </div>
 <p>Et voilà.</p>
 <div class="cell">
-<div class="sourceCode" id="cb81"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mont_bellevue</span> <span class="op">|&gt;</span>  </span>
+<div class="sourceCode" id="cb84"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mont_bellevue</span> <span class="op">|&gt;</span>  </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">time</span>, y <span class="op">=</span> <span class="va">temp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="va">station_name</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure"><p><img src="08-explorer_files/figure-html/expl-weathercan-plot-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="08-explorer_files/figure-html/expl-weathercan-plot-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section><section id="pédométrie-avec-r" class="level3" data-number="9.2.3"><h3 data-number="9.2.3" class="anchored" data-anchor-id="pédométrie-avec-r">
@@ -1051,13 +1008,13 @@ This message is shown once per session</code></pre>
 <span class="header-section-number">9.2.3.1</span> Texture du sol</h4>
 <p>La texture du sol est définie par sa composition granulométrique, habituellement représentée par trois fractions (sable, limon, argile), laquelle peut être généralisée en classe texturale. La définition des classes texturales diffère d’un système ou d’un pays à l’autre comme en témoigne l’article <a href="http://www.afes.fr/wp-content/uploads/2017/10/EGS_15_2_richerdeforges.pdf">Perdus dans le triangle des textures (Richer de Forges et al.&nbsp;2008)</a>. La définition des fractions granulométriques peut également différer selon le domaine d’étude (ingénierie, pédologie) ou le pays. Par exemple, le diamètre du limon est de 0,002 mm à 0,05 mm dans le système canadien, américain et français alors qu’il est de 0,002 mm à 0,02 mm dans le système australien et de 0,002 mm à 0,063 mm dans le système allemand. Il est donc important de vérifier la méthodologie et le système de classification utilisés pour interpréter les données de texture du sol. Le module <code>soilTexture</code> propose des fonctions permettant d’aborder ces multiples définitions.</p>
 <div class="cell">
-<div class="sourceCode" id="cb82"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/julienmoeys/soiltexture">"soiltexture"</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb85"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/julienmoeys/soiltexture">"soiltexture"</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="les-triangles-texturaux" class="level5" data-number="9.2.3.1.1"><h5 data-number="9.2.3.1.1" class="anchored" data-anchor-id="les-triangles-texturaux">
 <span class="header-section-number">9.2.3.1.1</span> Les triangles texturaux</h5>
 <p>Avec la fonction <code>TT.plot</code>, vous pouvez présenter vos données granulométriques dans un triangle textural tel que défini par les différents systèmes nationaux. Auparavant, créons un objet comprenant des textures aléatoires.</p>
 <div class="cell">
-<div class="sourceCode" id="cb83"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">848341</span><span class="op">)</span> <span class="co"># random.org</span></span>
+<div class="sourceCode" id="cb86"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">848341</span><span class="op">)</span> <span class="co"># random.org</span></span>
 <span><span class="va">rand_text</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/soiltexture/man/TT.dataset.html">TT.dataset</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">100</span>, seed.val<span class="op">=</span><span class="fl">29</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">rand_text</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1072,7 +1029,7 @@ This message is shown once per session</code></pre>
 </div>
 <p>Avec le module soiltexture, les tableaux de texture doivent inclure les intitullés exactes CLAY, SILT et SAND (notez les majuscules). Les points des textures générées peuvent être portés dans des diagrammes ternaires texturaux de différents systèmes de classification, par exemple le système canadioen et le système USDA.</p>
 <div class="cell">
-<div class="sourceCode" id="cb85"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb88"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/soiltexture/man/TT.plot.html">TT.plot</a></span><span class="op">(</span>class.sys <span class="op">=</span> <span class="st">"CA.FR.TT"</span>, </span>
 <span>        tri.data <span class="op">=</span> <span class="va">rand_text</span>,</span>
@@ -1081,10 +1038,7 @@ This message is shown once per session</code></pre>
 <span>        tri.data <span class="op">=</span> <span class="va">rand_text</span>,</span>
 <span>        col <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure"><p><img src="08-explorer_files/figure-html/expl-sol-tern-1.png" class="img-fluid figure-img" width="1536"></p>
-</figure>
-</div>
+<p><img src="08-explorer_files/figure-html/expl-sol-tern-1.png" class="img-fluid" width="1536"></p>
 </div>
 </div>
 <p>Les paramètres de la figure (titres, polices, style de la grille, etc.) peuvent être personnalisés avec les <a href="https://www.rdocumentation.org/packages/soiltexture/versions/1.5.1/topics/TT.plot">arguments TT.plot</a>.</p>
@@ -1092,7 +1046,7 @@ This message is shown once per session</code></pre>
 <span class="header-section-number">9.2.3.1.2</span> Les classes texturales</h5>
 <p>La fonction <code>TT.points.in.classes</code> est utile pour désigner la classe texturale à partir des données granulométriques, en spécifiant bien le système de classification désiré.</p>
 <div class="cell">
-<div class="sourceCode" id="cb86"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/soiltexture/man/TT.points.in.classes.html">TT.points.in.classes</a></span><span class="op">(</span></span>
+<div class="sourceCode" id="cb89"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/soiltexture/man/TT.points.in.classes.html">TT.points.in.classes</a></span><span class="op">(</span></span>
 <span>  tri.data <span class="op">=</span> <span class="va">rand_text</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="op">]</span>, <span class="co"># </span></span>
 <span>  class.sys <span class="op">=</span> <span class="st">"CA.FR.TT"</span>,</span>
 <span>  PiC.type <span class="op">=</span> <span class="st">"t"</span></span>
@@ -1115,7 +1069,7 @@ This message is shown once per session</code></pre>
 </ol>
 <p>Vos données morphologiques, physico-chimiques, etc., sont incluses dans les autres colonnes. Chargeons un fichier pédologique à titre d’exemple.</p>
 <div class="cell">
-<div class="sourceCode" id="cb88"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">profils</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/08_pedometric-profile.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb91"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">profils</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/08_pedometric-profile.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 44 Columns: 9
 ── Column specification ────────────────────────────────────────────────────────
@@ -1126,7 +1080,7 @@ dbl (7): id, top, bottom, value, chroma, pH.CaCl2, C.CNS.pc
 ℹ Use `spec()` to retrieve the full column specification for this data.
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 </div>
-<div class="sourceCode" id="cb90"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">profils</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb93"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">profils</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 9
      id horizon   top bottom hue   value chroma pH.CaCl2 C.CNS.pc
@@ -1141,38 +1095,35 @@ dbl (7): id, top, bottom, value, chroma, pH.CaCl2, C.CNS.pc
 </div>
 <p>La fonction <code>munsell2rgb</code> permet de convertir le code de couleur <em>Munsell</em> en format <em>RGB</em>.</p>
 <div class="cell">
-<div class="sourceCode" id="cb92"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/ncss-tech/aqp">"aqp"</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb95"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/ncss-tech/aqp">"aqp"</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>This is aqp 2.0.2</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>
-Attachement du package : 'aqp'</code></pre>
+Attaching package: 'aqp'</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Les objets suivants sont masqués depuis 'package:dplyr':
+<pre><code>The following objects are masked from 'package:dplyr':
 
     combine, slice</code></pre>
 </div>
-<div class="sourceCode" id="cb96"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">profils</span><span class="op">$</span><span class="va">soil_color</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">profils</span>, <span class="fu"><a href="https://rdrr.io/pkg/aqp/man/munsell2rgb.html">munsell2rgb</a></span><span class="op">(</span><span class="va">hue</span>, <span class="va">value</span>, <span class="va">chroma</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb99"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">profils</span><span class="op">$</span><span class="va">soil_color</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">profils</span>, <span class="fu"><a href="https://rdrr.io/pkg/aqp/man/munsell2rgb.html">munsell2rgb</a></span><span class="op">(</span><span class="va">hue</span>, <span class="va">value</span>, <span class="va">chroma</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Préalablement à la visualisation, le tableau est transformé en objet <code>SoilProfileCollection</code> par la fonction <code>depths</code>. Pour ce faire, le tableau doit être un pur <code>data.frame</code>, non pas un <code>tibble</code>.</p>
 <div class="cell">
-<div class="sourceCode" id="cb97"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">profils</span> <span class="op">&lt;-</span> <span class="va">profils</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb100"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">profils</span> <span class="op">&lt;-</span> <span class="va">profils</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/aqp/man/depths.html">depths</a></span><span class="op">(</span><span class="va">profils</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">id</span> <span class="op">~</span> <span class="va">top</span> <span class="op">+</span> <span class="va">bottom</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>La fonction <code>plot</code> détectera le type d’objet et appellera la fonction de visualisation en conséquence.</p>
 <div class="cell">
-<div class="sourceCode" id="cb98"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb101"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span><span class="op">(</span><span class="va">profils</span>, name<span class="op">=</span><span class="st">"horizon"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/title.html">title</a></span><span class="op">(</span><span class="st">'Couleur des horizons'</span>, cex.main<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span><span class="op">(</span><span class="va">profils</span>, name<span class="op">=</span><span class="st">"horizon"</span>, color<span class="op">=</span><span class="st">'C.CNS.pc'</span>, col.label<span class="op">=</span><span class="st">'C total (%)'</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span><span class="op">(</span><span class="va">profils</span>, name<span class="op">=</span><span class="st">"horizon"</span>, color<span class="op">=</span><span class="st">'pH.CaCl2'</span>, col.label<span class="op">=</span><span class="st">'pH CaCl2'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure"><p><img src="08-explorer_files/figure-html/expl-sol-profils-plot-1.png" class="img-fluid figure-img" width="1152"></p>
-</figure>
-</div>
+<p><img src="08-explorer_files/figure-html/expl-sol-profils-plot-1.png" class="img-fluid" width="1152"></p>
 </div>
 </div>
 <p>De multiples figures thématiques peuvent être générées afin de représenter les particuliarités des profils. Pour aller plus loin, consultez les guides <a href="http://ncss-tech.github.io/AQP/aqp/aqp-intro.html"><em>Introduction to SoilProfileCollection Objects</em></a> et <a href="http://ncss-tech.github.io/AQP/aqp/SPC-plotting-ideas.html"><em>Generating Sketches from SPC Objects</em></a>.</p>
@@ -1180,11 +1131,11 @@ Attachement du package : 'aqp'</code></pre>
 <span class="header-section-number">9.2.3.2.2</span> Les plans verticaux (depth functions)</h5>
 <p>Les plans verticaux sont des diagrammes qui permettent d’interpréter les données en fonction de la profondeur. La fonction <code>slab</code> permet le calcul de statistiques descriptives par intervalles de profondeur réguliers, lesquelles permettent de visualiser la variabilité verticale des propriétés des sols.</p>
 <div class="cell">
-<div class="sourceCode" id="cb99"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">agg</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/aqp/man/slab.html">slab</a></span><span class="op">(</span><span class="va">profils</span>, fm <span class="op">=</span> <span class="op">~</span> <span class="va">C.CNS.pc</span> <span class="op">+</span> <span class="va">pH.CaCl2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb102"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">agg</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/aqp/man/slab.html">slab</a></span><span class="op">(</span><span class="va">profils</span>, fm <span class="op">=</span> <span class="op">~</span> <span class="va">C.CNS.pc</span> <span class="op">+</span> <span class="va">pH.CaCl2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>La visualisation est générée par le module graphique ggplot2</p>
 <div class="cell">
-<div class="sourceCode" id="cb100"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">agg</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<div class="sourceCode" id="cb103"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">agg</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="op">-</span><span class="va">top</span>, y <span class="op">=</span> <span class="va">p.q50</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html">facet_grid</a></span><span class="op">(</span><span class="va">.</span> <span class="op">~</span> <span class="va">variable</span>, scale <span class="op">=</span> <span class="st">"free"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_ribbon.html">geom_ribbon</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>ymin <span class="op">=</span>  <span class="va">p.q25</span>, ymax <span class="op">=</span> <span class="va">p.q75</span><span class="op">)</span>, fill <span class="op">=</span> <span class="st">"grey75"</span>, alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span></span>
@@ -1193,17 +1144,14 @@ Attachement du package : 'aqp'</code></pre>
 <span>       y <span class="op">=</span> <span class="st">"Médiane bordée des 25e and 75e percentiles"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure"><p><img src="08-explorer_files/figure-html/expl-sol-agg-ggplot-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="08-explorer_files/figure-html/expl-sol-agg-ggplot-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section><section id="le-regroupement-de-profils" class="level5" data-number="9.2.3.2.3"><h5 data-number="9.2.3.2.3" class="anchored" data-anchor-id="le-regroupement-de-profils">
 <span class="header-section-number">9.2.3.2.3</span> Le regroupement de profils</h5>
-<p>Le calcul des distances de dissimilarité entre les profils avec <code>profile_compare</code> permet la construction de dendrogramme et le regroupement des profils. Notez que nous survolerons au <a href="09-ordination.html" class="quarto-xref">chapitre&nbsp;<span>10</span></a> les concepts de dissimilarité et de partitionnement.</p>
+<p>Le calcul des distances de dissimilarité entre les profils avec <code>profile_compare</code> permet la construction de dendrogramme et le regroupement des profils. Notez que nous survolerons au <a href="09-ordination.html">chapitre&nbsp;<span>10</span></a> les concepts de dissimilarité et de partitionnement.</p>
 <div class="cell">
-<div class="sourceCode" id="cb101"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://svn.r-project.org/R-packages/trunk/cluster/">"cluster"</a></span><span class="op">)</span></span>
+<div class="sourceCode" id="cb104"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://svn.r-project.org/R-packages/trunk/cluster/">"cluster"</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="http://mvtnorm.R-forge.R-project.org">"mvtnorm"</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/ncss-tech/sharpshootR">"sharpshootR"</a></span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -1211,62 +1159,62 @@ Attachement du package : 'aqp'</code></pre>
   method          from   
   print.nullmodel parsnip</code></pre>
 </div>
-<div class="sourceCode" id="cb103"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://r.igraph.org/">"igraph"</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb106"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://r.igraph.org/">"igraph"</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>
-Attachement du package : 'igraph'</code></pre>
+Attaching package: 'igraph'</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>L'objet suivant est masqué depuis 'package:compositions':
+<pre><code>The following object is masked from 'package:compositions':
 
     normalize</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Les objets suivants sont masqués depuis 'package:dials':
+<pre><code>The following objects are masked from 'package:dials':
 
     degree, neighbors</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Les objets suivants sont masqués depuis 'package:lubridate':
+<pre><code>The following objects are masked from 'package:lubridate':
 
     %--%, union</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Les objets suivants sont masqués depuis 'package:dplyr':
+<pre><code>The following objects are masked from 'package:dplyr':
 
     as_data_frame, groups, union</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Les objets suivants sont masqués depuis 'package:purrr':
+<pre><code>The following objects are masked from 'package:purrr':
 
     compose, simplify</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>L'objet suivant est masqué depuis 'package:tidyr':
+<pre><code>The following object is masked from 'package:tidyr':
 
     crossing</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>L'objet suivant est masqué depuis 'package:tibble':
+<pre><code>The following object is masked from 'package:tibble':
 
     as_data_frame</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Les objets suivants sont masqués depuis 'package:stats':
+<pre><code>The following objects are masked from 'package:stats':
 
     decompose, spectrum</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>L'objet suivant est masqué depuis 'package:base':
+<pre><code>The following object is masked from 'package:base':
 
     union</code></pre>
 </div>
-<div class="sourceCode" id="cb114"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># remotes::install_github("ncss-tech/sharpshootR")</span></span>
+<div class="sourceCode" id="cb117"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># remotes::install_github("ncss-tech/sharpshootR")</span></span>
 <span><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/aqp/man/profile_compare.html">profile_compare</a></span><span class="op">(</span><span class="va">profils</span>, vars<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'C.CNS.pc'</span>, <span class="st">'pH.CaCl2'</span><span class="op">)</span>, k<span class="op">=</span><span class="fl">0</span>, max_d<span class="op">=</span><span class="fl">40</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: 'profile_compare' est obsolète.
-Utilisez plutôt ‘NCSP’.
-Voir help("Deprecated")</code></pre>
+<pre><code>Warning: 'profile_compare' is deprecated.
+Use 'NCSP' instead.
+See help("Deprecated")</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: profile_compare() has been deprecated, please use NCSP()</code></pre>
@@ -1280,7 +1228,7 @@ Voir help("Deprecated")</code></pre>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: SPC / distance matrix IDs out of order, soon to be fixed (#7)</code></pre>
 </div>
-<div class="sourceCode" id="cb120"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">d_diana</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/cluster/man/diana.html">diana</a></span><span class="op">(</span><span class="va">d</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb123"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">d_diana</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/cluster/man/diana.html">diana</a></span><span class="op">(</span><span class="va">d</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/sharpshootR/man/plotProfileDendrogram.html">plotProfileDendrogram</a></span><span class="op">(</span><span class="va">profils</span>, name<span class="op">=</span><span class="st">"horizon"</span>, <span class="va">d_diana</span>,</span>
 <span>                      scaling.factor <span class="op">=</span> <span class="fl">0.3</span>, y.offset <span class="op">=</span> <span class="fl">5</span>,</span>
 <span>                      color<span class="op">=</span><span class="st">'pH.CaCl2'</span>,  col.label<span class="op">=</span><span class="st">'pH CaCl2'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1288,29 +1236,23 @@ Voir help("Deprecated")</code></pre>
 <pre><code>profile IDs and clustering IDs are not in the same order</code></pre>
 </div>
 <div class="cell-output-display">
-<div>
-<figure class="figure"><p><img src="08-explorer_files/figure-html/expl-sol-cluster-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="08-explorer_files/figure-html/expl-sol-cluster-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section><section id="diagramme-de-relations-entre-les-horizons" class="level5" data-number="9.2.3.2.4"><h5 data-number="9.2.3.2.4" class="anchored" data-anchor-id="diagramme-de-relations-entre-les-horizons">
 <span class="header-section-number">9.2.3.2.4</span> Diagramme de relations entre les horizons</h5>
 <p>Il est possible de visualiser les transitions d’horizon les plus probables dans un groupe de profils de sols.</p>
 <div class="cell">
-<div class="sourceCode" id="cb122"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/aqp/man/hzTransitionProbabilities.html">hzTransitionProbabilities</a></span><span class="op">(</span><span class="va">profils</span>, name<span class="op">=</span><span class="st">"horizon"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb125"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/aqp/man/hzTransitionProbabilities.html">hzTransitionProbabilities</a></span><span class="op">(</span><span class="va">profils</span>, name<span class="op">=</span><span class="st">"horizon"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: ties in transition probability matrix</code></pre>
 </div>
-<div class="sourceCode" id="cb124"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>, mfcol <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb127"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>, mfcol <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span><span class="op">(</span><span class="va">profils</span>, name<span class="op">=</span><span class="st">"horizon"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/sharpshootR/man/plotSoilRelationGraph.html">plotSoilRelationGraph</a></span><span class="op">(</span><span class="va">tp</span>, graph.mode <span class="op">=</span> <span class="st">"directed"</span>, edge.arrow.size <span class="op">=</span> <span class="fl">0.5</span>, edge.scaling.factor <span class="op">=</span> <span class="fl">2</span>, vertex.label.cex <span class="op">=</span> <span class="fl">0.75</span>, </span>
 <span>                      vertex.label.family <span class="op">=</span> <span class="st">"sans"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure"><p><img src="08-explorer_files/figure-html/expl-sol-relations-1.png" class="img-fluid figure-img" width="960"></p>
-</figure>
-</div>
+<p><img src="08-explorer_files/figure-html/expl-sol-relations-1.png" class="img-fluid" width="960"></p>
 </div>
 </div>
 <p>Consultez <a href="http://ncss-tech.github.io/AQP/">AQP project</a> pour des présentations, des tutoriels et des exemples de figures qui montrent les nombreuses possibilités du package <code>AQP</code>.</p>
@@ -1318,9 +1260,9 @@ Voir help("Deprecated")</code></pre>
 <span class="header-section-number">9.2.4</span> Méta-analyses en R</h3>
 <p>Je conseille les livres <a href="https://www.wiley.com/en-us/Introduction+to+Meta+Analysis-p-9780470057247"><em>Introduction to Meta-Analysis</em></a>, <a href="https://www.springer.com/us/book/9783319214153"><em>Meta-analysis with R</em></a> et <a href="https://press.princeton.edu/titles/10045.html"><em>Handbook of Meta-analysis in Ecology and Evolution</em></a> pour les méta-analyses sur des écosystèmes. Le module metafor est un incournable pour effectuer des métaanalyses en R. On ne passe pas tout à fait à côté si l’on utilise le module meta, lui-même basé en partie sur metafor. Le module meta a touttefois l’avantage d’être simple d’utilisation. Par exemple, pour une méta-analyse d’une réponse continue,</p>
 <div class="cell">
-<div class="sourceCode" id="cb125"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/guido-s/meta/">"meta"</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb128"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/guido-s/meta/">"meta"</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Le chargement a nécessité le package : metadat</code></pre>
+<pre><code>Loading required package: metadat</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Loading 'meta' package (version 7.0-0).
@@ -1330,18 +1272,18 @@ older version of 'meta' package: https://tinyurl.com/dt4y5drs</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>
-Attachement du package : 'meta'</code></pre>
+Attaching package: 'meta'</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>L'objet suivant est masqué _par_ '.GlobalEnv':
+<pre><code>The following object is masked _by_ '.GlobalEnv':
 
     ci</code></pre>
 </div>
-<div class="sourceCode" id="cb130"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">Fleiss1993cont</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb133"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">Fleiss1993cont</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Fleiss1993cont"</code></pre>
 </div>
-<div class="sourceCode" id="cb132"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">meta_analyse</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/meta/man/metacont.html">metacont</a></span><span class="op">(</span>n.e <span class="op">=</span> <span class="va">n.psyc</span>, mean.e <span class="op">=</span> <span class="va">mean.psyc</span>, sd.e <span class="op">=</span> <span class="va">sd.psyc</span>, </span>
+<div class="sourceCode" id="cb135"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">meta_analyse</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/meta/man/metacont.html">metacont</a></span><span class="op">(</span>n.e <span class="op">=</span> <span class="va">n.psyc</span>, mean.e <span class="op">=</span> <span class="va">mean.psyc</span>, sd.e <span class="op">=</span> <span class="va">sd.psyc</span>, </span>
 <span>                        n.c <span class="op">=</span> <span class="va">n.cont</span>, mean.c <span class="op">=</span> <span class="va">mean.cont</span>, sd.c <span class="op">=</span> <span class="va">sd.cont</span>,</span>
 <span>                        comb.fixed <span class="op">=</span> <span class="cn">T</span>, comb.random <span class="op">=</span> <span class="cn">T</span>, studlab <span class="op">=</span> <span class="va">study</span>,</span>
 <span>                        data <span class="op">=</span> <span class="va">Fleiss1993cont</span>, sm <span class="op">=</span> <span class="st">"SMD"</span><span class="op">)</span></span>
@@ -1371,12 +1313,9 @@ Details on meta-analytical method:
 </div>
 <p>Et pour effectuer un <em>forest plot</em>,</p>
 <div class="cell">
-<div class="sourceCode" id="cb134"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://wviechtb.github.io/metafor/reference/forest.html">forest</a></span><span class="op">(</span><span class="va">meta_analyse</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb137"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://wviechtb.github.io/metafor/reference/forest.html">forest</a></span><span class="op">(</span><span class="va">meta_analyse</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure"><p><img src="08-explorer_files/figure-html/expl-meta-plot-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="08-explorer_files/figure-html/expl-meta-plot-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section><section id="créer-des-applications-avec-r" class="level3" data-number="9.2.5"><h3 data-number="9.2.5" class="anchored" data-anchor-id="créer-des-applications-avec-r">
@@ -1418,8 +1357,8 @@ shinyApp(ui, server)</a></code></pre>
 <p>Pour déployer en mode privé, vous devrez débourser pour un forfait ou installer votre propre serveur.</p>
 </section><section id="travailler-en-python" class="level3" data-number="9.2.6"><h3 data-number="9.2.6" class="anchored" data-anchor-id="travailler-en-python">
 <span class="header-section-number">9.2.6</span> Travailler en Python</h3>
-<p>Le <a href="07b-bayes.html" class="quarto-xref">chapitre&nbsp;<span>8</span></a> a présenté un module pour les statistiques bayésiennes nécessitant un environnement Python. Il s’agissait de faire fonctionner un module en R qui, à l’interne, effectue ses calculs en Python. Rien ne vous empêche d’effectuer des calculs directement en Python à même l’interface de RStudio.</p>
-<p>Note : Nous avons aussi ajouté une section facultative d’introduction à Python au <a href="06-python.html" class="quarto-xref">chapitre&nbsp;<span>6</span></a> si vous souhaitez aller plus loin.</p>
+<p>Le <a href="07b-bayes.html">chapitre&nbsp;<span>8</span></a> a présenté un module pour les statistiques bayésiennes nécessitant un environnement Python. Il s’agissait de faire fonctionner un module en R qui, à l’interne, effectue ses calculs en Python. Rien ne vous empêche d’effectuer des calculs directement en Python à même l’interface de RStudio.</p>
+<p>Note : Nous avons aussi ajouté une section facultative d’introduction à Python au <a href="06-python.html">chapitre&nbsp;<span>6</span></a> si vous souhaitez aller plus loin.</p>
 <p>Il vous faudra d’abord installer Python et les modules de calcul que vous désirez. Il existe plusieurs distributions de Python. Parmi elles, Anaconda est probablement la plus intuitive à installer. Choisissez d’abord <a href="https://www.anaconda.com/download">Anaconda</a> (~500 Mo) ou <a href="https://conda.io/miniconda.html">Miniconda</a> pour une installation minimale (~60 Mo) - si vous installez Miniconda, vous devrez aussi installer les modules nécessaires pour le calcul. Installez aussi le module <a href="https://rstudio.github.io/reticulate/"><strong><code>reticulate</code></strong></a> de R, de sorte que vous puissiez communiquer avec Python. Anaconda fonctionne avec des environnements de calcul. Chaque environnement possède sa propre version de Python et ses propres modules: cela vous permet d’isoler vos environnements et de contrôler la version des modules. Vous pouvez connecter R à l’environnement de base créé lors de l’installation d’Anaconda, ou bien en créer un autre. Pour en créer un nouveau, incluant une liste de modules de calcul,</p>
 <p><code>#{r message=FALSE} library("reticulate") conda_create(envname = "monprojet", packages = c("python", "numpy", "scipy", "matplotlib", "pandas", "scikit-learn"))</code></p>
 <p>Connectez-vous à votre environnement Python, par exemple j’utilise l’environnement par défaut <code>anaconda3</code>.</p>
@@ -1460,10 +1399,10 @@ shinyApp(ui, server)</a></code></pre>
 <span class="header-section-number">9.3.2</span> Et maintenant… Pour l’utiliser sur R?</h3>
 <p>Sous R, il existe plusieurs options, mais j’ai seulement essayé le module <a href="https://mlverse.github.io/chattr/"><strong><code>chattr</code></strong></a>, qui permet d’intégrer les modèles directement dans votre interface RStudio. Vous pouvez simplement suivre les étapes d’installation, puis vous créer un compte et générer une clé secrète d’activation auprès d’OpenAI si vous utilisez les modèles GPTs avec la commande <code>Sys.setenv("OPENAI_API_KEY" = "####################")</code>.</p>
 <p>Je vous conseille de modifier la version par défaut de modèle puisque GPT-4 est payant (personnellement, j’ai utilisé GPT-3.5-turbo avec la commande suivante : <code>chattr::chattr_use("gpt35")</code>).</p>
-<p>Une fois installé, vous pouvez lancer <code><a href="https://mlverse.github.io/chattr/reference/chattr_app.html">chattr::chattr_app()</a></code> pour lancer l’application dans l’ongler <em>Viewer</em> de RStudio (alternativement, vous pouvez créer un raccourci-clavier à partir de l’onglet <code>Outils &gt; Modifier les raccourcis-claviers</code>). Ensuite, vous effectuez vos requêtes et GPT vous répond, comme une conversation. Vous pouvez alors copier-coller les sorties, ou alors générer un script à partir de celles-ci.</p>
+<p>Une fois installé, vous pouvez lancer <code>chattr::chattr_app()</code> pour lancer l’application dans l’ongler <em>Viewer</em> de RStudio (alternativement, vous pouvez créer un raccourci-clavier à partir de l’onglet <code>Outils &gt; Modifier les raccourcis-claviers</code>). Ensuite, vous effectuez vos requêtes et GPT vous répond, comme une conversation. Vous pouvez alors copier-coller les sorties, ou alors générer un script à partir de celles-ci.</p>
 <p>Au début, pour une utilisation simple et des opérations faciles, j’ai été agréablement surpris par les réponses rapides, épurées et bien structurées de GPT-3.5. Comme dans une conversation, je lui fournissais des requêtes (<em>prompts</em>) en lui disant quoi faire, puis le robot me répondait avec une explication, un bloc de code et des commentaires sur les lignes de codes. Venaient ensuite quelques ajustements, par exemple utiliser <code>ggplot</code> au lieu de <code>plot</code> pour réaliser les graphiques, ou alors ajouter des facettes et intégrer toutes les variables sous forme de boxplots.</p>
 <p>J’ai ensuite décidé de passer au niveau supérieur et de faire des requêtes un peu plus complexes : Fais un modèle linéaire sur telles variables, crée un code pour effectuer tel calcul sur un ensemble de données situées dans un dossier, etc. À cette étape, GPT s’est emballé et a commencé à me fournir des codes en pigeant dans plusieurs modules différents, en mélangeant des méthodes récentes avec des méthodes plus anciennes et parfois désuettes. Les résultats étaient des blocs de codes souvent non fonctionnels, ou alors qui ne faisaient pas du tout ce que j’avais décrit, même après l’ajout de détails dans mes requêtes. Au bout d’un certain temps, j’avais atteint ma limite gratuite de <em>Tokens</em> (et de patience) pour le modèle GPT-3.5.</p>
-<p>Au final, à ce stade-ci, j’ai de la difficulté à recommander cet outil. Les algorithmes d’autoapprentissage qui seront présentés au <a href="12-autoapprentissage.html" class="quarto-xref">chapitre&nbsp;<span>13</span></a> sont beaucoup plus intéressants selon moi puisque leur utilisation reste limitée à ce qu’on veut qu’ils fassent et que les dérives scientifiques me semblent moins importantes. L’IA générative a certainement sa place, mais nécessite une bonne connaissance initiale du sujet et des opérations à effectuer. Son rôle devrait être principalement de faciliter le travail de programmeurs ou de scientifiques aguerris, mais ils ne devraient jamais remplacer l’esprit critique, ni faire le travail pour vous.</p>
+<p>Au final, à ce stade-ci, j’ai de la difficulté à recommander cet outil. Les algorithmes d’autoapprentissage qui seront présentés au <a href="12-autoapprentissage.html">chapitre&nbsp;<span>13</span></a> sont beaucoup plus intéressants selon moi puisque leur utilisation reste limitée à ce qu’on veut qu’ils fassent et que les dérives scientifiques me semblent moins importantes. L’IA générative a certainement sa place, mais nécessite une bonne connaissance initiale du sujet et des opérations à effectuer. Son rôle devrait être principalement de faciliter le travail de programmeurs ou de scientifiques aguerris, mais ils ne devraient jamais remplacer l’esprit critique, ni faire le travail pour vous.</p>
 
 
 </section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
@@ -1545,9 +1484,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+  function tippyHover(el, contentFn) {
     const config = {
       allowHTML: true,
+      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1557,17 +1497,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start',
+      placement: 'bottom-start'
     };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1580,125 +1511,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
-          }
-        }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
-        }
-        return container.innerHTML
-      } else {
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(note);
-        }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      // TODO in 1.5, we should make sure this works without a callout special case
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
-      }
-    }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
-          }
-        } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
-          .then(res => res.text())
-          .then(html => {
-            const parser = new DOMParser();
-            const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
-            if (note !== null) {
-              const html = processXRef(id, note);
-              instance.setContent(html);
-            } 
-          }).finally(() => {
-            instance.enable();
-            instance.show();
-          });
-        }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1742,7 +1554,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
-            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1768,32 +1579,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1853,27 +1638,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="./07b-bayes.html" class="pagination-link" aria-label="Introduction à l'analyse bayésienne en écologie">
+      <a href="./07b-bayes.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Introduction à l’analyse bayésienne en écologie</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./09-ordination.html" class="pagination-link" aria-label="Association, partitionnement et ordination">
+      <a href="./09-ordination.html" class="pagination-link">
         <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Association, partitionnement et ordination</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
 <footer class="footer"><div class="nav-footer">
-    <div class="nav-footer-left">
-<p>Analyse et modélisation d’agroécosystèmes est construit avec <a href="https://quarto.org/">Quarto</a>.</p>
-</div>   
+    <div class="nav-footer-left">Analyse et modélisation d’agroécosystèmes est construit avec <a href="https://quarto.org/">Quarto</a>.</div>   
     <div class="nav-footer-center">
       &nbsp;
     </div>
-    <div class="nav-footer-right">
-<p>Lien vers le <a href="https://essicolo.github.io/ecologie-mathematique-R/">manuel original</a>.</p>
-</div>
+    <div class="nav-footer-right">Lien vers le <a href="https://essicolo.github.io/ecologie-mathematique-R/">manuel original</a>.</div>
   </div>
 </footer>
 

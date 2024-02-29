@@ -867,7 +867,7 @@ $stations_meteos
 <div class="sourceCode" id="cb100"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://tidyverse.tidyverse.org">"tidyverse"</a></span><span class="op">)</span> <span class="co"># méta-package qui charge entre autres dplyr et ggplot2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.4     ✔ readr     2.1.4
+✔ dplyr     1.1.4     ✔ readr     2.1.5
 ✔ forcats   1.0.0     ✔ stringr   1.5.1
 ✔ ggplot2   3.4.4     ✔ tibble    3.2.1
 ✔ lubridate 1.9.3     ✔ tidyr     1.3.0
@@ -879,16 +879,16 @@ $stations_meteos
 </div>
 <div class="sourceCode" id="cb102"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/vegandevs/vegan">"vegan"</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Le chargement a nécessité le package : permute
-Le chargement a nécessité le package : lattice
+<pre><code>Loading required package: permute
+Loading required package: lattice
 This is vegan 2.6-4</code></pre>
 </div>
 <div class="sourceCode" id="cb104"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://svn.r-project.org/R-packages/trunk/nlme/">"nlme"</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>
-Attachement du package : 'nlme'
+Attaching package: 'nlme'
 
-L'objet suivant est masqué depuis 'package:dplyr':
+The following object is masked from 'package:dplyr':
 
     collapse</code></pre>
 </div>
@@ -927,8 +927,8 @@ L'objet suivant est masqué depuis 'package:dplyr':
 </div>
 </section><section id="extra-jupyter" class="level2" data-number="2.7"><h2 data-number="2.7" class="anchored" data-anchor-id="extra-jupyter">
 <span class="header-section-number">2.7</span> Extra: Utiliser R avec Jupyter</h2>
-<p>Pour utiliser R dans Jupyter notebook ou Jupyter lab, vous devez installer le module <strong><code>IRkernel</code></strong> dans la version de R que vous désirez utiliser avec Jupyter, puis de lancer la commande <code><a href="https://rdrr.io/pkg/IRkernel/man/installspec.html">IRkernel::installspec()</a></code>. La prochaine fois que vous ouvrirez Jupyter, le noyau de R devrait apparaître.</p>
-<p>Je n’ai aucune expérience sur Mac, mais semble-t-il cela fonctionne comme en Linux. Ouvrez R à partir d’un terminal (R + Enter), puis lancez <code><a href="https://rdrr.io/pkg/IRkernel/man/installspec.html">IRkernel::installspec()</a></code> après avoir installé <strong><code>IRkernel</code></strong>. Si vous travaillez en Windows, il vous faudra lancer R par son chemin complet dans l’invite de commande de Anaconda (<em>Anaconda Powershell Prompt</em>). Par exemple, ouvrir <em>Anaconda Powershell Prompt</em>, puis, si votre installation de R se trouve dans <code>C:\Program Files\R\R-3.6.2</code>,</p>
+<p>Pour utiliser R dans Jupyter notebook ou Jupyter lab, vous devez installer le module <strong><code>IRkernel</code></strong> dans la version de R que vous désirez utiliser avec Jupyter, puis de lancer la commande <code>IRkernel::installspec()</code>. La prochaine fois que vous ouvrirez Jupyter, le noyau de R devrait apparaître.</p>
+<p>Je n’ai aucune expérience sur Mac, mais semble-t-il cela fonctionne comme en Linux. Ouvrez R à partir d’un terminal (R + Enter), puis lancez <code>IRkernel::installspec()</code> après avoir installé <strong><code>IRkernel</code></strong>. Si vous travaillez en Windows, il vous faudra lancer R par son chemin complet dans l’invite de commande de Anaconda (<em>Anaconda Powershell Prompt</em>). Par exemple, ouvrir <em>Anaconda Powershell Prompt</em>, puis, si votre installation de R se trouve dans <code>C:\Program Files\R\R-3.6.2</code>,</p>
 <pre><code>(base) PS C:\Users\fifi&gt; cd "C:\Program Files\R\R-3.6.2\bin"
 (base) PS C:\Program Files\R\R-3.6.2\bin&gt; .\R.exe
 
