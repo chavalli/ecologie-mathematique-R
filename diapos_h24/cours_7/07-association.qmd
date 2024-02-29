@@ -55,7 +55,7 @@ doubs_env <- doubs_env %>%
 ## Objectifs spécifiques
 À la fin de ce chapitre, vous
 
-- serez en mesure d'effectuer des calculs permettant de mesurer des différence entre des observations, des groupes d'observation ou des variables observées
+- serez en mesure d'effectuer des calculs permettant de mesurer des différences entre des observations, des groupes d'observation ou des variables observées
 - serez en mesure d'effectuer des analyses de partitionnement hiérarchiques et non-hiérarchiques
 - serez en mesure d'effectuer des calculs d'ordination à l'aide des techniques de réduction d'axe communes: analyse en composante principale, l'analyse de correspondance, l'analyse en coordonnées principales, analyse discriminante linéaire, l'analyse de redondance et l'analyse canonique des correspondances.
 
@@ -133,7 +133,7 @@ Distance de *Gower*: Jaccard (occurrence et catégories) + Manhattan. --> voir n
 - Comparer l'équation mathématique à la question statistique
 
 ## Partitionnement (1/)
-Catégoriser des objets qui n'appartiennent *a priori* à aucune catégori pour faire en sorte que les différences entre les groupes soient plus grande que les différences entre les objets d'un groupe.
+Catégoriser des objets qui n'appartiennent *a priori* à aucune catégorie pour faire en sorte que les différences entre les groupes soient plus grande que les différences entre les objets d'un groupe.
 
 ## Partitionnement (2/)
 
@@ -185,7 +185,7 @@ Les groupes sont composés de zones où l’on retrouve plus de points (zones de
 ## Non-hiérarchique: *dbscan* (4/)
 
 ```{r}
-mcinnes_dbscan <- dbscan(x = vegdist(df_mcinnes[, ], method = "euclidean"),
+mcinnes_dbscan <- dbscan(x = vegdist(df_mcinnes, method = "euclidean"),
                          eps = 0.03, minPts = 10) # library("dbscan")
 dbscan_group <- mcinnes_dbscan$cluster
 ```
@@ -308,7 +308,7 @@ opl2 <- biplot(iris_pca, scaling = 2, main = "Biplot de corrélation") ; text(op
 
 **Biplot de corrélation**. Cette projection permet d’apprécier les corrélations entre les descripteurs. Pour ce faire, les objets et les valeurs propres doivent être transformés. 
 
-## Analyse en composantes principales: l'intertie (5/)
+## Analyse en composantes principales: l'inertie (5/)
 
 ```{r}
 #| fig-height: 3
@@ -435,7 +435,7 @@ ordiplot(vare_rda, scaling = 2, type = "text", main = "Scaling 2: triplot de cor
 
 **Triplot de distance**. Les angles entre les variables explicatives représentent leur corrélation (non pas les angles entre variables réponse), et les distances entre les objets indiquent leurs distances euclidiennes.
 
-**Triplot de corrélation**. Les angles entre les variables représentent leurs corrélation, que les variables soient réponse ou explicative, ou entre variables réponses et variables explicatives. Les distances entre les objets sur le triplot ne sont pas des approximation de leur distance euclidienne.
+**Triplot de corrélation**. Les angles entre les variables représentent leurs corrélation, que les variables soient réponse ou explicative, ou entre variables réponses et variables explicatives. Les distances entre les objets sur le triplot ne sont pas des approximations de leur distance euclidienne.
 
 ## Analyse de redondance: test de permutation (4/)
 

@@ -405,7 +405,7 @@ Andrés Silva
 <h2>Objectifs spécifiques</h2>
 <p>À la fin de ce chapitre, vous</p>
 <ul>
-<li>serez en mesure d’effectuer des calculs permettant de mesurer des différence entre des observations, des groupes d’observation ou des variables observées</li>
+<li>serez en mesure d’effectuer des calculs permettant de mesurer des différences entre des observations, des groupes d’observation ou des variables observées</li>
 <li>serez en mesure d’effectuer des analyses de partitionnement hiérarchiques et non-hiérarchiques</li>
 <li>serez en mesure d’effectuer des calculs d’ordination à l’aide des techniques de réduction d’axe communes: analyse en composante principale, l’analyse de correspondance, l’analyse en coordonnées principales, analyse discriminante linéaire, l’analyse de redondance et l’analyse canonique des correspondances.</li>
 </ul>
@@ -518,7 +518,7 @@ Andrés Silva
 </section>
 <section id="partitionnement-1" class="slide level2 center">
 <h2>Partitionnement (1/)</h2>
-<p>Catégoriser des objets qui n’appartiennent <em>a priori</em> à aucune catégori pour faire en sorte que les différences entre les groupes soient plus grande que les différences entre les objets d’un groupe.</p>
+<p>Catégoriser des objets qui n’appartiennent <em>a priori</em> à aucune catégorie pour faire en sorte que les différences entre les groupes soient plus grande que les différences entre les objets d’un groupe.</p>
 </section>
 <section id="partitionnement-2" class="slide level2 center">
 <h2>Partitionnement (2/)</h2>
@@ -570,7 +570,7 @@ Andrés Silva
 <section id="non-hiérarchique-dbscan-4" class="slide level2 center">
 <h2>Non-hiérarchique: <em>dbscan</em> (4/)</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>mcinnes_dbscan <span class="ot">&lt;-</span> <span class="fu">dbscan</span>(<span class="at">x =</span> <span class="fu">vegdist</span>(df_mcinnes[, ], <span class="at">method =</span> <span class="st">"euclidean"</span>),</span>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>mcinnes_dbscan <span class="ot">&lt;-</span> <span class="fu">dbscan</span>(<span class="at">x =</span> <span class="fu">vegdist</span>(df_mcinnes, <span class="at">method =</span> <span class="st">"euclidean"</span>),</span>
 <span id="cb8-2"><a href="#cb8-2"></a>                         <span class="at">eps =</span> <span class="fl">0.03</span>, <span class="at">minPts =</span> <span class="dv">10</span>) <span class="co"># library("dbscan")</span></span>
 <span id="cb8-3"><a href="#cb8-3"></a>dbscan_group <span class="ot">&lt;-</span> mcinnes_dbscan<span class="sc">$</span>cluster</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -718,8 +718,8 @@ Andrés Silva
 <p><strong>Biplot de distance</strong>. Ce type de projection permet de visualiser la position des objets entre eux et par rapport aux descripteurs et d’apprécier la contribution des descripteurs pour créer les composantes principales.</p>
 <p><strong>Biplot de corrélation</strong>. Cette projection permet d’apprécier les corrélations entre les descripteurs. Pour ce faire, les objets et les valeurs propres doivent être transformés.</p>
 </section>
-<section id="analyse-en-composantes-principales-lintertie-5" class="slide level2 center">
-<h2>Analyse en composantes principales: l’intertie (5/)</h2>
+<section id="analyse-en-composantes-principales-linertie-5" class="slide level2 center">
+<h2>Analyse en composantes principales: l’inertie (5/)</h2>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>prop_expl <span class="ot">&lt;-</span> iris_pca<span class="sc">$</span>CA<span class="sc">$</span>eig <span class="sc">/</span> <span class="fu">sum</span>(iris_pca<span class="sc">$</span>CA<span class="sc">$</span>eig)</span>
 <span id="cb14-2"><a href="#cb14-2"></a><span class="fu">tibble</span>(<span class="at">rank =</span> <span class="fu">seq_along</span>(prop_expl), <span class="at">cum_prop =</span> <span class="fu">cumsum</span>(prop_expl)) <span class="sc">%&gt;%</span> </span>
@@ -835,7 +835,7 @@ Andrés Silva
 <section id="analyse-de-redondance-3" class="slide level2 center">
 <h2>Analyse de redondance (3/)</h2>
 <p><strong>Triplot de distance</strong>. Les angles entre les variables explicatives représentent leur corrélation (non pas les angles entre variables réponse), et les distances entre les objets indiquent leurs distances euclidiennes.</p>
-<p><strong>Triplot de corrélation</strong>. Les angles entre les variables représentent leurs corrélation, que les variables soient réponse ou explicative, ou entre variables réponses et variables explicatives. Les distances entre les objets sur le triplot ne sont pas des approximation de leur distance euclidienne.</p>
+<p><strong>Triplot de corrélation</strong>. Les angles entre les variables représentent leurs corrélation, que les variables soient réponse ou explicative, ou entre variables réponses et variables explicatives. Les distances entre les objets sur le triplot ne sont pas des approximations de leur distance euclidienne.</p>
 </section>
 <section id="analyse-de-redondance-test-de-permutation-4" class="slide level2 center">
 <h2>Analyse de redondance: test de permutation (4/)</h2>
@@ -849,20 +849,20 @@ Number of permutations: 999
 
 Model: rda(formula = varespec ~ N + P + K + Ca + Mg + S + Al + Fe + Mn + Zn + Mo + Baresoil + Humdepth + pH, data = varechem, scale = FALSE)
          Df Variance      F Pr(&gt;F)   
-N         1   193.72 4.7667  0.015 * 
-P         1   181.88 4.4753  0.014 * 
-K         1    59.66 1.4681  0.265   
-Ca        1    80.83 1.9890  0.125   
-Mg        1    19.68 0.4842  0.711   
-S         1   241.87 5.9515  0.006 **
-Al        1   173.36 4.2657  0.016 * 
-Fe        1    47.25 1.1626  0.323   
-Mn        1    22.58 0.5555  0.714   
-Zn        1    33.69 0.8291  0.470   
-Mo        1   169.55 4.1719  0.012 * 
-Baresoil  1    87.99 2.1650  0.102   
-Humdepth  1   106.06 2.6097  0.057 . 
-pH        1    41.75 1.0273  0.389   
+N         1   193.72 4.7667  0.011 * 
+P         1   181.88 4.4753  0.023 * 
+K         1    59.66 1.4681  0.250   
+Ca        1    80.83 1.9890  0.129   
+Mg        1    19.68 0.4842  0.723   
+S         1   241.87 5.9515  0.004 **
+Al        1   173.36 4.2657  0.020 * 
+Fe        1    47.25 1.1626  0.333   
+Mn        1    22.58 0.5555  0.632   
+Zn        1    33.69 0.8291  0.476   
+Mo        1   169.55 4.1719  0.015 * 
+Baresoil  1    87.99 2.1650  0.121   
+Humdepth  1   106.06 2.6097  0.075 . 
+pH        1    41.75 1.0273  0.376   
 Residual  9   365.77                 
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
