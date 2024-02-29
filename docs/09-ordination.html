@@ -540,18 +540,18 @@ Jaseur boréal               66    0    0    0</code></pre>
 </section><section id="objets-données-quantitatives" class="level4" data-number="10.2.1.3"><h4 data-number="10.2.1.3" class="anchored" data-anchor-id="objets-données-quantitatives">
 <span class="header-section-number">10.2.1.3</span> Objets: Données quantitatives</h4>
 <p>Les données quantitative en écologie peuvent décrire l’état de l’environnement: le climat, l’hydrologie, l’hydrogéochimie, la pédologie, etc. En règle générale, les coordonnées des sites ne sot pas des variables environnementales, à que l’on soupçonne la coordonnée elle-même d’être responsable d’effets sur notre système: mais il s’agira la plupart du temps d’effets confondants (par exemple, on peut mesurer un effet de la latitude sur le rendement des agrumes, mais il s’agira probablement avant tout d’effets dus aux conditions climatiques, qui elles changent en fonction de la latitude). D’autre types de données quantitative pouvant être appréhendées par des distances sont les traits phénologiques, les ionomes, les génomes, etc.</p>
-<p>La <strong>distance euclidienne</strong> est la racine carrée de la somme des carrés des distances sur tous les axes. Il s’agit d’une application multidimensionnelle du théorème de Pythagore. La <strong>distance d’Aitchison</strong>, couverte dans le chapitre <a href="08-explorer.html"><span>Chapter&nbsp;9</span></a>, est une distance euclidienne calculée sur des données compositionnelles préalablement transformées. La distance euclidienne est sensible aux unités utilisés: utiliser des millimètres plutôt que des mètres enflera la distance euclidienne. Il est recommandé de porter une attention particulière aux unités, et de standardiser les données au besoin (par exemple, en centrant la moyenne à zéro et en fixant l’écart-type à 1).</p>
+<p>La <strong>distance euclidienne</strong> est la racine carrée de la somme des carrés des distances sur tous les axes. Il s’agit d’une application multidimensionnelle du théorème de Pythagore. La <strong>distance d’Aitchison</strong>, couverte dans le <a href="08-explorer.html">chapitre&nbsp;<span>9</span></a>, est une distance euclidienne calculée sur des données compositionnelles préalablement transformées. La distance euclidienne est sensible aux unités utilisés: utiliser des millimètres plutôt que des mètres enflera la distance euclidienne. Il est recommandé de porter une attention particulière aux unités, et de standardiser les données au besoin (par exemple, en centrant la moyenne à zéro et en fixant l’écart-type à 1).</p>
 <p>On pourrait, par exemple, mesurer la distance entre des observations des dimensions de différentes espèces d’iris. Ce tableau est inclus dans R par défaut.</p>
 <div class="cell">
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span></span>
 <span><span class="va">iris</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_n</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
-1          5.9         3.0          4.2         1.5 versicolor
-2          5.7         2.9          4.2         1.3 versicolor
-3          6.6         3.0          4.4         1.4 versicolor
-4          5.1         3.5          1.4         0.2     setosa
-5          5.0         3.4          1.5         0.2     setosa</code></pre>
+1          4.8         3.0          1.4         0.1     setosa
+2          6.8         2.8          4.8         1.4 versicolor
+3          7.2         3.0          5.8         1.6  virginica
+4          5.1         3.8          1.9         0.4     setosa
+5          6.3         2.3          4.4         1.3 versicolor</code></pre>
 </div>
 </div>
 <p>Les mesures du tableau sont en centimètres. Pour éviter de donner davantage de poids aux longueurs des sépales et en même temps de négliger la largeur des pétales, nous allons standardiser le tableau.</p>
@@ -878,7 +878,7 @@ Source: <a href="https://dashee87.github.io/data%20science/general/Clustering-wi
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">mcinnes_kmeans</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>List of 4
- $ partition: int [1:2309, 1:8] 3 3 3 3 3 3 3 3 3 3 ...
+ $ partition: int [1:2309, 1:8] 1 1 1 1 1 1 1 1 1 1 ...
   ..- attr(*, "dimnames")=List of 2
   .. ..$ : chr [1:2309] "1" "2" "3" "4" ...
   .. ..$ : chr [1:8] "3 groups" "4 groups" "5 groups" "6 groups" ...
@@ -887,7 +887,7 @@ Source: <a href="https://dashee87.github.io/data%20science/general/Clustering-wi
   .. ..$ : chr [1:2] "SSE" "calinski"
   .. ..$ : chr [1:8] "3 groups" "4 groups" "5 groups" "6 groups" ...
  $ criterion: chr "calinski"
- $ size     : int [1:10, 1:8] 561 505 1243 NA NA NA NA NA NA NA ...
+ $ size     : int [1:10, 1:8] 1243 505 561 NA NA NA NA NA NA NA ...
   ..- attr(*, "dimnames")=List of 2
   .. ..$ : chr [1:10] "Group 1" "Group 2" "Group 3" "Group 4" ...
   .. ..$ : chr [1:8] "3 groups" "4 groups" "5 groups" "6 groups" ...
@@ -921,9 +921,9 @@ Source: <a href="https://dashee87.github.io/data%20science/general/Clustering-wi
 <span><span class="va">mcinnes_kmeans</span><span class="op">$</span><span class="va">partition</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  3 groups 4 groups 5 groups 6 groups 7 groups 8 groups 9 groups 10 groups
-1        3        2        2        3        7        2        2         2
-2        3        2        5        4        7        8        2         2
-3        3        3        2        3        5        2        5         9</code></pre>
+1        1        1        4        3        3        5        6         2
+2        1        1        3        1        3        6        6         2
+3        1        3        4        3        6        5        3         6</code></pre>
 </div>
 <div class="sourceCode" id="cb64"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df_mcinnes</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>kmeans_group <span class="op">=</span> <span class="va">kmeans_group</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="co"># ajouter une colonne de regoupement</span></span>
@@ -1355,18 +1355,18 @@ Biplot de corrélation permettant de visualiser les corrélations entre des vari
 <span><span class="va">varechem</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_n</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>      N    P     K    Ca    Mg    S    Al   Fe   Mn   Zn  Mo Baresoil Humdepth
-20 26.2 61.9 202.2 741.2  86.3 48.6 124.3 23.6 94.5 10.2 0.6    56.90      2.5
-9  15.0 48.4 127.4 499.6  75.1 46.9 227.1 32.2 35.1  8.9 0.7     6.07      2.2
-6  19.1 26.4  61.1 259.1  37.0 21.4 155.1 81.4 20.6  4.0 0.6     5.80      1.9
-24 20.2 67.7 207.1 973.3 209.1 58.1 138.0 35.4 32.1 16.8 0.8    21.20      2.0
-12 16.0 32.7 126.4 471.4  61.3 31.1 108.8  9.5 26.4  6.0 0.4    11.20      2.2
+<pre><code>      N    P     K     Ca    Mg    S    Al   Fe   Mn  Zn   Mo Baresoil Humdepth
+9  15.0 48.4 127.4  499.6  75.1 46.9 227.1 32.2 35.1 8.9 0.70     6.07      2.2
+11 16.7 55.8 205.3 1169.7 126.3 35.9 253.6 96.4 25.1 8.2 0.05     7.60      1.1
+14 21.8 38.1 146.8  512.2  75.0 36.6  92.3  4.6 29.0 8.1 0.50    33.30      2.7
+21 21.0 26.5 104.4  484.8  74.4 22.2  35.8  5.9 27.5 5.3 0.20    56.00      2.5
+19 22.8 40.9 171.4  691.8 151.4 40.8 104.8 17.6 43.6 9.1 0.40    40.50      3.8
     pH
-20 2.9
 9  3.0
-6  3.0
-24 3.0
-12 2.9</code></pre>
+11 3.6
+14 2.7
+21 3.0
+19 2.7</code></pre>
 </div>
 </div>
 <p>Comme nous l’avons vu précedemment, les données de concentration sont de type <em>compositionnelles</em>. Les données compositionnelles du tableau <code>varechem</code> mériteraient d’être transformées (<a href="http://doi.wiley.com/10.1111/1467-9876.00275">Aitchison et Greenacre, 2002</a>). Utilisons les log-ratios centrés (<em>clr</em>).</p>
@@ -1408,14 +1408,14 @@ Attaching package: 'compositions'</code></pre>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_n</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 15
-       N      P     K    Ca      Mg      S    Al     Fe     Mn    Zn    Mo    Fv
-*  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-1 -1.88  -0.600 0.641  1.48 -0.684  -0.805 1.30  -0.156 -1.14  -2.52 -4.68  9.04
-2 -1.49  -1.12  0.923  1.47 -0.0470 -0.728 0.973 -0.126 -0.703 -2.62 -5.52  8.99
-3 -1.34  -0.760 0.673  2.07  0.549  -0.762 0.181 -1.60  -0.696 -2.26 -5.39  9.34
-4 -0.773 -0.988 0.175  1.05 -0.174  -0.960 1.50   0.628 -1.88  -3.09 -5.11  9.62
-5 -0.871 -0.623 0.872  1.92 -0.244  -0.757 0.250 -1.77  -0.862 -2.41 -5.26  9.76
-# ℹ 3 more variables: Baresoil &lt;dbl&gt;, Humdepth &lt;dbl&gt;, pH &lt;dbl&gt;</code></pre>
+       N        P       K    Ca      Mg      S     Al     Fe     Mn    Zn    Mo
+*  &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 -0.271 -0.648   0.00500  1.71 -0.524  -1.07  -0.106 -1.64  -0.482 -1.64 -5.38
+2 -0.773 -0.988   0.175    1.05 -0.174  -0.960  1.50   0.628 -1.88  -3.09 -5.11
+3 -1.30  -0.547   0.654    1.97  0.213  -0.812 -0.624 -0.576 -0.225 -2.78 -5.49
+4 -0.901  0.00174 1.27     2.32  0.361  -0.546 -1.41  -3.42   0.374 -2.07 -5.50
+5 -1.49  -1.12    0.923    1.47 -0.0470 -0.728  0.973 -0.126 -0.703 -2.62 -5.52
+# ℹ 4 more variables: Fv &lt;dbl&gt;, Baresoil &lt;dbl&gt;, Humdepth &lt;dbl&gt;, pH &lt;dbl&gt;</code></pre>
 </div>
 </div>
 <p>Effectuons l’ACP. Pour cet exemple, nous standardiserons les données étant données que les colonnes Baresoil, Humedepth et pH ne sont pas à la même échelle que les colonnes des clr.</p>
@@ -1653,13 +1653,13 @@ dbl (3): x, y, z
 <div class="sourceCode" id="cb119"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dolphin</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_n</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 4
-         x      y        z anatomy
-     &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;  
-1 1.80e- 1  0.306 -0.180   Body   
-2 1.17e-10 -0.573 -0.0670  Head   
-3 5.22e- 2 -0.538 -0.270   Head   
-4 7.32e- 2 -0.535 -0.0925  Head   
-5 1.67e- 1 -0.363 -0.00861 Head   </code></pre>
+          x      y       z anatomy
+      &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;  
+1  0.0790    1.17   0.640  Body   
+2  0.175    -0.344  0.0164 Head   
+3  0.0927   -0.485 -0.0505 Head   
+4 -0.0390   -0.321 -0.0353 Head   
+5  0.000133  0.253  0.302  Body   </code></pre>
 </div>
 </div>
 <p>Voici en vue isométrique ce en quoi consiste ce nuage de points.</p>
@@ -1750,41 +1750,41 @@ attr(,"const")
 <span><span class="va">varespec</span> <span class="op">|&gt;</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_n</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Callvulg Empenigr Rhodtome Vaccmyrt Vaccviti Pinusylv Descflex Betupube
-10     0.25    11.00        0     0.00    11.90     0.25      0.0     0.00
-3      0.03     3.65        0     0.00     4.43     0.00      0.0     0.00
-16     4.47     7.33        0     2.15     4.33     0.10      0.0     0.00
-23     0.00    12.68        0     0.00    23.73     0.03      0.0     0.00
-21     0.00    16.00        4    15.00    25.00     0.25      0.5     0.25
+9      0.00     3.47     0.00     0.25    20.50     0.25      0.0        0
+5      0.00     0.13     0.00     0.00     2.75     0.03      0.0        0
+20     0.02     6.45     0.00     0.00    14.13     0.07      0.0        0
+15     0.67     0.17     0.00     0.35    12.13     0.12      0.0        0
+28     0.00     1.63     0.35    18.27     7.13     0.05      0.4        0
    Vacculig Diphcomp Dicrsp Dicrfusc Dicrpoly Hylosple Pleuschr Polypili
-10     0.00      0.0   0.00     0.25     0.25        0     0.67     0.00
-3      1.65      0.5   0.00     0.55     0.00        0     0.05     0.00
-16     0.00      0.0   1.02    25.80     0.23        0    18.98     0.00
-23     0.00      0.0   0.00     3.42     0.02        0    19.42     0.02
-21     0.00      0.0   0.25     0.25     3.00        0     2.00     0.00
+9      0.00     0.25   0.00     0.38     0.25     0.00     4.07     0.00
+5      0.00     0.00   0.00     0.25     0.03     0.00     0.03     0.18
+20     0.47     0.00   0.85     1.87     0.08     1.35    13.73     0.07
+15     0.00     0.00   0.33    10.92     0.02     0.00    37.75     0.02
+28     0.20     0.00   0.30     0.52     0.20     9.97    70.03     0.00
    Polyjuni Polycomm Pohlnuta Ptilcili Barbhatc Cladarbu Cladrang Cladstel
-10     0.25     0.00     0.25     0.00     0.00     1.30     8.70    84.30
-3      0.00     0.00     0.03     0.03     0.00     8.80    29.50    55.60
-16     0.02     0.00     0.13     0.10     0.00     7.13    14.03     0.02
-23     2.12     0.00     0.17     1.80     0.02     9.08     9.22     0.05
-21     0.25     0.25     0.25    10.00     3.00     0.70     4.70    10.90
+9      0.25        0     0.25     0.25        0     0.46     4.00    84.30
+5      0.65        0     0.00     0.00        0    18.50    59.00     0.98
+20     0.05        0     0.12     0.00        0     6.80    11.22     0.05
+15     0.23        0     0.03     0.02        0    12.05     8.13     0.18
+28     0.08        0     0.07     0.03        0     0.17     0.87     0.00
    Cladunci Cladcocc Cladcorn Cladgrac Cladfimb Cladcris Cladchlo Cladbotr
-10     0.25     0.25     0.25     0.00     0.25     0.25     0.25     0.00
-3      0.25     0.08     0.25     0.25     0.15     0.10     0.03     0.00
-16     0.82     0.15     0.05     0.22     0.22     0.17     0.00     0.00
-23     0.73     0.08     1.42     0.50     0.17     1.78     0.05     0.05
-21     0.25     0.00     0.05     0.25     0.25     0.25     0.25     0.25
+9      0.25     0.25     0.25     0.25     0.25     0.25     0.25     0.00
+5      0.28     0.23     0.23     0.23     0.10     0.05     0.00     0.00
+20     4.75     0.03     0.12     0.22     0.18     0.07     0.00     0.02
+15     2.65     0.13     0.18     0.23     0.25     1.23     0.00     0.00
+28     0.05     0.02     0.03     0.07     0.10     0.02     0.00     0.02
    Cladamau Cladsp Cetreric Cetrisla Flavniva Nepharct Stersp Peltapht Icmaeric
-10     0.00   0.00     0.25     0.25     0.25     0.00   0.25     0.00     0.00
-3      0.03   0.00     0.05     0.00     0.15     0.15   0.28     0.00     0.00
-16     0.00   0.02     0.18     0.08     0.00     0.00   0.03     0.00     0.07
-23     0.00   0.00     0.00     0.00     0.02     0.00   1.58     0.33     0.00
-21     0.00   0.00     0.00     0.67     0.00     0.00   0.00     0.00     0.00
+9      0.00   0.25     0.25     0.25     0.67     0.00   0.00        0      0.0
+5      0.03   0.00     0.18     0.00     0.28     0.00  10.28        0      0.1
+20     0.00   0.02     0.15     0.00     0.00     0.02   0.00        0      0.0
+15     0.00   0.00     0.15     0.03     0.00     0.00   0.85        0      0.0
+28     0.00   0.00     0.00     0.02     0.00     0.00   0.02        0      0.0
    Cladcerv Claddefo Cladphyl
-10        0     0.25     0.25
-3         0     0.08     0.00
-16        0     0.67     0.00
-23        0     1.97     0.00
-21        0     0.40     0.00</code></pre>
+9         0     0.25     0.25
+5         0     0.25     0.00
+20        0     1.20     0.00
+15        0     1.00     0.00
+28        0     0.08     0.00</code></pre>
 </div>
 </div>
 <p>Pour effectuer l’AC, nous utiliserons, comme pour l’ACP, le module vegan mais cette fois-ci avec la fonction <code>cca</code>. L’AC en <em>scaling 1</em> est effectuée sur le tableau des abondances avec les espèces comme colonnes et les sites comme lignes. Les matrices d’abondance transposées indique les sites où chaque espèce ont été dénombrées: pour une analyse en <em>scaling 2</em>, on effectue une analyse de correspondance sur la matrice d’abondance (ou d’occurrence) transposée.</p>
@@ -2028,45 +2028,45 @@ Site scores (weighted averages of species scores)
 <div class="cell-output cell-output-stdout">
 <pre><code>Run 0 stress 0 
 Run 1 stress 0 
-... Procrustes: rmse 0.1636059  max resid 0.2154833 
+... Procrustes: rmse 0.1827555  max resid 0.2363266 
 Run 2 stress 0 
-... Procrustes: rmse 0.1004207  max resid 0.1403022 
+... Procrustes: rmse 0.1789774  max resid 0.2326711 
 Run 3 stress 0 
-... Procrustes: rmse 0.1430867  max resid 0.1921638 
+... Procrustes: rmse 0.1642904  max resid 0.2201013 
 Run 4 stress 0 
-... Procrustes: rmse 0.06629642  max resid 0.09312236 
+... Procrustes: rmse 0.06520693  max resid 0.09291346 
 Run 5 stress 0 
-... Procrustes: rmse 0.101147  max resid 0.1172676 
+... Procrustes: rmse 0.04785676  max resid 0.07166702 
 Run 6 stress 0 
-... Procrustes: rmse 0.05793641  max resid 0.07740218 
+... Procrustes: rmse 0.1331013  max resid 0.1779586 
 Run 7 stress 0 
-... Procrustes: rmse 0.1034765  max resid 0.1493362 
+... Procrustes: rmse 0.06160491  max resid 0.08860179 
 Run 8 stress 0 
-... Procrustes: rmse 0.07332197  max resid 0.1098155 
+... Procrustes: rmse 0.1513541  max resid 0.2021797 
 Run 9 stress 0 
-... Procrustes: rmse 0.08758262  max resid 0.120592 
+... Procrustes: rmse 0.08164901  max resid 0.09688139 
 Run 10 stress 0 
-... Procrustes: rmse 0.0858032  max resid 0.1279809 
+... Procrustes: rmse 0.1387677  max resid 0.1647427 
 Run 11 stress 0 
-... Procrustes: rmse 0.0955805  max resid 0.1306297 
+... Procrustes: rmse 0.09401506  max resid 0.1219184 
 Run 12 stress 0 
-... Procrustes: rmse 0.1552698  max resid 0.2037282 
+... Procrustes: rmse 0.06897215  max resid 0.08637143 
 Run 13 stress 0 
-... Procrustes: rmse 0.06697452  max resid 0.0957549 
+... Procrustes: rmse 0.05095215  max resid 0.07373439 
 Run 14 stress 0 
-... Procrustes: rmse 0.1094941  max resid 0.1286748 
+... Procrustes: rmse 0.1245147  max resid 0.1618815 
 Run 15 stress 0 
-... Procrustes: rmse 0.1291372  max resid 0.1701537 
+... Procrustes: rmse 0.1278631  max resid 0.1880963 
 Run 16 stress 0 
-... Procrustes: rmse 0.1387653  max resid 0.1873951 
+... Procrustes: rmse 0.1219404  max resid 0.1846389 
 Run 17 stress 0 
-... Procrustes: rmse 0.1525997  max resid 0.2010924 
+... Procrustes: rmse 0.1040043  max resid 0.153107 
 Run 18 stress 0 
-... Procrustes: rmse 0.1207878  max resid 0.1624395 
+... Procrustes: rmse 0.1854664  max resid 0.2391669 
 Run 19 stress 0 
-... Procrustes: rmse 0.08609824  max resid 0.1175361 
+... Procrustes: rmse 0.08941229  max resid 0.1314795 
 Run 20 stress 0 
-... Procrustes: rmse 0.1129563  max resid 0.1552082 
+... Procrustes: rmse 0.1074796  max resid 0.1489466 
 *** Best solution was not repeated -- monoMDS stopping criteria:
     20: stress &lt; smin</code></pre>
 </div>
@@ -2120,7 +2120,7 @@ Biplot de distance de l’analyse discriminante des ionomes d’espèces de plan
 <blockquote class="blockquote">
 <p>Heureusement, il y a des évidences dans la littérature que certaines d’entre [ces règles] peuvent être transgressées modérément sans de grands changement dans les taux de classification. Cette conclusion dépends, toutefois, de la sévérité des transgressions, et de facteurs structueaux comme la position relative des moyennes des populations et de la nature des dispersions. - <a href="http://www.jstor.org/stable/1937836">Williams (1983)</a></p>
 </blockquote>
-<p>L’ADL peut servir autant d’outil d’interprétation que d’outil de classification, c’est à dire de prédire une catégorie selon les variables (chapitre <a href="12-autoapprentissage.html"><span>Chapter&nbsp;13</span></a>). Dans les deux cas, lorsque le nombre de variables approchent le nombre d’observation, les résultats d’une ADL risque d’être difficilement interprétables. Le test approprié pour évaluer l’homodénéité de la covariance est le M-test de Box. Ce test est peu documenté dans la littérature, est rarement utilisé mais a la <a href="https://en.wikiversity.org/wiki/Box%27s_M">réputation</a> d’être particulièrement sévère.</p>
+<p>L’ADL peut servir autant d’outil d’interprétation que d’outil de classification, c’est à dire de prédire une catégorie selon les variables (<a href="12-autoapprentissage.html">chapitre&nbsp;<span>13</span></a>). Dans les deux cas, lorsque le nombre de variables approchent le nombre d’observation, les résultats d’une ADL risque d’être difficilement interprétables. Le test approprié pour évaluer l’homodénéité de la covariance est le M-test de Box. Ce test est peu documenté dans la littérature, est rarement utilisé mais a la <a href="https://en.wikiversity.org/wiki/Box%27s_M">réputation</a> d’être particulièrement sévère.</p>
 <p>Il est rare que des données écologiques aient des dispersions (covariances) homogènes. Contrairement à l’ADL, l’ADQ ne demande pas à ce que les dispersions (covariances) soient homogènes. Néanmoins, l’ADQ ne génère ni de scores, ni de loadings: il s’agit d’un outil pour prédire des catégories (classification), non pas d’un outil d’ordination.</p>
 <section id="application-6" class="level5" data-number="10.4.2.1.1"><h5 data-number="10.4.2.1.1" class="anchored" data-anchor-id="application-6">
 <span class="header-section-number">10.4.2.1.1</span> Application</h5>
@@ -2325,27 +2325,27 @@ Number of permutations: 999
 
 Model: rda(formula = varespec ~ N + P + K + Ca + Mg + S + Al + Fe + Mn + Zn + Mo + Fv + Baresoil + Humdepth + pH, data = vareclr, scale = FALSE)
          Df Variance      F Pr(&gt;F)   
-N         1   216.13 4.8470  0.010 **
-P         1   272.71 6.1159  0.003 **
-K         1   194.97 4.3724  0.022 * 
-Ca        1    24.92 0.5589  0.688   
-Mg        1    52.61 1.1799  0.294   
-S         1   100.07 2.2441  0.090 . 
-Al        1   177.91 3.9900  0.014 * 
-Fe        1   118.59 2.6595  0.053 . 
-Mn        1    25.96 0.5822  0.627   
-Zn        1    35.81 0.8030  0.484   
-Mo        1    23.51 0.5273  0.683   
-Baresoil  1    98.64 2.2122  0.108   
-Humdepth  1    43.59 0.9777  0.403   
-pH        1    38.93 0.8730  0.467   
+N         1   216.13 4.8470  0.004 **
+P         1   272.71 6.1159  0.006 **
+K         1   194.97 4.3724  0.014 * 
+Ca        1    24.92 0.5589  0.662   
+Mg        1    52.61 1.1799  0.328   
+S         1   100.07 2.2441  0.104   
+Al        1   177.91 3.9900  0.015 * 
+Fe        1   118.59 2.6595  0.056 . 
+Mn        1    25.96 0.5822  0.666   
+Zn        1    35.81 0.8030  0.485   
+Mo        1    23.51 0.5273  0.678   
+Baresoil  1    98.64 2.2122  0.110   
+Humdepth  1    43.59 0.9777  0.417   
+pH        1    38.93 0.8730  0.432   
 Residual  9   401.31                 
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
 <p>La p-value est la probabilité que les pentes calculées pour les variables émergent de distributions dont la moyenne est nulle. Au seuil 0.05, les variables significatives sont (les clr de) l’azote, le phosphore, le potassium et l’aluminium.</p>
-<p>Dans le cas des matrices d’abondance (ce n’est pas le cas de varespec, constituée de données de recouvrement), il est préférable avec les RDA de les transformer préalablement avec la transformation compositionnelle, de chord ou de Hellinger (chapitre <a href="08-explorer.html"><span>Chapter&nbsp;9</span></a>). Une autre option est d’effectuer une RDA sur des matrices d’association en passant par une analyse en coordonnées principales (<a href="http://www.jstor.org/stable/2657192">Legendre et Anderson, 1999</a>). Enfin, les données d’abondance à l’état brutes devraient plutôt passer utiliser une analyse canonique des corrélations.</p>
+<p>Dans le cas des matrices d’abondance (ce n’est pas le cas de varespec, constituée de données de recouvrement), il est préférable avec les RDA de les transformer préalablement avec la transformation compositionnelle, de chord ou de Hellinger (<a href="08-explorer.html">chapitre&nbsp;<span>9</span></a>). Une autre option est d’effectuer une RDA sur des matrices d’association en passant par une analyse en coordonnées principales (<a href="http://www.jstor.org/stable/2657192">Legendre et Anderson, 1999</a>). Enfin, les données d’abondance à l’état brutes devraient plutôt passer utiliser une analyse canonique des corrélations.</p>
 </section></section><section id="analyse-canonique-des-correspondances-acc" class="level4" data-number="10.4.2.3"><h4 data-number="10.4.2.3" class="anchored" data-anchor-id="analyse-canonique-des-correspondances-acc">
 <span class="header-section-number">10.4.2.3</span> Analyse canonique des correspondances (ACC)</h4>
 <p>L’analyse canonique des correspondances (<em>Canonical correspondance analysis</em>), ACC, a été à l’origine conçue pour étudier les liens entre des variables environnementales et l’abondance (décompte) ou l’occurrence (présence-absence) d’espèces (<a href="https://www.ohio.edu/plantbio/staff/mccarthy/multivariate/terBraak1986.pdf">ter Braak, 1986</a>). L’ACC est à la RDA ce que la CA est à l’ACP. Alors que la RDA préserve les distance euclidiennes entre variables dépendantes et indépendantes, l’ACC préserve les distances du <span class="math inline">\(\chi^2\)</span>. Tout comme l’AC, elle hérite du coup une propriété importante de la distance du <span class="math inline">\(\chi^2\)</span>: il y a davantage davantage d’importance aux espèces rares.</p>
