@@ -2,8 +2,7 @@
 
 ---
 
-***
-️\ **Objectifs spécifiques**:
+**Objectifs spécifiques**:
 
 À la fin de ce chapitre, vous
 
@@ -11,7 +10,7 @@
 - serez en mesure d'effectuer des analyses de partitionnement hiérarchiques et non-hiérarchiques
 - serez en mesure d'effectuer des calculs d'ordination à l'aide des techniques de réduction d'axe communes: analyse en composante principale, l'analyse de correspondance, l'analyse en coordonnées principales, analyse discriminante linéaire, l'analyse de redondance et l'analyse canonique des correspondances.
 
-***
+---
 
 Les données écologiques incluent généralement plusieurs variables qui doivent être analysées conjointement. Les techniques pour l'analyse multivariée de données écologiques ont grandi en nombre et en complexité, laissant émerger l'écologie numérique, un nouveau domaine d'étude scientifique initié par Pierre Legendre et Louis Legendre dont l'ouvrage *Numerical Ecology*, aujourd'hui à sa troisième édition, reste un incontournable pour qui s'intéresse aux mathématiques sous-jacentes au domaine. Pour la rédaction de ces notes, c'est toutefois le livre *Numerical ecology with R*, écrit par Borcard et al. (2011) pour offrir un guide à qui voudrait une approche plus appliquée.
 
@@ -21,7 +20,9 @@ L'écologie numérique sera effleurée dans ce chapitre, qui introduit à trois 
 2. Le **partitionnement** permet de regrouper des observations ou des variables selon des métriques d'association.
 3. L'**ordination** vise par l'intermédiaire de techniques de réduction d'axe à mettre de l'ordre dans des données dont le nombre élevé de variables peut amener à des difficultés d'appréciation et d'interprétation. 
 
-```{r apo-load-tidyverse}
+```{r}
+#| label: apo-load-tidyverse
+
 library("tidyverse")
 ```
 
@@ -31,7 +32,9 @@ library("tidyverse")
 
 L'abondance est le décompte d'espèces observées, tandis que l’occurrence est la présence ou l'absence d'une espèce. Le tableau suivant contient des données d'abondance.
 
-```{r apo-create-abund-mat}
+```{r}
+#| label: apo-create-abund-mat
+
 abundance <- tibble('Bruant familier' = c(1, 0, 0, 3),
                     'Citelle à poitrine rousse' = c(1, 0, 0, 0),
                     'Colibri à gorge rubis' = c(0, 1, 0, 0),
@@ -45,21 +48,27 @@ abundance <- tibble('Bruant familier' = c(1, 0, 0, 3),
 
 Ce tableau peut être rapidement transformé en données d’occurrence, qui ne comprennent que l'information booléenne de présence (noté 1) et d'absence (noté 0).
 
-```{r apo-create-occ-mat}
+```{r}
+#| label: apo-create-occ-mat
+
 occurrence <- abundance |>
   transmute_all(~if_else(. > 0, 1, 0))
 ```
 
 L'**espace des espèces** (ou des variables ou descripteurs) est celui où les espèces forment les axes et où les sites sont positionnés dans cet espace. Il s'agit d'une perspective en *mode R*, qui permet principalement d'identifier quels espèces se retrouvent plus couramment ensemble.
 
-```{r apo-species-space}
+```{r}
+#| label: apo-species-space
+
 abundance |> 
   select(`Bruant chanteur`, Chardonneret, `Mésange à tête noire`)
 ```
 
 Dans l'**espace des sites** (ou les échantillons ou objets), on transpose la matrice d'abondance. On passe ici en *mode Q*, où chaque point est une espèce, et où l'on peut observer quels échantillons sont similaires.
 
-```{r apo-site-space}
+```{r}
+#| label: apo-site-space
+
 abundance |> t()
 ```
 
@@ -91,7 +100,9 @@ En R, les calculs de similarité et de distances peuvent être effectués avec l
 
 Nous verrons plus tard les méthodes de mesure de similarité et de distance plus loin. Pour l'instant, utilisons la méthode de *Jaccard* pour une démonstration sur des données d'occurrence.
 
-```{r apo-dist-jaccard}
+```{r}
+#| label: apo-dist-jaccard
+
 library("vegan")
 vegdist(occurrence, method = "jaccard",
         diag = TRUE, upper = TRUE)
@@ -99,7 +110,9 @@ vegdist(occurrence, method = "jaccard",
 
 Remarquez que `vegdist` retourne une matrice dont la diagonale est de 0 (on l'affiche en spécifiant `diag = TRUE`). La diagonale est l'association d'un objet avec lui-même. Or la similarité d'un objet avec lui-même devrait être de 1! En fait, par convention `vegdist` retourne des dissimilarités, non pas des similarités. La matrice de distance serait donc calculée en extrayant la racine carrée des éléments de la matrice de dissimilarité:
 
-```{r apo-dist-jaccard2}
+```{r}
+#| label: apo-dist-jaccard2
+
 dissimilarity <- vegdist(occurrence, method = "jaccard",
                          diag = TRUE, upper = TRUE)
 distance <- sqrt(dissimilarity)
@@ -122,7 +135,9 @@ $$d_{AB} =  \frac {\sum \left| A_{i} - B_{i} \right| }{\sum \left(A_{i}+B_{i}\ri
 
 Utilisons `vegdist` pour générer les matrices d'association. Le format "liste" de R est pratique pour enregistrer la collection d'objets, dont les matrice d'association que nous allons créer dans cette section.
 
-```{r apo-dist-bray}
+```{r}
+#| label: apo-dist-bray
+
 associations_abund <- list()
 associations_abund[['BrayCurtis']] <- vegdist(abundance, method = "bray")
 associations_abund[['BrayCurtis']]
@@ -132,7 +147,8 @@ La dissimilarité de Bray-Curtis est souvent utilisée dans la littérature. Tou
 
 $$d_{AB, Ruzicka} =  \frac { 2 \times d_{AB, Bray-Curtis} }{1 + d_{AB, Bray-Curtis}}$$
 
-```{r apo-dist-ruzicka}
+```{r}
+#| label: apo-dist-ruzicka
 associations_abund[['Ruzicka']] <- associations_abund[['BrayCurtis']] * 2 / (1 + associations_abund[['BrayCurtis']])
 ```
 
@@ -140,7 +156,8 @@ La **dissimilarité de Kulczynski** (aussi écrit Kulsinski) est asymétrique et
 
 $$d_{AB} = 1-\frac{1}{2} \times \left[ \frac{\sum min(A_i, B_i)}{\sum A_i} + \frac{\sum min(A_i, B_i)}{\sum B_i} \right]$$
 
-```{r apo-dist-kulczynski}
+```{r}
+#| label: apo-dist-kulczynski
 associations_abund[['Kulczynski']] <- vegdist(abundance, method = "kulczynski")
 ```
 
@@ -153,13 +170,17 @@ $$D_{AB} = \sqrt {\sum \left( \frac{A_i}{\sum A_i} - \frac{B_i}{\sum B_i} \right
 
 ------------------------------------------------------------------
 
-```{r apo-dist-hell}
+```{r}
+#| label: apo-dist-hell
+
 associations_abund[['Hellinger']] <- dist(decostand(abundance, method="hellinger"))
 ```
 
 Toute comme la distance d'Hellinger, la **distance de chord** est calculée par une distance euclidienne sur des données d'abondance transformées de sorte que chaque ligne ait une longueur (norme) de 1.
 
-```{r rapo-dist-chord}
+```{r}
+#| label: rapo-dist-chord
+
 associations_abund[['Chord']] <- dist(decostand(abundance, method="normalize"))
 ```
 
@@ -172,13 +193,18 @@ La métrique peut être transformée en distance en la multipliant par la racine
 $$ D_{AB} = \sqrt{\sum X} \times d_{AB} $$
 
 
-```{r apo-dist-chisq}
+```{r}
+#| label: apo-dist-chisq
+
 associations_abund[['ChiSquare']] <- dist(decostand(abundance, method="chi.square"))
 ```
 
 Une manière visuellement plus intéressante de présenter une matrice d'association est un graphique de type *heatmap*.
 
-```{r apo-dist-comparaison}
+```{r}
+#| label: apo-dist-comparaison
+#| fig-align: center
+
 associations_abund_df <- list()
 
 for (i in 1:length(associations_abund)) {
@@ -207,7 +233,9 @@ Des indices d'association différents devraient être utilisés lorsque des donn
 
 La **similarité de Jaccard** entre le site A et le site B est la proportion de double 1 (présences de 1 dans A et B) parmi les espèces. La dissimilarité est la proportion complémentaire (comprenant [1, 0], [0, 1] et [0, 0]). La distance de Jaccard est la racine carrée de la dissimilarité.
 
-```{r apo-occ-jaccard}
+```{r}
+#| label: apo-occ-jaccard
+
 associations_occ <- list()
 associations_occ[['Jaccard']] <- vegdist(occurrence, method = "jaccard")
 ```
@@ -215,7 +243,9 @@ associations_occ[['Jaccard']] <- vegdist(occurrence, method = "jaccard")
 Les **distances d'Hellinger, de chord et de chi-carré** sont aussi appropriées pour les calculs de distances sur des tableaux d'occurrence.
 
 
-```{r apo-occ-autres}
+```{r}
+#| label: apo-occ-autres
+
 associations_occ[['Hellinger']] <- dist(decostand(occurrence, method="hellinger"))
 associations_occ[['Chord']] <- dist(decostand(occurrence, method="normalize"))
 associations_occ[['ChiSquare']] <- dist(decostand(occurrence, method="chi.square"))
@@ -223,7 +253,10 @@ associations_occ[['ChiSquare']] <- dist(decostand(occurrence, method="chi.square
 
 Graphiquement,
 
-```{r apo-occ-comparaison}
+```{r}
+#| label: apo-occ-comparaison
+#| fig-align: center
+
 associations_occ_df <- list()
 
 for (i in 1:length(associations_occ)) {
@@ -255,14 +288,18 @@ La **distance euclidienne** est la racine carrée de la somme des carrés des di
 
 On pourrait, par exemple, mesurer la distance entre des observations des dimensions de différentes espèces d'iris. Ce tableau est inclus dans R par défaut.
 
-```{r apo-load-iris}
+```{r}
+#| label: apo-load-iris
+
 data(iris)
 iris |> sample_n(5)
 ```
 
 Les mesures du tableau sont en centimètres. Pour éviter de donner davantage de poids aux longueurs des sépales et en même temps de négliger la largeur des pétales, nous allons standardiser le tableau.
 
-```{r apo-iris-sc}
+```{r}
+#| label: apo-iris-sc
+
 iris_sc <- iris |>
   select(-Species) |> 
   scale() |> 
@@ -273,7 +310,9 @@ iris_sc
 
 Pour les comparaisons des dimensions, prenons la moyenne des dimensions (mises à l'échelle) par espèce.
 
-```{r apo-iris-mean}
+```{r}
+#| label: apo-iris-mean
+
 iris_means <- iris_sc |>
   group_by(Species) |>
   summarise_all(mean) |>
@@ -286,7 +325,9 @@ Nous pouvons utiliser la distance euclidienne, commune en géométrie, pour comp
 
 $$ \mathcal{E} = \sqrt{\Sigma_i \left( A_i - B_i \right) ^2 } $$
 
-```{r apo-dist-eucl}
+```{r}
+#| label: apo-dist-eucl
+
 associations_cont = list()
 associations_cont[['Euclidean']] <- dist(iris_sc |> select(-Species), method="euclidean")
 ```
@@ -299,7 +340,9 @@ Notez qu'il s'agit d'une généralisation de la distance euclidienne, qui équiv
 
 La distance de Mahalanobis permet de représenter des distances dans un espace fortement corrélé. Elle est couramment utilisée pour détecter les valeurs aberrantes selon des critères de distance à partir du centre d'un jeu de données multivariées.
 
-```{r apo-dist-maha}
+```{r}
+#| label: apo-dist-maha
+
 associations_cont[['Mahalanobis']] <- vegdist(iris_sc |> select(-Species), 'mahalanobis')
 ```
 
@@ -309,13 +352,20 @@ $$ D_{AB} = \sum _i \left| A_i - B_i \right| $$
 
 La distance de Manhattan est appropriée lorsque les gradients (changements d'un état à l'autre ou d'une région à l'autre) ne permettent pas des changements simultanés. Mieux vaut standardiser les variables pour éviter qu'une dimension soit prépondérante.
 
-```{r apo-dist-manh}
+```{r}
+#| label: apo-dist-manh
+
 associations_cont[['Manhattan']] <- vegdist(iris_sc |> select(-Species), 'manhattan')
 ```
 
 Avant de présenter les résultats des espèces d'iris, voici une représentation des distances euclidiennes (rouge), de Mahalanobis (bleu) et de Manhattan (vert), chacune de 1 et 2 unités à partir du centre et, pour ce qui est de la distance de Mahalanobis, selon la covariance.
 
-```{r apo-dist-iris-comparaison, fig.height=5, fig.width=5}
+```{r}
+#| label: apo-dist-iris-comparaison
+#| fig-height: 5
+#| fig-width: 5
+#| fig-align: center
+
 library("car")
 library("MASS")
 select <- dplyr::select # éviter les conflits de fonctions entre MASS et dplyr
@@ -346,7 +396,10 @@ lines(c(2, 0, -2, 0, 2), c(0, 2, 0, -2, 0), lwd = 2, col = "green")
 
 Et, graphiquement, les résultats des distances des iris.
 
-```{r apo-dist-comparaison-plot}
+```{r}
+#| label: apo-dist-comparaison-plot
+#| fig-align: center
+
 associations_cont_df <- list()
 
 for (i in 1:length(associations_cont)) {
@@ -376,7 +429,9 @@ Les données catégorielles ordinales peuvent être transformées en données co
 La **similarité de Gower** a été développée pour mesurer des associations entre des objets dont les données sont mixtes: booléennes, catégorielles et continues. La similarité de Gower est calculée en additionnant les distances calculées par colonne, individuellement. Si la colonne est booléenne, on utilise les distances de Jaccard (qui exclue les double-zéro) de manière univariée: une variable à la fois. Pour les variables continues, on utilise la distance de Manhattan divisée par la plage de valeurs de la variable (pour fin de standardisation). Puisqu'elle hérite de la particularité de la distance de Manhattan et de la similarité de Jaccard univariée, la **similarité de Gower** reste une combinaison linéaire de distances univariées.
 
 
-```{r apo-creer-tableau-mixte}
+```{r}
+#| label: apo-creer-tableau-mixte
+
 X <- tibble(ID = 1:8,
             age = c(21, 21, 19, 30, 21, 21, 19, 30),
             gender = c('M','M','N','M','F','F','F','F'),
@@ -389,14 +444,18 @@ X
 
 Il faut préalablement procéder à l'encodage catégoriel pour les variables catégorielles nominales.
 
-```{r apo-mixte-modmat}
+```{r}
+#| label: apo-mixte-modmat
+
 X_dum <- model.matrix(~ 0 + ., X[, -1])
 X_dum
 ```
 
 Calculons la dissimilarité de Gower (cette fois le graphique est fait avec `pheatmap`).
 
-```{r apo-mixte-gower-heatmap}
+```{r}
+#| label: apo-mixte-gower-heatmap
+
 library("pheatmap")
 d_gow <- as.matrix(vegdist(X_dum, 'gower'))
 colnames(d_gow) <- rownames(d_gow) <- X$ID
@@ -413,7 +472,9 @@ Il existe de nombreuses approches pour mesurer les associations entre variables.
 
 La distance du chi-carré est suggérée par [Borcard et al. (2011)](http://www.springer.com/us/book/9781441979759).
 
-```{r apo-r-abond-chisq}
+```{r}
+#| label: apo-r-abond-chisq
+
 abundance_r <- t(abundance)
 D_chisq_R <- as.matrix(dist(decostand(abundance_r, method="chi.square")))
 pheatmap(D_chisq_R, display_numbers = round(D_chisq_R, 2))
@@ -425,7 +486,9 @@ Des coabondances sont notables pour la mésange à tête noire, le jaseur boréa
 
 La dissimilarité de Jaccard peut être utilisée.
 
-```{r apo-r-aocc-jaccard}
+```{r}
+#| label: apo-r-aocc-jaccard
+
 occurrence_r <- t(occurrence)
 D_jacc_R <- as.matrix(vegdist(occurrence_r, method = "jaccard"))
 pheatmap(D_jacc_R, display_numbers = round(D_jacc_R, 2))
@@ -437,7 +500,9 @@ Des cooccurrences sont notables pour le jaseur boréal, la citelle à poitrine r
 
 La matrice des corrélations de Pearson peut être utilisée pour les données continues. Quant aux variables ordinales, elles devraient idéalement être liées linéairement ou quadratiquement. Si ce n'est pas le cas, c'est-à-dire que les catégories sont ordonnées par rang seulement, vous pourrez avoir recours aux coefficients de corrélation de Spearman ou de Kendall.
 
-```{r apo-r-corr}
+```{r}
+#| label: apo-r-corr
+
 iris_cor <- iris |>
   select(-Species) |>
   cor()
@@ -453,7 +518,9 @@ Il n'existe pas de règle claire pour déterminer quelle technique d'association
 
 Les données suivantes ont été générées par [Leland McInnes](https://github.com/scikit-learn-contrib/hdbscan/blob/master/notebooks/clusterable_data.npy) (Tutte institute of mathematics, Ottawa). Êtes-vous en mesure d'identifier des groupes? Combien en trouvez-vous?
 
-```{r apo-load-mcinnes-data}
+```{r}
+#| label: apo-load-mcinnes-data
+
 df_mcinnes <- read_csv("data/clusterable_data.csv", col_names = c("x", "y"), skip = 1)
 ggplot(df_mcinnes, aes(x=x, y=y)) + geom_point() + coord_fixed()
 ```
@@ -499,7 +566,7 @@ L'objectif des kmeans est de minimiser la distance euclidienne entre un nombre p
 3. La position du centroïde est déplacée à la moyenne de chaque groupe.
 4. Recommencer à partir de l'étape 2 jusqu'à ce que l'assignation des objets aux groupes ne change plus.
 
-![](https://media.giphy.com/media/12vVAGkaqHUqCQ/giphy.gif)
+![](https://media.giphy.com/media/12vVAGkaqHUqCQ/giphy.gif){fig-align="center"}
 <center>Source: [David Sheehan](https://dashee87.github.io/data%20science/general/Clustering-with-Scikit-with-GIFs/)</center>
 
 La technique des kmeans suppose que les groupes ont des distributions multinormales - représentées par des cercles en 2D, des sphères en 3D, des hypersphères en plus de 3D. Cette limitation est problématique lorsque les groupes se présentent sous des formes irrégulières, comme celles du nuage de points de Leland McInnes, présenté plus haut. De plus, la technique classique des kmeans est basée sur des distances euclidiennes: l'utilisation des kmeans n'est appropriée pour les données comprenant beaucoup de zéros, comme les données d'abondance, qui devraient préalablement être transformées en variables centrées et réduites ([Legendre et Legendre, 2012](https://www.elsevier.com/books/numerical-ecology/legendre/978-0-444-53868-0)). La technique des **mixtures gaussiennes** ([*gaussian mixtures*](https://www.stat.washington.edu/mclust/)) est une généralisation des kmeans permettant d'intégrer la covariance des groupes. Les groupes ne sont plus des hyper-sphères, mais des hyper-ellipsoïdes.
@@ -510,7 +577,9 @@ Nous pouvons utilisé la fonction `kmeans` de R. Toutefois, puisque l'on désire
 
 Pour les kmeans, on doit fixer le nombre de groupes. Le graphique des données de Leland McInnes montrent 6 groupes. Toutefois, il est rare que l'on puisse visualiser des démarcations aussi tranchées que celles de l'exemple, qui plus est dans des cas où l'on doit traiter de plus de deux dimensions. Je vais donc lancer le partitionnement en boucle pour plusieurs nombres de groupes, de 3 à 10 et pour chaque groupe, évaluer le score silhouette et de Calinski-Habaraz. J'utilise un argument random_state pour m'assurer que les groupes seront les mêmes à chaque fois que la cellule sera lancée.
 
-```{r apo-cluster-kmeans-mcinnes}
+```{r}
+#| label: apo-cluster-kmeans-mcinnes
+
 library("vegan")
 mcinnes_kmeans <- cascadeKM(df_mcinnes, inf.gr = 3, sup.gr = 10, criterion = "calinski")
 str(mcinnes_kmeans)
@@ -518,7 +587,9 @@ str(mcinnes_kmeans)
 
 L'objet `mcinnes_kmeans`, de type `cascadeKM`, peut être visualisé directement avec la fonction `plot`.
 
-```{r apo-cluster-kmeans-mcinnes-plot}
+```{r}
+#| label: apo-cluster-kmeans-mcinnes-plot
+
 plot(mcinnes_kmeans)
 ```
 
@@ -526,7 +597,10 @@ On obtient un maximum de Calinski à 4 groupes, qui correspond à la deuxième s
 
 Examinons les scores silhouette (module: cluster).
 
-```{r apo-cluster-kmeans-mcinnes-silhouette}
+```{r}
+#| label: apo-cluster-kmeans-mcinnes-silhouette
+#| fig-align: center
+
 library("cluster")
 asw <- c()
 for (i in 1:ncol(mcinnes_kmeans$partition)) {
@@ -538,7 +612,10 @@ plot(3:10, asw, type = 'b')
 
 Le score silhouette maximum est à 3 groupes. La forme des groupes n'étant pas convexe, il fallait s'attendre à ce que indicateurs maximaux pour les deux indicateurs soient différents. C'est d'ailleurs souvent le cas. Cet exemple supporte que le choix du nombre de groupe à départager repose sur l'analyste, non pas uniquement sur les indicateurs de performance. Choisissons 6 groupes, puisque que c'est visuellement ce que l'on devrait chercher pour ce cas d'étude.
 
-```{r apo-cluster-kmeans-mcinnes-6groupes}
+```{r}
+#| label: apo-cluster-kmeans-mcinnes-6groupes
+#| fig-align: center
+
 kmeans_group <- mcinnes_kmeans$partition[, 4]
 mcinnes_kmeans$partition |> head(3)
 df_mcinnes |> 
@@ -553,7 +630,12 @@ L'algorithme kmeans est loin d'être statisfaisant. Cela est attendu, puisque le
 
 Nous pouvons créer un graphique silhouette pour nos 6 groupes. Notez qu'à cause d'un bogue, il n'est pas possible de présenter les données clairement lorsqu'elles sont nombreuses.
 
-```{r apo-cluster-kmeans-mcinnes-silhouette-plot, fig.height=30, fig.width=8}
+```{r}
+#| label: apo-cluster-kmeans-mcinnes-silhouette-plot
+#| fig-height: 30
+#| fig-width: 8
+#| fig-align: center
+
 sil <- silhouette(mcinnes_kmeans$partition[, 6],
                   dist = vegdist(df_mcinnes[, ], method = "euclidean"))
 sil <- sortSilhouette(sil)
@@ -570,11 +652,11 @@ La technique DBSCAN (* **D**ensity-**B**ased **S**patial **C**lustering of **A**
 - *Bordure*: le point a moins de *k* points dans son voisinage, mais l'un de des points voisins est un *noyau*.
 - *Bruit*: le cas échéant. Ces points sont considérés comme des outliers.
 
-<img src="images/07_dbscan_1.svg" width=600>
+![](images/07_dbscan_1.svg){width=600 fig-align="center"}
 
 2. Les noyaux distancés de *d* ou moins sont connectés entre eux en englobant les bordures.
 
-<img src="images/07_dbscan_2.svg" width=600>
+![](images/07_dbscan_2.svg){width=600 fig-align="center"}
 
 Le nombre de groupes est prescrit par l'algorithme DBSCAN, qui permet du coup de détecter des données trop bruitées pour être classées.
 
@@ -584,7 +666,9 @@ Le nombre de groupes est prescrit par l'algorithme DBSCAN, qui permet du coup de
 
 La technique **DBSCAN** n'est pas basée sur le nombre de groupe, mais sur la densité des points. L'argument `x` ne constitue pas les données, mais une matrice d'association. L'argument minPts spécifie le nombre minimal de points qui l'on doit retrouver à une distance critique d* pour la formation des *noyaux et la propagation des groupes, spécifiée dans l'argument eps. La distance d peut être estimée en prenant une fraction de la moyenne, mais on aura volontiers recours à sont bon jugement.
 
-```{r apo-cluster-dbscan-mcinnes}
+```{r}
+#| label: apo-cluster-dbscan-mcinnes
+
 library("dbscan")
 mcinnes_dbscan <- dbscan(x = vegdist(df_mcinnes[, ], method = "euclidean"),
                          eps = 0.03, minPts = 10)
@@ -594,7 +678,10 @@ unique(dbscan_group)
 
 Les paramètres spécifiés donnent 5 groupes (`1, 2, ..., 5`) et des points trop bruités pour être classifiés (étiquetés `0`). Voyons comment les groupes ont été formés.
 
-```{r apo-cluster-dbscan-mcinnes-5groupes}
+```{r}
+#| label: apo-cluster-dbscan-mcinnes-5groupes
+#| fig-align: center
+
 df_mcinnes |> 
   mutate(dbscan_group = dbscan_group) |> # ajouter une colonne de regoupement
   ggplot(aes(x=x, y=y)) +
@@ -635,7 +722,10 @@ Alors que le choix de la matrice d'association dépend des données et de leur c
 
 Les techniques de partitionnement hiérarchique présentées ci-dessus sont disponibles dans le module `stats` de R, qui est chargé automatiquement lors de l'ouverture de R. Nous allons classifier les dimensions des iris grâce à la distance de Manhattan.
 
-```{r apo-cluster-hierarch-mcinnes}
+```{r}
+#| label:  apo-cluster-hierarch-mcinnes
+#| fig-align: center
+
 mcinnes_hclust_distmat <- vegdist(df_mcinnes, method = "manhattan")
 
 clustering_methods <- c('single', 'complete', 'average', 'centroid', 'ward')
@@ -657,14 +747,21 @@ tibble(clustering_methods, coph_corr = coph_corr_l) |>
 
 La méthode `average` retourne la corrélation la plus élevée. Pour plus de flexibilité, enchâssons le nom de la méthode dans une variable. Ainsi, en chageant le nom de cette variable, le reste du code sera conséquent.
 
-```{r apo-cluster-hierarch-mcinnes-best}
+```{r}
+#| label: apo-cluster-hierarch-mcinnes-best
+
 names(clust_l) <- clustering_methods
 best_method <- "average"
 ```
 
 Le partitionnement hiérarchique peut être visualisé par un dendrogramme.
 
-```{r apo-cluster-hierarch-mcinnes-plot, fig.width=15, fig.height=5}
+```{r}
+#| label: apo-cluster-hierarch-mcinnes-plot
+#| fig-width: 15
+#| fig-height: 5
+#| fig-align: center
+
 plot(clust_l[[best_method]])
 ```
 
@@ -672,7 +769,10 @@ plot(clust_l[[best_method]])
 
 La longueur des lignes verticales est la distance séparant les groupes enfants. Bien que la sélection du nombre de groupe soit avant tout basée sur les besoins du problème, nous pouvons nous appuyer sur certains outils. La hauteur totale peut servir de critère pour définir un nombre de groupes adéquat. On pourra sélectionner le nombre de groupe où la hauteur se stabilise en fonction du nombre de groupe. On pourra aussi utiliser le *graphique silhouette*, comprenant une collection de *largeurs de silhouette*, représentant le degré d'appartenance à son groupe. La fonction `sklearn.metrics.silhouette_score`, du module scikit-learn, s'en occupe.
 
-```{r apo-cluster-hierarch-mcinnes-ngroupes}
+```{r}
+#| label: apo-cluster-hierarch-mcinnes-ngroupes
+#| fig-align: center
+
 asw <- c()
 num_groups <- 3:10
 for(i in seq_along(num_groups)) {
@@ -684,7 +784,12 @@ plot(num_groups, asw, type = "b")
 
 Le nombre optimal de groupes serait de 5. Coupons le dendrorgamme à la hauteur correspondant à 5 groupes avec la fonction `cutree`.
 
-```{r apo-cluster-hierarch-mcinnes-5groupes, fig.width=15, fig.height=5}
+```{r}
+#| label: apo-cluster-hierarch-mcinnes-5groupes
+#| fig-width: 15
+#| fig-height: 5
+#| fig-align: center
+
 k_opt <- num_groups[which.max(asw)]
 hclust_group <- cutree(clust_l[[best_method]], k = k_opt)
 plot(clust_l[[best_method]])
@@ -693,7 +798,10 @@ rect.hclust(clust_l[[best_method]], k = k_opt)
 
 La classification hiérarchique, uniquement basée sur la distance, peut être inappropriée pour définir des formes complexes.
 
-```{r apo-cluster-hierarch-mcinnes-5groupes-plot}
+```{r}
+#| label: apo-cluster-hierarch-mcinnes-5groupes-plot
+#| fig-align: center
+
 df_mcinnes |> 
   mutate(hclust_group = hclust_group) |> # ajouter une colonne de regoupement
   ggplot(aes(x=x, y=y)) +
@@ -711,7 +819,12 @@ Avec DBSCAN, un rayon est fixé dans une métrique appropriée. Pour chaque poin
 
 Outre la métrique d'association dont nous avons discuté, HDBSCAN demande d'être nourri avec [quelques paramètres importants](https://www.rdocumentation.org/packages/dbscan/versions/1.1-3/topics/hdbscan). En particulier, le **nombre minimum d'objets par groupe**, $n_{gr min}$ dépend de la quantité de données que vous avez à votre disposition, ainsi que de la quantité d'objets que vous jugez suffisante pour créer des groupes. Nous utiliserons l'implémentation de HDBSCAN du module dbscan. Si vous désirez davantage d'options, vous préférerez probablement l'[implémentation du module largeVis](https://www.rdocumentation.org/packages/largeVis/versions/0.2.1.1/topics/hdbscan).
 
-```{r apo-cluster-hbdscan-mcinnes, fig.width=15, fig.height=7}
+```{r}
+#| label:  apo-cluster-hbdscan-mcinnes
+#| fig-width: 15
+#| fig-height: 7
+#| fig-align: center
+
 mcinnes_hdbscan <- hdbscan(x = vegdist(df_mcinnes, method = "euclidean"),
                            minPts = 20,
                            gen_hdbscan_tree = TRUE,
@@ -722,19 +835,32 @@ unique(hdbscan_group)
 
 Nous avons 6 groupes, numérotés de 1 à 6, ainsi que des étiquettes identifiant des objets désignés comme étant du bruit de fond, numéroté 0. Le dendrogramme non condensé peu être produit.
 
-```{r apo-cluster-hbdscan-mcinnes-plot}
+```{r}
+#| label: apo-cluster-hbdscan-mcinnes-plot
+#| fig-align: center
+
 plot(mcinnes_hdbscan$hdbscan_tree)
 ```
 
 Difficile d'y voir clair avec autant d'objets. L'objet `mcinnes_hdbscan` a un nombre minimum d'objets par groupe de 20. Ce qui permet de présenter le dendrogramme de manière condensée.
 
-```{r apo-cluster-hbdscan-mcinnes-plot2, fig.width=15, fig.height=7}
+```{r, fig.width=15, fig.height=7}
+#| label: apo-cluster-hbdscan-mcinnes-plot2
+#| fig-width: 15
+#| fig-height: 7
+#| fig-align: center
+
 plot(mcinnes_hdbscan)
 ```
 
 Enfin, un aperçu des stratégies de partitionnement utilisés jusqu'ici.
 
-```{r apo-cluster-hbdscan-mcinnes-plot3, fig.width=8, fig.height=8}
+```{r}
+#| label: apo-cluster-hbdscan-mcinnes-plot3
+#| fig-width: 8
+#| fig-height: 8
+#| fig-align: center
+
 clustering_group <- df_mcinnes |> 
   mutate(kmeans_group,
          hclust_group,
@@ -754,11 +880,12 @@ Clairement, le partitionnement avec HDBSCAN donne les meilleurs résultats.
 
 ### Conclusion sur le partitionnement
 
-Au chapitre [@sec-visual], nous avons vu avec le jeu de données "datasaurus" que la visualisation peut permettre de détecter des structures en segmentant les données selon des groupes.
+Au [chapitre @sec-visual], nous avons vu avec le jeu de données "datasaurus" que la visualisation peut permettre de détecter des structures en segmentant les données selon des groupes.
 
-<img src="images/07_datasaurus_mix.png" width=400>
+![](images/07_datasaurus_mix.png){width=400 fig-align="center"}
 
-<img src="images/07_datasaurus_facet.png">
+![](images/07_datasaurus_facet.png){fig-align="center"}
+
 
 Or, si les données n'étaient pas étiquetées, leur structure serait indétectable avec les algorithmes disponibles actuellement. Le partitionnement permet d'explorer des données, de détecter des tendances et de dégager des groupes permettant la prise de décision.
 
@@ -812,7 +939,9 @@ Bien qu'il soit possible d'[effectuer cette opération à la main](https://www.y
 
 Chargeons les données d'iris, puis isolons seulement les deux dimensions des sépales l'espèce *setosa*.
 
-```{r apo-iris-sepal}
+```{r}
+#| label: apo-iris-sepal
+
 data("iris")
 setosa_sepal <- iris |> 
   filter(Species == "setosa") |> 
@@ -820,7 +949,9 @@ setosa_sepal <- iris |>
 setosa_sepal
 ```
 
-```{r apo-iris-sepal-multinormalite}
+```{r}
+#| label: apo-iris-sepal-multinormalite
+
 library("MVN")
 setosa_sepal_mvn <- mvn(setosa_sepal, mvnTest = "mardia")
 setosa_sepal_mvn$multivariateNormality
@@ -830,7 +961,9 @@ Pour considérer la distribution comme multinormale, la p-value de la distortion
 
 Retirons de la matrice de covariance les valeurs et vecteurs propres avec la fonction `eigen`.
 
-```{r apo-iris-sepal-eigen}
+```{r}
+#| label: apo-iris-sepal-eigen
+
 setosa_eigen <- eigen(cov(setosa_sepal))
 setosa_eigenval <- setosa_eigen$values
 setosa_eigenvec <- setosa_eigen$vectors
@@ -838,17 +971,24 @@ setosa_eigenvec <- setosa_eigen$vectors
 
 Le premier vecteur propre correspond à la première colonne, et le second à la deuxième. Les coordonnées x et y sont les premières et deuxièmes lignes. Les vecteurs propres ont une longueur unitaire (norme de 1). Ils peuvent être mis à l'échelles à la racine carrée des valeurs propres.
 
-```{r  apo-iris-sepal-eigen-scaled}
+```{r}
+#| label: apo-iris-sepal-eigen-scaled
+
 setosa_eigenvec_sc <- setosa_eigenvec %*% diag(sqrt(setosa_eigen$values))
 ```
 
 Pour effectuer une translation des vecteurs propres au centre du nuage de point, nous avons besoin du centroïde.
 
-```{r  apo-iris-sepal-centroide}
+```{r}
+#| label: apo-iris-sepal-centroide
+
 centroid <- setosa_sepal %>% apply(., 2, mean)
 ```
 
-```{r  apo-iris-sepal-plot}
+```{r }
+#| label: apo-iris-sepal-plot
+#| fig-align: center
+
 plot(setosa_sepal, asp = 1)
 
 # vecteurs propres brutes
@@ -874,7 +1014,7 @@ Imaginez un nuage de points en 3D, axes y compris. Vous tournez votre nuage de p
 
 Pour créer un biplot, on juxtapose les descripteurs (variables) en tant que vecteurs propres, représentés par des flèches, et les objets (observations) en tant que scores, représentés par des points. Les résultats d'une ordination peuvent être présentés selon deux types de biplots ([Legendre et Legendre, 2012](https://www.elsevier.com/books/numerical-ecology/legendre/978-0-444-53868-0)).
 
-![](images/07_bipolot-meteo-sc2.svg)
+![](images/07_biplot-meteo-sc2.svg){fig-align="center"}
 
 <center>Biplot de corrélation permettant de visualiser les corrélations entre des variables météorologiques.</center>
 
@@ -882,7 +1022,7 @@ Deux types de projection sont couramment utilisés.
 
 **Biplot de distance**. Ce type de projection permet de visualiser la position des objets entre eux et par rapport aux descripteurs et d'apprécier la contribution des descripteurs pour créer les composantes principales. Pour créer un biplot de distance, on projette directement les vecteurs propres ($U$) en guise de descripteurs. Pour ce qui est des objets, on utilise les scores de l'ACP ($F$). De cette manière, 
 
-1. les distances euclidiennes entre les scores sont des approximations des distances euclidiennes dans l'espace multidimentionnel,
+1. les distances euclidiennes entre les scores sont des approximations des distances euclidiennes dans l'espace multidimensionnel,
 2. la projection d'un objet sur un descripteur perpendiculairement à ce dernier est une approximation de la position de l'objet sur le descripteur et
 3. la projection d'un descripteur sur un axe principal est proportionnelle à sa contribution pour générer l'axe.
 
@@ -900,7 +1040,9 @@ Le *triplot* est une forme apparentée au biplot, auquel on ajoute des variables
 
 Bien que l'ACP puisse être effectuée grâce à des modules de base de R, nous utiliserons le module vegan. Le tableau [`varechem`](https://rdrr.io/rforge/vegan/man/varechem.html) comprend des données issues d'analyse de sols identifiés par leur composition chimique, leur pH, leur profondeur totale et la profondeur de l'humus publiées dans [Väre et al. (1995)](http://onlinelibrary.wiley.com/doi/10.2307/3236351/abstract) et exportées du module [vegan](https://rdrr.io/rforge/vegan/).
 
-```{r apo-load-varechem}
+```{r}
+#| label: apo-load-varechem
+
 library("vegan")
 data("varechem")
 varechem |> 
@@ -909,7 +1051,9 @@ varechem |>
 
 Comme nous l'avons vu précedemment, les données de concentration sont de type *compositionnelles*. Les données compositionnelles du tableau `varechem` mériteraient d'être transformées ([Aitchison et Greenacre, 2002](http://doi.wiley.com/10.1111/1467-9876.00275)). Utilisons les log-ratios centrés (*clr*).
 
-```{r apo-clr-varechem}
+```{r}
+#| label: apo-clr-varechem
+
 library("compositions")
 varecomp <- varechem |>
   select(-Baresoil, -Humdepth, -pH) %>%
@@ -926,20 +1070,26 @@ vareclr |>
 
 Effectuons l'ACP. Pour cet exemple, nous standardiserons les données étant données que les colonnes Baresoil, Humedepth et pH ne sont pas à la même échelle que les colonnes des clr.
 
-```{r apo-pca-varechem}
+```{r}
+#| label: apo-pca-varechem
+
 vareclr_sc <- scale(vareclr)
 vare_pca <- rda(vareclr_sc) # ou bien rda(vareclr, scale = TRUE, mais la mise à l'échelle préalable est plus explicite)
 ```
 
 L'objet `vareclr_pca` contient l'information nécessaire pour mener notre ACP.
 
-```{r apo-varechem-pca-summary}
+```{r}
+#| label: apo-varechem-pca-summary
+
 summary(vare_pca, scaling = 2) # scaling = 2 pour obtenir les infos pour les biplots de corrélation
 ```
 
 La deuxième ligne de `Importance of components`, `Proportion Explained`, indique la proportion de la variance totale captée successivement par les axes principaux. Le premier axe principal comporte 47.68% de la variance. Le deuxième axe principal ajoutant une proportion de 16,51%, une représentation en deux axes principaux présentent 64.19 % de la variance.
 
-```{r apo-varechem-pca-inertie}
+```{r}
+#| label: apo-varechem-pca-inertie
+
 prop_expl <- vare_pca$CA$eig / sum(vare_pca$CA$eig)
 prop_expl
 ```
@@ -948,7 +1098,10 @@ La décision du nombre d'axes principaux à retenir est arbitraire. Elle peut d�
 
 L'approche de *Kaiser-Guttmann* ([Borcard et al., 2011](http://www.springer.com/us/book/9781441979759)) consiste à sélectionner les composantes principales dont la valeur propre est supérieure à leur moyenne.
 
-```{r apo-varechem-pca-kaiser}
+```{r}
+#| label: apo-varechem-pca-kaiser
+#| fig-align: center
+
 plot(x = 1:length(vare_pca$CA$eig),
      y = vare_pca$CA$eig,
      type = "b",
@@ -959,7 +1112,9 @@ abline(h = mean(vare_pca$CA$eig), col = "red", lty = 2)
 
 L'approche du *broken stick* consiste à couper un bâton d'une longueur de 1 en n tranches. La première tranche est de longueur $\frac{1}{n}$. La tranche suivante est d'une longueur de la tranche précédente à laquelle on aditionne  $\frac{1}{longueur~restante}$. Puis on place les longueurs en ordre décroissant. On retient les composantes principales dont les valeurs propres cumulées sont plus grandes que le broken stick.
 
-```{r apo-varechem-pca-bs-func}
+```{r}
+#| label: apo-varechem-pca-bs-func
+
 broken_stick <- function(x) {
   bsm <- vector("numeric", length = x)
   bsm[1] <- 1/x
@@ -974,7 +1129,10 @@ broken_stick <- function(x) {
 
 Le graphique du *broken stick*:
 
-```{r apo-varechem-pca-bs-plot}
+```{r}
+#| label: apo-varechem-pca-bs-plot
+#| fig-align: center
+
 plot(x = 1:length(vare_pca$CA$eig),
      y = prop_expl,
      type = "b",
@@ -990,7 +1148,9 @@ Les approches *Kaiser-Guttmann* et *broken stick* suggèrent que les trois premi
 
 Examinons les *loadings* (vecteurs propres) plus en particulier. Dans le langage du module vegan, les vecteurs propres sont les espèces (`species`) et les scores sont les `sites`.
 
-```{r apo-varechem-pca-loadings}
+```{r}
+#| label: apo-varechem-pca-loadings
+
 vare_eigenvec <- vegan::scores(vare_pca, scaling = 2, display = "species", choices = 1:(ncol(vareclr)-1))
 vare_eigenvec
 ```
@@ -999,7 +1159,10 @@ L'ordre d'importance des vecteurs propres est établi en ordre croissant des él
 
 Lançons la fonction `biplot` pour créer un biplot de distance et un autre de corrélation.
 
-```{r apo-varechem-pca-biplots}
+```{r}
+#| label: apo-varechem-pca-biplots
+#| fig-align: center
+
 par(mfrow = c(1, 2))
 biplot(vare_pca, scaling = 1, main = "Biplot de distance")
 biplot(vare_pca, scaling = 2, main = "Biplot de corrélation")
@@ -1007,7 +1170,10 @@ biplot(vare_pca, scaling = 2, main = "Biplot de corrélation")
 
 Le biplot de distance permet de dégager les variables qui expliquent davantage la variabilité dans notre tableau: les clr du Fe et de l'Al forment en grande partie le premier axe principal, alors que le clr du Mo forme en grande partie le second axe. Le biplot de corrélation montre que les clr du Fe et du Al sont corrélés dans le même sens, mais das le sens contraire du clr du Mn. L'information sur la teneur en Fe et celle de l'Al est en grande partie redondante. Toutefois, le clr du Mo est presque indépendant du clr du Fe, ceux-ci étant à angle presque droit (~90°). Ces relations peuvent être explorées directement.
 
-```{r apo-varechem-pca-al-fe-mo}
+```{r}
+#| label: apo-varechem-pca-al-fe-mo
+#| fig-align: center
+
 par(mfrow = c(1, 2))
 plot(vareclr$Al, vareclr$Fe)
 plot(vareclr$Mo, vareclr$Fe)
@@ -1015,28 +1181,39 @@ plot(vareclr$Mo, vareclr$Fe)
 
 Nous avons mentionné que l'ACP est une rotation. Prenons un second exemple pour bien en saisir les tenants et aboutissants. Le tableau de données que nous chargerons provient d'un infographie d'un dauphin, intitullée *Bottlenose Dolphin*, conçu par l'artiste [Tarnyloo](https://www.blendswap.com/blends/view/83681). Les points correspondent à la surface d'un dauphin. J'ai ajouté une colonne `anatomy`, qui indique à quelle partie anatomique le point appartient.
 
-```{r apo-pca-dauphin}
+```{r}
+#| label: apo-pca-dauphin
+
 dolphin <- read_csv("data/07_dolphin.csv")
 dolphin |> sample_n(5)
 ```
 
 Voici en vue isométrique ce en quoi consiste ce nuage de points.
 
-```{r apo-pca-dauphin-3d}
+```{r}
+#| label: apo-pca-dauphin-3d
+#| fig-align: center
+
 library("scatterplot3d")
 scatterplot3d(x = dolphin$x, y = dolphin$y, z = dolphin$z, pch = 16, cex.symbols = 0.2)
 ```
 
 Effectuons l'ACP sur le dauphin.
 
-```{r apo-pca-dauphin-biplot}
+```{r}
+#| label: apo-pca-dauphin-biplot
+#| fig-align: center
+
 dolph_pca <- rda(dolphin |> select(x, y, z), scale = FALSE)
 biplot(dolph_pca, scaling = 2)
 ```
 
 On n'y voit pas grand chose, mais si l'on extrait les scores et que l'on raccourcit les vecteurs:
 
-```{r apo-pca-dauphin-biplot2}
+```{r}
+#| label: apo-pca-dauphin-biplot2
+#| fig-align: center
+
 dolph_scores <- vegan::scores(dolph_pca, display = "sites")
 dolph_loads <- vegan::scores(dolph_pca, display = "species")
 dolph_loads
@@ -1066,7 +1243,9 @@ L'AC produit $min(n,p)-1$ axes principaux orthogonaux qui captent non pas le max
 
 Par exemple, sur ces trois sites, on a compté un individu A de moins que d'individu B.
 
-```{r apo-decompte-sites}
+```{r}
+#| label: apo-decompte-sites
+
 abundance_0123 = tibble(Site = c("Site 1", "Site 2", "Site 3"),
                         A = c(0, 1, 9),
                         B = c(1, 2, 10))
@@ -1075,7 +1254,9 @@ abundance_0123
 
 Pourtant, la distance du $\chi^2$ est plus élevée entre le site 1 et le site 2 qu'entre le site 2 et le site 3.
 
-```{r apo-decompte-sites-dist}
+```{r}
+#| label: apo-decompte-sites-dist
+
 dist(decostand(abundance_0123 |> select(-Site), method="chi.square"))
 ```
 
@@ -1085,7 +1266,9 @@ La distance du $\chi^2$ donne davantage d'importance aux espèces rares, ce dont
 
 Le tableau [`varespec`](https://rdrr.io/rforge/vegan/man/varechem.html) comprend des données de surface de couverture de 44 espèces de plantes en lien avec les données environnementales du tableau `varechem`. Ces données ont été publiées dans [Väre et al. (1995)](http://onlinelibrary.wiley.com/doi/10.2307/3236351/abstract) et exportées du module [vegan](https://rdrr.io/rforge/vegan/).
 
-```{r apo-load-varespec}
+```{r}
+#| label: apo-load-varespec
+
 data("varespec")
 varespec |>sample_n(5)
 ```
@@ -1094,12 +1277,17 @@ Pour effectuer l'AC, nous utiliserons, comme pour l'ACP, le module vegan mais ce
 
 Pour chacune des AC, je filtre pour m'assurer que toutes les lignes contiennent au moins une observation. Ce n'est pas nécessaire dans notre cas, mais je le laisse pour l'exemple.
 
-```{r apo-varespec-cca}
+```{r}
+#| label: apo-varespec-cca
+
 vare_cca <- cca(varespec %>% filter(rowSums(.) > 0))
 summary(vare_cca, scaling = 1)
 ```
 
-```{r apo-varespec-cca-plot}
+```{r}
+#| label: apo-varespec-cca-plot
+#| fig-align: center
+
 varespec_eigenval <- eigenvals(vare_cca, scaling = 1)
 
 prop_expl <- varespec_eigenval / sum(varespec_eigenval)
@@ -1125,7 +1313,12 @@ lines(x = 1:length(varespec_eigenval),
 
 Créons les biplots.
 
-```{r apo-varespec-cca-biplot, fig.height=5, fig.width=10}
+```{r}
+#| label:  apo-varespec-cca-biplot
+#| fig-width: 10
+#| fig-height: 5
+#| fig-align: center
+
 par(mfrow = c(1, 2))
 plot(vare_cca, scaling = 1, main = "Biplot des espèces")
 plot(vare_cca, scaling = 2, main = "Biplot des sites")
@@ -1139,7 +1332,12 @@ Pour les deux types de biplot, les sites où les espèces situés près de l'ori
 
 Le nombre de composantes à retenir peut être évalué par les approches *Kaiser-Guttmann* et *broken-stick*.
 
-```{r apo-varespec-cca-analysis, fig.width=10, fig.height=4}
+```{r}
+#| label: apo-varespec-cca-analysis
+#| fig-width: 10
+#| fig-height: 4
+#| fig-align: center
+
 scaling <- 1
 varespec_eigenval <- eigenvals(vare_cca, scaling = scaling) # peut être effectué sur les deux types de scaling
 
@@ -1170,7 +1368,10 @@ Pour les deux scalings, l'approche *Kaiser-Guttmann* propose 7 axes, tandis que 
 
 Les représentations biplot d'analyse de correspondance peuvent prendre la forme d'un boomerang, en particulier celles qui sont basées sur des données d'occurrence. Le tableau suivant initialement de [Chessel et al. (1987)](http://pbil.univ-lyon1.fr/R/pdf/pps047.pdf) et est distribué dans le module ade4.
 
-```{r apo-doubs-cca-biplot}
+```{r}
+#| label: apo-doubs-cca-biplot
+#| fig-align: center
+
 library("ade4")
 data("doubs")
 fish <- doubs$fish
@@ -1200,7 +1401,12 @@ Nous ne traitons pour l'instant que de l'PoMd-métrique (fonction `vegan::cmdsca
 
 Utilisons les données d'abondance que nous avions au tout début de ce chapitre. La matrice d'association de Bray-Curtis sera utilisée. 
 
-```{r aop-pomd-abun-data, fig.width=3, fig.height=2.4}
+```{r}
+#| label: aop-pomd-abun-data
+#| fig-width: 3
+#| fig-height: 2.4
+#| fig-align: center
+
 assoc_mat <- vegdist(abundance, method = "bray")
 pheatmap(assoc_mat |> as.matrix(), cluster_rows = FALSE, cluster_cols = FALSE,
          display_numbers = round(assoc_mat |> as.matrix(), 2))
@@ -1208,7 +1414,10 @@ pheatmap(assoc_mat |> as.matrix(), cluster_rows = FALSE, cluster_cols = FALSE,
 
 Les sites 2 et 3 devraient être plus près l'un et l'autre, puis les sites 3 et 4. Les autres associations sont éloignés d'environ la même distance. Lançons le calcul de la PoMd-métrique.
 
-```{r aop-pomd-abun-compute}
+```{r}
+#| label: aop-pomd-abun-compute
+#| fig-align: center
+
 pcoa <- cmdscale(assoc_mat, k = nrow(abundance)-1, eig = TRUE)
 spec_scores <- wascores(pcoa$points, abundance)
 ordiplot(vegan::scores(pcoa), type = 't', cex = 1.5)
@@ -1219,7 +1428,10 @@ On observe en effet que les sites 2 et 3 sont les plus près. Les sites 3 et 4so
 
 Le PoMd-non-métrique (*non metric dimensional scaling, NMDS*) fonctionne de la même manière que la PoMd-métrique, à la différence que la distance est basée sur les rangs. À cet égard, le site 4 à une distance de 0.76 du site 3, mais plutôt le deuxième plus loin, après le site 2 et avant le site 1. Utilisons la fonction `metaMDS`.
 
-```{r aop-pomd-abun-compute-nmds}
+```{r}
+#| label: aop-pomd-abun-compute-nmds
+#| fig-align: center
+
 nmds <- metaMDS(assoc_mat, k = nrow(abundance)-1, eig = TRUE)
 spec_scores <- wascores(nmds$points, abundance)
 ordiplot(vegan::scores(nmds), type = 't', cex = 1.5)
@@ -1230,7 +1442,15 @@ Dans ce cas, entre PoMd-métrique et non-métrique, les résultats peuvent être
 
 En ce qui a trait au dauphin,
 
-```{r aop-pomd-dauphin-plot, echo=FALSE, warning=FALSE, message=FALSE, results='hide', fig.keep='all'}
+```{r}
+#| label: aop-pomd-dauphin-plot
+#| echo: false
+#| warning: false
+#| message: false
+#| results: hide
+#| fig-keep: "all"
+#| fig-align: center
+
 dolphin_sample <- dolphin |> sample_n(300)
 pcoa_dolphin <- cmdscale(dolphin_sample |> select(-anatomy) |> vegdist(method = "euclidean"))
 nmds_dolphin <- metaMDS(dolphin_sample |> select(-anatomy) |> vegdist(method = "euclidean"), k = 2)
@@ -1260,7 +1480,8 @@ Alors que l'analyse en composante principale vise à présenter la perspective (
 
 L'AD vise à représenter des différences entre des groupes aux moyens de combinaisons linéaires (ADL) ou quadratique (ADQ) de variables mesurées. Sa représentation sous forme de biplot permet d'apprécier les différences entre les groupes d'identifier les variables qui sont responsables de la discrimination.
 
-<img src="images/07_ionome-revisited-figure4d.png" alt="" style="width: 600px;"/>
+![](images/07_ionome-revisited-figure4d.png){alt=" width=600 fig-align="center"}
+
 
 <center>Biplot de distance de l'analyse discriminante des ionomes d'espèces de plantes à fruits cultivées sauvages et domestiquées,  Source: [Parent et al. (2013)](https://doi.org/10.3389/fpls.2013.00039)</center>
 
@@ -1278,13 +1499,17 @@ Il est rare que des données écologiques aient des dispersions (covariances) ho
 
 Utilisons les données d'iris.
 
-```{r apo-load-iris-oc}
+```{r}
+#| label: apo-load-iris-oc
+
 data("iris")
 ```
 
 Testons la multinormalité par groupe. Rappelons-nous que pour considérer la distribution comme multinormale, la p-value de la distorsion ainsi que la statistique de Kurtosis doivent être égale ou plus élevée que 0.05. La fonction `split` sépare le tableau en listes et la fonction `map` applique la fonction spécifiée à chaque élément de la liste. Cela permet d'effectuer des tests de multinormalité sur chacune des espèces d'iris.
 
-```{r apo-load-iris-mvn}
+```{r}
+#| label: apo-load-iris-mvn
+
 iris %>%
   split(.$Species) %>%
   map(~ mvn(.x %>% select(-Species),
@@ -1293,7 +1518,9 @@ iris %>%
 
 Le test est passé pour toutes les espèces. Voyons maintenant l'homogénéité de la covariance. Pour ce faire, nous aurons besoin de la fonction `boxM`, disponible avec le module `biotools`. Pour que les covariances soient considérées comme égales, la p-vaule doit être supérieure à 0.05.
 
-```{r apo-iris-boxM}
+```{r}
+#| label: apo-iris-boxM
+
 library("heplots")
 boxM(iris |> select(-Species),
      group = iris$Species)
@@ -1301,7 +1528,9 @@ boxM(iris |> select(-Species),
 
 On est loin d'un cas où les distributions sont homogènes. Nous allons néanmoins procéder à l'analyse discriminante avec le module ade4. Nous aurons d'abord besoin d'effectuer une ACP avec la fonction `dudi.pca` de ade4 (en spécifiant une mise à l'échelle), que nous projetterons en ADL avec `discrimin`.
 
-```{r apo-load-iris-lda}
+```{r}
+#| label: apo-load-iris-lda
+
 library("ade4")
 iris_pca <- dudi.pca(df = iris |> select(-Species),
                      scannf = FALSE, # ne pas générer de graphique
@@ -1313,13 +1542,19 @@ iris_lda <- discrimin(dudi = iris_pca,
 
 La visualisation peut être effectuée directement sur l'objet issu de la fonction `discrimin`.
 
-```{r apo-lda-plot}
+```{r}
+#| label: apo-lda-plot
+#| fig-align: center
+
 plot(iris_lda)
 ```
 
 Il s'agit toutefois d'une visualisation pour le diagnostic davantage que pour la publication. Si l'objectif est la publication, vous pourriez utiliser la fonction `plotDA` que j'ai conçue à cet effet. J'ai aussi conçu une [fonction similaire qui utilise le module graphique de base de R](https://raw.githubusercontent.com/essicolo/AgFun/master/plotDA_trad.R).
 
-```{r apo-lda-biplot}
+```{r}
+#| label: apo-lda-biplot
+#| fig-align: center
+
 source("https://raw.githubusercontent.com/essicolo/AgFun/master/plotDA_gg.R")
 plotDA(scores = iris_lda$li,
        loadings = iris_lda$fa,
@@ -1362,7 +1597,12 @@ Les vecteurs propres $U$ sont utilisés pour calculer les *scores des sites*, $Y
 
 Nous allons utiliser la fonction `rda` du module vegan. En ce qui a trait aux données, utilisons les données varespec (matrice Y) et varechem (matrice X). La fonction `rda` peut fonctionner avec l'interface-formule de R, où à gauche du `~` on retrouve le Y (la matrice de la communauté écologique, i.e. les abondances d'espèces) contre le X (l), à gauche, ce qui peut être pratique pour l'analyse d’interactions. Mais pour comparer deux matrices, nous pouvons définir X et Y. Ce qui est mélangeant, c'est que vegan, contrairement aux conventions, défini X comme étant la matrice réponse et Y comme étant la matrice explicative.
 
-```{r apo-vare-rda, fig.height=6, fig.width=10}
+```{r}
+#| label: apo-vare-rda
+#| fig-width: 10
+#| fig-height: 6
+#| fig-align: center
+
 vare_rda <- rda(X = varespec, Y = vareclr, scale = FALSE)
 par(mfrow = c(1, 2))
 ordiplot(vare_rda, scaling = 1, type = "text", main = "Scaling 1: triplot de distance")
@@ -1379,7 +1619,12 @@ Les triplots montrent que les variables ont toutes un rôle important sur la dis
 
 On pourra personnaliser les graphiques en extrayant les scores.
 
-```{r apo-vare-rda-plot, fig.height=6, fig.width=6}
+```{r}
+#| label: apo-vare-rda-plot
+#| fig-width: 6
+#| fig-height: 6
+#| fig-align: center
+
 scaling <- 2
 sites <- vegan::scores(vare_rda, display = "wa", scaling = scaling)
 species <- vegan::scores(vare_rda, display = "species", scaling = scaling)
@@ -1395,7 +1640,9 @@ text(env, labels = rownames(env), col = "blue", cex = 1)
 
 On pourra effectuer une analyse de Kaiser-Guttmann ou de broken-stick de la même manière que précédemment. Étant une collection de régressions, une RDA est en mesure d'effectuer des tests statistiques sur les coefficients de la régression en utilisant des permutations pour tester la signification des coefficients et des axes d'une RDA. On doit néanmoins obligatoirement effectuer la RDA avec l'interface formule. La variable à gauche du `~` peut être une matrice ou un tableau, et celui de droite est défini dans `data`. Le `.` dans l'interface formule signifie "une combinaison linéaire de toutes les variables, sans interaction".
 
-```{r apo-vare-rda-perm}
+```{r}
+#| label: apo-vare-rda-perm
+
 vare_rda <- rda(varespec ~ ., data = vareclr, scale = FALSE)
 perm_test_term <- anova(vare_rda, by = "term")
 #perm_test_axis <- anova(vare_rda, by = "axis")
@@ -1403,7 +1650,9 @@ perm_test_term <- anova(vare_rda, by = "term")
 
 La signification des axes est difficile à interpréter. Toutefois, celui des variables présente un intérêt.
 
-```{r apo-vare-rda-perm-resultats}
+```{r}
+#| label: apo-vare-rda-perm-resultats
+
 perm_test_term
 ```
 
@@ -1423,7 +1672,9 @@ Cet exemple d'application concerne des données d'abondance. Nous allons conséq
 
 Les tableaux [`doubs_fish` et `doubs_env`](https://rdrr.io/cran/ade4/man/doubs.html) comprennent respectivement des données d'abondance d'espèces de poissons et dans différents environnements de la rivière Doubs (Europe) publiées dans [Verneaux. (1973)](https://www.worldcat.org/title/cours-deau-de-franche-comte-massif-du-jura-recherches-ecologiques-sur-le-reseau-hydrographique-du-doubs-essai-de-biotypologie/oclc/496763306) et exportées du module [`ade4`](https://rdrr.io/rforge/ade4/).
 
-```{r apo-load-doubs}
+```{r}
+#| label: apo-load-doubs
+
 data("doubs")
 doubs_fish <- doubs$fish
 doubs_env <- doubs$env
@@ -1431,7 +1682,9 @@ doubs_env <- doubs$env
 
 Sur le site no 8, aucun poisson n'a pas été observé. Les observations ne comprenant que des zéro doivent être préalablement retirées.
 
-```{r apo-doubs-filter}
+```{r}
+#| label: apo-doubs-filter
+
 tot_spec <- doubs_fish %>%
   transmute(tot_spec = apply(., 1, sum))
 doubs_fish <- doubs_fish %>%
@@ -1442,13 +1695,20 @@ doubs_env <- doubs_env %>%
 
 De la même manière qu'avec la fonction `rda` de vegan, nous utilisons `cca` pour l'ACC.
 
-```{r apo-doubs-cca}
+```{r}
+#| label: apo-doubs-cca
+
 doubs_cca <- cca(doubs_fish ~ ., data = doubs_env, scale = FALSE)
 ```
 
 Comparons les résultats
 
-```{r apo-doubs-cca-ordiplot, fig.width=10, fig.height=6}
+```{r}
+#| label: apo-doubs-cca-ordiplot
+#| fig-width: 10
+#| fig-height: 6
+#| fig-align: center
+
 par(mfrow = c(1, 2))
 ordiplot(doubs_cca, scaling = 1, type = "text", main = "CCA - Scaling 1 - Triplot de distance")
 ordiplot(doubs_cca, scaling = 2, type = "text", main = "CCA - Scaling 2 - Triplot de corrélation")

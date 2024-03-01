@@ -282,8 +282,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 </header><hr>
-<hr>
-<p>️&nbsp;<strong>Objectifs spécifiques</strong>:</p>
+<p><strong>Objectifs spécifiques</strong>:</p>
 <p>À la fin de ce chapitre, vous</p>
 <ul>
 <li>serez en mesure d’effectuer des calculs permettant de mesurer des différence entre des observations, des groupes d’observation ou des variables observées</li>
@@ -474,7 +473,7 @@ Jaseur boréal               66    0    0    0</code></pre>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">associations_abund</span><span class="op">[[</span><span class="st">'ChiSquare'</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/dist.html">dist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/vegan/man/decostand.html">decostand</a></span><span class="op">(</span><span class="va">abundance</span>, method<span class="op">=</span><span class="st">"chi.square"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Une manière visuellement plus intéressante de présenter une matrice d’association est un graphique de type <em>heatmap</em>.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">associations_abund_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
 <span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">associations_abund</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
@@ -494,7 +493,10 @@ Jaseur boréal               66    0    0    0</code></pre>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_gradient.html">scale_fill_gradient2</a></span><span class="op">(</span>low <span class="op">=</span> <span class="st">"#00ccff"</span>, mid <span class="op">=</span> <span class="st">"#aad400"</span>, high <span class="op">=</span> <span class="st">"#ff0066"</span>, midpoint <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x<span class="op">=</span><span class="st">"Site"</span>, y<span class="op">=</span><span class="st">"Site"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="09-ordination_files/figure-html/apo-dist-comparaison-1.png" class="img-fluid" width="672"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="09-ordination_files/figure-html/apo-dist-comparaison-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Peu importe le type d’association utilisée, les <em>heatmaps</em> montrent les mêmes tendances. Les associations de dissimilarité (Bray-Curtis, Kulczynski et Ruzicka) s’étalent de 0 à 1, tandis que les distances (Chi-Square, Chord et Hellinger) partent de zéro, mais n’ont pas de limite supérieure. On note les plus grandes différences entre les sites 2 et 4, tandis que les sites 2 et 3 sont les plus semblables pour toutes les mesures d’association à l’exception de la dissimilarité de Kulczynski.</p>
@@ -513,7 +515,7 @@ Jaseur boréal               66    0    0    0</code></pre>
 <span><span class="va">associations_occ</span><span class="op">[[</span><span class="st">'ChiSquare'</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/dist.html">dist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/vegan/man/decostand.html">decostand</a></span><span class="op">(</span><span class="va">occurrence</span>, method<span class="op">=</span><span class="st">"chi.square"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Graphiquement,</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">associations_occ_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
 <span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">associations_occ</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
@@ -533,7 +535,10 @@ Jaseur boréal               66    0    0    0</code></pre>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_gradient.html">scale_fill_gradient2</a></span><span class="op">(</span>low <span class="op">=</span> <span class="st">"#00ccff"</span>, mid <span class="op">=</span> <span class="st">"#aad400"</span>, high <span class="op">=</span> <span class="st">"#ff0066"</span>, midpoint <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x<span class="op">=</span><span class="st">"Site"</span>, y<span class="op">=</span><span class="st">"Site"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="09-ordination_files/figure-html/apo-occ-comparaison-1.png" class="img-fluid" width="672"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="09-ordination_files/figure-html/apo-occ-comparaison-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Il est attendu que les matrices d’association sur l’occurrence sont semblables à celles sur l’abondance. Dans ce cas-ci, la distance d’Hellinger donne des résultats semblables à la dissimilarité de Jaccard.</p>
@@ -546,12 +551,12 @@ Jaseur boréal               66    0    0    0</code></pre>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span></span>
 <span><span class="va">iris</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_n</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
-1          4.8         3.0          1.4         0.1     setosa
-2          6.8         2.8          4.8         1.4 versicolor
-3          7.2         3.0          5.8         1.6  virginica
-4          5.1         3.8          1.9         0.4     setosa
-5          6.3         2.3          4.4         1.3 versicolor</code></pre>
+<pre><code>  Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+1          5.3         3.7          1.5         0.2    setosa
+2          6.4         3.1          5.5         1.8 virginica
+3          4.9         3.6          1.4         0.1    setosa
+4          7.9         3.8          6.4         2.0 virginica
+5          4.4         2.9          1.4         0.2    setosa</code></pre>
 </div>
 </div>
 <p>Les mesures du tableau sont en centimètres. Pour éviter de donner davantage de poids aux longueurs des sépales et en même temps de négliger la largeur des pétales, nous allons standardiser le tableau.</p>
@@ -615,7 +620,7 @@ Jaseur boréal               66    0    0    0</code></pre>
 <div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">associations_cont</span><span class="op">[[</span><span class="st">'Manhattan'</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/vegan/man/vegdist.html">vegdist</a></span><span class="op">(</span><span class="va">iris_sc</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">Species</span><span class="op">)</span>, <span class="st">'manhattan'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Avant de présenter les résultats des espèces d’iris, voici une représentation des distances euclidiennes (rouge), de Mahalanobis (bleu) et de Manhattan (vert), chacune de 1 et 2 unités à partir du centre et, pour ce qui est de la distance de Mahalanobis, selon la covariance.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://r-forge.r-project.org/projects/car/">"car"</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Loading required package: carData</code></pre>
@@ -669,11 +674,14 @@ Attaching package: 'MASS'</code></pre>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">0</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span>, lwd <span class="op">=</span> <span class="fl">2</span>, col <span class="op">=</span> <span class="st">"green"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">0</span>, <span class="op">-</span><span class="fl">2</span>, <span class="fl">0</span>, <span class="fl">2</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">2</span>, <span class="fl">0</span>, <span class="op">-</span><span class="fl">2</span>, <span class="fl">0</span><span class="op">)</span>, lwd <span class="op">=</span> <span class="fl">2</span>, col <span class="op">=</span> <span class="st">"green"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="09-ordination_files/figure-html/apo-dist-iris-comparaison-1.png" class="img-fluid" width="480"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="09-ordination_files/figure-html/apo-dist-iris-comparaison-1.png" class="img-fluid figure-img" width="480"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Et, graphiquement, les résultats des distances des iris.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb46"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">associations_cont_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
 <span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">associations_cont</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
@@ -693,7 +701,10 @@ Attaching package: 'MASS'</code></pre>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_gradient.html">scale_fill_gradient2</a></span><span class="op">(</span>low <span class="op">=</span> <span class="st">"#00ccff"</span>, mid <span class="op">=</span> <span class="st">"#aad400"</span>, high <span class="op">=</span> <span class="st">"#ff0066"</span>, midpoint <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x<span class="op">=</span><span class="st">"Site"</span>, y<span class="op">=</span><span class="st">"Site"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="09-ordination_files/figure-html/apo-dist-comparaison-plot-1.png" class="img-fluid" width="672"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="09-ordination_files/figure-html/apo-dist-comparaison-plot-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Le tableau <code>iris</code> est ordonné par espèce. Les distances euclidienne et de Manhattan permettent aisément de distinguer les espèces selon les dimensions des pétales et des sépales. Toutefois, l’utilisation de la covariance avec la distance de Mahalanobis crée des distinction moins tranchées.</p>
@@ -864,7 +875,7 @@ dbl (2): x, y
 <li>La position du centroïde est déplacée à la moyenne de chaque groupe.</li>
 <li>Recommencer à partir de l’étape 2 jusqu’à ce que l’assignation des objets aux groupes ne change plus.</li>
 </ol>
-<img src="https://media.giphy.com/media/12vVAGkaqHUqCQ/giphy.gif" class="img-fluid"><center>
+<img src="https://media.giphy.com/media/12vVAGkaqHUqCQ/giphy.gif" class="img-fluid" data-fig-align="center"><center>
 Source: <a href="https://dashee87.github.io/data%20science/general/Clustering-with-Scikit-with-GIFs/">David Sheehan</a>
 </center>
 <p>La technique des kmeans suppose que les groupes ont des distributions multinormales - représentées par des cercles en 2D, des sphères en 3D, des hypersphères en plus de 3D. Cette limitation est problématique lorsque les groupes se présentent sous des formes irrégulières, comme celles du nuage de points de Leland McInnes, présenté plus haut. De plus, la technique classique des kmeans est basée sur des distances euclidiennes: l’utilisation des kmeans n’est appropriée pour les données comprenant beaucoup de zéros, comme les données d’abondance, qui devraient préalablement être transformées en variables centrées et réduites (<a href="https://www.elsevier.com/books/numerical-ecology/legendre/978-0-444-53868-0">Legendre et Legendre, 2012</a>). La technique des <strong>mixtures gaussiennes</strong> (<a href="https://www.stat.washington.edu/mclust/"><em>gaussian mixtures</em></a>) est une généralisation des kmeans permettant d’intégrer la covariance des groupes. Les groupes ne sont plus des hyper-sphères, mais des hyper-ellipsoïdes.</p>
@@ -887,7 +898,7 @@ Source: <a href="https://dashee87.github.io/data%20science/general/Clustering-wi
   .. ..$ : chr [1:2] "SSE" "calinski"
   .. ..$ : chr [1:8] "3 groups" "4 groups" "5 groups" "6 groups" ...
  $ criterion: chr "calinski"
- $ size     : int [1:10, 1:8] 1243 505 561 NA NA NA NA NA NA NA ...
+ $ size     : int [1:10, 1:8] 1243 561 505 NA NA NA NA NA NA NA ...
   ..- attr(*, "dimnames")=List of 2
   .. ..$ : chr [1:10] "Group 1" "Group 2" "Group 3" "Group 4" ...
   .. ..$ : chr [1:8] "3 groups" "4 groups" "5 groups" "6 groups" ...
@@ -903,7 +914,7 @@ Source: <a href="https://dashee87.github.io/data%20science/general/Clustering-wi
 </div>
 <p>On obtient un maximum de Calinski à 4 groupes, qui correspond à la deuxième simulation effectuée de 3 à 10.</p>
 <p>Examinons les scores silhouette (module: cluster).</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb61"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://svn.r-project.org/R-packages/trunk/cluster/">"cluster"</a></span><span class="op">)</span></span>
 <span><span class="va">asw</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">mcinnes_kmeans</span><span class="op">$</span><span class="va">partition</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
@@ -912,18 +923,21 @@ Source: <a href="https://dashee87.github.io/data%20science/general/Clustering-wi
 <span><span class="op">}</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="fl">3</span><span class="op">:</span><span class="fl">10</span>, <span class="va">asw</span>, type <span class="op">=</span> <span class="st">'b'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="09-ordination_files/figure-html/apo-cluster-kmeans-mcinnes-silhouette-1.png" class="img-fluid" width="672"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="09-ordination_files/figure-html/apo-cluster-kmeans-mcinnes-silhouette-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Le score silhouette maximum est à 3 groupes. La forme des groupes n’étant pas convexe, il fallait s’attendre à ce que indicateurs maximaux pour les deux indicateurs soient différents. C’est d’ailleurs souvent le cas. Cet exemple supporte que le choix du nombre de groupe à départager repose sur l’analyste, non pas uniquement sur les indicateurs de performance. Choisissons 6 groupes, puisque que c’est visuellement ce que l’on devrait chercher pour ce cas d’étude.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb62"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">kmeans_group</span> <span class="op">&lt;-</span> <span class="va">mcinnes_kmeans</span><span class="op">$</span><span class="va">partition</span><span class="op">[</span>, <span class="fl">4</span><span class="op">]</span></span>
 <span><span class="va">mcinnes_kmeans</span><span class="op">$</span><span class="va">partition</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  3 groups 4 groups 5 groups 6 groups 7 groups 8 groups 9 groups 10 groups
-1        1        1        4        3        3        5        6         2
-2        1        1        3        1        3        6        6         2
-3        1        3        4        3        6        5        3         6</code></pre>
+1        1        3        1        5        2        3        1         6
+2        1        3        5        4        2        6        1         6
+3        1        4        1        5        4        3        6        10</code></pre>
 </div>
 <div class="sourceCode" id="cb64"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df_mcinnes</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>kmeans_group <span class="op">=</span> <span class="va">kmeans_group</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="co"># ajouter une colonne de regoupement</span></span>
@@ -931,18 +945,24 @@ Source: <a href="https://dashee87.github.io/data%20science/general/Clustering-wi
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">kmeans_group</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html">coord_fixed</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="09-ordination_files/figure-html/apo-cluster-kmeans-mcinnes-6groupes-1.png" class="img-fluid" width="672"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="09-ordination_files/figure-html/apo-cluster-kmeans-mcinnes-6groupes-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>L’algorithme kmeans est loin d’être statisfaisant. Cela est attendu, puisque les kmeans recherchent des distribution gaussiennes sur des groupes vraisemblablement non-gaussiens.</p>
 <p>Nous pouvons créer un graphique silhouette pour nos 6 groupes. Notez qu’à cause d’un bogue, il n’est pas possible de présenter les données clairement lorsqu’elles sont nombreuses.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb65"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sil</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/cluster/man/silhouette.html">silhouette</a></span><span class="op">(</span><span class="va">mcinnes_kmeans</span><span class="op">$</span><span class="va">partition</span><span class="op">[</span>, <span class="fl">6</span><span class="op">]</span>,</span>
 <span>                  dist <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/vegan/man/vegdist.html">vegdist</a></span><span class="op">(</span><span class="va">df_mcinnes</span><span class="op">[</span>, <span class="op">]</span>, method <span class="op">=</span> <span class="st">"euclidean"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">sil</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/cluster/man/silhouette.html">sortSilhouette</a></span><span class="op">(</span><span class="va">sil</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">sil</span>, col <span class="op">=</span> <span class="st">'black'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="09-ordination_files/figure-html/apo-cluster-kmeans-mcinnes-silhouette-plot-1.png" class="img-fluid" width="768"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="09-ordination_files/figure-html/apo-cluster-kmeans-mcinnes-silhouette-plot-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
 </div>
 </div>
 </section></section><section id="dbscan" class="level4" data-number="10.3.2.2"><h4 data-number="10.3.2.2" class="anchored" data-anchor-id="dbscan">
@@ -959,11 +979,17 @@ Source: <a href="https://dashee87.github.io/data%20science/general/Clustering-wi
 <li>
 <em>Bruit</em>: le cas échéant. Ces points sont considérés comme des outliers.</li>
 </ul>
-<p><img src="images/07_dbscan_1.svg" width="600"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="images/07_dbscan_1.svg" class="img-fluid figure-img" width="600"></p>
+</figure>
+</div>
 <ol start="2" type="1">
 <li>Les noyaux distancés de <em>d</em> ou moins sont connectés entre eux en englobant les bordures.</li>
 </ol>
-<p><img src="images/07_dbscan_2.svg" width="600"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="images/07_dbscan_2.svg" class="img-fluid figure-img" width="600"></p>
+</figure>
+</div>
 <p>Le nombre de groupes est prescrit par l’algorithme DBSCAN, qui permet du coup de détecter des données trop bruitées pour être classées.</p>
 <p><a href="https://doi.org/10.1145/2666310.2666417">Damiani et al.&nbsp;(2014)</a> a développé une approche utilisant la technique DBSCAN pour partitionner des zones d’escale pour les flux de populations migratoires.</p>
 <section id="application-1" class="level5" data-number="10.3.2.2.1"><h5 data-number="10.3.2.2.1" class="anchored" data-anchor-id="application-1">
@@ -989,14 +1015,17 @@ Attaching package: 'dbscan'</code></pre>
 </div>
 </div>
 <p>Les paramètres spécifiés donnent 5 groupes (<code>1, 2, ..., 5</code>) et des points trop bruités pour être classifiés (étiquetés <code>0</code>). Voyons comment les groupes ont été formés.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb71"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df_mcinnes</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>dbscan_group <span class="op">=</span> <span class="va">dbscan_group</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="co"># ajouter une colonne de regoupement</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">x</span>, y<span class="op">=</span><span class="va">y</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">dbscan_group</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html">coord_fixed</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="09-ordination_files/figure-html/apo-cluster-dbscan-mcinnes-5groupes-1.png" class="img-fluid" width="672"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="09-ordination_files/figure-html/apo-cluster-dbscan-mcinnes-5groupes-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Le partitionnement semble plus conforme à ce que l’on recherche. Néanmoins, DBSCAN cré quelques petits groupes indésirables (groupe 6, en rose) ainsi qu’un grand groupe (violet) qui auraient lieu d’être partitionné. Ces défaut pourraient être réglés en jouant sur les paramètres <code>eps</code> et <code>minPts</code>.</p>
@@ -1027,7 +1056,7 @@ Attaching package: 'dbscan'</code></pre>
 </section><section id="application-2" class="level4" data-number="10.3.3.3"><h4 data-number="10.3.3.3" class="anchored" data-anchor-id="application-2">
 <span class="header-section-number">10.3.3.3</span> Application</h4>
 <p>Les techniques de partitionnement hiérarchique présentées ci-dessus sont disponibles dans le module <code>stats</code> de R, qui est chargé automatiquement lors de l’ouverture de R. Nous allons classifier les dimensions des iris grâce à la distance de Manhattan.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb72"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mcinnes_hclust_distmat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/vegan/man/vegdist.html">vegdist</a></span><span class="op">(</span><span class="va">df_mcinnes</span>, method <span class="op">=</span> <span class="st">"manhattan"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">clustering_methods</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'single'</span>, <span class="st">'complete'</span>, <span class="st">'average'</span>, <span class="st">'centroid'</span>, <span class="st">'ward'</span><span class="op">)</span></span>
@@ -1047,7 +1076,10 @@ Attaching package: 'dbscan'</code></pre>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Méthode de partitionnement"</span>, y <span class="op">=</span> <span class="st">"Corrélation cophénétique"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="09-ordination_files/figure-html/apo-cluster-hierarch-mcinnes-1.png" class="img-fluid" width="672"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="09-ordination_files/figure-html/apo-cluster-hierarch-mcinnes-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>La méthode <code>average</code> retourne la corrélation la plus élevée. Pour plus de flexibilité, enchâssons le nom de la méthode dans une variable. Ainsi, en chageant le nom de cette variable, le reste du code sera conséquent.</p>
@@ -1056,16 +1088,19 @@ Attaching package: 'dbscan'</code></pre>
 <span><span class="va">best_method</span> <span class="op">&lt;-</span> <span class="st">"average"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Le partitionnement hiérarchique peut être visualisé par un dendrogramme.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb76"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">clust_l</span><span class="op">[[</span><span class="va">best_method</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="09-ordination_files/figure-html/apo-cluster-hierarch-mcinnes-plot-1.png" class="img-fluid" width="1440"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="09-ordination_files/figure-html/apo-cluster-hierarch-mcinnes-plot-1.png" class="img-fluid figure-img" width="1440"></p>
+</figure>
+</div>
 </div>
 </div>
 </section><section id="combien-de-groupes-utiliser" class="level4" data-number="10.3.3.4"><h4 data-number="10.3.3.4" class="anchored" data-anchor-id="combien-de-groupes-utiliser">
 <span class="header-section-number">10.3.3.4</span> Combien de groupes utiliser?</h4>
 <p>La longueur des lignes verticales est la distance séparant les groupes enfants. Bien que la sélection du nombre de groupe soit avant tout basée sur les besoins du problème, nous pouvons nous appuyer sur certains outils. La hauteur totale peut servir de critère pour définir un nombre de groupes adéquat. On pourra sélectionner le nombre de groupe où la hauteur se stabilise en fonction du nombre de groupe. On pourra aussi utiliser le <em>graphique silhouette</em>, comprenant une collection de <em>largeurs de silhouette</em>, représentant le degré d’appartenance à son groupe. La fonction <code>sklearn.metrics.silhouette_score</code>, du module scikit-learn, s’en occupe.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb77"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">asw</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">num_groups</span> <span class="op">&lt;-</span> <span class="fl">3</span><span class="op">:</span><span class="fl">10</span></span>
 <span><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_along</a></span><span class="op">(</span><span class="va">num_groups</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
@@ -1074,28 +1109,37 @@ Attaching package: 'dbscan'</code></pre>
 <span><span class="op">}</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">num_groups</span>, <span class="va">asw</span>, type <span class="op">=</span> <span class="st">"b"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="09-ordination_files/figure-html/apo-cluster-hierarch-mcinnes-ngroupes-1.png" class="img-fluid" width="672"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="09-ordination_files/figure-html/apo-cluster-hierarch-mcinnes-ngroupes-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Le nombre optimal de groupes serait de 5. Coupons le dendrorgamme à la hauteur correspondant à 5 groupes avec la fonction <code>cutree</code>.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb78"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">k_opt</span> <span class="op">&lt;-</span> <span class="va">num_groups</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.min.html">which.max</a></span><span class="op">(</span><span class="va">asw</span><span class="op">)</span><span class="op">]</span></span>
 <span><span class="va">hclust_group</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cutree.html">cutree</a></span><span class="op">(</span><span class="va">clust_l</span><span class="op">[[</span><span class="va">best_method</span><span class="op">]</span><span class="op">]</span>, k <span class="op">=</span> <span class="va">k_opt</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">clust_l</span><span class="op">[[</span><span class="va">best_method</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/rect.hclust.html">rect.hclust</a></span><span class="op">(</span><span class="va">clust_l</span><span class="op">[[</span><span class="va">best_method</span><span class="op">]</span><span class="op">]</span>, k <span class="op">=</span> <span class="va">k_opt</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="09-ordination_files/figure-html/apo-cluster-hierarch-mcinnes-5groupes-1.png" class="img-fluid" width="1440"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="09-ordination_files/figure-html/apo-cluster-hierarch-mcinnes-5groupes-1.png" class="img-fluid figure-img" width="1440"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>La classification hiérarchique, uniquement basée sur la distance, peut être inappropriée pour définir des formes complexes.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb79"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df_mcinnes</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>hclust_group <span class="op">=</span> <span class="va">hclust_group</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="co"># ajouter une colonne de regoupement</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">x</span>, y<span class="op">=</span><span class="va">y</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">hclust_group</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html">coord_fixed</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="09-ordination_files/figure-html/apo-cluster-hierarch-mcinnes-5groupes-plot-1.png" class="img-fluid" width="672"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="09-ordination_files/figure-html/apo-cluster-hierarch-mcinnes-5groupes-plot-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section></section><section id="partitionnement-hiérarchique-basée-sur-la-densité-des-points" class="level3" data-number="10.3.4"><h3 data-number="10.3.4" class="anchored" data-anchor-id="partitionnement-hiérarchique-basée-sur-la-densité-des-points">
@@ -1105,7 +1149,7 @@ Attaching package: 'dbscan'</code></pre>
 <section id="paramètres" class="level4" data-number="10.3.4.1"><h4 data-number="10.3.4.1" class="anchored" data-anchor-id="paramètres">
 <span class="header-section-number">10.3.4.1</span> Paramètres</h4>
 <p>Outre la métrique d’association dont nous avons discuté, HDBSCAN demande d’être nourri avec <a href="https://www.rdocumentation.org/packages/dbscan/versions/1.1-3/topics/hdbscan">quelques paramètres importants</a>. En particulier, le <strong>nombre minimum d’objets par groupe</strong>, <span class="math inline">\(n_{gr min}\)</span> dépend de la quantité de données que vous avez à votre disposition, ainsi que de la quantité d’objets que vous jugez suffisante pour créer des groupes. Nous utiliserons l’implémentation de HDBSCAN du module dbscan. Si vous désirez davantage d’options, vous préférerez probablement l’<a href="https://www.rdocumentation.org/packages/largeVis/versions/0.2.1.1/topics/hdbscan">implémentation du module largeVis</a>.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb80"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mcinnes_hdbscan</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/dbscan/man/hdbscan.html">hdbscan</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/vegan/man/vegdist.html">vegdist</a></span><span class="op">(</span><span class="va">df_mcinnes</span>, method <span class="op">=</span> <span class="st">"euclidean"</span><span class="op">)</span>,</span>
 <span>                           minPts <span class="op">=</span> <span class="fl">20</span>,</span>
 <span>                           gen_hdbscan_tree <span class="op">=</span> <span class="cn">TRUE</span>,</span>
@@ -1117,21 +1161,27 @@ Attaching package: 'dbscan'</code></pre>
 </div>
 </div>
 <p>Nous avons 6 groupes, numérotés de 1 à 6, ainsi que des étiquettes identifiant des objets désignés comme étant du bruit de fond, numéroté 0. Le dendrogramme non condensé peu être produit.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb82"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">mcinnes_hdbscan</span><span class="op">$</span><span class="va">hdbscan_tree</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="09-ordination_files/figure-html/apo-cluster-hbdscan-mcinnes-plot-1.png" class="img-fluid" width="672"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="09-ordination_files/figure-html/apo-cluster-hbdscan-mcinnes-plot-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Difficile d’y voir clair avec autant d’objets. L’objet <code>mcinnes_hdbscan</code> a un nombre minimum d’objets par groupe de 20. Ce qui permet de présenter le dendrogramme de manière condensée.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb83"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">mcinnes_hdbscan</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="09-ordination_files/figure-html/apo-cluster-hbdscan-mcinnes-plot2-1.png" class="img-fluid" width="1440"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="09-ordination_files/figure-html/apo-cluster-hbdscan-mcinnes-plot2-1.png" class="img-fluid figure-img" width="1440"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Enfin, un aperçu des stratégies de partitionnement utilisés jusqu’ici.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb84"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">clustering_group</span> <span class="op">&lt;-</span> <span class="va">df_mcinnes</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="va">kmeans_group</span>,</span>
 <span>         <span class="va">hclust_group</span>,</span>
@@ -1150,15 +1200,24 @@ dropped</code></pre>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html">coord_equal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="09-ordination_files/figure-html/apo-cluster-hbdscan-mcinnes-plot3-1.png" class="img-fluid" width="768"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="09-ordination_files/figure-html/apo-cluster-hbdscan-mcinnes-plot3-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Clairement, le partitionnement avec HDBSCAN donne les meilleurs résultats.</p>
 </section></section><section id="conclusion-sur-le-partitionnement" class="level3" data-number="10.3.5"><h3 data-number="10.3.5" class="anchored" data-anchor-id="conclusion-sur-le-partitionnement">
 <span class="header-section-number">10.3.5</span> Conclusion sur le partitionnement</h3>
-<p>Au chapitre <a href="04-visualisation.html"><span>Chapter&nbsp;4</span></a>, nous avons vu avec le jeu de données “datasaurus” que la visualisation peut permettre de détecter des structures en segmentant les données selon des groupes.</p>
-<p><img src="images/07_datasaurus_mix.png" width="400"></p>
-<p><img src="images/07_datasaurus_facet.png"></p>
+<p>Au <a href="04-visualisation.html">chapitre&nbsp;<span>4</span></a>, nous avons vu avec le jeu de données “datasaurus” que la visualisation peut permettre de détecter des structures en segmentant les données selon des groupes.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="images/07_datasaurus_mix.png" class="img-fluid figure-img" width="400"></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="images/07_datasaurus_facet.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 <p>Or, si les données n’étaient pas étiquetées, leur structure serait indétectable avec les algorithmes disponibles actuellement. Le partitionnement permet d’explorer des données, de détecter des tendances et de dégager des groupes permettant la prise de décision.</p>
 <p>Plusieurs techniques de partitionnement ont été présentées. Le choix de la technique sera déterminante sur la manière dont les groupes seront partitionnés. La définition d’un groupe variant d’un cas à l’autre, il n’existe pas de règle pour prescrire une méthode ou une autre. La partitionnement hiérarchique a l’avantage de permettre de visualiser comment les groupes s’agglomèrent. Parmi les méthodes de partitionnement hiérarchique disponibles, les méthodes basées sur la densité permettent une grande flexibilité, ainsi qu’une détection d’observations ne faisant partie d’aucun groupe.</p>
 </section></section><section id="ordination" class="level2" data-number="10.4"><h2 data-number="10.4" class="anchored" data-anchor-id="ordination">
@@ -1302,7 +1361,7 @@ dropped</code></pre>
 <div class="cell">
 <div class="sourceCode" id="cb93"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">centroid</span> <span class="op">&lt;-</span> <span class="va">setosa_sepal</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="va">.</span>, <span class="fl">2</span>, <span class="va">mean</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb94"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">setosa_sepal</span>, asp <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># vecteurs propres brutes</span></span>
@@ -1319,7 +1378,10 @@ dropped</code></pre>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/points.html">points</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">centroid</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, y<span class="op">=</span><span class="va">centroid</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>, pch <span class="op">=</span> <span class="fl">16</span>, cex <span class="op">=</span> <span class="fl">2</span>, col  <span class="op">=</span><span class="st">"blue"</span><span class="op">)</span> <span class="co"># centroid</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="09-ordination_files/figure-html/apo-iris-sepal-plot-1.png" class="img-fluid" width="672"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="09-ordination_files/figure-html/apo-iris-sepal-plot-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>On peut observer que, comme je l’ai mentionné plus haut, <strong>les vecteurs propres indiquent l’orientation de la covariance, et les valeurs propres indique la longueur associée à cette direction</strong>.</p>
@@ -1327,14 +1389,17 @@ dropped</code></pre>
 <span class="header-section-number">10.4.1.1.2</span> Biplot</h5>
 <p>Imaginez un nuage de points en 3D, axes y compris. Vous tournez votre nuage de points pour trouver la perspective en 2D qui fera en sorte que vos données soient les plus dispersées possibles. Avec une lampe de poche, vous illuminez votre nuage de points dans l’axe de cette perspective: vous venez d’effectuer une analyse en composantes principales, et l’ombre des points et des axes sur le mur formera votre biplot.</p>
 <p>Pour créer un biplot, on juxtapose les descripteurs (variables) en tant que vecteurs propres, représentés par des flèches, et les objets (observations) en tant que scores, représentés par des points. Les résultats d’une ordination peuvent être présentés selon deux types de biplots (<a href="https://www.elsevier.com/books/numerical-ecology/legendre/978-0-444-53868-0">Legendre et Legendre, 2012</a>).</p>
-<p><img src="images/07_bipolot-meteo-sc2.svg" class="img-fluid"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="images/07_biplot-meteo-sc2.svg" class="img-fluid figure-img"></p>
+</figure>
+</div>
 <center>
 Biplot de corrélation permettant de visualiser les corrélations entre des variables météorologiques.
 </center>
 <p>Deux types de projection sont couramment utilisés.</p>
 <p><strong>Biplot de distance</strong>. Ce type de projection permet de visualiser la position des objets entre eux et par rapport aux descripteurs et d’apprécier la contribution des descripteurs pour créer les composantes principales. Pour créer un biplot de distance, on projette directement les vecteurs propres (<span class="math inline">\(U\)</span>) en guise de descripteurs. Pour ce qui est des objets, on utilise les scores de l’ACP (<span class="math inline">\(F\)</span>). De cette manière,</p>
 <ol type="1">
-<li>les distances euclidiennes entre les scores sont des approximations des distances euclidiennes dans l’espace multidimentionnel,</li>
+<li>les distances euclidiennes entre les scores sont des approximations des distances euclidiennes dans l’espace multidimensionnel,</li>
 <li>la projection d’un objet sur un descripteur perpendiculairement à ce dernier est une approximation de la position de l’objet sur le descripteur et</li>
 <li>la projection d’un descripteur sur un axe principal est proportionnelle à sa contribution pour générer l’axe.</li>
 </ol>
@@ -1355,18 +1420,18 @@ Biplot de corrélation permettant de visualiser les corrélations entre des vari
 <span><span class="va">varechem</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_n</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>      N    P     K     Ca    Mg    S    Al   Fe   Mn  Zn   Mo Baresoil Humdepth
-9  15.0 48.4 127.4  499.6  75.1 46.9 227.1 32.2 35.1 8.9 0.70     6.07      2.2
-11 16.7 55.8 205.3 1169.7 126.3 35.9 253.6 96.4 25.1 8.2 0.05     7.60      1.1
-14 21.8 38.1 146.8  512.2  75.0 36.6  92.3  4.6 29.0 8.1 0.50    33.30      2.7
-21 21.0 26.5 104.4  484.8  74.4 22.2  35.8  5.9 27.5 5.3 0.20    56.00      2.5
-19 22.8 40.9 171.4  691.8 151.4 40.8 104.8 17.6 43.6 9.1 0.40    40.50      3.8
+<pre><code>      N    P     K    Ca    Mg    S    Al   Fe    Mn   Zn  Mo Baresoil Humdepth
+27 20.6 60.8 233.7 834.0 127.2 40.7  15.4  4.4 132.0 10.7 0.2     18.7      2.9
+28 29.8 73.5 260.0 748.6 105.3 42.5  17.9  2.4 106.6  9.3 0.3     17.6      3.0
+18 19.8 42.1 139.9 519.4  90.0 32.3  39.0 40.9  58.1  4.5 0.3     43.9      2.2
+5  33.1 22.7  43.6 240.3  25.7 14.9  39.0  8.4  26.8  8.4 0.2      8.1      1.0
+6  19.1 26.4  61.1 259.1  37.0 21.4 155.1 81.4  20.6  4.0 0.6      5.8      1.9
     pH
-9  3.0
-11 3.6
-14 2.7
-21 3.0
-19 2.7</code></pre>
+27 2.8
+28 2.8
+18 2.7
+5  3.1
+6  3.0</code></pre>
 </div>
 </div>
 <p>Comme nous l’avons vu précedemment, les données de concentration sont de type <em>compositionnelles</em>. Les données compositionnelles du tableau <code>varechem</code> mériteraient d’être transformées (<a href="http://doi.wiley.com/10.1111/1467-9876.00275">Aitchison et Greenacre, 2002</a>). Utilisons les log-ratios centrés (<em>clr</em>).</p>
@@ -1408,14 +1473,14 @@ Attaching package: 'compositions'</code></pre>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_n</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 15
-       N        P       K    Ca      Mg      S     Al     Fe     Mn    Zn    Mo
-*  &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-1 -0.271 -0.648   0.00500  1.71 -0.524  -1.07  -0.106 -1.64  -0.482 -1.64 -5.38
-2 -0.773 -0.988   0.175    1.05 -0.174  -0.960  1.50   0.628 -1.88  -3.09 -5.11
-3 -1.30  -0.547   0.654    1.97  0.213  -0.812 -0.624 -0.576 -0.225 -2.78 -5.49
-4 -0.901  0.00174 1.27     2.32  0.361  -0.546 -1.41  -3.42   0.374 -2.07 -5.50
-5 -1.49  -1.12    0.923    1.47 -0.0470 -0.728  0.973 -0.126 -0.703 -2.62 -5.52
-# ℹ 4 more variables: Fv &lt;dbl&gt;, Baresoil &lt;dbl&gt;, Humdepth &lt;dbl&gt;, pH &lt;dbl&gt;</code></pre>
+      N      P     K    Ca      Mg      S    Al     Fe     Mn    Zn    Mo    Fv
+* &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 -1.88 -0.600 0.641  1.48 -0.684  -0.805 1.30  -0.156 -1.14  -2.52 -4.68  9.04
+2 -1.69 -0.624 0.830  1.59 -0.0312 -0.729 0.189 -0.626 -0.331 -2.60 -5.49  9.53
+3 -1.76 -0.553 0.565  2.11  0.575  -0.706 0.159 -1.20  -1.30  -1.95 -4.99  9.05
+4 -1.78 -0.613 0.354  1.72 -0.174  -0.645 0.932 -1.02  -0.935 -2.31 -4.85  9.32
+5 -1.34 -0.760 0.673  2.07  0.549  -0.762 0.181 -1.60  -0.696 -2.26 -5.39  9.34
+# ℹ 3 more variables: Baresoil &lt;dbl&gt;, Humdepth &lt;dbl&gt;, pH &lt;dbl&gt;</code></pre>
 </div>
 </div>
 <p>Effectuons l’ACP. Pour cet exemple, nous standardiserons les données étant données que les colonnes Baresoil, Humedepth et pH ne sont pas à la même échelle que les colonnes des clr.</p>
@@ -1522,7 +1587,7 @@ Site scores (weighted sums of species scores)
 </div>
 <p>La décision du nombre d’axes principaux à retenir est arbitraire. Elle peut dépendre d’un nombre maximal de paramètre à retenir pour éviter de surdimensionner un modèle (<em>curse of dimensionality</em>, section 11) ou d’un seuil de pourcentage de variance minimal à retenir, par exemple 75%. Ou bien, vous retiendrez deux composantes principales si vous désirez présenter un seul biplot.</p>
 <p>L’approche de <em>Kaiser-Guttmann</em> (<a href="http://www.springer.com/us/book/9781441979759">Borcard et al., 2011</a>) consiste à sélectionner les composantes principales dont la valeur propre est supérieure à leur moyenne.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb110"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">vare_pca</span><span class="op">$</span><span class="va">CA</span><span class="op">$</span><span class="va">eig</span><span class="op">)</span>,</span>
 <span>     y <span class="op">=</span> <span class="va">vare_pca</span><span class="op">$</span><span class="va">CA</span><span class="op">$</span><span class="va">eig</span>,</span>
 <span>     type <span class="op">=</span> <span class="st">"b"</span>,</span>
@@ -1530,7 +1595,10 @@ Site scores (weighted sums of species scores)
 <span>     ylab <span class="op">=</span> <span class="st">"Valeur propre"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span><span class="op">(</span>h <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">vare_pca</span><span class="op">$</span><span class="va">CA</span><span class="op">$</span><span class="va">eig</span><span class="op">)</span>, col <span class="op">=</span> <span class="st">"red"</span>, lty <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="09-ordination_files/figure-html/apo-varechem-pca-kaiser-1.png" class="img-fluid" width="672"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="09-ordination_files/figure-html/apo-varechem-pca-kaiser-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>L’approche du <em>broken stick</em> consiste à couper un bâton d’une longueur de 1 en n tranches. La première tranche est de longueur <span class="math inline">\(\frac{1}{n}\)</span>. La tranche suivante est d’une longueur de la tranche précédente à laquelle on aditionne <span class="math inline">\(\frac{1}{longueur~restante}\)</span>. Puis on place les longueurs en ordre décroissant. On retient les composantes principales dont les valeurs propres cumulées sont plus grandes que le broken stick.</p>
@@ -1546,7 +1614,7 @@ Site scores (weighted sums of species scores)
 <span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Le graphique du <em>broken stick</em>:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb112"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">vare_pca</span><span class="op">$</span><span class="va">CA</span><span class="op">$</span><span class="va">eig</span><span class="op">)</span>,</span>
 <span>     y <span class="op">=</span> <span class="va">prop_expl</span>,</span>
 <span>     type <span class="op">=</span> <span class="st">"b"</span>,</span>
@@ -1557,7 +1625,10 @@ Site scores (weighted sums of species scores)
 <span>      col <span class="op">=</span> <span class="st">"red"</span>,</span>
 <span>      lty <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="09-ordination_files/figure-html/apo-varechem-pca-bs-plot-1.png" class="img-fluid" width="672"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="09-ordination_files/figure-html/apo-varechem-pca-bs-plot-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Les approches <em>Kaiser-Guttmann</em> et <em>broken stick</em> suggèrent que les trois premières composantes sont suffisantes pour décrire la dispersion des données.</p>
@@ -1620,21 +1691,27 @@ attr(,"const")
 </div>
 <p>L’ordre d’importance des vecteurs propres est établi en ordre croissant des élément des vecteurs propres associées. Un vecteur propre est une combinaison linéaire des variables. Par exemple, le premier vecteur propre pointe surtout dans la direction du Fe (-1.497) et de l’Al (-1.463). Le deuxième pointe surtout vers le Mo (2.145). Les vecteurs (<em>loadings</em>) d’un biplot de distance présentant les des deux premières composantes principales prendront les coordonnées des deux premières colonnes. Le vecteur Al aura la coordonnée [-1.463 ; -0.601], le vecteur de Fe sera placé à [-1.497 ; -0.606] et le vecteur Mo à [-0.312 ; 2.145]. Il existe différentes fonctions d’affichage des biplots. Notez que leur longueur peut être magnifiée pour améliorer la visualisation.</p>
 <p>Lançons la fonction <code>biplot</code> pour créer un biplot de distance et un autre de corrélation.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb115"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/biplot.html">biplot</a></span><span class="op">(</span><span class="va">vare_pca</span>, scaling <span class="op">=</span> <span class="fl">1</span>, main <span class="op">=</span> <span class="st">"Biplot de distance"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/biplot.html">biplot</a></span><span class="op">(</span><span class="va">vare_pca</span>, scaling <span class="op">=</span> <span class="fl">2</span>, main <span class="op">=</span> <span class="st">"Biplot de corrélation"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="09-ordination_files/figure-html/apo-varechem-pca-biplots-1.png" class="img-fluid" width="672"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="09-ordination_files/figure-html/apo-varechem-pca-biplots-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Le biplot de distance permet de dégager les variables qui expliquent davantage la variabilité dans notre tableau: les clr du Fe et de l’Al forment en grande partie le premier axe principal, alors que le clr du Mo forme en grande partie le second axe. Le biplot de corrélation montre que les clr du Fe et du Al sont corrélés dans le même sens, mais das le sens contraire du clr du Mn. L’information sur la teneur en Fe et celle de l’Al est en grande partie redondante. Toutefois, le clr du Mo est presque indépendant du clr du Fe, ceux-ci étant à angle presque droit (~90°). Ces relations peuvent être explorées directement.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb116"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">vareclr</span><span class="op">$</span><span class="va">Al</span>, <span class="va">vareclr</span><span class="op">$</span><span class="va">Fe</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">vareclr</span><span class="op">$</span><span class="va">Mo</span>, <span class="va">vareclr</span><span class="op">$</span><span class="va">Fe</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="09-ordination_files/figure-html/apo-varechem-pca-al-fe-mo-1.png" class="img-fluid" width="672"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="09-ordination_files/figure-html/apo-varechem-pca-al-fe-mo-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Nous avons mentionné que l’ACP est une rotation. Prenons un second exemple pour bien en saisir les tenants et aboutissants. Le tableau de données que nous chargerons provient d’un infographie d’un dauphin, intitullée <em>Bottlenose Dolphin</em>, conçu par l’artiste <a href="https://www.blendswap.com/blends/view/83681">Tarnyloo</a>. Les points correspondent à la surface d’un dauphin. J’ai ajouté une colonne <code>anatomy</code>, qui indique à quelle partie anatomique le point appartient.</p>
@@ -1653,33 +1730,39 @@ dbl (3): x, y, z
 <div class="sourceCode" id="cb119"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dolphin</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_n</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 4
-          x      y       z anatomy
-      &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;  
-1  0.0790    1.17   0.640  Body   
-2  0.175    -0.344  0.0164 Head   
-3  0.0927   -0.485 -0.0505 Head   
-4 -0.0390   -0.321 -0.0353 Head   
-5  0.000133  0.253  0.302  Body   </code></pre>
+        x      y       z anatomy   
+    &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;     
+1  0.0762 -0.521 -0.0803 Head      
+2  0.472   1.00   1.28   Caudal fin
+3 -0.172  -0.361  0.0223 Head      
+4  0.0461 -0.571 -0.0907 Head      
+5  0.0152 -0.710 -0.125  Head      </code></pre>
 </div>
 </div>
 <p>Voici en vue isométrique ce en quoi consiste ce nuage de points.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb121"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"scatterplot3d"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/scatterplot3d/man/scatterplot3d.html">scatterplot3d</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">dolphin</span><span class="op">$</span><span class="va">x</span>, y <span class="op">=</span> <span class="va">dolphin</span><span class="op">$</span><span class="va">y</span>, z <span class="op">=</span> <span class="va">dolphin</span><span class="op">$</span><span class="va">z</span>, pch <span class="op">=</span> <span class="fl">16</span>, cex.symbols <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="09-ordination_files/figure-html/apo-pca-dauphin-3d-1.png" class="img-fluid" width="672"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="09-ordination_files/figure-html/apo-pca-dauphin-3d-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Effectuons l’ACP sur le dauphin.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb122"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dolph_pca</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/vegan/man/cca.html">rda</a></span><span class="op">(</span><span class="va">dolphin</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/pkg/MASS/man/lm.ridge.html">select</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, <span class="va">z</span><span class="op">)</span>, scale <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/biplot.html">biplot</a></span><span class="op">(</span><span class="va">dolph_pca</span>, scaling <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="09-ordination_files/figure-html/apo-pca-dauphin-biplot-1.png" class="img-fluid" width="672"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="09-ordination_files/figure-html/apo-pca-dauphin-biplot-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>On n’y voit pas grand chose, mais si l’on extrait les scores et que l’on raccourcit les vecteurs:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb123"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dolph_scores</span> <span class="op">&lt;-</span> <span class="fu">vegan</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/vegan/man/scores.html">scores</a></span><span class="op">(</span><span class="va">dolph_pca</span>, display <span class="op">=</span> <span class="st">"sites"</span><span class="op">)</span></span>
 <span><span class="va">dolph_loads</span> <span class="op">&lt;-</span> <span class="fu">vegan</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/vegan/man/scores.html">scores</a></span><span class="op">(</span><span class="va">dolph_pca</span>, display <span class="op">=</span> <span class="st">"species"</span><span class="op">)</span></span>
 <span><span class="va">dolph_loads</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1697,7 +1780,10 @@ attr(,"const")
 <span>         y1 <span class="op">=</span> <span class="va">dolph_loads</span><span class="op">[</span>, <span class="fl">2</span><span class="op">]</span><span class="op">/</span><span class="fl">50</span>,</span>
 <span>         col <span class="op">=</span> <span class="st">"chocolate"</span>, lwd <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="09-ordination_files/figure-html/apo-pca-dauphin-biplot2-1.png" class="img-fluid" width="672"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="09-ordination_files/figure-html/apo-pca-dauphin-biplot2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>La meilleure représentation du dauphin en 2D, selon la variance, est son profil - en effet, il est plus long et haut que large.</p>
@@ -1750,41 +1836,41 @@ attr(,"const")
 <span><span class="va">varespec</span> <span class="op">|&gt;</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_n</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Callvulg Empenigr Rhodtome Vaccmyrt Vaccviti Pinusylv Descflex Betupube
-9      0.00     3.47     0.00     0.25    20.50     0.25      0.0        0
-5      0.00     0.13     0.00     0.00     2.75     0.03      0.0        0
-20     0.02     6.45     0.00     0.00    14.13     0.07      0.0        0
-15     0.67     0.17     0.00     0.35    12.13     0.12      0.0        0
-28     0.00     1.63     0.35    18.27     7.13     0.05      0.4        0
+27     0.00    15.13     2.42     5.92    15.97     0.00     3.70        0
+6      0.30     5.75     0.00     0.00    10.50     0.10     0.00        0
+7      0.00     5.30     0.00     0.00     8.20     0.00     0.05        0
+5      0.00     0.13     0.00     0.00     2.75     0.03     0.00        0
+2      0.05     9.30     0.00     0.00     8.50     0.03     0.00        0
    Vacculig Diphcomp Dicrsp Dicrfusc Dicrpoly Hylosple Pleuschr Polypili
-9      0.00     0.25   0.00     0.38     0.25     0.00     4.07     0.00
-5      0.00     0.00   0.00     0.25     0.03     0.00     0.03     0.18
-20     0.47     0.00   0.85     1.87     0.08     1.35    13.73     0.07
-15     0.00     0.00   0.33    10.92     0.02     0.00    37.75     0.02
-28     0.20     0.00   0.30     0.52     0.20     9.97    70.03     0.00
+27     1.12     0.00      0     3.63     0.00      6.7    58.07     0.00
+6      0.00     0.00      0     0.85     0.00      0.0     0.05     0.03
+7      8.10     0.28      0     0.45     0.03      0.0     0.10     0.00
+5      0.00     0.00      0     0.25     0.03      0.0     0.03     0.18
+2      0.00     0.00      0     0.03     0.00      0.0     0.75     0.00
    Polyjuni Polycomm Pohlnuta Ptilcili Barbhatc Cladarbu Cladrang Cladstel
-9      0.25        0     0.25     0.25        0     0.46     4.00    84.30
-5      0.65        0     0.00     0.00        0    18.50    59.00     0.98
-20     0.05        0     0.12     0.00        0     6.80    11.22     0.05
-15     0.23        0     0.03     0.02        0    12.05     8.13     0.18
-28     0.08        0     0.07     0.03        0     0.17     0.87     0.00
+27     0.00     0.13     0.02     0.08     0.08     1.42     7.63     2.55
+6      0.08     0.00     0.00     0.08     0.00    39.00    37.50    11.30
+7      0.25     0.00     0.03     0.00     0.00    35.00    42.50     0.28
+5      0.65     0.00     0.00     0.00     0.00    18.50    59.00     0.98
+2      0.03     0.00     0.00     0.03     0.00     0.48    24.50    75.00
    Cladunci Cladcocc Cladcorn Cladgrac Cladfimb Cladcris Cladchlo Cladbotr
-9      0.25     0.25     0.25     0.25     0.25     0.25     0.25     0.00
+27     0.15     0.00     0.38     0.12     0.10     0.03     0.00     0.02
+6      3.45     0.18     0.20     0.25     0.25     0.23     0.03     0.00
+7      0.35     0.08     0.20     0.25     0.18     0.13     0.08     0.00
 5      0.28     0.23     0.23     0.23     0.10     0.05     0.00     0.00
-20     4.75     0.03     0.12     0.22     0.18     0.07     0.00     0.02
-15     2.65     0.13     0.18     0.23     0.25     1.23     0.00     0.00
-28     0.05     0.02     0.03     0.07     0.10     0.02     0.00     0.02
+2      0.20     0.00     0.03     0.03     0.05     0.03     0.03     0.00
    Cladamau Cladsp Cetreric Cetrisla Flavniva Nepharct Stersp Peltapht Icmaeric
-9      0.00   0.25     0.25     0.25     0.67     0.00   0.00        0      0.0
-5      0.03   0.00     0.18     0.00     0.28     0.00  10.28        0      0.1
-20     0.00   0.02     0.15     0.00     0.00     0.02   0.00        0      0.0
-15     0.00   0.00     0.15     0.03     0.00     0.00   0.85        0      0.0
-28     0.00   0.00     0.00     0.02     0.00     0.00   0.02        0      0.0
+27     0.00   0.02     0.00        0     0.00      0.0   0.00     0.07     0.00
+6      0.00   0.03     0.35        0     0.08      0.0   0.03     0.00     0.00
+7      0.00   0.00     0.05        0     0.23      0.2   0.93     0.00     0.03
+5      0.03   0.00     0.18        0     0.28      0.0  10.28     0.00     0.10
+2      0.00   0.00     0.00        0     0.00      0.0   0.00     0.00     0.00
    Cladcerv Claddefo Cladphyl
-9         0     0.25     0.25
-5         0     0.25     0.00
-20        0     1.20     0.00
-15        0     1.00     0.00
-28        0     0.08     0.00</code></pre>
+27     0.00     0.15        0
+6      0.00     0.28        0
+7      0.00     0.10        0
+5      0.00     0.25        0
+2      0.03     0.03        0</code></pre>
 </div>
 </div>
 <p>Pour effectuer l’AC, nous utiliserons, comme pour l’ACP, le module vegan mais cette fois-ci avec la fonction <code>cca</code>. L’AC en <em>scaling 1</em> est effectuée sur le tableau des abondances avec les espèces comme colonnes et les sites comme lignes. Les matrices d’abondance transposées indique les sites où chaque espèce ont été dénombrées: pour une analyse en <em>scaling 2</em>, on effectue une analyse de correspondance sur la matrice d’abondance (ou d’occurrence) transposée.</p>
@@ -1905,7 +1991,7 @@ Site scores (weighted averages of species scores)
 21  0.259527  0.80746  1.124258  0.36083  1.5437866  0.07051</code></pre>
 </div>
 </div>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb134"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">varespec_eigenval</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/vegan/man/eigenvals.html">eigenvals</a></span><span class="op">(</span><span class="va">vare_cca</span>, scaling <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">prop_expl</span> <span class="op">&lt;-</span> <span class="va">varespec_eigenval</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">varespec_eigenval</span><span class="op">)</span></span>
@@ -1928,23 +2014,29 @@ Site scores (weighted averages of species scores)
 <span>      col <span class="op">=</span> <span class="st">"red"</span>,</span>
 <span>      lty <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="09-ordination_files/figure-html/apo-varespec-cca-plot-1.png" class="img-fluid" width="672"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="09-ordination_files/figure-html/apo-varespec-cca-plot-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Créons les biplots.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb135"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">vare_cca</span>, scaling <span class="op">=</span> <span class="fl">1</span>, main <span class="op">=</span> <span class="st">"Biplot des espèces"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">vare_cca</span>, scaling <span class="op">=</span> <span class="fl">2</span>, main <span class="op">=</span> <span class="st">"Biplot des sites"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="09-ordination_files/figure-html/apo-varespec-cca-biplot-1.png" class="img-fluid" width="960"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="09-ordination_files/figure-html/apo-varespec-cca-biplot-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Le <strong>biplot des espèces</strong>, à gauche (<code>scaling = 1</code>), montre la distribution des sites selon les espèces. Les emplacements des scores (en noir) montrent les contrastes entre sites selon les espèces qui les recouvrent. Les sites 14 et 15, par exemple, contrastent les sites 19, 20, 21 et 22 selon le 2ième axe principal. Par ailleurs, les axes principaux sont formé de plusieurs espèces dont aucune ne domine clairement.</p>
 <p>Le <strong>biplot des sites</strong>, à droite (<code>scaling = 2</code>), montre la distribution des recouvrements d’espèces selon les sites. Par exemple, les espèces Betupube (<a href="https://fr.wikipedia.org/wiki/Betula_pubescens"><em>Betula pubescens</em></a>) et Barbhatc (<a href="https://en.wikipedia.org/wiki/Marchantiophyta"><em>Barbilophozia hatcheri </em></a>) se recouvrent en particulier le site 24. Le site 1 est difficile à identifier, car il est couvert par plusieurs noms d’espèces, au bas au centre. Les sites 3 et 13 se confondent avec Dicrsp (une espèce de <a href="https://en.wikipedia.org/wiki/Dicranum"><em>Dicranum</em></a>) qui le recouvre amplement.</p>
 <p>Pour les deux types de biplot, les sites où les espèces situés près de l’origine, car ils peuvent être soit près de la moyenne, soit distribués uniformément.</p>
 <p>Le nombre de composantes à retenir peut être évalué par les approches <em>Kaiser-Guttmann</em> et <em>broken-stick</em>.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb136"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">scaling</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
 <span><span class="va">varespec_eigenval</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/vegan/man/eigenvals.html">eigenvals</a></span><span class="op">(</span><span class="va">vare_cca</span>, scaling <span class="op">=</span> <span class="va">scaling</span><span class="op">)</span> <span class="co"># peut être effectué sur les deux types de scaling</span></span>
 <span></span>
@@ -1970,19 +2062,25 @@ Site scores (weighted averages of species scores)
 <span>      col <span class="op">=</span> <span class="st">"red"</span>,</span>
 <span>      lty <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="09-ordination_files/figure-html/apo-varespec-cca-analysis-1.png" class="img-fluid" width="960"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="09-ordination_files/figure-html/apo-varespec-cca-analysis-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Pour les deux scalings, l’approche <em>Kaiser-Guttmann</em> propose 7 axes, tandis que l’approche <em>broken-stick</em> en propose 5.</p>
 <p>Les représentations biplot d’analyse de correspondance peuvent prendre la forme d’un boomerang, en particulier celles qui sont basées sur des données d’occurrence. Le tableau suivant initialement de <a href="http://pbil.univ-lyon1.fr/R/pdf/pps047.pdf">Chessel et al.&nbsp;(1987)</a> et est distribué dans le module ade4.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb137"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="http://pbil.univ-lyon1.fr/ADE-4/">"ade4"</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"doubs"</span><span class="op">)</span></span>
 <span><span class="va">fish</span> <span class="op">&lt;-</span> <span class="va">doubs</span><span class="op">$</span><span class="va">fish</span></span>
 <span><span class="va">doubs_cca</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/vegan/man/cca.html">cca</a></span><span class="op">(</span><span class="va">fish</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colSums.html">rowSums</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">doubs_cca</span>, scaling <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="09-ordination_files/figure-html/apo-doubs-cca-biplot-1.png" class="img-fluid" width="672"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="09-ordination_files/figure-html/apo-doubs-cca-biplot-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Les numéros de sites correspondent à la position dans une rivière, 1 étant en amont et 30 en aval. Le premier axe discrimine l’amont et l’aval, tandis que le deuxième montre deux niches en amont. Bien que l’on observe une discontinuité dans le cours d’eau, il y a une continuité dans les abondances. Cet effet peut être corrigé en retirant la tendance de l’analyse de correspondance par une <em>detrended correspondance analysis</em>. Pour cela, il faudra utiliser la fonction <code>decorana</code>, ce qui ne sera pas couvert ici.</p>
@@ -2000,16 +2098,19 @@ Site scores (weighted averages of species scores)
 <section id="application-5" class="level5" data-number="10.4.1.3.1"><h5 data-number="10.4.1.3.1" class="anchored" data-anchor-id="application-5">
 <span class="header-section-number">10.4.1.3.1</span> Application</h5>
 <p>Utilisons les données d’abondance que nous avions au tout début de ce chapitre. La matrice d’association de Bray-Curtis sera utilisée.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb138"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">assoc_mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/vegan/man/vegdist.html">vegdist</a></span><span class="op">(</span><span class="va">abundance</span>, method <span class="op">=</span> <span class="st">"bray"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/pheatmap/man/pheatmap.html">pheatmap</a></span><span class="op">(</span><span class="va">assoc_mat</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="op">)</span>, cluster_rows <span class="op">=</span> <span class="cn">FALSE</span>, cluster_cols <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>         display_numbers <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">assoc_mat</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="09-ordination_files/figure-html/aop-pomd-abun-data-1.png" class="img-fluid" width="288"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="09-ordination_files/figure-html/aop-pomd-abun-data-1.png" class="img-fluid figure-img" width="288"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Les sites 2 et 3 devraient être plus près l’un et l’autre, puis les sites 3 et 4. Les autres associations sont éloignés d’environ la même distance. Lançons le calcul de la PoMd-métrique.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb139"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pcoa</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cmdscale.html">cmdscale</a></span><span class="op">(</span><span class="va">assoc_mat</span>, k <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">abundance</span><span class="op">)</span><span class="op">-</span><span class="fl">1</span>, eig <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="va">spec_scores</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/vegan/man/wascores.html">wascores</a></span><span class="op">(</span><span class="va">pcoa</span><span class="op">$</span><span class="va">points</span>, <span class="va">abundance</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/vegan/man/ordiplot.html">ordiplot</a></span><span class="op">(</span><span class="fu">vegan</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/vegan/man/scores.html">scores</a></span><span class="op">(</span><span class="va">pcoa</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">'t'</span>, cex <span class="op">=</span> <span class="fl">1.5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2018,55 +2119,58 @@ Site scores (weighted averages of species scores)
 </div>
 <div class="sourceCode" id="cb141"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/text.html">text</a></span><span class="op">(</span><span class="va">spec_scores</span>, <span class="fu"><a href="https://rdrr.io/r/base/row.names.html">row.names</a></span><span class="op">(</span><span class="va">spec_scores</span><span class="op">)</span>, col <span class="op">=</span> <span class="st">"red"</span>, cex <span class="op">=</span> <span class="fl">0.75</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="09-ordination_files/figure-html/aop-pomd-abun-compute-1.png" class="img-fluid" width="672"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="09-ordination_files/figure-html/aop-pomd-abun-compute-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>On observe en effet que les sites 2 et 3 sont les plus près. Les sites 3 et 4sont plus éloignés. Les sites 1, 2 et 4 font à peu près un triangle équilatéral, ce qui correspond à ce à quoi on devrait s’attendre. Les wa-scores permettent de juxtaposer les espèces sur les sites, pour référence. Le colibri n’est présent que sur le site 2. Le site 1 est populé par des jaseurs et des mésanges, et c’est le seul site où l’on a observé une citelle. On a observé des chardonnerets sur les sites 2 et 3. Sur le site 4, on n’a observé que des bruants, que l’on a aussi observé ailleurs, sauf au site 2.</p>
 <p>Le PoMd-non-métrique (<em>non metric dimensional scaling, NMDS</em>) fonctionne de la même manière que la PoMd-métrique, à la différence que la distance est basée sur les rangs. À cet égard, le site 4 à une distance de 0.76 du site 3, mais plutôt le deuxième plus loin, après le site 2 et avant le site 1. Utilisons la fonction <code>metaMDS</code>.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb142"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">nmds</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/vegan/man/metaMDS.html">metaMDS</a></span><span class="op">(</span><span class="va">assoc_mat</span>, k <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">abundance</span><span class="op">)</span><span class="op">-</span><span class="fl">1</span>, eig <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Run 0 stress 0 
 Run 1 stress 0 
-... Procrustes: rmse 0.1827555  max resid 0.2363266 
+... Procrustes: rmse 0.1216366  max resid 0.1634103 
 Run 2 stress 0 
-... Procrustes: rmse 0.1789774  max resid 0.2326711 
+... Procrustes: rmse 0.1403208  max resid 0.1888214 
 Run 3 stress 0 
-... Procrustes: rmse 0.1642904  max resid 0.2201013 
+... Procrustes: rmse 0.115492  max resid 0.1523862 
 Run 4 stress 0 
-... Procrustes: rmse 0.06520693  max resid 0.09291346 
+... Procrustes: rmse 0.1551062  max resid 0.202592 
 Run 5 stress 0 
-... Procrustes: rmse 0.04785676  max resid 0.07166702 
+... Procrustes: rmse 0.09908794  max resid 0.1384734 
 Run 6 stress 0 
-... Procrustes: rmse 0.1331013  max resid 0.1779586 
+... Procrustes: rmse 0.0987008  max resid 0.1454209 
 Run 7 stress 0 
-... Procrustes: rmse 0.06160491  max resid 0.08860179 
+... Procrustes: rmse 0.1164685  max resid 0.1501751 
 Run 8 stress 0 
-... Procrustes: rmse 0.1513541  max resid 0.2021797 
+... Procrustes: rmse 0.0831961  max resid 0.09943451 
 Run 9 stress 0 
-... Procrustes: rmse 0.08164901  max resid 0.09688139 
+... Procrustes: rmse 0.1429865  max resid 0.1921223 
 Run 10 stress 0 
-... Procrustes: rmse 0.1387677  max resid 0.1647427 
+... Procrustes: rmse 0.09337227  max resid 0.1214715 
 Run 11 stress 0 
-... Procrustes: rmse 0.09401506  max resid 0.1219184 
+... Procrustes: rmse 0.06970139  max resid 0.1001732 
 Run 12 stress 0 
-... Procrustes: rmse 0.06897215  max resid 0.08637143 
+... Procrustes: rmse 0.08842632  max resid 0.1314237 
 Run 13 stress 0 
-... Procrustes: rmse 0.05095215  max resid 0.07373439 
+... Procrustes: rmse 0.08200456  max resid 0.1163193 
 Run 14 stress 0 
-... Procrustes: rmse 0.1245147  max resid 0.1618815 
+... Procrustes: rmse 0.09483784  max resid 0.1239188 
 Run 15 stress 0 
-... Procrustes: rmse 0.1278631  max resid 0.1880963 
+... Procrustes: rmse 0.1513612  max resid 0.1946446 
 Run 16 stress 0 
-... Procrustes: rmse 0.1219404  max resid 0.1846389 
+... Procrustes: rmse 0.08664967  max resid 0.1141698 
 Run 17 stress 0 
-... Procrustes: rmse 0.1040043  max resid 0.153107 
+... Procrustes: rmse 0.1179912  max resid 0.1610405 
 Run 18 stress 0 
-... Procrustes: rmse 0.1854664  max resid 0.2391669 
+... Procrustes: rmse 0.1099474  max resid 0.1455303 
 Run 19 stress 0 
-... Procrustes: rmse 0.08941229  max resid 0.1314795 
+... Procrustes: rmse 0.1063117  max resid 0.1398709 
 Run 20 stress 0 
-... Procrustes: rmse 0.1074796  max resid 0.1489466 
+... Procrustes: rmse 0.1009788  max resid 0.1310601 
 *** Best solution was not repeated -- monoMDS stopping criteria:
     20: stress &lt; smin</code></pre>
 </div>
@@ -2085,14 +2189,20 @@ half-change scaling: too few points below threshold</code></pre>
 </div>
 <div class="sourceCode" id="cb148"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/text.html">text</a></span><span class="op">(</span><span class="va">spec_scores</span>, <span class="fu"><a href="https://rdrr.io/r/base/row.names.html">row.names</a></span><span class="op">(</span><span class="va">spec_scores</span><span class="op">)</span>, col <span class="op">=</span> <span class="st">"red"</span>, cex <span class="op">=</span> <span class="fl">0.75</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="09-ordination_files/figure-html/aop-pomd-abun-compute-nmds-1.png" class="img-fluid" width="672"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="09-ordination_files/figure-html/aop-pomd-abun-compute-nmds-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Dans ce cas, entre PoMd-métrique et non-métrique, les résultats peuvent être interprétés de manière similaire.</p>
 <p>En ce qui a trait au dauphin,</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<p><img src="09-ordination_files/figure-html/aop-pomd-dauphin-plot-1.png" class="img-fluid" width="672"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="09-ordination_files/figure-html/aop-pomd-dauphin-plot-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Pour plus de détails, je vous invite à vous référer à <a href="http://www.springer.com/us/book/9781441979759">Borcard et al.&nbsp;(2011)</a>) ou de consulter l’excellent site <a href="https://mb3is.megx.net/gustame/dissimilarity-based-methods/nmds">GUSTA ME</a>.</p>
@@ -2111,7 +2221,10 @@ half-change scaling: too few points below threshold</code></pre>
 <span class="header-section-number">10.4.2.1</span> Analyse discriminante</h4>
 <p>Alors que l’analyse en composante principale vise à présenter la perspective (les axes) selon laquelle les points sont les plus éclatées, l’analyse discriminante, le plus souvent utilisé dans sa forme linéaire (ADL) et quadratique (ADQ), vise à présenter la perspective selon laquelle les groupes sont les plus éclatés, les groupes formant la variable contraignante. Ces groupes peuvent être connus (e.g.&nbsp;cultivar, région géographique) ou attribués (exemple: par partitionnement). L’ADL est parfois nommée <em>analyse canonique de la variance</em>.</p>
 <p>L’AD vise à représenter des différences entre des groupes aux moyens de combinaisons linéaires (ADL) ou quadratique (ADQ) de variables mesurées. Sa représentation sous forme de biplot permet d’apprécier les différences entre les groupes d’identifier les variables qui sont responsables de la discrimination.</p>
-<p><img src="images/07_ionome-revisited-figure4d.png" alt="" style="width: 600px;"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="images/07_ionome-revisited-figure4d.png" class="img-fluid figure-img" alt="&quot;" width="600"></p>
+</figure>
+</div>
 <center>
 Biplot de distance de l’analyse discriminante des ionomes d’espèces de plantes à fruits cultivées sauvages et domestiquées, Source: <a href="https://doi.org/10.3389/fpls.2013.00039">Parent et al.&nbsp;(2013)</a>
 </center>
@@ -2181,14 +2294,17 @@ Chi-Sq (approx.) = 140.94, df = 20, p-value &lt; 2.2e-16</code></pre>
 <span>                      scannf <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>La visualisation peut être effectuée directement sur l’objet issu de la fonction <code>discrimin</code>.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb157"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">iris_lda</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="09-ordination_files/figure-html/apo-lda-plot-1.png" class="img-fluid" width="672"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="09-ordination_files/figure-html/apo-lda-plot-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Il s’agit toutefois d’une visualisation pour le diagnostic davantage que pour la publication. Si l’objectif est la publication, vous pourriez utiliser la fonction <code>plotDA</code> que j’ai conçue à cet effet. J’ai aussi conçu une <a href="https://raw.githubusercontent.com/essicolo/AgFun/master/plotDA_trad.R">fonction similaire qui utilise le module graphique de base de R</a>.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb158"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/source.html">source</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/essicolo/AgFun/master/plotDA_gg.R"</span><span class="op">)</span></span>
 <span><span class="fu">plotDA</span><span class="op">(</span>scores <span class="op">=</span> <span class="va">iris_lda</span><span class="op">$</span><span class="va">li</span>,</span>
 <span>       loadings <span class="op">=</span> <span class="va">iris_lda</span><span class="op">$</span><span class="va">fa</span>,</span>
@@ -2250,7 +2366,10 @@ Attaching package: 'plyr'</code></pre>
 ℹ Please use `linewidth` instead.</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="09-ordination_files/figure-html/apo-lda-biplot-1.png" class="img-fluid" width="672"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="09-ordination_files/figure-html/apo-lda-biplot-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>À la différence de l’ACP, l’ADL maximise la séparation des groupes. Nous avions noté avec l’ACP que les dimensions des pétales distinguaient les groupes. Puisque nous avions justement des informations sur les groupes, nous aurions pu procéder directement à un ADL pour obtenir des conclusions plus directes. Si la longueur des pétales permet de distinguer l’espèce <em>setosa</em> des deux autres, la largeur des pétales permet de distinguer <em>virginica</em> et <em>versicolor</em>, bien que les nuages de points se superposent. De manière bivariée, les régions de confiance des moyennes des scores discriminants (petites ellipses) montrent des différence significatives au seuil 0.05.</p>
@@ -2278,13 +2397,16 @@ Attaching package: 'plyr'</code></pre>
 </section><section id="application-7" class="level5" data-number="10.4.2.2.4"><h5 data-number="10.4.2.2.4" class="anchored" data-anchor-id="application-7">
 <span class="header-section-number">10.4.2.2.4</span> Application</h5>
 <p>Nous allons utiliser la fonction <code>rda</code> du module vegan. En ce qui a trait aux données, utilisons les données varespec (matrice Y) et varechem (matrice X). La fonction <code>rda</code> peut fonctionner avec l’interface-formule de R, où à gauche du <code>~</code> on retrouve le Y (la matrice de la communauté écologique, i.e.&nbsp;les abondances d’espèces) contre le X (l), à gauche, ce qui peut être pratique pour l’analyse d’interactions. Mais pour comparer deux matrices, nous pouvons définir X et Y. Ce qui est mélangeant, c’est que vegan, contrairement aux conventions, défini X comme étant la matrice réponse et Y comme étant la matrice explicative.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb172"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">vare_rda</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/vegan/man/cca.html">rda</a></span><span class="op">(</span>X <span class="op">=</span> <span class="va">varespec</span>, Y <span class="op">=</span> <span class="va">vareclr</span>, scale <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/vegan/man/ordiplot.html">ordiplot</a></span><span class="op">(</span><span class="va">vare_rda</span>, scaling <span class="op">=</span> <span class="fl">1</span>, type <span class="op">=</span> <span class="st">"text"</span>, main <span class="op">=</span> <span class="st">"Scaling 1: triplot de distance"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/vegan/man/ordiplot.html">ordiplot</a></span><span class="op">(</span><span class="va">vare_rda</span>, scaling <span class="op">=</span> <span class="fl">2</span>, type <span class="op">=</span> <span class="st">"text"</span>, main <span class="op">=</span> <span class="st">"Scaling 2: triplot de corrélation"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="09-ordination_files/figure-html/apo-vare-rda-1.png" class="img-fluid" width="960"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="09-ordination_files/figure-html/apo-vare-rda-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>La fonction <code>ordiplot</code> permet de créer un triplot de base. La représentation des wascores est réputée plus robuste (moins susceptible d’être bruitée), mais leur interprétation porte à confusion (<a href="http://www.springer.com/us/book/9781441979759">Borcard et al.&nbsp;(2011)</a>).</p>
@@ -2292,7 +2414,7 @@ Attaching package: 'plyr'</code></pre>
 <p><strong>Triplot de corrélation (scaling 2)</strong>. Les angles entre les variables représentent leurs corrélation, que les variables soient réponse ou explicative, ou entre variables réponses et variables explicatives. Les distances entre les objets sur le triplot ne sont pas des approximation de leur distance euclidienne.</p>
 <p>Les triplots montrent que les variables ont toutes un rôle important sur la dispersion des sites autour des axes principaux. Le premier axe principal est composé de manière plus marquée par le clr de l’Al et celui du Fe. Le deuxième axe principal est composé de manière plus marquée par le clr du S, du P et du K. Le triplot de corrélation ne présente pas de tendance appréciable pour la plupart des espèces, qui ne possèdent pas de niche particulière. Toutefois, l’espèce Cladstel, présente surtout dans les sites 9 et 10, est liée à de basses teneurs en N et à de faibles valeurs de Baresoil (sol nu). L’espèce Pleuschr est liée à des sols où l’on retrouve une grande épaisseur d’humus, ainsi que des teneurs élevées en nutriment K, P, S, Ca, Mg et Zn. Elle semble apprécier les sols à bas pH, mais à faible teneur en Fe et Al. La teneur en N lui semble plus indifférente (son vecteur étant presque perpendiculaire).</p>
 <p>On pourra personnaliser les graphiques en extrayant les scores.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb173"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">scaling</span> <span class="op">&lt;-</span> <span class="fl">2</span></span>
 <span><span class="va">sites</span> <span class="op">&lt;-</span> <span class="fu">vegan</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/vegan/man/scores.html">scores</a></span><span class="op">(</span><span class="va">vare_rda</span>, display <span class="op">=</span> <span class="st">"wa"</span>, scaling <span class="op">=</span> <span class="va">scaling</span><span class="op">)</span></span>
 <span><span class="va">species</span> <span class="op">&lt;-</span> <span class="fu">vegan</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/vegan/man/scores.html">scores</a></span><span class="op">(</span><span class="va">vare_rda</span>, display <span class="op">=</span> <span class="st">"species"</span>, scaling <span class="op">=</span> <span class="va">scaling</span><span class="op">)</span></span>
@@ -2305,7 +2427,10 @@ Attaching package: 'plyr'</code></pre>
 <span><span class="fu">segments</span><span class="op">(</span>x0 <span class="op">=</span> <span class="fl">0</span>, y0 <span class="op">=</span> <span class="fl">0</span>, x1 <span class="op">=</span> <span class="va">env</span><span class="op">[</span>, <span class="fl">1</span><span class="op">]</span>, y1 <span class="op">=</span> <span class="va">env</span><span class="op">[</span>, <span class="fl">2</span><span class="op">]</span>, col <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/text.html">text</a></span><span class="op">(</span><span class="va">env</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">env</span><span class="op">)</span>, col <span class="op">=</span> <span class="st">"blue"</span>, cex <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="09-ordination_files/figure-html/apo-vare-rda-plot-1.png" class="img-fluid" width="576"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="09-ordination_files/figure-html/apo-vare-rda-plot-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>On pourra effectuer une analyse de Kaiser-Guttmann ou de broken-stick de la même manière que précédemment. Étant une collection de régressions, une RDA est en mesure d’effectuer des tests statistiques sur les coefficients de la régression en utilisant des permutations pour tester la signification des coefficients et des axes d’une RDA. On doit néanmoins obligatoirement effectuer la RDA avec l’interface formule. La variable à gauche du <code>~</code> peut être une matrice ou un tableau, et celui de droite est défini dans <code>data</code>. Le <code>.</code> dans l’interface formule signifie “une combinaison linéaire de toutes les variables, sans interaction”.</p>
@@ -2325,20 +2450,20 @@ Number of permutations: 999
 
 Model: rda(formula = varespec ~ N + P + K + Ca + Mg + S + Al + Fe + Mn + Zn + Mo + Fv + Baresoil + Humdepth + pH, data = vareclr, scale = FALSE)
          Df Variance      F Pr(&gt;F)   
-N         1   216.13 4.8470  0.004 **
-P         1   272.71 6.1159  0.006 **
-K         1   194.97 4.3724  0.014 * 
-Ca        1    24.92 0.5589  0.662   
-Mg        1    52.61 1.1799  0.328   
-S         1   100.07 2.2441  0.104   
-Al        1   177.91 3.9900  0.015 * 
-Fe        1   118.59 2.6595  0.056 . 
-Mn        1    25.96 0.5822  0.666   
-Zn        1    35.81 0.8030  0.485   
+N         1   216.13 4.8470  0.006 **
+P         1   272.71 6.1159  0.005 **
+K         1   194.97 4.3724  0.012 * 
+Ca        1    24.92 0.5589  0.661   
+Mg        1    52.61 1.1799  0.310   
+S         1   100.07 2.2441  0.089 . 
+Al        1   177.91 3.9900  0.008 **
+Fe        1   118.59 2.6595  0.050 * 
+Mn        1    25.96 0.5822  0.638   
+Zn        1    35.81 0.8030  0.483   
 Mo        1    23.51 0.5273  0.678   
-Baresoil  1    98.64 2.2122  0.110   
-Humdepth  1    43.59 0.9777  0.417   
-pH        1    38.93 0.8730  0.432   
+Baresoil  1    98.64 2.2122  0.103   
+Humdepth  1    43.59 0.9777  0.393   
+pH        1    38.93 0.8730  0.447   
 Residual  9   401.31                 
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
@@ -2377,12 +2502,15 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <div class="sourceCode" id="cb181"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">doubs_cca</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/vegan/man/cca.html">cca</a></span><span class="op">(</span><span class="va">doubs_fish</span> <span class="op">~</span> <span class="va">.</span>, data <span class="op">=</span> <span class="va">doubs_env</span>, scale <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Comparons les résultats</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode" id="cb182"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/vegan/man/ordiplot.html">ordiplot</a></span><span class="op">(</span><span class="va">doubs_cca</span>, scaling <span class="op">=</span> <span class="fl">1</span>, type <span class="op">=</span> <span class="st">"text"</span>, main <span class="op">=</span> <span class="st">"CCA - Scaling 1 - Triplot de distance"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/vegan/man/ordiplot.html">ordiplot</a></span><span class="op">(</span><span class="va">doubs_cca</span>, scaling <span class="op">=</span> <span class="fl">2</span>, type <span class="op">=</span> <span class="st">"text"</span>, main <span class="op">=</span> <span class="st">"CCA - Scaling 2 - Triplot de corrélation"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="09-ordination_files/figure-html/apo-doubs-cca-ordiplot-1.png" class="img-fluid" width="960"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="09-ordination_files/figure-html/apo-doubs-cca-ordiplot-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
 </div>
 </div>
 <p><strong>Triplot de distance (scaling 1)</strong>.</p>
