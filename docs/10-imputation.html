@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
-
+<meta name="generator" content="quarto-1.4.550">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
 <title>Analyse et modélisation d’agroécosystèmes sur R - 11&nbsp; Détection de valeurs aberrantes et imputation de données manquantes</title>
 <style>
 code{white-space: pre-wrap;}
@@ -20,8 +17,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
-
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
@@ -40,14 +70,19 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -56,43 +91,59 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script>
-
-
+}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 </head>
-
 <body class="nav-sidebar floating">
 
-
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./10-imputation.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Détection de valeurs aberrantes et imputation de données manquantes</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./10-imputation.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Détection de valeurs aberrantes et imputation de données manquantes</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Analyse et modélisation d’agroécosystèmes sur R</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/chavalli/ecologie-mathematique-R/tree/h2024" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/chavalli/ecologie-mathematique-R/tree/h2024" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -108,7 +159,7 @@ ul.task-list li input[type="checkbox"] {
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Préface</span></a>
@@ -205,18 +256,35 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
     </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+<li>
+<a href="#donn%C3%A9es-manquantes-d%C3%A9finition-origine-typologie-et-traitement" id="toc-données-manquantes-définition-origine-typologie-et-traitement" class="nav-link active" data-scroll-target="#donn%C3%A9es-manquantes-d%C3%A9finition-origine-typologie-et-traitement"><span class="header-section-number">11.1</span> Données manquantes: définition, origine, typologie et traitement</a>
+  <ul class="collapse">
+<li><a href="#d%C3%A9finition" id="toc-définition" class="nav-link" data-scroll-target="#d%C3%A9finition"><span class="header-section-number">11.1.1</span> Définition</a></li>
+  <li><a href="#origines-des-donn%C3%A9es-manquantes" id="toc-origines-des-données-manquantes" class="nav-link" data-scroll-target="#origines-des-donn%C3%A9es-manquantes"><span class="header-section-number">11.1.2</span> Origines des données manquantes</a></li>
+  <li><a href="#profils-des-donn%C3%A9es-manquantes" id="toc-profils-des-données-manquantes" class="nav-link" data-scroll-target="#profils-des-donn%C3%A9es-manquantes"><span class="header-section-number">11.1.3</span> Profils des données manquantes</a></li>
+  <li><a href="#traitement-des-donn%C3%A9es-manquantes" id="toc-traitement-des-données-manquantes" class="nav-link" data-scroll-target="#traitement-des-donn%C3%A9es-manquantes"><span class="header-section-number">11.1.4</span> Traitement des données manquantes</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#valeurs-et-%C3%A9chantillons-aberrants-d%C3%A9finition-origines-m%C3%A9thodes-de-d%C3%A9tection-et-traitement" id="toc-valeurs-et-échantillons-aberrants-définition-origines-méthodes-de-détection-et-traitement" class="nav-link" data-scroll-target="#valeurs-et-%C3%A9chantillons-aberrants-d%C3%A9finition-origines-m%C3%A9thodes-de-d%C3%A9tection-et-traitement"><span class="header-section-number">11.2</span> Valeurs et échantillons aberrants: définition, origines, méthodes de détection et traitement</a>
+  <ul class="collapse">
+<li><a href="#d%C3%A9finitions" id="toc-définitions" class="nav-link" data-scroll-target="#d%C3%A9finitions"><span class="header-section-number">11.2.1</span> Définitions</a></li>
+  <li><a href="#origines" id="toc-origines" class="nav-link" data-scroll-target="#origines"><span class="header-section-number">11.2.2</span> Origines</a></li>
+  <li><a href="#d%C3%A9tection-et-traitement-des-valeurs-aberrantes-univari%C3%A9s" id="toc-détection-et-traitement-des-valeurs-aberrantes-univariés" class="nav-link" data-scroll-target="#d%C3%A9tection-et-traitement-des-valeurs-aberrantes-univari%C3%A9s"><span class="header-section-number">11.2.3</span> Détection et traitement des valeurs aberrantes univariés</a></li>
+  <li><a href="#d%C3%A9tection-et-traitement-des-%C3%A9chantillons-aberrants-multivari%C3%A9s" id="toc-détection-et-traitement-des-échantillons-aberrants-multivariés" class="nav-link" data-scroll-target="#d%C3%A9tection-et-traitement-des-%C3%A9chantillons-aberrants-multivari%C3%A9s"><span class="header-section-number">11.2.4</span> Détection et traitement des échantillons aberrants multivariés</a></li>
+  </ul>
+</li>
+  </ul></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <h1 class="title"><span id="sec-imput" class="quarto-section-identifier"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Détection de valeurs aberrantes et imputation de données manquantes</span></span></h1>
 </div>
 
@@ -230,15 +298,725 @@ ul.task-list li input[type="checkbox"] {
   </div>
   
 
-</header>
 
+</header><hr>
+<p><strong>Objectifs spécifiques</strong>:</p>
+<p>À la fin de ce chapitre, vous</p>
+<ul>
+<li>saurez comment procéder à l’imputation de valeurs manquantes en mode univarié et multivarié</li>
+<li>saurez comment détecter des valeurs aberrantes en mode univarié et multivarié</li>
+</ul>
 <hr>
-<p>À venir</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Note">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Ce chapitre a été initialement rédigé par Zonlehoua Coulibali, qui a gracieusement accepté de contribuer à ces notes de cours. Le texte a été adapté au format du manuel par Essi Parent.</p>
+</div>
+</div>
+<p>Les données écologiques sont généralement recueillies à différentes échelles, concernent plusieurs sites et plusieurs variables (corrélées ou non), impliquent différents individus de différentes agences et peuvent s’étendre sur plusieurs années (<a href="https://ulaval.on.worldcat.org/oclc/5711421967">Alameddine et al., 2010</a>; <a href="https://doi.org/10.1002/env.773">Lokupitiya et al., 2006</a>). De ce fait, la plupart de ces bases de données contiennent des valeurs manquantes et/ou aberrantes liées à différentes sources d’erreurs, pouvant parfois limiter l’utilité des inférences statistiques (<a href="https://europepmc.org/abstract/MED/11778676">Collins et al., 2001</a>; <a href="https://hal.inria.fr/inria-00494698/document">Glasson-Cicognani et Berchtold, 2010</a>). Il convient alors de les traiter correctement avant d’effectuer les analyses statistiques car les ignorer peut entraîner, outre une perte de précision, de forts biais dans les modèles d’analyse (<a href="https://ascelibrary.org/doi/10.1061/%28ASCE%29EE.1943-7870.0000271">Alameddine et al., 2010</a>; <a href="https://www.researchgate.net/publication/222423330_Outlier_identification_in_high_dimension">Filzmoser et al., 2008</a>; <a href="https://hal.inria.fr/inria-00494698/document">Glasson-Cicognani et Berchtold, 2010</a>).</p>
+<section id="données-manquantes-définition-origine-typologie-et-traitement" class="level2" data-number="11.1"><h2 data-number="11.1" class="anchored" data-anchor-id="données-manquantes-définition-origine-typologie-et-traitement">
+<span class="header-section-number">11.1</span> Données manquantes: définition, origine, typologie et traitement</h2>
+<section id="définition" class="level3" data-number="11.1.1"><h3 data-number="11.1.1" class="anchored" data-anchor-id="définition">
+<span class="header-section-number">11.1.1</span> Définition</h3>
+<p>Les tableaux de données sont organisés en lignes et colonnes. Les lignes représentent les observations, les unités, les sujets ou les cas étudiés selon le contexte, et les colonnes représentent les variables mesurées pour chaque observation. Les entrées qui sont les valeurs (ou contenus) des cellules ou encore les valeurs observées, peuvent être des valeurs continues, ou des valeurs catégoriales (<a href="https://onlinelibrary.wiley.com/doi/book/10.1002/9781119013563">Little et Rubin, 2002</a>). Considérant une variable aléatoire <span class="math inline">\(X\)</span> quelconque, une donnée manquante <span class="math inline">\(x_m\)</span>, est une donnée pour laquelle la valeur de la variable <span class="math inline">\(X\)</span> est inconnue (ou absente). En d’autres termes, on ne dispose pas de la valeur de <span class="math inline">\(X\)</span> pour le sujet <span class="math inline">\(i\)</span> donné. C’est une donnée non disponible qui serait utile pour l’analyse si elle était observée (<a href="https://www.nejm.org/doi/full/10.1056/NEJMsm1210043">Ware et al., 2012</a>).</p>
+<p>La littérature sur les données manquantes est plus abondante dans les domaines des sciences sociales sur les données d’enquêtes, et des sciences médicales (<a href="https://www.jstor.org/stable/3069628?seq=1/subjects">Davey et al., 2001</a>; <a href="https://www.springer.com/us/book/9781461440178">Graham, 2012</a>). Pour représenter leur répartition dans la table de données, une matrice indicatrice des valeurs manquantes <span class="math inline">\(M = (m_{ij})\)</span> est généralement utilisée où <span class="math inline">\(m_{ij}\)</span> est une variable binaire qui prend la valeur 1 si la valeur de la variable (<span class="math inline">\(X\)</span>) est observée et 0 si <span class="math inline">\(x\)</span> est absent (<a href="https://europepmc.org/abstract/MED/11778676">Collins et al., 2001</a>; <a href="https://www.springer.com/us/book/9781461440178">Graham, 2012</a>; <a href="https://onlinelibrary.wiley.com/doi/book/10.1002/9781119013563">Little et Rubin, 2002</a>).</p>
+</section><section id="origines-des-données-manquantes" class="level3" data-number="11.1.2"><h3 data-number="11.1.2" class="anchored" data-anchor-id="origines-des-données-manquantes">
+<span class="header-section-number">11.1.2</span> Origines des données manquantes</h3>
+<p>Les données manquantes ont des origines matérielles diverses. Des valeurs peuvent être absentes soit parce qu’elles n’ont pas été observées, ou qu’elles ont été perdues ou étaient incohérentes (<a href="[Glasson-Cicognani et Berchtold, 2010](https://inria.hal.science/inria-00494698/document)">Glasson-Cicognani et Berchtold, 2010</a>. La donnée peut avoir été :</p>
+<ul>
+<li>perdue lors de la collecte ou lors du processus d’enregistrement des données,</li>
+<li>non mesurée en raison du dysfonctionnement d’un équipement,</li>
+<li>non mesurable en raison de la disparition du sujet d’étude (mort, fugue, champ non récolté, etc.),</li>
+<li>écartée en raison d’une contamination,</li>
+<li>oubliée,</li>
+<li>non étudiée,</li>
+<li>etc.</li>
+</ul></section><section id="profils-des-données-manquantes" class="level3" data-number="11.1.3"><h3 data-number="11.1.3" class="anchored" data-anchor-id="profils-des-données-manquantes">
+<span class="header-section-number">11.1.3</span> Profils des données manquantes</h3>
+<p>Les auteurs traitant des données manquantes distinguent des formes de répartition des données manquantes et des mécanismes conduisant à ces dernières. La répartition des données manquantes décrit les dispositions des valeurs présentes et celles qui sont manquantes dans la matrice indicatrice. Les mécanismes à l’origine des données manquantes décrivent la relation probabiliste entre les valeurs observées et les valeurs manquantes de la table de données.</p>
+<section id="répartition-des-données-manquantes" class="level4" data-number="11.1.3.1"><h4 data-number="11.1.3.1" class="anchored" data-anchor-id="répartition-des-données-manquantes">
+<span class="header-section-number">11.1.3.1</span> Répartition des données manquantes</h4>
+<p>Les données manquantes se répartissent selon différents cas de figures (<a href="https://www.springer.com/us/book/9781461440178">Graham, 2012</a>; <a href="https://onlinelibrary.wiley.com/doi/book/10.1002/9781119013563">Little et Rubin, 2002</a>) dont les trois principaux sont :</p>
+<ul>
+<li>les valeurs manquantes univariées,</li>
+<li>les valeurs manquantes monotones et</li>
+<li>celles non monotones ou arbitraires.</li>
+</ul>
+<p>Cette distinction est fonction de la matrice indicatrice des valeurs manquantes. Cette matrice est dite à <strong>valeurs manquantes univariées</strong> ou de non-réponse univariée, lorsque pour une variable donnée, si une observation est absente, alors toutes les observations suivantes pour cette variable sont absentes (<a href="#fig-imput-types" class="quarto-xref">Figure&nbsp;<span>11.1</span></a> A). En expérimentation agricole, ce cas de figure est qualifié de problème de la parcelle manquante où, pour une raison quelconque (par exemple : une absence de germination, une destruction accidentelle d’une parcelle ou des enregistrements incorrects), un facteur à l’étude est non disponible. Les <strong>valeurs manquantes monotones</strong> surviennent lorsque la valeur d’une variable <span class="math inline">\(Y_j\)</span> manquante pour un individu <span class="math inline">\(i\)</span> implique que toutes les variables suivantes <span class="math inline">\(Y_k\)</span> (<span class="math inline">\(k &gt; j\)</span>) sont manquantes pour cet individu ((<a href="#fig-imput-types" class="quarto-xref">Figure&nbsp;<span>11.1</span></a> B)). Les <strong>valeurs manquantes arbitraires</strong> ou non monotones ou encore générales, surviennent lorsque la matrice ne dessine spécifiquement aucune des formes précédentes ((<a href="#fig-imput-types" class="quarto-xref">Figure&nbsp;<span>11.1</span></a> C)).</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-imput-types" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-imput-types-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/10_mv-types.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-imput-types-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.1: Exemple de profils de données manquantes
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>Le module VIM permet de visualiser la structure des données manquantes.</p>
+<div class="cell">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/statistikat/VIM">"VIM"</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://tidyverse.tidyverse.org">"tidyverse"</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Pour l’exemple, prenons le tableau <code>iris</code> puis remplaçons au hasard des données par des valeurs manquantes (<code>NA</code>), puis vérifions les proportions de données manquantes et les proportions de combinaisons de données manquantes.</p>
+<div class="cell">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">2868374</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"iris"</span><span class="op">)</span></span>
+<span><span class="va">iris_NA</span> <span class="op">&lt;-</span> <span class="va">iris</span></span>
+<span><span class="va">n_NA</span> <span class="op">&lt;-</span> <span class="fl">20</span></span>
+<span><span class="va">row_NA</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span>, <span class="va">n_NA</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">col_NA</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span>, <span class="va">n_NA</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="va">n_NA</span><span class="op">)</span> <span class="va">iris_NA</span><span class="op">[</span><span class="va">row_NA</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>, <span class="va">col_NA</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/VIM/man/aggr.html">aggr</a></span><span class="op">(</span><span class="va">iris_NA</span>, sortVar <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="10-imputation_files/figure-html/imput-add-na-iris-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+ Variables sorted by number of missings: 
+     Variable       Count
+  Sepal.Width 0.046666667
+      Species 0.040000000
+ Petal.Length 0.020000000
+  Petal.Width 0.020000000
+ Sepal.Length 0.006666667</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+ Missings per variable: 
+     Variable Count
+ Sepal.Length     1
+  Sepal.Width     7
+ Petal.Length     3
+  Petal.Width     3
+      Species     6
+
+ Missings in combinations of variables: 
+ Combinations Count    Percent
+    0:0:0:0:0   132 88.0000000
+    0:0:0:0:1     4  2.6666667
+    0:0:0:1:0     2  1.3333333
+    0:0:0:1:1     1  0.6666667
+    0:0:1:0:0     3  2.0000000
+    0:1:0:0:0     6  4.0000000
+    0:1:0:0:1     1  0.6666667
+    1:0:0:0:0     1  0.6666667</code></pre>
+</div>
+</div>
+<p>Avec la fonction <code>matrixplot</code>, il est possible de visualiser les données manquantes en rouge, tandis que les données présentes prennent un niveau de gris selon leur valeur.</p>
+<div class="cell">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/VIM/man/matrixplot.html">matrixplot</a></span><span class="op">(</span><span class="va">iris_NA</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-imput-plot-na-iris" class="quarto-figure quarto-figure-center quarto-float anchored" width="192">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-imput-plot-na-iris-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="10-imputation_files/figure-html/fig-imput-plot-na-iris-1.png" id="fig-imput-plot-na-iris" class="img-fluid figure-img" width="192">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-imput-plot-na-iris-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.2
+</figcaption></figure>
+</div>
+</div>
+</div>
+</section><section id="mécanismes-conduisant-aux-données-manquantes" class="level4" data-number="11.1.3.2"><h4 data-number="11.1.3.2" class="anchored" data-anchor-id="mécanismes-conduisant-aux-données-manquantes">
+<span class="header-section-number">11.1.3.2</span> Mécanismes conduisant aux données manquantes</h4>
+<p>Les mécanismes conduisant aux données manquantes décrivent la relation entre les valeurs manquantes et celles observées des variables de la table (<a href="https://europepmc.org/article/MED/11778676">Collins et al., 2001</a>; <a href="https://www.springer.com/us/book/9781461440178">Graham, 2012</a>; <a href="https://onlinelibrary.wiley.com/doi/book/10.1002/9781119013563">Little et Rubin, 2002</a>). En considérant la table de donnée <span class="math inline">\(Y = \{O,M\}\)</span> où <span class="math inline">\(O = \left[ o_{i, j} \right]\)</span> représente les données observées et <span class="math inline">\(M = \left[ m_{i, j} \right]\)</span> la matrice indicatrice des données manquantes, le mécanisme à l’origine des données manquantes est défini par la distribution conditionnelle de <span class="math inline">\(M\)</span> sachant <span class="math inline">\(Y\)</span>.</p>
+<p>Lorsque la probabilité qu’une valeur soit manquante ne dépend ni des valeurs observées, ni de celles manquantes, les données sont dites <strong>manquantes complètement au hasard</strong> <em>(<strong>MCAR</strong>, missing completely at random)</em>. La probabilité d’absence est donc la même pour toutes les observations et elle ne dépend que de paramètres extérieurs indépendants de cette variable (<a href="https://europepmc.org/article/MED/11778676">Collins et al., 2001</a>; <a href="https://www.springer.com/us/book/9781461440178">Graham, 2012</a>; <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1380829/">Heitjan, 1997</a>; <a href="https://onlinelibrary.wiley.com/doi/book/10.1002/9781119013563">Little et Rubin, 2002</a>; <a href="https://www.jstor.org/stable/2335739?seq=1#page_scan_tab_contents">Rubin, 1976</a>). Avec de telles données (MCAR), les régressions qui n’utilisent que les enregistrements complets, les moyennes des cas disponibles, les tests non-paramétriques et les méthodes basées sur les “moments”, sont toutes valides (<a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1380829/">Heitjan, 1997</a>). Toutefois, une perte de précision est à prévoir dans les résultats (<a href="https://europepmc.org/article/MED/11778676">Collins et al., 2001</a>).</p>
+<p>Selon les mêmes auteurs, lorsque la probabilité qu’une valeur soit manquante dépend uniquement de la composante observée “<span class="math inline">\(O\)</span>” (une ou plusieurs variables observées) mais pas des valeurs manquantes elles-mêmes, les données sont dites <strong>manquantes au hasard</strong> <em>( <strong>MAR</strong>: missing at random)</em>. Dans ce cas, les méthodes du maximum de vraisemblance sont valides pour estimer les paramètres du modèle. Les procédures d’imputation multiples utilisent implicitement le mécanisme MAR (<a href="https://europepmc.org/abstract/MED/11778676">Collins et al., 2001</a>; <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1380829/">Heitjan, 1997</a>).</p>
+<p>Lorsque la probabilité qu’une valeur manquante dépend de la valeur non observée de la variable elle-même (<span class="math inline">\(M\)</span>), les données ne manquent pas au hasard <em>( <strong>MNAR</strong>: missing not at random)</em>. Ce type de données ne doit pas être ignoré dans l’ajustement de modèles car elles induisent une perte de précision (inhérente à tout cas de données manquantes) mais aussi un biais dans l’estimation des paramètres (<a href="https://europepmc.org/abstract/MED/11778676">Collins et al., 2001</a>; <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1380829/">Heitjan, 1997</a>).</p>
+</section></section><section id="traitement-des-données-manquantes" class="level3" data-number="11.1.4"><h3 data-number="11.1.4" class="anchored" data-anchor-id="traitement-des-données-manquantes">
+<span class="header-section-number">11.1.4</span> Traitement des données manquantes</h3>
+<p>La présence de données manquantes dans une analyse peut conduire à des estimés de paramètres biaisés, gonfler les erreurs de type I et II, baisser les performances des intervalles de confiance (<a href="https://europepmc.org/abstract/MED/11778676">Collins et al., 2001</a>) et entacher la généralisation des résultats (<a href="https://www.ncbi.nlm.nih.gov/pubmed/12370166">Taylor et al., 2002</a>). Plusieurs méthodes existent pour calculer des estimés de paramètres de modèles approximativement sans biais, en présence de données manquantes.</p>
+<section id="lanalyse-des-cas-complets" class="level4" data-number="11.1.4.1"><h4 data-number="11.1.4.1" class="anchored" data-anchor-id="lanalyse-des-cas-complets">
+<span class="header-section-number">11.1.4.1</span> L’analyse des cas complets</h4>
+<p>Cette méthode consiste à exclure du fichier de données tous les individus ayant au moins une donnée manquante (<a href="[Glasson-Cicognani et Berchtold, 2010](https://hal.inria.fr/inria-00494698/document)">Glasson-Cicognani et Berchtold, 2010</a>. Elle serait la plus utilisée pour traiter les valeurs manquantes mais n’est efficace que pour les cas de données manquant complètement au hasard (MCAR) lorsque le nombre de d’observations à éliminer n’est pas trop important (<a href="https://www.jstor.org/stable/3069628?seq=1/subjects">Davey et al., 2001</a>).</p>
+<p>En R, de manière générique, il est possible d’identifier une donnée manquante dans un tableau, une matrice ou un vecteur avec <code>is.na</code>, qui retourne un objet booléen (<code>TRUE</code> / <code>FALSE</code>). La fonction <code>any</code> permet d’identifier si au moins une valeur est vraie ou fausse dans un objet, alors que la fonction <code>all</code> permet d’identifier si toutes les valeurs sont vraies. On pourra vérifier si une ligne contient une valeur manquante avec la fonction <code>apply</code>, dans l’axe des lignes. Il faudra toutefois inverser le résultat booléen avec un <code>!</code> pour faire en sorte d’écarter les valeurs manquantes.</p>
+<div class="cell">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">row_missing</span> <span class="op">&lt;-</span> <span class="va">iris_NA</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>        <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="va">.</span>, <span class="fl">1</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/any.html">any</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">row_complete</span> <span class="op">&lt;-</span> <span class="va">iris_NA</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>        <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="va">.</span>, <span class="fl">1</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/any.html">any</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">row_missing</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
+1           4.6         3.4          1.4         0.3       &lt;NA&gt;
+2           5.7          NA          1.5         0.4     setosa
+3           4.4          NA          1.3         0.2     setosa
+4           5.1          NA          1.9         0.4     setosa
+5           6.7         3.1          4.4         1.4       &lt;NA&gt;
+6           6.2         2.2          4.5          NA versicolor
+7           6.7          NA          5.0         1.7 versicolor
+8           7.1          NA          5.9         2.1  virginica
+9           6.7          NA          5.8         1.8  virginica
+10          6.4         2.7           NA         1.9  virginica
+11          6.5          NA          5.5         1.8       &lt;NA&gt;
+12          5.6         2.8          4.9          NA  virginica
+13          7.7         2.8          6.7         2.0       &lt;NA&gt;
+14          6.4         2.8          5.6          NA       &lt;NA&gt;
+15          6.3         2.8           NA         1.5  virginica
+16          6.1         2.6          5.6         1.4       &lt;NA&gt;
+17           NA         3.1          5.5         1.8  virginica
+18          6.7         3.0           NA         2.3  virginica</code></pre>
+</div>
+</div>
+<p>Au lieu de <code>apply</code>, R fournit la fontion raccourci <code>complete.cases</code>.</p>
+<div class="cell">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">row_missing</span> <span class="op">&lt;-</span> <span class="va">iris_NA</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>        <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/complete.cases.html">complete.cases</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Le module <strong><code>tidyr</code></strong> (inclus dans tidyverse) nous facilite la vie avec la fonction <code><a href="https://tidyr.tidyverse.org/reference/drop_na.html">tidyr::drop_na</a></code>, qui retire toutes les lignes contenant au moins une valeur manquante.</p>
+<div class="cell">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">row_complete</span> <span class="op">&lt;-</span> <span class="va">iris_NA</span> <span class="op">|&gt;</span> </span>
+<span>        <span class="fu"><a href="https://tidyr.tidyverse.org/reference/drop_na.html">drop_na</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>De même, on pourra évaluer la proportion de données manquantes.</p>
+<div class="cell">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">row_complete</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.88</code></pre>
+</div>
+</div>
+<p>Ou bien, évaluer la proportion de donnée manquante par groupe.</p>
+<div class="cell">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">iris_NA</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">Species</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise_each.html">summarise_each</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/funs.html">funs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 5
+  Species    Sepal.Length Sepal.Width Petal.Length Petal.Width
+  &lt;fct&gt;             &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt;
+1 setosa           0           0.0612       0           0     
+2 versicolor       0           0.0204       0           0.0204
+3 virginica        0.0217      0.0435       0.0652      0.0217
+4 &lt;NA&gt;             0           0.167        0           0.167 </code></pre>
+</div>
+</div>
+<p>Pour terminer cette section, il est possible que certaines variables soient peu mesurées dans une étude. Au jugement, on pourra sacrifier une colonne contenant plusieurs données manquantes en vue de conserver des lignes.</p>
+</section><section id="limputation" class="level4" data-number="11.1.4.2"><h4 data-number="11.1.4.2" class="anchored" data-anchor-id="limputation">
+<span class="header-section-number">11.1.4.2</span> L’imputation</h4>
+<p>L’imputation permet de créer des bases de données complètes (<a href="https://ideas.repec.org/a/ses/arsjes/2001-iii-6.html">Donzé, 2001</a>). Elle corrige la non-réponse partielle en substituant une “valeur artificielle” à la valeur manquante. Les auteurs distinguent l’imputation unique et l’imputation multiple.</p>
+<section id="limputation-unique" class="level5" data-number="11.1.4.2.1"><h5 data-number="11.1.4.2.1" class="anchored" data-anchor-id="limputation-unique">
+<span class="header-section-number">11.1.4.2.1</span> L’imputation unique</h5>
+<p><em>L’imputation unique consiste à remplacer chaque donnée manquante par une seule valeur plausible telle que la moyenne calculée sur les données réellement observées, l’imputation par le ou les plus proche(s) voisin(s)</em> (la technique des plus proches voisins est couverte au <a href="12-autoapprentissage.html" class="quarto-xref">chapitre&nbsp;<span>13</span></a>). Cette dernière remplace les données manquantes par des valeurs provenant d’individus similaires pour lesquels toute l’information a été observée. L’imputation peut aussi se faire par régression en remplaçant les valeurs manquantes par des valeurs prédites selon un modèle de régression ou des méthodes bayésiennes plus sophistiquées. L’imputation unique est valide en présence de données manquantes de type MAR (<a href="https://www.jstor.org/stable/3069628?seq=1/subjects">Davey et al., 2001</a>; <a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.1012.8980&amp;rep=rep1&amp;type=pdf">Donzé, 2001</a>; <a href="[Glasson-Cicognani et Berchtold, 2010](https://hal.inria.fr/inria-00494698/document)">Glasson-Cicognani et Berchtold, 2010</a>).</p>
+<p>Selon <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1380829/">Heitjan (1997)</a>, il n’existe pas de règles strictes pour décider quand il faut entreprendre une imputation multiple. Néanmoins, si la fraction des observations avec des données manquantes est inférieure à par exemple 5%, et le mécanisme est ignorable (MCAR ou MAR), les analyses les plus simples sont satisfaisantes.</p>
+<p>Bien que conçu principalement pour l’imputation multiple (on y arrive bientôt), le module <a href="https://amices.org/mice/index.html"><code>mice</code></a> permet l’imputation univariée. Nous allons tester l’imputation par la moyenne. Voyons par exemple la moyenne des largeurs des sépales.</p>
+<div class="cell">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">iris_NA</span><span class="op">$</span><span class="va">Sepal.Width</span><span class="op">[</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/stats/complete.cases.html">complete.cases</a></span><span class="op">(</span><span class="va">iris_NA</span><span class="op">)</span><span class="op">]</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.845455</code></pre>
+</div>
+</div>
+<p>Lançons l’imputation par la fonction <code>mice</code>, puis la prédiction du tableau imputé par la fonction <code>complete</code>.</p>
+<div class="cell">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/amices/mice">"mice"</a></span><span class="op">)</span></span>
+<span><span class="va">iris_mice</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://amices.org/mice/reference/mice.html">mice</a></span><span class="op">(</span><span class="va">iris_NA</span>, method <span class="op">=</span> <span class="st">"mean"</span><span class="op">)</span></span>
+<span><span class="va">iris_imp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tidyr.tidyverse.org/reference/complete.html">complete</a></span><span class="op">(</span><span class="va">iris_mice</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Le tableau original peut être comparé au tableau imputé.</p>
+<div class="cell">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">iris_NA</span><span class="op">[</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/stats/complete.cases.html">complete.cases</a></span><span class="op">(</span><span class="va">iris_NA</span><span class="op">)</span>, <span class="op">]</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_head</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
+1           4.6         3.4          1.4         0.3       &lt;NA&gt;
+2           5.7          NA          1.5         0.4     setosa
+3           4.4          NA          1.3         0.2     setosa
+4           5.1          NA          1.9         0.4     setosa
+5           6.7         3.1          4.4         1.4       &lt;NA&gt;
+6           6.2         2.2          4.5          NA versicolor
+7           6.7          NA          5.0         1.7 versicolor
+8           7.1          NA          5.9         2.1  virginica
+9           6.7          NA          5.8         1.8  virginica
+10          6.4         2.7           NA         1.9  virginica</code></pre>
+</div>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">iris</span><span class="op">[</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/stats/complete.cases.html">complete.cases</a></span><span class="op">(</span><span class="va">iris_NA</span><span class="op">)</span>, <span class="op">]</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_head</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
+1           4.6         3.4          1.4         0.3     setosa
+2           5.7         4.4          1.5         0.4     setosa
+3           4.4         3.0          1.3         0.2     setosa
+4           5.1         3.8          1.9         0.4     setosa
+5           6.7         3.1          4.4         1.4 versicolor
+6           6.2         2.2          4.5         1.5 versicolor
+7           6.7         3.0          5.0         1.7 versicolor
+8           7.1         3.0          5.9         2.1  virginica
+9           6.7         2.5          5.8         1.8  virginica
+10          6.4         2.7          5.3         1.9  virginica</code></pre>
+</div>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">iris_imp</span><span class="op">[</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/stats/complete.cases.html">complete.cases</a></span><span class="op">(</span><span class="va">iris_NA</span><span class="op">)</span>, <span class="op">]</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_head</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
+1           4.6    3.400000     1.400000    0.300000       &lt;NA&gt;
+2           5.7    3.052174     1.500000    0.400000     setosa
+3           4.4    3.052174     1.300000    0.200000     setosa
+4           5.1    3.052174     1.900000    0.400000     setosa
+5           6.7    3.100000     4.400000    1.400000       &lt;NA&gt;
+6           6.2    2.200000     4.500000    1.178169 versicolor
+7           6.7    3.052174     5.000000    1.700000 versicolor
+8           7.1    3.052174     5.900000    2.100000  virginica
+9           6.7    3.052174     5.800000    1.800000  virginica
+10          6.4    2.700000     3.680142    1.900000  virginica</code></pre>
+</div>
+</div>
+<p>Dans la colonne <code>Sepal.Width</code>, toutes les valeurs manquantes ont été remplacées par ~3.052.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Exercice">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exercice
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Pourquoi la prédiction diffère-t-elle de la moyenne?</p>
+</div>
+</div>
+<hr>
+<div class="callout callout-style-default callout-caution callout-titled" title="Attention">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Attention
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Lorsque les valeurs sont systématiquement manquantes chez une catégorie, les estimateurs seront biaisés.</p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">iris_NA_biais_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
+<span>  Sepal.Length <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5.3</span>, <span class="cn">NA</span>, <span class="fl">4.9</span>, <span class="cn">NA</span>, <span class="fl">4.7</span>, <span class="cn">NA</span><span class="op">)</span>,</span>
+<span>  Species <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"setosa"</span>, <span class="st">"versicolor"</span>, <span class="st">"setosa"</span>, <span class="st">"versicolor"</span>, <span class="st">"setosa"</span>, <span class="st">"versicolor"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">iris_NA_biais_1</span><span class="op">$</span><span class="va">Sepal.Length</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4.966667</code></pre>
+</div>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">iris_NA_biais_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
+<span>  Sepal.Length <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5.3</span>, <span class="fl">7.0</span>, <span class="fl">4.6</span>, <span class="fl">6.4</span>, <span class="fl">4.8</span>, <span class="fl">6.9</span><span class="op">)</span>,</span>
+<span>  Species <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"setosa"</span>, <span class="st">"versicolor"</span>, <span class="st">"setosa"</span>, <span class="st">"versicolor"</span>, <span class="st">"setosa"</span>, <span class="st">"versicolor"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">iris_NA_biais_2</span><span class="op">$</span><span class="va">Sepal.Length</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5.833333</code></pre>
+</div>
+</div>
+<p>Dans l’exemple précédent, les données sont systématiquement manquantes chez l’espèce <em>versicolor</em>. La moyenne de la largeur des sépales est donc biaisée, et l’imputation par la moyenne le sera tout autant. L’imputation par la moyenne est jugée non recommandable par plusieurs statisticiens. Dans la mesure du possible, <strong>l’imputation multiple devrait être favorisée à l’imputation univariée</strong>.</p>
+<hr></section><section id="limputation-multiple" class="level5" data-number="11.1.4.2.2"><h5 data-number="11.1.4.2.2" class="anchored" data-anchor-id="limputation-multiple">
+<span class="header-section-number">11.1.4.2.2</span> L’imputation multiple</h5>
+<p>L’imputation multiple consiste à imputer plusieurs fois les valeurs manquantes et à combiner les résultats pour diminuer l’erreur causée par la complétion (<a href="https://www.jstor.org/stable/3069628?seq=1/subjects">Davey et al., 2001</a>). Les valeurs manquantes sont remplacées par <span class="math inline">\(M\)</span> (<span class="math inline">\(M &gt; 1\)</span>) ensembles de valeurs simulées donnant lieu à <span class="math inline">\(M\)</span> versions plausibles mais différentes des données complètes (<a href="https://europepmc.org/abstract/MED/11778676">Collins et al., 2001</a>; <a href="https://www.ncbi.nlm.nih.gov/pubmed/12370166">Taylor et al., 2002</a>). En pratique, seulement <span class="math inline">\(M\)</span> allant de 5 à 10 (imputations) est suffisant pour produire des bonnes inférences (<a href="https://europepmc.org/abstract/MED/11778676">Collins et al., 2001</a>; <a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.1012.8980&amp;rep=rep1&amp;type=pdf">Donzé, 2001</a>). Chacun des <span class="math inline">\(M\)</span> ensembles de données est analysé de la même manière par des méthodes standards d’analyse de données complètes, et les résultats sont combinés en utilisant une arithmétique simple: les moyennes des paramètres estimés sont calculées, les erreurs standards sont combinées pour refleter l’incertitude des données manquantes et l’erreur d’échantillonnage.</p>
+<p>L’imputation multiple est une procédure basée sur un modèle (model-based). L’utilisateur doit spécifier un modèle de probabilité conjointe pour les données observées et manquantes (<a href="https://europepmc.org/abstract/MED/11778676">Collins et al., 2001</a>; <a href="https://www.ncbi.nlm.nih.gov/pubmed/12370166">Taylor et al., 2002</a>).</p>
+<p>Le module mice donne accès à plusieurs types de modèles (argument <code>method</code>). Les modèles <code>cart</code> et <code>rf</code> tombent dans la catégorie de l’autoapprentissage (couvert au <a href="12-autoapprentissage.html" class="quarto-xref">chapitre&nbsp;<span>13</span></a>). Ils ont l’avantage important d’être applicables pour tout type de variable.</p>
+<div class="cell">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">iris_mice</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://amices.org/mice/reference/mice.html">mice</a></span><span class="op">(</span><span class="va">iris_NA</span>, method <span class="op">=</span> <span class="st">"rf"</span><span class="op">)</span></span>
+<span><span class="va">iris_imp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tidyr.tidyverse.org/reference/complete.html">complete</a></span><span class="op">(</span><span class="va">iris_mice</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>De même que précédemment, le tableau original peut être comparé au tableau imputé.</p>
+<div class="cell">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">iris_NA</span><span class="op">[</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/stats/complete.cases.html">complete.cases</a></span><span class="op">(</span><span class="va">iris_NA</span><span class="op">)</span>, <span class="op">]</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_head</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
+1           4.6         3.4          1.4         0.3       &lt;NA&gt;
+2           5.7          NA          1.5         0.4     setosa
+3           4.4          NA          1.3         0.2     setosa
+4           5.1          NA          1.9         0.4     setosa
+5           6.7         3.1          4.4         1.4       &lt;NA&gt;
+6           6.2         2.2          4.5          NA versicolor
+7           6.7          NA          5.0         1.7 versicolor
+8           7.1          NA          5.9         2.1  virginica
+9           6.7          NA          5.8         1.8  virginica
+10          6.4         2.7           NA         1.9  virginica</code></pre>
+</div>
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">iris</span><span class="op">[</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/stats/complete.cases.html">complete.cases</a></span><span class="op">(</span><span class="va">iris_NA</span><span class="op">)</span>, <span class="op">]</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_head</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
+1           4.6         3.4          1.4         0.3     setosa
+2           5.7         4.4          1.5         0.4     setosa
+3           4.4         3.0          1.3         0.2     setosa
+4           5.1         3.8          1.9         0.4     setosa
+5           6.7         3.1          4.4         1.4 versicolor
+6           6.2         2.2          4.5         1.5 versicolor
+7           6.7         3.0          5.0         1.7 versicolor
+8           7.1         3.0          5.9         2.1  virginica
+9           6.7         2.5          5.8         1.8  virginica
+10          6.4         2.7          5.3         1.9  virginica</code></pre>
+</div>
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">iris_imp</span><span class="op">[</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/stats/complete.cases.html">complete.cases</a></span><span class="op">(</span><span class="va">iris_NA</span><span class="op">)</span>, <span class="op">]</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_head</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
+1           4.6         3.4          1.4         0.3     setosa
+2           5.7         4.2          1.5         0.4     setosa
+3           4.4         3.2          1.3         0.2     setosa
+4           5.1         3.4          1.9         0.4     setosa
+5           6.7         3.1          4.4         1.4 versicolor
+6           6.2         2.2          4.5         1.4 versicolor
+7           6.7         3.2          5.0         1.7 versicolor
+8           7.1         3.0          5.9         2.1  virginica
+9           6.7         3.1          5.8         1.8  virginica
+10          6.4         2.7          5.7         1.9  virginica</code></pre>
+</div>
+</div>
+<p>Mieux vaut éviter d’imputer des données compositionnelles transformées (alr, clr ou ilr, voir <a href="08-explorer.html" class="quarto-xref">chapitre&nbsp;<span>9</span></a>), car l’imputation d’une dimension transformée aura un impact sur tout le vecteur. Dans ce cas, vous pourriez préférablement utiliser la fonction <code>robCompositions::impCoda</code>.</p>
+</section><section id="utilisation-de-recipes" class="level5" data-number="11.1.4.2.3"><h5 data-number="11.1.4.2.3" class="anchored" data-anchor-id="utilisation-de-recipes">
+<span class="header-section-number">11.1.4.2.3</span> Utilisation de recipes</h5>
+<p>Vous avez peut-être remarqué que le mode tidyverse a été quelque peu délaissé dans cette section. Il aurait pu l’être davantage, mais le mode classique (<code>iris[!complete.cases(iris_NA), ]</code> au lieu de <code>iris %&gt;% drop_na()</code>) semblait mieux convenir pour la diversité de fonctions en imputation. Le module <a href="https://recipes.tidymodels.org/index.html"><strong><code>recipes</code></strong></a>, couvert rapidement au <a href="08-explorer.html" class="quarto-xref">chapitre&nbsp;<span>9</span></a>, permet d’effectuer des opérations d’imputation modernes en <em>pipelines</em> (voir <a href="https://tidymodels.github.io/recipes/reference/index.html"><em>Step Functions - Imputation</em></a>). Dans le futur, <strong><code>recipes</code></strong> deviendra probablement le module de choix pour l’imputation.</p>
+<p>Typiquement, on utilise cette méthode pour faire ensuite des modèles prédictifs, donc on commence par séparer le jeu de données en données d’entraînement et de test. Ce concept sera abordé plus en détail dans le <a href="12-autoapprentissage.html" class="quarto-xref">chapitre&nbsp;<span>13</span></a>. Pour le moment, simplifions la méthode en utilisant simplement les fonctions d’imputation sur le jeu de données complet, mais gardez en tête que la bone approche consiste à séparer les données. On fait d’abord une recette : Ici, on choisit les variables prédictives qui seront utilisées pour obtenir une variable prédites (pour l’exemple, disons qu’on souhaite prédire l’espèce à partir des mesures sur les sépales et les pétales).</p>
+<div class="cell">
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/tidymodels/recipes">recipes</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">iris_rec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://recipes.tidymodels.org/reference/recipe.html">recipe</a></span><span class="op">(</span><span class="va">Species</span> <span class="op">~</span> <span class="va">.</span>, data <span class="op">=</span> <span class="va">iris_NA</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Par la suite, on peut appliquer différentes étapes de prétraitement à notre recette. Dans le cas présent, on effectuera seulement l’imputation à l’aide de la méthode des plus proches voisins (KNN). Encore une fois, cette méthode sera présentée plus en détail dans le <a href="12-autoapprentissage.html" class="quarto-xref">chapitre&nbsp;<span>13</span></a>. On peut maintenant estimer les valeurs statistiques (moyenne et écart-type) des données d’entraînement avec la fonction <strong><code>prep</code></strong> (ici, on utilise tout le jeu de données). Enfin, on peut <em>cuire</em> notre recette avec la fonction <strong><code>bake</code></strong> et l’appliquer sur le jeu de données original.</p>
+<div class="cell">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">iris_impute</span> <span class="op">&lt;-</span> <span class="va">iris_rec</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="co"># Recette : Prédire Species</span></span>
+<span>  <span class="fu"><a href="https://recipes.tidymodels.org/reference/step_impute_knn.html">step_impute_knn</a></span><span class="op">(</span><span class="fu"><a href="https://recipes.tidymodels.org/reference/has_role.html">all_predictors</a></span><span class="op">(</span><span class="op">)</span>, neighbors <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://recipes.tidymodels.org/reference/prep.html">prep</a></span><span class="op">(</span><span class="va">.</span>, training <span class="op">=</span> <span class="va">iris_NA</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://recipes.tidymodels.org/reference/bake.html">bake</a></span><span class="op">(</span><span class="va">iris_NA</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">iris_NA</span><span class="op">[</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/stats/complete.cases.html">complete.cases</a></span><span class="op">(</span><span class="va">iris_NA</span><span class="op">)</span>, <span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
+7            4.6         3.4          1.4         0.3       &lt;NA&gt;
+16           5.7          NA          1.5         0.4     setosa
+39           4.4          NA          1.3         0.2     setosa
+45           5.1          NA          1.9         0.4     setosa
+66           6.7         3.1          4.4         1.4       &lt;NA&gt;
+69           6.2         2.2          4.5          NA versicolor
+78           6.7          NA          5.0         1.7 versicolor
+103          7.1          NA          5.9         2.1  virginica
+109          6.7          NA          5.8         1.8  virginica
+112          6.4         2.7           NA         1.9  virginica
+117          6.5          NA          5.5         1.8       &lt;NA&gt;
+122          5.6         2.8          4.9          NA  virginica
+123          7.7         2.8          6.7         2.0       &lt;NA&gt;
+133          6.4         2.8          5.6          NA       &lt;NA&gt;
+134          6.3         2.8           NA         1.5  virginica
+135          6.1         2.6          5.6         1.4       &lt;NA&gt;
+138           NA         3.1          5.5         1.8  virginica
+146          6.7         3.0           NA         2.3  virginica</code></pre>
+</div>
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">iris</span><span class="op">[</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/stats/complete.cases.html">complete.cases</a></span><span class="op">(</span><span class="va">iris_NA</span><span class="op">)</span>, <span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
+7            4.6         3.4          1.4         0.3     setosa
+16           5.7         4.4          1.5         0.4     setosa
+39           4.4         3.0          1.3         0.2     setosa
+45           5.1         3.8          1.9         0.4     setosa
+66           6.7         3.1          4.4         1.4 versicolor
+69           6.2         2.2          4.5         1.5 versicolor
+78           6.7         3.0          5.0         1.7 versicolor
+103          7.1         3.0          5.9         2.1  virginica
+109          6.7         2.5          5.8         1.8  virginica
+112          6.4         2.7          5.3         1.9  virginica
+117          6.5         3.0          5.5         1.8  virginica
+122          5.6         2.8          4.9         2.0  virginica
+123          7.7         2.8          6.7         2.0  virginica
+133          6.4         2.8          5.6         2.2  virginica
+134          6.3         2.8          5.1         1.5  virginica
+135          6.1         2.6          5.6         1.4  virginica
+138          6.4         3.1          5.5         1.8  virginica
+146          6.7         3.0          5.2         2.3  virginica</code></pre>
+</div>
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">iris_impute</span><span class="op">[</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/stats/complete.cases.html">complete.cases</a></span><span class="op">(</span><span class="va">iris_NA</span><span class="op">)</span>, <span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 18 × 5
+   Sepal.Length Sepal.Width Petal.Length Petal.Width Species   
+          &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;     
+ 1          4.6        3.4          1.4         0.3  &lt;NA&gt;      
+ 2          5.7        3.7          1.5         0.4  setosa    
+ 3          4.4        2.8          1.3         0.2  setosa    
+ 4          5.1        3.47         1.9         0.4  setosa    
+ 5          6.7        3.1          4.4         1.4  &lt;NA&gt;      
+ 6          6.2        2.2          4.5         1.27 versicolor
+ 7          6.7        2.97         5           1.7  versicolor
+ 8          7.1        3.13         5.9         2.1  virginica 
+ 9          6.7        3.1          5.8         1.8  virginica 
+10          6.4        2.7          5.33        1.9  virginica 
+11          6.5        2.93         5.5         1.8  &lt;NA&gt;      
+12          5.6        2.8          4.9         1.87 virginica 
+13          7.7        2.8          6.7         2    &lt;NA&gt;      
+14          6.4        2.8          5.6         1.8  &lt;NA&gt;      
+15          6.3        2.8          4.9         1.5  virginica 
+16          6.1        2.6          5.6         1.4  &lt;NA&gt;      
+17          6.5        3.1          5.5         1.8  virginica 
+18          6.7        3            5.5         2.3  virginica </code></pre>
+</div>
+</div>
+<p>Je n’irai pas très en détail dans cette approche, puisque je vous suggère plutôt d’utiliser la méthode avec <strong><code>mice</code></strong> présentée précédemment, mais la méthode <strong><code>recipes</code></strong> a notamment l’avantage de bien s’intégrer lorsque vous souhaitez faire un modèle prédictif.</p>
+</section></section></section></section><section id="valeurs-et-échantillons-aberrants-définition-origines-méthodes-de-détection-et-traitement" class="level2" data-number="11.2"><h2 data-number="11.2" class="anchored" data-anchor-id="valeurs-et-échantillons-aberrants-définition-origines-méthodes-de-détection-et-traitement">
+<span class="header-section-number">11.2</span> Valeurs et échantillons aberrants: définition, origines, méthodes de détection et traitement</h2>
+<section id="définitions" class="level3" data-number="11.2.1"><h3 data-number="11.2.1" class="anchored" data-anchor-id="définitions">
+<span class="header-section-number">11.2.1</span> Définitions</h3>
+<p>En analyse univariée, une valeur aberrante est une “donnée observée” pour une variable qui semble anormale au regard des valeurs dont on dispose pour les autres observations de l’échantillon (<a href="https://www.researchgate.net/publication/26406403_Traitement_des_valeurs_aberrantes_concepts_actuels_et_tendances_generales">Planchon, 2005</a>). En analyse multivariée, l’échantillon aberrant résulte d’une erreur importante se trouvant dans un des composants du vecteur de réponse, ou de petites erreurs systématiques dans chacun de ses composants, et qui de ce fait, ne partage pas les relations entre les variables de la population (<a href="https://www.researchgate.net/publication/26406403_Traitement_des_valeurs_aberrantes_concepts_actuels_et_tendances_generales">Planchon, 2005</a>).</p>
+<p>La valeur ou l’observation aberrante est statistiquement discordante dans le contexte d’un modèle de probabilité supposé connu (<a href="https://www.wiley.com/en-us/Outliers+in+Statistical+Data%2C+3rd+Edition-p-9780471930945">Barnett et Lewis, 1994</a>; <a href="https://www.tandfonline.com/doi/abs/10.1080/00401706.1969.10490657">Grubbs, 1969</a>; <a href="https://www.jstor.org/stable/1403805?seq=1#page_scan_tab_contents">Munoz-Garcia et al., 1990</a>; <a href="https://www.researchgate.net/publication/239850370_Using_Clustering_and_Robust_Estimators_to_Detect_Outliers_in_Multivariate_Data">Pires et Santos-Pereira, 2005</a>). Leur présence dans les données peut conduire à des estimateurs de paramètres biaisés et, suite à la réalisation de tests statistiques, à une interprétation des résultats erronée (<a href="https://www.researchgate.net/publication/26406403_Traitement_des_valeurs_aberrantes_concepts_actuels_et_tendances_generales">Planchon, 2005</a>).</p>
+</section><section id="origines" class="level3" data-number="11.2.2"><h3 data-number="11.2.2" class="anchored" data-anchor-id="origines">
+<span class="header-section-number">11.2.2</span> Origines</h3>
+<p>Dans une collecte de données, plusieurs sources de variabilité peuvent mener à des données aberrantes: la variabilité inhérente mais inusitée ou erreur systématique, l’erreur de mesure et l’erreur d’exécution (<a href="#fig-imput-va-origine" class="quarto-xref">Figure&nbsp;<span>11.3</span></a>) (<a href="https://www.wiley.com/en-us/Outliers+in+Statistical+Data%2C+3rd+Edition-p-9780471930945">Barnett et Lewis, 1994</a>; <a href="https://www.researchgate.net/publication/26406403_Traitement_des_valeurs_aberrantes_concepts_actuels_et_tendances_generales">Planchon, 2005</a>).</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-imput-va-origine" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-imput-va-origine-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/10_origine-va.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-imput-va-origine-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.3: Schéma général de traitement des valeurs aberrantes - adapté de Barnett et Lewis, 1994
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>La variabilité inhérente est celle par laquelle les observations varient naturellement de manière aléatoire à travers la population. L’erreur de mesure renferme les inadéquations au niveau de la méthode de mesure, des instruments de mesure, l’arrondi des valeurs obtenues ou les erreurs d’enregistrement. Cette erreur est donc liée à des circonstances bien déterminées. Les erreurs d’exécution interviennent également dans des circonstances bien déterminées. Ce sont les erreurs de manipulation, les erreurs commises dans l’assemblage des données, ou lors du traitement informatique.</p>
+<p>L’examen des valeurs aberrantes dans une base de données a pour objectif de les identifier pour soit les supprimer, soit les conserver, ou les corriger avant d’ajuster des modèles non robustes (<a href="https://www.researchgate.net/publication/222423330_Outlier_identification_in_high_dimension">Filzmoser et al., 2008</a>; <a href="https://www.researchgate.net/publication/26406403_Traitement_des_valeurs_aberrantes_concepts_actuels_et_tendances_generales">Planchon, 2005</a>). La valeur extrême peut être liée à un événement atypique, mais néanmoins connu et intéressant à étudier. Dans ce cas elle est importante à conserver. La correction (ou accommodation) évite le rejet des observations aberrantes et consiste à estimer les valeurs des paramètres de la distribution de base de façon relativement libre sans déformation des résultats liés à leur présence (<a href="https://www.wiley.com/en-us/Outliers+in+Statistical+Data%2C+3rd+Edition-p-9780471930945">Barnett et Lewis, 1994</a>).</p>
+<p>L’approche d’identification des observations aberrantes selon <a href="https://www.tandfonline.com/doi/abs/10.1080/01621459.1993.10476339">Davies et Gather (1993)</a> est de supposer qu’elles ont une distribution différente de celle du reste des observations. <a href="https://doi.org/10.1016/j.scitotenv.2004.11.023">Reimann et al.&nbsp;(2005)</a> les distinguent ainsi des valeurs extrêmes qui, bien qu’éloignées du centre du nuage, appartiennent à la même distribution que les autres observations.</p>
+</section><section id="détection-et-traitement-des-valeurs-aberrantes-univariés" class="level3" data-number="11.2.3"><h3 data-number="11.2.3" class="anchored" data-anchor-id="détection-et-traitement-des-valeurs-aberrantes-univariés">
+<span class="header-section-number">11.2.3</span> Détection et traitement des valeurs aberrantes univariés</h3>
+<p>En analyse univariée, les méthodes graphiques telles que le diagramme de dispersion des observations classées en fonction de leur rang, les boxplots, les graphiques des quantiles de valeurs brutes ou des résidus, permettent de signaler la présence de valeurs aberrantes (<a href="https://www.researchgate.net/publication/26406403_Traitement_des_valeurs_aberrantes_concepts_actuels_et_tendances_generales">Planchon, 2005</a>).</p>
+<p>Prenons, par exemple, les données <code>mtcars</code>.</p>
+<div class="cell">
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"mtcars"</span><span class="op">)</span></span>
+<span><span class="va">mtcars</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_sample</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                    mpg cyl  disp  hp drat    wt  qsec vs am gear carb
+Merc 280           19.2   6 167.6 123 3.92 3.440 18.30  1  0    4    4
+Fiat 128           32.4   4  78.7  66 4.08 2.200 19.47  1  1    4    1
+Pontiac Firebird   19.2   8 400.0 175 3.08 3.845 17.05  0  0    3    2
+Mazda RX4          21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4
+Cadillac Fleetwood 10.4   8 472.0 205 2.93 5.250 17.98  0  0    3    4</code></pre>
+</div>
+</div>
+<p>Disons que nous cherchons à détecter les valeurs aberrantes de la puissance du moteur, soit la colonne <code>hp</code>. On pourrait jeter un oeil à la colonne <code>hp</code>, mais mieux vaudrait considérer qu’il ne s’agit pas de moteurs de même type. De même, si vous consigniez la masse des abeilles d’espèces diférentes collectées dans des trappes, vous risqueriez, en considérant que les masses proviennent d’une seule distribution, d’écarter systématiquement une espèce plus petite ou un autre plus imposante. Examinons donc la puissance des moteurs selon le nombre de cylindres.</p>
+<div class="cell">
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mtcars</span> <span class="op">|&gt;</span>  </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span>, y <span class="op">=</span> <span class="va">hp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="10-imputation_files/figure-html/imput-outliers-bp-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="détection-selon-la-distance-interquartile" class="level4" data-number="11.2.3.1"><h4 data-number="11.2.3.1" class="anchored" data-anchor-id="détection-selon-la-distance-interquartile">
+<span class="header-section-number">11.2.3.1</span> Détection selon la distance interquartile</h4>
+<p>Selon la définition classique d’un boxplot, un point est affiché comme aberrant si</p>
+<p><span class="math display">\[x &lt; Q_{25\%}(x) - 1.5 \times IQR_{25\%~75\%}(x)\]</span></p>
+<p><span class="math display">\[ou\]</span></p>
+<p><span class="math display">\[x &gt; Q_{75\%}(x) + 1.5 \times IQR_{25\%~75\%}(x)\]</span></p>
+<p>où <span class="math inline">\(Q{a}\)</span> est le quartile pour la probabilité <span class="math inline">\(a\)</span> et <span class="math inline">\(IQR_{a~b}\)</span> est la distance entre les quartiles de <span class="math inline">\(a\)</span> et <span class="math inline">\(b\)</span> (<span class="math inline">\(b&gt;a\)</span>). Les probabilités des quartiles (25% et 75%), ainsi que le multiplicateur (1.5) sont arbitraires. On pourra utiliser des fonctions automatiques offertes par des modules spécialisés. Mais pour les fonctions simples, pourquoi ne pas les concevoir soi-même!</p>
+<div class="cell">
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">iqr_01</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">probs</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.25</span>, <span class="fl">.75</span><span class="op">)</span>, <span class="va">mult</span> <span class="op">=</span> <span class="fl">1.5</span>, <span class="va">na.rm</span> <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="co"># x est le vecteur de valeurs</span></span>
+<span>  <span class="co"># probs est un vecteur de deux valeurs identifiant les quartiles recherchés</span></span>
+<span>  <span class="co"># mult est le multiplicateur</span></span>
+<span>  <span class="va">io</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span> <span class="co"># créer un vecteur vide qui consignera si la valeur est aberrante ou non</span></span>
+<span>  <span class="va">limits</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">x</span>, probs <span class="op">=</span> <span class="va">probs</span>, na.rm <span class="op">=</span> <span class="va">na.rm</span><span class="op">)</span> <span class="co"># calculer la valeur des quartiles</span></span>
+<span>  <span class="va">offset</span> <span class="op">&lt;-</span> <span class="va">mult</span> <span class="op">*</span> <span class="op">(</span><span class="va">limits</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> <span class="op">-</span> <span class="va">limits</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span> <span class="co"># calculer la distance limite des quartiles</span></span>
+<span>  <span class="va">io</span><span class="op">[</span><span class="va">x</span> <span class="op">&gt;</span> <span class="op">(</span><span class="va">limits</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> <span class="op">+</span> <span class="va">offset</span><span class="op">)</span> <span class="op">|</span> <span class="va">x</span> <span class="op">&lt;</span> <span class="op">(</span><span class="va">limits</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">-</span> <span class="va">offset</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">0</span> <span class="co"># si en-deça ou au-delà des limites</span></span>
+<span>  <span class="va">io</span><span class="op">[</span><span class="va">x</span> <span class="op">&lt;=</span> <span class="op">(</span><span class="va">limits</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> <span class="op">+</span> <span class="va">offset</span><span class="op">)</span> <span class="op">&amp;</span> <span class="va">x</span> <span class="op">&gt;=</span> <span class="op">(</span><span class="va">limits</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">-</span> <span class="va">offset</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="co"># si à l'intérieur des limites</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">io</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>En se servant des possibilités de <strong><code>dplyr</code></strong>, on pourra détecter les valeurs aberrantes par groupe.</p>
+<div class="cell">
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mtcars</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span> <span class="op">|&gt;</span>  <span class="co"># grouper par cylindre</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>io <span class="op">=</span> <span class="fu">iqr_01</span><span class="op">(</span><span class="va">hp</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span>  <span class="co"># détecter les valeurs aberrantes</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">io</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span>  <span class="co"># ne conserver que les valeurs non aberrantes</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">io</span><span class="op">)</span> <span class="co"># enlever la colonne io créée précédemment.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 31 × 11
+# Groups:   cyl [3]
+     mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
+   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1  21       6  160    110  3.9   2.62  16.5     0     1     4     4
+ 2  21       6  160    110  3.9   2.88  17.0     0     1     4     4
+ 3  22.8     4  108     93  3.85  2.32  18.6     1     1     4     1
+ 4  21.4     6  258    110  3.08  3.22  19.4     1     0     3     1
+ 5  18.7     8  360    175  3.15  3.44  17.0     0     0     3     2
+ 6  18.1     6  225    105  2.76  3.46  20.2     1     0     3     1
+ 7  14.3     8  360    245  3.21  3.57  15.8     0     0     3     4
+ 8  24.4     4  147.    62  3.69  3.19  20       1     0     4     2
+ 9  22.8     4  141.    95  3.92  3.15  22.9     1     0     4     2
+10  19.2     6  168.   123  3.92  3.44  18.3     1     0     4     4
+# ℹ 21 more rows</code></pre>
+</div>
+</div>
+<p>Le nouveau tableau est de 31 lignes. La valeur enlevée est celle qui apparaissait précédemment comme un point sur le boxplot.</p>
+</section><section id="détection-selon-la-cote-z" class="level4" data-number="11.2.3.2"><h4 data-number="11.2.3.2" class="anchored" data-anchor-id="détection-selon-la-cote-z">
+<span class="header-section-number">11.2.3.2</span> Détection selon la cote Z</h4>
+<p>La cote Z est l’écart de la moyenne mesurée en terme de nombre d’écart-type. Si une valeur est située à 3 écarts-type de la moyenne, la cote Z est de 3. On pourra détecter les valeurs aberrantes selon la distance des points en terme de cote Z, et retrancher les valeurs qui se situes au-delà d’une certaine limite. Il n’existe pas de distance standard: à vous de décider. Mais le nombre 3 est souvent utilisé.</p>
+<div class="cell">
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">zscore_01</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">delimiter</span> <span class="op">=</span> <span class="fl">3</span>, <span class="va">na.rm</span> <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">centered</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="va">na.rm</span><span class="op">)</span></span>
+<span>  <span class="va">limit</span> <span class="op">&lt;-</span> <span class="va">delimiter</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="va">na.rm</span><span class="op">)</span></span>
+<span>  <span class="va">io</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">centered</span><span class="op">)</span> <span class="op">&gt;</span> <span class="va">limit</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">io</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>La foncion <code>zscore_01</code> est conçue de la même manière que <code>iqr_01</code>.</p>
+<div class="cell">
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mtcars</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span> <span class="op">|&gt;</span>  <span class="co"># grouper par cylindre</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>io <span class="op">=</span> <span class="fu">zscore_01</span><span class="op">(</span><span class="va">hp</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span>   <span class="co"># détecter les valeurs aberrantes</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">io</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span>  <span class="co"># ne conserver que les valeurs non aberrantes</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">io</span><span class="op">)</span> <span class="co"># enlever la colonne io créée précédemment</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 32 × 11
+# Groups:   cyl [3]
+     mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
+   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1  21       6  160    110  3.9   2.62  16.5     0     1     4     4
+ 2  21       6  160    110  3.9   2.88  17.0     0     1     4     4
+ 3  22.8     4  108     93  3.85  2.32  18.6     1     1     4     1
+ 4  21.4     6  258    110  3.08  3.22  19.4     1     0     3     1
+ 5  18.7     8  360    175  3.15  3.44  17.0     0     0     3     2
+ 6  18.1     6  225    105  2.76  3.46  20.2     1     0     3     1
+ 7  14.3     8  360    245  3.21  3.57  15.8     0     0     3     4
+ 8  24.4     4  147.    62  3.69  3.19  20       1     0     4     2
+ 9  22.8     4  141.    95  3.92  3.15  22.9     1     0     4     2
+10  19.2     6  168.   123  3.92  3.44  18.3     1     0     4     4
+# ℹ 22 more rows</code></pre>
+</div>
+</div>
+<p>Selon ce critère, toutes les valeurs sont conservées.</p>
+</section></section><section id="détection-et-traitement-des-échantillons-aberrants-multivariés" class="level3" data-number="11.2.4"><h3 data-number="11.2.4" class="anchored" data-anchor-id="détection-et-traitement-des-échantillons-aberrants-multivariés">
+<span class="header-section-number">11.2.4</span> Détection et traitement des échantillons aberrants multivariés</h3>
+<p>En analyse multivariée, il existe deux approches fondamentales d’identification des valeurs aberrantes: celles basées sur le calcul de distances et les méthodes par projection (<a href="https://www.researchgate.net/publication/222423330_Outlier_identification_in_high_dimension">Filzmoser et al., 2008</a>; <a href="https://ulaval.on.worldcat.org/oclc/5156296704">Hadi et al., 2009</a>).</p>
+<section id="approches-basées-sur-les-distances" class="level4" data-number="11.2.4.1"><h4 data-number="11.2.4.1" class="anchored" data-anchor-id="approches-basées-sur-les-distances">
+<span class="header-section-number">11.2.4.1</span> Approches basées sur les distances</h4>
+<section id="la-distance-de-mahalanobis" class="level5" data-number="11.2.4.1.1"><h5 data-number="11.2.4.1.1" class="anchored" data-anchor-id="la-distance-de-mahalanobis">
+<span class="header-section-number">11.2.4.1.1</span> La distance de Mahalanobis</h5>
+<p>Les méthodes basées sur la distance détectent les valeurs aberrantes en calculant la distance, généralement la distance de Mahalanobis (vue au <a href="09-ordination.html" class="quarto-xref">chapitre&nbsp;<span>10</span></a>) entre un point particulier et le centre des données (<a href="https://www.researchgate.net/publication/222423330_Outlier_identification_in_high_dimension">Filzmoser et al., 2008</a>; <a href="https://www.researchgate.net/publication/239850370_Using_Clustering_and_Robust_Estimators_to_Detect_Outliers_in_Multivariate_Data">Pires et Santos-Pereira, 2005</a>). Pour un échantillon <span class="math inline">\(x\)</span> multivarié, la distance de Mahalanobis est calculée comme:</p>
+<p><span class="math display">\[ \mathscr{M} = \sqrt{(\vec{x}-\vec{\mu})^T S^{-1} (\vec{x}-\vec{\mu})}.\ \]</span> où <span class="math inline">\(\vec{\mu}\)</span> est la moyenne arithmétique multivariée (le centroïde) et <span class="math inline">\(S\)</span> la matrice de variance-covariances de l’échantillon, qui doit être inversée.</p>
+<p>Cette distance indique à quel point chaque observation est éloignée du centre du nuage multivarié créé par les données (<a href="https://ascelibrary.org/doi/10.1061/%28ASCE%29EE.1943-7870.0000271">Alameddine et al., 2010</a>; <a href="https://www.tandfonline.com/doi/abs/10.1080/01621459.1993.10476339">Davies et Gather, 1993</a>). D’après <a href="https://ascelibrary.org/doi/10.1061/%28ASCE%29EE.1943-7870.0000271">Alameddine et al.&nbsp;(2010)</a>, lorsque les données sont supposées suivre une distribution normale, les carrés des distances <span class="math inline">\(\mathscr{M}\)</span> calculées peuvent être considérés comme suivant une distribution du <span class="math inline">\(\chi^2\)</span>. Par convention, tout point qui a une <span class="math inline">\(\mathscr{M}_i^2\)</span> dépassant un quantile donné de la distribution du <span class="math inline">\(\chi^2\)</span> (par exemple, <span class="math inline">\(\chi^2_{df = p ; 0.975}\)</span>, le quantile 97,5% avec <span class="math inline">\(p\)</span> (le nombre de variables) degrés de liberté), est considéré comme atypique et identifié comme une valeur aberrante (<a href="https://dl.acm.org/citation.cfm?id=1650448">Filzmoser et al., 2005</a>). Les observations aberrantes multivariées peuvent ainsi être définies comme des observations ayant une grande distance de Mahalanobis (<span class="math inline">\(\mathscr{M}_i^2\)</span>).</p>
+<p>L’inconvénient avec les méthodes basées sur les distances réside dans la difficulté d’obtenir des estimés robuste de la moyenne <span class="math inline">\(\mu\)</span> et de la matrice de variance-covariances <span class="math inline">\(S\)</span>, puisque la distance de Mahalanobis est elle-même sensible aux données extrêmes. De plus, il serait difficile de fixer la valeur critique idéale de <span class="math inline">\(\mathscr{M}\)</span> permettant de séparer les valeurs aberrantes des points réguliers (<a href="https://dl.acm.org/citation.cfm?id=1650448">Filzmoser et al., 2005</a>; <a href="https://www.researchgate.net/publication/222423330_Outlier_identification_in_high_dimension">Filzmoser et al., 2008</a>).</p>
+<p>La fonction <code>sign1</code> du module mvoutlier détecte les valeurs aberrantes selon un seuil du <span class="math inline">\(\chi^2_{df = 3 ; 0.975}\)</span> pour les transformations en log-ratio isométriques de Al, Fe et K dans un humus (l’inverse de la matrice de covariance des log-ratio centrés est singulière).</p>
+<div class="cell">
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="http://cstat.tuwien.ac.at/filz/">"mvoutlier"</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="http://www.stat.boogaart.de/compositions/">"compositions"</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"humus"</span><span class="op">)</span></span>
+<span><span class="va">sbp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>,<span class="op">-</span><span class="fl">1</span>,<span class="op">-</span><span class="fl">1</span>,</span>
+<span>                <span class="fl">1</span>,<span class="op">-</span><span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">0</span>,</span>
+<span>                <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">1</span>,<span class="op">-</span><span class="fl">1</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">4</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">ilr_elements</span> <span class="op">&lt;-</span> <span class="va">humus</span> <span class="op">|&gt;</span> </span>
+<span>        <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">Al</span>, <span class="va">Fe</span>, <span class="va">K</span>, <span class="va">Na</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>        <span class="fu"><a href="https://rdrr.io/pkg/compositions/man/ilr.html">ilr</a></span><span class="op">(</span><span class="va">.</span>, V <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/compositions/man/gsimerge2signary.html">gsi.buildilrBase</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">sbp</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>        <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>        <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>AlFe_KNa <span class="op">=</span> <span class="va">V1</span>,</span>
+<span>                      Al_Fe <span class="op">=</span> <span class="va">V2</span>,</span>
+<span>                      K_Na <span class="op">=</span> <span class="va">V3</span><span class="op">)</span></span>
+<span><span class="va">is_out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/mvoutlier/man/sign1.html">sign1</a></span><span class="op">(</span><span class="va">ilr_elements</span>, qcrit <span class="op">=</span> <span class="fl">0.975</span><span class="op">)</span><span class="op">$</span><span class="va">wfinal01</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">ilr_elements</span>, col <span class="op">=</span> <span class="va">is_out</span> <span class="op">+</span> <span class="fl">2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="10-imputation_files/figure-html/imput-humus-ilr-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>La proportion de valeurs aberrantes:</p>
+<div class="cell">
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">is_out</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">is_out</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.089141</code></pre>
+</div>
+</div>
+<p>Différentes méthodes <em>robustes</em> (qui s’accommodent de la présence de points extrêmes) de détection des valeurs aberrantes sont présentées dans la littérature telles que la méthode du volume minimum de l’ellipsoïde (<strong>MVE</strong>, <em>minimum volume ellipsoid</em>), du déterminant minimum de la matrice de covariance (<strong>MCD</strong>, <em>minimum Covariance matrix determinant</em>), et les estimateurs de type maximum de vraisemblance (<strong>M-estimators</strong>) (<a href="https://ascelibrary.org/doi/10.1061/%28ASCE%29EE.1943-7870.0000271">Alameddine et al., 2010</a>; <a href="https://www.researchgate.net/publication/222423330_Outlier_identification_in_high_dimension">Filzmoser et al., 2008</a>). Ces méthodes calculent des distances robustes similaires aux distances de Mahalanobis, mais remplacent les matrices des moyennes et des covariances respectivement par un seuil critique multivarié robuste (sur <span class="math inline">\(\mu\)</span>) et un estimateur d’échelle (sur <span class="math inline">\(S\)</span>) qui ne sont pas influencés par les valeurs aberrantes (<a href="https://ascelibrary.org/doi/10.1061/%28ASCE%29EE.1943-7870.0000271">Alameddine et al., 2010</a>).</p>
+</section><section id="la-méthode-du-volume-minimum-de-lellipsoïde-mve" class="level5" data-number="11.2.4.1.2"><h5 data-number="11.2.4.1.2" class="anchored" data-anchor-id="la-méthode-du-volume-minimum-de-lellipsoïde-mve">
+<span class="header-section-number">11.2.4.1.2</span> La méthode du volume minimum de l’ellipsoïde (MVE)</h5>
+<p>Le volume minimum de l’ellipsoïde est le plus petit ellipsoïde régulier couvrant au moins <span class="math inline">\(h\)</span> éléments de l’ensemble des données <span class="math inline">\(X = \{x_1, x_2, ..., x_n \}\)</span> où l’estimateur de localisation est le centre de cet ellipsoïde et l’estimateur de dispersion correspond à sa matrice de covariance. <span class="math inline">\(h\)</span> est fixé à priori supérieur ou égal à <span class="math inline">\(\frac{n}{2}+1\)</span>, où <span class="math inline">\(n\)</span> est le nombre total de points du nuage de données. Le seuil de détection qui est la fraction des valeurs aberrantes qui, lorsqu’elle est dépassée, entraîne des estimés totalement biaisés est de l’ordre de 50% à mesure que <span class="math inline">\(n\)</span> augmente (<a href="https://ascelibrary.org/doi/10.1061/%28ASCE%29EE.1943-7870.0000271">Alameddine et al., 2010</a>; <a href="https://doi.org/10.1023/A:1020713207683">Croux et al., 2002</a>; <a href="https://dl.acm.org/citation.cfm?id=1650448">Filzmoser et al., 2005</a>; <a href="https://doi.org/10.1002/wics.19">Van Aelst et Rousseeuw, 2009</a>).</p>
+<p>L’algorithme MVE est initié en choisissant au hasard un ensemble de <span class="math inline">\(p+1\)</span> points de données pour estimer le modèle majoritaire, où <span class="math inline">\(p\)</span> est le nombre de variables. Cet ensemble initial est alors augmenté pour contenir les <span class="math inline">\(h\)</span> points de données. L’algorithme passe par plusieurs itérations avant de converger sur l’ensemble des points les plus rapprochés qui auront le plus petit volume d’ellipsoïde (<a href="https://ascelibrary.org/doi/10.1061/%28ASCE%29EE.1943-7870.0000271">Alameddine et al., 2010</a>).</p>
+<p>Le module MASS comprend la fonction <code>cov.mve</code> à cet effet. Cette fonction demande le nombre minimal de points que l’on désire conserver, en absolu. Il s’agit d’un nombre entier, alors si l’on désire en utiliser une fraction (ici, 90%), il faut l’arrondir. Parmi les sorties de la fonction <code>cov.mve</code>, on retrouve les numéros de ligne qui se trouvent à l’intérieur de l’ellipsoide.</p>
+<div class="cell">
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="http://www.stats.ox.ac.uk/pub/MASS4/">"MASS"</a></span><span class="op">)</span></span>
+<span><span class="va">select</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="va"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span> <span class="co"># pour éviter que la fonction select du module MASS remplace celle de dplyr</span></span>
+<span><span class="va">min_in</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fl">0.9</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">ilr_elements</span><span class="op">)</span><span class="op">)</span> <span class="co"># le minimum de points à garder, 90% du total</span></span>
+<span><span class="va">id_in</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/MASS/man/cov.rob.html">cov.mve</a></span><span class="op">(</span><span class="va">ilr_elements</span>, quantile.used <span class="op">=</span> <span class="va">min_in</span><span class="op">)</span><span class="op">$</span><span class="va">best</span></span>
+<span><span class="va">is_in</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">ilr_elements</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">id_in</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">ilr_elements</span>, col <span class="op">=</span> <span class="va">is_in</span> <span class="op">+</span> <span class="fl">2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="10-imputation_files/figure-html/imput-humus-ilr-outliers-mve-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>La proportion de valeurs aberrantes:</p>
+<div class="cell">
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="op">!</span><span class="va">is_in</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">is_in</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1004862</code></pre>
+</div>
+</div>
+</section><section id="la-méthode-du-déterminant-minimum-de-la-matrice-de-covariance-mcd" class="level5" data-number="11.2.4.1.3"><h5 data-number="11.2.4.1.3" class="anchored" data-anchor-id="la-méthode-du-déterminant-minimum-de-la-matrice-de-covariance-mcd">
+<span class="header-section-number">11.2.4.1.3</span> La méthode du déterminant minimum de la matrice de covariance (MCD)</h5>
+<p>La méthode du déterminant minimum de la matrice de covariance a pour objectif de trouver <span class="math inline">\(h\)</span> (<span class="math inline">\(h &gt; n\)</span>) observations de l’ensemble de données <span class="math inline">\(X = \{x_1, x_2, ..., x_n \}\)</span>, dont la matrice de covariance a le plus petit déterminant. Comme avec la méthode MVE, l’estimateur de localisation est la moyenne de ces <span class="math inline">\(h\)</span> points et celui de la dispersion est proportionnel à la matrice de covariance (<a href="https://dl.acm.org/citation.cfm?id=1650448">Filzmoser et al., 2005</a>; <a href="https://onlinelibrary.wiley.com/doi/full/10.1002/wics.1421">Hubert et al., 2018</a>; <a href="https://www.tandfonline.com/doi/abs/10.1080/00401706.1999.10485670">Rousseeuw et Van Driessen, 1999</a>).</p>
+<div class="cell">
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">id_in</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/MASS/man/cov.rob.html">cov.mcd</a></span><span class="op">(</span><span class="va">ilr_elements</span>, quantile.used <span class="op">=</span> <span class="va">min_in</span><span class="op">)</span><span class="op">$</span><span class="va">best</span></span>
+<span><span class="va">is_in</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">ilr_elements</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">id_in</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">ilr_elements</span>, col <span class="op">=</span> <span class="va">is_in</span> <span class="op">+</span> <span class="fl">2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="10-imputation_files/figure-html/imput-humus-ilr-outliers-mcd-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>La proportion de valeurs aberrantes:</p>
+<div class="cell">
+<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="op">!</span><span class="va">is_in</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">is_in</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1004862</code></pre>
+</div>
+</div>
+<p>Mais en cas de dissymétrie des données, ces tests (MVE, MCD) ne seraient pas applicables (<a href="https://www.researchgate.net/publication/26406403_Traitement_des_valeurs_aberrantes_concepts_actuels_et_tendances_generales">Planchon, 2005</a>).</p>
+</section></section><section id="les-méthodes-par-projection" class="level4" data-number="11.2.4.2"><h4 data-number="11.2.4.2" class="anchored" data-anchor-id="les-méthodes-par-projection">
+<span class="header-section-number">11.2.4.2</span> Les méthodes par projection</h4>
+<p>Ces méthodes de détection des observations aberrantes trouvent des projections appropriées des données dans lesquelles les observations aberrantes sont facilement apparentes. Ces observations sont ensuite pondérées pour produire un estimateur robuste pouvant être utilisé pour identifier les observations aberrantes (<a href="https://www.researchgate.net/publication/222423330_Outlier_identification_in_high_dimension">Filzmoser et al., 2008</a>). Ces méthodes n’assument pas une distribution particulière des données mais cherchent des projections utiles. Elles ne sont donc pas affectées par la non-normalité et s’appliquent sur divers types de distributions (<a href="https://www.researchgate.net/publication/222423330_Outlier_identification_in_high_dimension">Filzmoser et al., 2008</a>; <a href="https://onlinelibrary.wiley.com/doi/pdf/10.1002/wics.6">Hadi et al., 2009</a>). Le but de cette projection exploratoire est d’utiliser les données pour trouver des projections minimales (à une, deux ou trois dimensions) qui fournissent les vues les plus révélatrices des données complètes (<a href="https://amstat.tandfonline.com/doi/abs/10.1080/01621459.1987.10478427">Friedman, 1987</a>). La méthode attribue un indice numérique à chaque projection en fonction de la densité des données projetée pour capturer le degré de structure non linéaire présent dans la distribution projetée (<a href="https://amstat.tandfonline.com/doi/abs/10.1080/01621459.1987.10478427">Friedman, 1987</a>; <a href="https://onlinelibrary.wiley.com/doi/pdf/10.1002/wics.6">Hadi et al., 2009</a>).</p>
+<p>En R, nous revenons au module <strong><code>mvoutlier</code></strong>, mais cette fois-ci avec la fonction <code>sign2</code>.</p>
+<div class="cell">
+<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="http://cstat.tuwien.ac.at/filz/">"mvoutlier"</a></span><span class="op">)</span></span>
+<span><span class="va">is_out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/mvoutlier/man/sign2.html">sign2</a></span><span class="op">(</span><span class="va">ilr_elements</span>, qcrit <span class="op">=</span> <span class="fl">0.975</span><span class="op">)</span><span class="op">$</span><span class="va">wfinal01</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">ilr_elements</span>, col <span class="op">=</span> <span class="va">is_out</span> <span class="op">+</span> <span class="fl">2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="10-imputation_files/figure-html/imput-humus-ilr-outliers-sign2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>La proportion de valeurs aberrantes:</p>
+<div class="cell">
+<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">is_out</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">is_out</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.102107</code></pre>
+</div>
+</div>
 
 
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</section></section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -317,10 +1095,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -330,8 +1107,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -344,6 +1130,125 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -387,6 +1292,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -412,6 +1318,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -470,30 +1402,30 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="./09-ordination.html" class="pagination-link">
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="./09-ordination.html" class="pagination-link" aria-label="Association, partitionnement et ordination">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Association, partitionnement et ordination</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./11-series-temporelles.html" class="pagination-link">
+      <a href="./11-series-temporelles.html" class="pagination-link" aria-label="Les séries temporelles">
         <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Les séries temporelles</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
-    <div class="nav-footer-left">Analyse et modélisation d’agroécosystèmes est construit avec <a href="https://quarto.org/">Quarto</a>.</div>   
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Analyse et modélisation d’agroécosystèmes est construit avec <a href="https://quarto.org/">Quarto</a>.</p>
+</div>   
     <div class="nav-footer-center">
       &nbsp;
     </div>
-    <div class="nav-footer-right">Lien vers le <a href="https://essicolo.github.io/ecologie-mathematique-R/">manuel original</a>.</div>
+    <div class="nav-footer-right">
+<p>Lien vers le <a href="https://essicolo.github.io/ecologie-mathematique-R/">manuel original</a>.</p>
+</div>
   </div>
 </footer>
-
 
 
 </body></html>

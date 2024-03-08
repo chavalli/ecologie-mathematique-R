@@ -2,4 +2,531 @@
 
 ---
 
-À venir
+**Objectifs spécifiques**:
+
+À la fin de ce chapitre, vous
+
+- saurez comment procéder à l'imputation de valeurs manquantes en mode univarié et multivarié
+- saurez comment détecter des valeurs aberrantes en mode univarié et multivarié
+
+---
+
+:::{.callout-note title="Note"}
+Ce chapitre a été initialement rédigé par Zonlehoua Coulibali, qui a gracieusement accepté de contribuer à ces notes de cours. Le texte a été adapté au format du manuel par Essi Parent.
+:::
+
+Les données écologiques sont généralement recueillies à différentes échelles, concernent plusieurs sites et plusieurs variables (corrélées ou non), impliquent différents individus de différentes agences et peuvent s'étendre sur plusieurs années ([Alameddine et al., 2010](https://ulaval.on.worldcat.org/oclc/5711421967); [Lokupitiya et al., 2006](https://doi.org/10.1002/env.773)). De ce fait, la plupart de ces bases de données contiennent des valeurs manquantes et/ou aberrantes liées à différentes sources d'erreurs, pouvant parfois limiter l'utilité des inférences statistiques ([Collins et al., 2001](https://europepmc.org/abstract/MED/11778676); [Glasson-Cicognani et Berchtold, 2010](https://hal.inria.fr/inria-00494698/document)). Il convient alors de les traiter correctement avant d'effectuer les analyses statistiques car les ignorer peut entraîner, outre une perte de précision, de forts biais dans les modèles d'analyse ([Alameddine et al., 2010](https://ascelibrary.org/doi/10.1061/%28ASCE%29EE.1943-7870.0000271); [Filzmoser et al., 2008](https://www.researchgate.net/publication/222423330_Outlier_identification_in_high_dimension); [Glasson-Cicognani et Berchtold, 2010](https://hal.inria.fr/inria-00494698/document)).
+
+## Données manquantes: définition, origine, typologie et traitement
+
+### Définition
+
+Les tableaux de données sont organisés en lignes et colonnes. Les lignes représentent les observations, les unités, les sujets ou les cas étudiés selon le contexte, et les colonnes représentent les variables mesurées pour chaque observation. Les entrées qui sont les valeurs (ou contenus) des cellules ou encore les valeurs observées, peuvent être des valeurs continues, ou des valeurs catégoriales ([Little et Rubin, 2002](https://onlinelibrary.wiley.com/doi/book/10.1002/9781119013563)). Considérant une variable aléatoire $X$ quelconque, une donnée manquante $x_m$, est une donnée pour laquelle la valeur  de la variable $X$ est inconnue (ou absente). En d'autres termes, on ne dispose pas de la valeur de $X$ pour le sujet $i$ donné. C'est une donnée non disponible qui serait utile pour l'analyse si elle était observée ([Ware  et al., 2012](https://www.nejm.org/doi/full/10.1056/NEJMsm1210043)).
+
+La littérature sur les données manquantes est plus abondante dans les domaines des sciences sociales sur les données d'enquêtes, et des sciences médicales ([Davey et al., 2001](https://www.jstor.org/stable/3069628?seq=1/subjects); [Graham, 2012](https://www.springer.com/us/book/9781461440178)). Pour représenter leur répartition dans la table de données, une matrice indicatrice des valeurs manquantes $M = (m_{ij})$ est généralement utilisée où $m_{ij}$ est une variable binaire qui prend la valeur 1 si la valeur de la variable ($X$) est observée et 0 si $x$ est absent ([Collins et al., 2001](https://europepmc.org/abstract/MED/11778676); [Graham, 2012](https://www.springer.com/us/book/9781461440178); [Little et Rubin, 2002](https://onlinelibrary.wiley.com/doi/book/10.1002/9781119013563)).
+
+### Origines des données manquantes
+
+Les données manquantes ont des origines matérielles diverses. Des valeurs peuvent être absentes soit parce qu'elles n'ont pas été observées, ou qu'elles ont été perdues ou étaient incohérentes ([Glasson-Cicognani et Berchtold, 2010]([Glasson-Cicognani et Berchtold, 2010](https://inria.hal.science/inria-00494698/document)). La donnée peut avoir été :
+
+- perdue lors de la collecte ou lors du processus d'enregistrement des données,
+- non mesurée en raison du dysfonctionnement d'un équipement,
+- non mesurable en raison de la disparition du sujet d'étude (mort, fugue, champ non récolté, etc.),
+- écartée en raison d'une contamination,
+- oubliée,
+- non étudiée,
+- etc.
+
+### Profils des données manquantes
+
+Les auteurs traitant des données manquantes distinguent des formes de répartition des données manquantes et des mécanismes conduisant à ces dernières. La répartition des données manquantes décrit les dispositions des valeurs présentes et celles qui sont manquantes dans la matrice indicatrice. Les mécanismes à l'origine des données manquantes décrivent la relation probabiliste entre les valeurs observées et les valeurs manquantes de la table de données.
+
+#### Répartition des données manquantes
+
+Les données manquantes se répartissent selon différents cas de figures ([Graham, 2012](https://www.springer.com/us/book/9781461440178); [Little et Rubin, 2002](https://onlinelibrary.wiley.com/doi/book/10.1002/9781119013563)) dont les trois principaux sont :
+
+- les valeurs manquantes univariées,
+- les valeurs manquantes monotones et
+- celles non monotones ou arbitraires.
+
+Cette distinction est fonction de la matrice indicatrice des valeurs manquantes. Cette matrice est dite à **valeurs manquantes univariées** ou de non-réponse univariée, lorsque pour une variable donnée, si une observation est absente, alors toutes les observations suivantes pour cette variable sont absentes (@fig-imput-types A). En expérimentation agricole, ce cas de figure est qualifié de problème de la parcelle manquante où, pour une raison quelconque (par exemple : une absence de germination, une destruction accidentelle d'une parcelle ou des enregistrements incorrects), un facteur à l'étude est non disponible. Les **valeurs manquantes monotones** surviennent lorsque la valeur d'une variable $Y_j$ manquante pour un individu $i$ implique que toutes les variables suivantes $Y_k$ ($k > j$) sont manquantes pour cet individu ((@fig-imput-types B)). Les **valeurs manquantes arbitraires** ou non monotones ou encore générales, surviennent lorsque la matrice ne dessine spécifiquement aucune des formes précédentes ((@fig-imput-types C)).
+
+```{r}
+#| label: fig-imput-types
+#| out-width: 100%
+#| fig-align: center
+#| fig-cap: "Exemple de profils de données manquantes"
+#| echo: false
+knitr::include_graphics('images/10_mv-types.png')
+```
+
+Le module VIM permet de visualiser la structure des données manquantes.
+
+```{r}
+#| label: imput-vim-tidyverse
+#| message: false
+library("VIM")
+library("tidyverse")
+```
+
+Pour l'exemple, prenons le tableau `iris` puis remplaçons au hasard des données par des valeurs manquantes (`NA`), puis vérifions les proportions de données manquantes et les proportions de combinaisons de données manquantes.
+
+```{r}
+#| label: imput-add-na-iris
+set.seed(2868374)
+
+data("iris")
+iris_NA <- iris
+n_NA <- 20
+row_NA <- sample(1:nrow(iris), n_NA, replace = TRUE)
+col_NA <- sample(1:ncol(iris), n_NA, replace = TRUE)
+for (i in 1:n_NA) iris_NA[row_NA[i], col_NA[i]] <- NA
+
+summary(aggr(iris_NA, sortVar = TRUE))
+```
+
+Avec la fonction `matrixplot`, il est possible de visualiser les données manquantes en rouge, tandis que les données présentes prennent un niveau de gris selon leur valeur.
+
+```{r}
+#| label: fig-imput-plot-na-iris
+#| fig-width: 2
+#| fig-height: 5
+matrixplot(iris_NA)
+```
+
+#### Mécanismes conduisant aux données manquantes
+
+Les mécanismes conduisant aux données manquantes décrivent la relation entre les valeurs manquantes et celles observées des variables de la table ([Collins et al., 2001](https://europepmc.org/article/MED/11778676); [Graham, 2012](https://www.springer.com/us/book/9781461440178); [Little et Rubin, 2002](https://onlinelibrary.wiley.com/doi/book/10.1002/9781119013563)). En considérant la table de donnée $Y = \{O,M\}$ où $O = \left[ o_{i, j} \right]$ représente les données observées et $M = \left[ m_{i, j} \right]$ la matrice indicatrice des données manquantes, le mécanisme à l'origine des données manquantes est défini par la distribution conditionnelle de $M$ sachant $Y$.
+
+Lorsque la probabilité qu'une valeur soit manquante ne dépend ni des valeurs observées, ni de celles manquantes, les données sont dites **manquantes complètement au hasard** *(**MCAR**, missing completely at random)*. La probabilité d'absence est donc la même pour toutes les observations et elle ne dépend que de paramètres extérieurs indépendants de cette variable ([Collins et al., 2001](https://europepmc.org/article/MED/11778676); [Graham, 2012](https://www.springer.com/us/book/9781461440178); [Heitjan, 1997](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1380829/); [Little et Rubin, 2002](https://onlinelibrary.wiley.com/doi/book/10.1002/9781119013563); [Rubin, 1976](https://www.jstor.org/stable/2335739?seq=1#page_scan_tab_contents)). Avec de telles données (MCAR), les régressions qui n'utilisent que les enregistrements complets, les moyennes des cas disponibles, les tests non-paramétriques et les méthodes basées sur les "moments", sont toutes valides ([Heitjan, 1997](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1380829/)). Toutefois, une perte de précision est à prévoir dans les résultats ([Collins et al., 2001](https://europepmc.org/article/MED/11778676)).
+
+Selon les mêmes auteurs, lorsque la probabilité qu'une valeur soit manquante dépend uniquement de la composante observée "$O$" (une ou plusieurs variables observées) mais pas des valeurs manquantes elles-mêmes, les données sont dites **manquantes au hasard** *( **MAR**: missing at random)*. Dans ce cas, les méthodes du maximum de vraisemblance sont valides pour estimer les paramètres du modèle. Les procédures d'imputation multiples utilisent implicitement le mécanisme MAR ([Collins et al., 2001](https://europepmc.org/abstract/MED/11778676); [Heitjan, 1997](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1380829/)).
+
+Lorsque la probabilité qu'une valeur manquante dépend de la valeur non observée de la variable elle-même ($M$), les données ne manquent pas au hasard *( **MNAR**: missing not at random)*. Ce type de données ne doit pas être ignoré dans l'ajustement de modèles car elles induisent une perte de précision (inhérente à tout cas de données manquantes) mais aussi un biais dans l'estimation des paramètres ([Collins et al., 2001](https://europepmc.org/abstract/MED/11778676); [Heitjan, 1997](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1380829/)).
+
+### Traitement des données manquantes
+
+La présence de données manquantes dans une analyse peut conduire à des estimés de paramètres biaisés, gonfler les erreurs de type I et II, baisser les performances des intervalles de confiance ([Collins et al., 2001](https://europepmc.org/abstract/MED/11778676)) et entacher la généralisation des résultats ([Taylor et al., 2002](https://www.ncbi.nlm.nih.gov/pubmed/12370166)). Plusieurs méthodes existent pour calculer des estimés de paramètres de modèles approximativement sans biais, en présence de données manquantes.
+
+#### L'analyse des cas complets
+
+Cette méthode consiste à exclure du fichier de données tous les individus ayant au moins une donnée manquante ([Glasson-Cicognani et Berchtold, 2010]([Glasson-Cicognani et Berchtold, 2010](https://hal.inria.fr/inria-00494698/document)). Elle serait la plus utilisée pour traiter les valeurs manquantes mais n'est efficace que pour les cas de données manquant complètement au hasard (MCAR) lorsque le nombre de d'observations à éliminer n'est pas trop important ([Davey et al., 2001](https://www.jstor.org/stable/3069628?seq=1/subjects)).
+
+En R, de manière générique, il est possible d'identifier une donnée manquante dans un tableau, une matrice ou un vecteur avec `is.na`, qui retourne un objet booléen (`TRUE` / `FALSE`). La fonction `any` permet d'identifier si au moins une valeur est vraie ou fausse dans un objet, alors que la fonction `all` permet d'identifier si toutes les valeurs sont vraies. On pourra vérifier si une ligne contient une valeur manquante avec la fonction `apply`, dans l'axe des lignes. Il faudra toutefois inverser le résultat booléen avec un `!` pour faire en sorte d'écarter les valeurs manquantes.
+
+```{r}
+#| label: imput-remove-na1
+row_missing <- iris_NA %>%
+        filter(apply(., 1, function(x) any(is.na(x))))
+row_complete <- iris_NA %>%
+        filter(!apply(., 1, function(x) any(is.na(x))))
+row_missing
+```
+
+Au lieu de `apply`, R fournit la fontion raccourci `complete.cases`.
+
+```{r}
+#| label: imput-remove-na2
+row_missing <- iris_NA %>%
+        filter(complete.cases(.))
+```
+
+Le module **`tidyr`** (inclus dans tidyverse) nous facilite la vie avec la fonction `tidyr::drop_na`, qui retire toutes les lignes contenant au moins une valeur manquante.
+
+```{r}
+#| label: imput-remove-na3
+row_complete <- iris_NA |> 
+        drop_na()
+```
+
+De même, on pourra évaluer la proportion de données manquantes.
+
+```{r}
+#| label: imput-remove-na-pourc
+nrow(row_complete) / nrow(iris)
+```
+
+Ou bien, évaluer la proportion de donnée manquante par groupe.
+
+```{r}
+#| label: imput-remove-na-pourc-par-groupe
+#| warning: false
+iris_NA %>%
+  group_by(Species) %>%
+  summarise_each(funs(sum(is.na(.))/length(.)))
+```
+
+Pour terminer cette section, il est possible que certaines variables soient peu mesurées dans une étude. Au jugement, on pourra sacrifier une colonne contenant plusieurs données manquantes en vue de conserver des lignes.
+
+#### L'imputation
+
+L'imputation permet de créer des bases de données complètes ([Donzé, 2001](https://ideas.repec.org/a/ses/arsjes/2001-iii-6.html)). Elle corrige la non-réponse partielle en substituant une "valeur artificielle" à la valeur manquante. Les auteurs distinguent l'imputation unique et l'imputation multiple.
+
+##### L'imputation unique
+
+*L'imputation unique consiste à remplacer chaque donnée manquante par une seule valeur plausible telle que la moyenne calculée sur les données réellement observées, l'imputation par le ou les plus proche(s) voisin(s)* (la technique des plus proches voisins est couverte au [chapitre @sec-ia]). Cette dernière remplace les données manquantes par des valeurs provenant d'individus similaires pour lesquels toute l'information a été observée. L'imputation peut aussi se faire par régression en remplaçant les valeurs manquantes par des valeurs prédites selon un modèle de régression ou des méthodes bayésiennes plus sophistiquées. L'imputation unique est valide en présence de données manquantes de type MAR ([Davey et al., 2001](https://www.jstor.org/stable/3069628?seq=1/subjects); [Donzé, 2001](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.1012.8980&rep=rep1&type=pdf); [Glasson-Cicognani et Berchtold, 2010]([Glasson-Cicognani et Berchtold, 2010](https://hal.inria.fr/inria-00494698/document))).
+
+Selon [Heitjan (1997)](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1380829/), il n'existe pas de règles strictes pour décider quand il faut entreprendre une imputation multiple. Néanmoins, si la fraction des observations avec des données manquantes est inférieure à par exemple 5%, et le mécanisme est ignorable (MCAR ou MAR), les analyses les plus simples sont satisfaisantes.
+
+Bien que conçu principalement pour l'imputation multiple (on y arrive bientôt), le module [`mice`](https://amices.org/mice/index.html) permet l'imputation univariée. Nous allons tester l'imputation par la moyenne. Voyons par exemple la moyenne des largeurs des sépales.
+
+```{r}
+#| label: imput-mean
+mean(iris_NA$Sepal.Width[!complete.cases(iris_NA)], na.rm = TRUE)
+```
+
+Lançons l'imputation par la fonction `mice`, puis la prédiction du tableau imputé par la fonction `complete`.
+
+```{r}
+#| label: imput-mice
+#| message: false
+#| warning: false
+#| results: false
+library("mice")
+iris_mice <- mice(iris_NA, method = "mean")
+iris_imp <- complete(iris_mice)
+```
+
+Le tableau original peut être comparé au tableau imputé.
+
+```{r}
+#| label: imput-mice-comparaison
+iris_NA[!complete.cases(iris_NA), ] |> 
+  slice_head(n = 10)
+iris[!complete.cases(iris_NA), ] |> 
+  slice_head(n = 10)
+iris_imp[!complete.cases(iris_NA), ] |> 
+  slice_head(n = 10)
+```
+
+Dans la colonne `Sepal.Width`, toutes les valeurs manquantes ont été remplacées par ~3.052.
+
+:::{.callout-tip title="Exercice"}
+Pourquoi la prédiction diffère-t-elle de la moyenne?
+:::
+
+---
+
+:::{.callout-caution title="Attention"}
+Lorsque les valeurs sont systématiquement manquantes chez une catégorie, les estimateurs seront biaisés.
+:::
+
+```{r}
+#| label: imput-mice-biais
+iris_NA_biais_1 <- tibble(
+  Sepal.Length = c(5.3, NA, 4.9, NA, 4.7, NA),
+  Species = c("setosa", "versicolor", "setosa", "versicolor", "setosa", "versicolor")
+)
+mean(iris_NA_biais_1$Sepal.Length, na.rm = TRUE)
+
+iris_NA_biais_2 <- tibble(
+  Sepal.Length = c(5.3, 7.0, 4.6, 6.4, 4.8, 6.9),
+  Species = c("setosa", "versicolor", "setosa", "versicolor", "setosa", "versicolor")
+)
+mean(iris_NA_biais_2$Sepal.Length, na.rm = TRUE)
+```
+
+Dans l'exemple précédent, les données sont systématiquement manquantes chez l'espèce *versicolor*. La moyenne de la largeur des sépales est donc biaisée, et l'imputation par la moyenne le sera tout autant. L'imputation par la moyenne est jugée non recommandable par plusieurs statisticiens. Dans la mesure du possible, **l'imputation multiple devrait être favorisée à l'imputation univariée**.
+
+---
+
+##### L'imputation multiple
+
+L'imputation multiple consiste à imputer plusieurs fois les valeurs manquantes et à combiner les résultats pour diminuer l'erreur causée par la complétion ([Davey et al., 2001](https://www.jstor.org/stable/3069628?seq=1/subjects)). Les valeurs manquantes sont remplacées par $M$ ($M > 1$) ensembles de valeurs simulées donnant lieu à $M$ versions plausibles mais différentes des données complètes ([Collins et al., 2001](https://europepmc.org/abstract/MED/11778676); [Taylor et al., 2002](https://www.ncbi.nlm.nih.gov/pubmed/12370166)). En pratique, seulement $M$ allant de 5 à 10 (imputations) est suffisant pour produire des bonnes inférences ([Collins et al., 2001](https://europepmc.org/abstract/MED/11778676); [Donzé, 2001](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.1012.8980&rep=rep1&type=pdf)). Chacun des $M$ ensembles de données est analysé de la même manière par des méthodes standards d'analyse de données complètes, et les résultats sont combinés en utilisant une arithmétique simple: les moyennes des paramètres estimés sont calculées, les erreurs standards sont combinées pour refleter l'incertitude des données manquantes et l'erreur d'échantillonnage.
+
+L'imputation multiple est une procédure basée sur un modèle (model-based). L'utilisateur doit spécifier un modèle de probabilité conjointe pour les données observées et manquantes ([Collins et al., 2001](https://europepmc.org/abstract/MED/11778676); [Taylor et al., 2002](https://www.ncbi.nlm.nih.gov/pubmed/12370166)).
+
+Le module mice donne accès à plusieurs types de modèles (argument `method`). Les modèles `cart` et `rf` tombent dans la catégorie de l'autoapprentissage (couvert au [chapitre @sec-ia]). Ils ont l'avantage important d'être applicables pour tout type de variable.
+
+```{r}
+#| label: imput-mult-mice
+#| message: false
+#| warning: false
+#| results: false
+iris_mice <- mice(iris_NA, method = "rf")
+iris_imp <- complete(iris_mice)
+```
+
+De même que précédemment, le tableau original peut être comparé au tableau imputé.
+
+```{r}
+#| label: imput-mult-mice-comparaison
+iris_NA[!complete.cases(iris_NA), ] |> 
+  slice_head(n = 10)
+iris[!complete.cases(iris_NA), ] |> 
+  slice_head(n = 10)
+iris_imp[!complete.cases(iris_NA), ] |> 
+  slice_head(n = 10)
+```
+
+Mieux vaut éviter d'imputer des données compositionnelles transformées (alr, clr ou ilr, voir [chapitre @sec-expl]), car l'imputation d'une dimension transformée aura un impact sur tout le vecteur. Dans ce cas, vous pourriez préférablement utiliser la fonction `robCompositions::impCoda`.
+
+##### Utilisation de recipes
+
+Vous avez peut-être remarqué que le mode tidyverse a été quelque peu délaissé dans cette section. Il aurait pu l'être davantage, mais le mode classique (`iris[!complete.cases(iris_NA), ]` au lieu de `iris %>% drop_na()`) semblait mieux convenir pour la diversité de fonctions en imputation. Le module [**`recipes`**](https://recipes.tidymodels.org/index.html), couvert rapidement au [chapitre @sec-expl], permet d'effectuer des opérations d'imputation modernes en *pipelines* (voir [*Step Functions - Imputation*](https://tidymodels.github.io/recipes/reference/index.html)). Dans le futur, **`recipes`** deviendra probablement le module de choix pour l'imputation.
+
+Typiquement, on utilise cette méthode pour faire ensuite des modèles prédictifs, donc on commence par séparer le jeu de données en données d'entraînement et de test. Ce concept sera abordé plus en détail dans le [chapitre @sec-ia]. Pour le moment, simplifions la méthode en utilisant simplement les fonctions d'imputation sur le jeu de données complet, mais gardez en tête que la bone approche consiste à séparer les données. On fait d'abord une recette : Ici, on choisit les variables prédictives qui seront utilisées pour obtenir une variable prédites (pour l'exemple, disons qu'on souhaite prédire l'espèce à partir des mesures sur les sépales et les pétales).
+
+```{r}
+#| label: imput-recipe
+#| message: false
+library(recipes)
+
+iris_rec <- recipe(Species ~ ., data = iris_NA)
+```
+
+
+Par la suite, on peut appliquer différentes étapes de prétraitement à notre recette. Dans le cas présent, on effectuera seulement l'imputation à l'aide de la méthode des plus proches voisins (KNN). Encore une fois, cette méthode sera présentée plus en détail dans le [chapitre @sec-ia]. On peut maintenant estimer les valeurs statistiques (moyenne et écart-type) des données d'entraînement avec la fonction **`prep`** (ici, on utilise tout le jeu de données). Enfin, on peut *cuire* notre recette avec la fonction **`bake`** et l'appliquer sur le jeu de données original.
+
+```{r}
+#| label: imput-recipe-knn
+iris_impute <- iris_rec %>% # Recette : Prédire Species
+  step_impute_knn(all_predictors(), neighbors = 3) %>%
+  prep(., training = iris_NA) %>%
+  bake(iris_NA)
+```
+
+```{r}
+#| label: imput-recipe-result
+iris_NA[!complete.cases(iris_NA), ]
+iris[!complete.cases(iris_NA), ]
+iris_impute[!complete.cases(iris_NA), ]
+```
+
+Je n'irai pas très en détail dans cette approche, puisque je vous suggère plutôt d'utiliser la méthode avec **`mice`** présentée précédemment, mais la méthode **`recipes`** a notamment l'avantage de bien s'intégrer lorsque vous souhaitez faire un modèle prédictif.
+
+## Valeurs et échantillons aberrants: définition, origines, méthodes de détection et traitement
+
+### Définitions
+
+En analyse univariée, une valeur aberrante est une "donnée observée" pour une variable qui semble anormale au regard des valeurs dont on dispose pour les autres observations de l'échantillon ([Planchon, 2005](https://www.researchgate.net/publication/26406403_Traitement_des_valeurs_aberrantes_concepts_actuels_et_tendances_generales)). En analyse multivariée, l'échantillon aberrant résulte d'une erreur importante se trouvant dans un des composants du vecteur de réponse, ou de petites erreurs systématiques dans chacun de ses composants, et qui de ce fait, ne partage pas les relations entre les variables de la population ([Planchon, 2005](https://www.researchgate.net/publication/26406403_Traitement_des_valeurs_aberrantes_concepts_actuels_et_tendances_generales)).
+
+La valeur ou l'observation aberrante est statistiquement discordante dans le contexte d'un modèle de probabilité supposé connu ([Barnett et Lewis, 1994](https://www.wiley.com/en-us/Outliers+in+Statistical+Data%2C+3rd+Edition-p-9780471930945); [Grubbs, 1969](https://www.tandfonline.com/doi/abs/10.1080/00401706.1969.10490657); [Munoz-Garcia et al., 1990](https://www.jstor.org/stable/1403805?seq=1#page_scan_tab_contents); [Pires et Santos-Pereira, 2005](https://www.researchgate.net/publication/239850370_Using_Clustering_and_Robust_Estimators_to_Detect_Outliers_in_Multivariate_Data)). Leur présence dans les données peut conduire à des estimateurs de paramètres biaisés et, suite à la réalisation de tests statistiques, à une interprétation des résultats erronée ([Planchon, 2005](https://www.researchgate.net/publication/26406403_Traitement_des_valeurs_aberrantes_concepts_actuels_et_tendances_generales)).
+
+### Origines
+
+Dans une collecte de données, plusieurs sources de variabilité peuvent mener à des données aberrantes: la variabilité inhérente mais inusitée ou erreur systématique, l'erreur de mesure et l'erreur d'exécution (@fig-imput-va-origine) ([Barnett et Lewis, 1994](https://www.wiley.com/en-us/Outliers+in+Statistical+Data%2C+3rd+Edition-p-9780471930945); [Planchon, 2005](https://www.researchgate.net/publication/26406403_Traitement_des_valeurs_aberrantes_concepts_actuels_et_tendances_generales)).
+
+```{r}
+#| label: fig-imput-va-origine
+#| out-width: 100%
+#| fig-align: center
+#| fig-cap: "Schéma général de traitement des valeurs aberrantes - adapté de Barnett et Lewis, 1994"
+#| echo: false
+knitr::include_graphics('images/10_origine-va.png')
+```
+
+La variabilité inhérente est celle par laquelle les observations varient naturellement de manière aléatoire à travers la population. L'erreur de mesure renferme les inadéquations au niveau de la méthode de mesure, des instruments de mesure, l'arrondi des valeurs obtenues ou les erreurs d'enregistrement. Cette erreur est donc liée à des circonstances bien déterminées. Les erreurs d'exécution interviennent également dans des circonstances bien déterminées. Ce sont les erreurs de manipulation, les erreurs commises dans l'assemblage des données, ou lors du traitement informatique.
+
+L'examen des valeurs aberrantes dans une base de données a pour objectif de les identifier pour soit les supprimer, soit les conserver, ou les corriger avant d'ajuster des modèles non robustes ([Filzmoser et al., 2008](https://www.researchgate.net/publication/222423330_Outlier_identification_in_high_dimension); [Planchon, 2005](https://www.researchgate.net/publication/26406403_Traitement_des_valeurs_aberrantes_concepts_actuels_et_tendances_generales)). La valeur extrême peut être liée à un événement atypique, mais néanmoins connu et intéressant à étudier. Dans ce cas elle est importante à conserver. La correction (ou accommodation) évite le rejet des observations aberrantes et consiste à estimer les valeurs des paramètres de la distribution de base de façon relativement libre sans déformation des résultats liés à leur présence ([Barnett et Lewis, 1994](https://www.wiley.com/en-us/Outliers+in+Statistical+Data%2C+3rd+Edition-p-9780471930945)).
+
+L'approche d'identification des observations aberrantes selon [Davies et Gather (1993)](https://www.tandfonline.com/doi/abs/10.1080/01621459.1993.10476339) est de supposer qu'elles ont une distribution différente de celle du reste des observations. [Reimann et al. (2005)](https://doi.org/10.1016/j.scitotenv.2004.11.023) les distinguent ainsi des valeurs extrêmes qui, bien qu'éloignées du centre du nuage, appartiennent à la même distribution que les autres observations.
+
+### Détection et traitement des valeurs aberrantes univariés
+
+En analyse univariée, les méthodes graphiques telles que le diagramme de dispersion des observations classées en fonction de leur rang, les boxplots, les graphiques des quantiles de valeurs brutes ou des résidus, permettent de signaler la présence de valeurs aberrantes ([Planchon, 2005](https://www.researchgate.net/publication/26406403_Traitement_des_valeurs_aberrantes_concepts_actuels_et_tendances_generales)).
+
+Prenons, par exemple, les données `mtcars`.
+
+```{r}
+#| label: imput-load-mtcars
+data("mtcars")
+mtcars |> 
+  slice_sample(n = 5)
+```
+
+Disons que nous cherchons à détecter les valeurs aberrantes de la puissance du moteur, soit la colonne `hp`. On pourrait jeter un oeil à la colonne `hp`, mais mieux vaudrait considérer qu'il ne s'agit pas de moteurs de même type. De même, si vous consigniez la masse des abeilles d'espèces diférentes collectées dans des trappes, vous risqueriez, en considérant que les masses proviennent d'une seule distribution, d'écarter systématiquement une espèce plus petite ou un autre plus imposante. Examinons donc la puissance des moteurs selon le nombre de cylindres.
+
+```{r}
+#| label: imput-outliers-bp
+mtcars |>  
+  ggplot(aes(x = factor(cyl), y = hp)) +
+  geom_boxplot()
+```
+
+#### Détection selon la distance interquartile
+
+Selon la définition classique d'un boxplot, un point est affiché comme aberrant si 
+
+$$x < Q_{25\%}(x) - 1.5 \times IQR_{25\%~75\%}(x)$$ 
+
+$$ou$$
+
+$$x > Q_{75\%}(x) + 1.5 \times IQR_{25\%~75\%}(x)$$
+
+où $Q{a}$ est le quartile pour la probabilité $a$ et $IQR_{a~b}$ est la distance entre les quartiles de $a$ et $b$ ($b>a$). Les probabilités des quartiles (25% et 75%), ainsi que le multiplicateur (1.5) sont arbitraires. On pourra utiliser des fonctions automatiques offertes par des modules spécialisés. Mais pour les fonctions simples, pourquoi ne pas les concevoir soi-même!
+
+```{r}
+#| label: imput-iqr-function
+iqr_01 <- function(x, probs = c(.25, .75), mult = 1.5, na.rm = TRUE) {
+  # x est le vecteur de valeurs
+  # probs est un vecteur de deux valeurs identifiant les quartiles recherchés
+  # mult est le multiplicateur
+  io <- rep(NA, length(x)) # créer un vecteur vide qui consignera si la valeur est aberrante ou non
+  limits <- quantile(x, probs = probs, na.rm = na.rm) # calculer la valeur des quartiles
+  offset <- mult * (limits[2] - limits[1]) # calculer la distance limite des quartiles
+  io[x > (limits[2] + offset) | x < (limits[1] - offset)] <- 0 # si en-deça ou au-delà des limites
+  io[x <= (limits[2] + offset) & x >= (limits[1] - offset)] <- 1 # si à l'intérieur des limites
+  return(io)
+}
+```
+
+En se servant des possibilités de **`dplyr`**, on pourra détecter les valeurs aberrantes par groupe.
+
+```{r}
+#| label: imput-mtcars-filter-iqr
+mtcars |> 
+  group_by(cyl) |>  # grouper par cylindre
+  mutate(io = iqr_01(hp)) |>  # détecter les valeurs aberrantes
+  filter(io == 1) |>  # ne conserver que les valeurs non aberrantes
+  select(-io) # enlever la colonne io créée précédemment.
+```
+
+Le nouveau tableau est de 31 lignes. La valeur enlevée est celle qui apparaissait précédemment comme un point sur le boxplot.
+
+#### Détection selon la cote Z
+
+La cote Z est l'écart de la moyenne mesurée en terme de nombre d'écart-type. Si une valeur est située à 3 écarts-type de la moyenne, la cote Z est de 3. On pourra détecter les valeurs aberrantes selon la distance des points en terme de cote Z, et retrancher les valeurs qui se situes au-delà d'une certaine limite. Il n'existe pas de distance standard: à vous de décider. Mais le nombre 3 est souvent utilisé.
+
+```{r}
+#| label: imput-zscore-function
+zscore_01 <- function(x, delimiter = 3, na.rm = TRUE) {
+  centered <- x - mean(x, na.rm = na.rm)
+  limit <- delimiter * sd(x, na.rm = na.rm)
+  io <- ifelse(abs(centered) > limit, 0, 1)
+  return(io)
+}
+```
+
+La foncion `zscore_01` est conçue de la même manière que `iqr_01`.
+
+```{r}
+#| label: imput-mtcars-filter-zscore
+mtcars |> 
+  group_by(cyl) |>  # grouper par cylindre
+  mutate(io = zscore_01(hp)) |>   # détecter les valeurs aberrantes
+  filter(io == 1) |>  # ne conserver que les valeurs non aberrantes
+  select(-io) # enlever la colonne io créée précédemment
+```
+
+Selon ce critère, toutes les valeurs sont conservées.
+
+### Détection et traitement des échantillons aberrants multivariés
+
+En analyse multivariée, il existe deux approches fondamentales d'identification des valeurs aberrantes: celles basées sur le calcul de distances et les méthodes par projection ([Filzmoser et al., 2008](https://www.researchgate.net/publication/222423330_Outlier_identification_in_high_dimension); [Hadi et al., 2009](https://ulaval.on.worldcat.org/oclc/5156296704)).
+
+#### Approches basées sur les distances
+
+##### La distance de Mahalanobis
+
+Les méthodes basées sur la distance détectent les valeurs aberrantes en calculant la distance, généralement la distance de Mahalanobis (vue au [chapitre @sec-ord]) entre un point particulier et le centre des données ([Filzmoser et al., 2008](https://www.researchgate.net/publication/222423330_Outlier_identification_in_high_dimension); [Pires et Santos-Pereira, 2005](https://www.researchgate.net/publication/239850370_Using_Clustering_and_Robust_Estimators_to_Detect_Outliers_in_Multivariate_Data)). Pour un échantillon $x$ multivarié, la distance de Mahalanobis est calculée comme:
+
+$$ \mathscr{M} = \sqrt{(\vec{x}-\vec{\mu})^T S^{-1} (\vec{x}-\vec{\mu})}.\ $$
+où $\vec{\mu}$ est la moyenne arithmétique multivariée (le centroïde) et $S$ la matrice de variance-covariances de l'échantillon, qui doit être inversée.
+
+Cette distance indique à quel point chaque observation est éloignée du centre du nuage multivarié créé par les données ([Alameddine et al., 2010](https://ascelibrary.org/doi/10.1061/%28ASCE%29EE.1943-7870.0000271); [Davies et Gather, 1993](https://www.tandfonline.com/doi/abs/10.1080/01621459.1993.10476339)). D'après [Alameddine et al. (2010)](https://ascelibrary.org/doi/10.1061/%28ASCE%29EE.1943-7870.0000271), lorsque les données sont supposées suivre une distribution normale, les carrés des distances $\mathscr{M}$ calculées peuvent être considérés comme suivant une distribution du $\chi^2$. Par convention, tout point qui a une $\mathscr{M}_i^2$ dépassant un quantile donné de la distribution du $\chi^2$ (par exemple, $\chi^2_{df = p ; 0.975}$, le quantile 97,5% avec $p$ (le nombre de variables) degrés de liberté), est considéré comme atypique et identifié comme une valeur aberrante ([Filzmoser et al., 2005](https://dl.acm.org/citation.cfm?id=1650448)). Les observations aberrantes multivariées peuvent ainsi être définies comme des observations ayant une grande distance de Mahalanobis ($\mathscr{M}_i^2$).
+
+L'inconvénient avec les méthodes basées sur les distances réside dans la difficulté d'obtenir des estimés robuste de la moyenne $\mu$ et de la matrice de variance-covariances $S$, puisque la distance de Mahalanobis est elle-même sensible aux données extrêmes. De plus, il serait difficile de fixer la valeur critique idéale de $\mathscr{M}$ permettant de séparer les valeurs aberrantes des points réguliers ([Filzmoser et al., 2005](https://dl.acm.org/citation.cfm?id=1650448); [Filzmoser et al., 2008](https://www.researchgate.net/publication/222423330_Outlier_identification_in_high_dimension)).
+
+La fonction `sign1` du module mvoutlier détecte les valeurs aberrantes selon un seuil du $\chi^2_{df = 3 ; 0.975}$ pour les transformations en log-ratio isométriques de Al, Fe et K dans un humus (l'inverse de la matrice de covariance des log-ratio centrés est singulière).
+
+```{r}
+#| label: imput-humus-ilr
+#| message: false
+library("mvoutlier")
+library("compositions")
+data("humus")
+sbp <- matrix(c(1, 1,-1,-1,
+                1,-1, 0, 0,
+                0, 0, 1,-1), ncol = 4, byrow = TRUE)
+ilr_elements <- humus |> 
+        dplyr::select(Al, Fe, K, Na) |> 
+        ilr(., V = gsi.buildilrBase(t(sbp))) |> 
+        as_tibble() |> 
+        dplyr::rename(AlFe_KNa = V1,
+                      Al_Fe = V2,
+                      K_Na = V3)
+is_out <- sign1(ilr_elements, qcrit = 0.975)$wfinal01
+plot(ilr_elements, col = is_out + 2)
+```
+
+La proportion de valeurs aberrantes:
+
+```{r}
+#| label: imput-humus-ilr-pourc-outliers
+sum(is_out == 0) / length(is_out)
+```
+
+Différentes méthodes *robustes* (qui s'accommodent de la présence de points extrêmes) de détection des valeurs aberrantes sont présentées dans la littérature telles que la méthode du volume minimum de l'ellipsoïde (**MVE**, *minimum volume ellipsoid*), du déterminant minimum de la matrice de covariance (**MCD**, *minimum Covariance matrix determinant*), et les estimateurs de type maximum de vraisemblance (**M-estimators**) ([Alameddine et al., 2010](https://ascelibrary.org/doi/10.1061/%28ASCE%29EE.1943-7870.0000271); [Filzmoser et al., 2008](https://www.researchgate.net/publication/222423330_Outlier_identification_in_high_dimension)). Ces méthodes calculent des distances robustes similaires aux distances de Mahalanobis, mais remplacent les matrices des moyennes et des covariances respectivement par un seuil critique multivarié robuste (sur $\mu$) et un estimateur d'échelle (sur $S$) qui ne sont pas influencés par les valeurs aberrantes ([Alameddine et al., 2010](https://ascelibrary.org/doi/10.1061/%28ASCE%29EE.1943-7870.0000271)).
+
+##### La méthode du volume minimum de l'ellipsoïde (MVE)
+
+Le volume minimum de l'ellipsoïde est le plus petit ellipsoïde régulier couvrant au moins $h$ éléments de l'ensemble des données $X = \{x_1, x_2, ..., x_n \}$ où l'estimateur de localisation est le centre de cet ellipsoïde et l'estimateur de dispersion correspond à sa matrice de covariance. $h$ est fixé à priori supérieur ou égal à $\frac{n}{2}+1$, où $n$ est le nombre total de points du nuage de données. Le seuil de détection qui est la fraction des valeurs aberrantes qui, lorsqu'elle est dépassée, entraîne des estimés totalement biaisés est de l'ordre de 50% à mesure que $n$ augmente ([Alameddine et al., 2010](https://ascelibrary.org/doi/10.1061/%28ASCE%29EE.1943-7870.0000271); [Croux et al., 2002](https://doi.org/10.1023/A:1020713207683); [Filzmoser et al., 2005](https://dl.acm.org/citation.cfm?id=1650448); [Van Aelst et Rousseeuw, 2009](https://doi.org/10.1002/wics.19)).
+
+L'algorithme MVE est initié en choisissant au hasard un ensemble de $p+1$ points de données pour estimer le modèle majoritaire, où $p$ est le nombre de variables. Cet ensemble initial est alors augmenté pour contenir les $h$ points de données. L'algorithme passe par plusieurs itérations avant de converger sur l'ensemble des points les plus rapprochés qui auront le plus petit volume d'ellipsoïde ([Alameddine et al., 2010](https://ascelibrary.org/doi/10.1061/%28ASCE%29EE.1943-7870.0000271)).
+
+Le module MASS comprend la fonction `cov.mve` à cet effet. Cette fonction demande le nombre minimal de points que l'on désire conserver, en absolu. Il s'agit d'un nombre entier, alors si l'on désire en utiliser une fraction (ici, 90%), il faut l'arrondir. Parmi les sorties de la fonction `cov.mve`, on retrouve les numéros de ligne qui se trouvent à l'intérieur de l'ellipsoide.
+
+```{r}
+#| label: imput-humus-ilr-outliers-mve
+#| message: false
+library("MASS")
+select <- dplyr::select # pour éviter que la fonction select du module MASS remplace celle de dplyr
+min_in <- round(0.9 * nrow(ilr_elements)) # le minimum de points à garder, 90% du total
+id_in <- cov.mve(ilr_elements, quantile.used = min_in)$best
+is_in <- 1:nrow(ilr_elements) %in% id_in
+plot(ilr_elements, col = is_in + 2)
+```
+
+La proportion de valeurs aberrantes:
+
+```{r}
+#| label: imput-humus-ilr-outliers-mve-pourc
+sum(!is_in) / length(is_in)
+```
+
+##### La méthode du déterminant minimum de la matrice de covariance (MCD)
+
+La méthode du déterminant minimum de la matrice de covariance a pour objectif de trouver $h$ ($h > n$) observations de l'ensemble de données $X = \{x_1, x_2, ..., x_n \}$,  dont la matrice de covariance a le plus petit déterminant. Comme avec la méthode MVE, l'estimateur de localisation est la moyenne de ces $h$ points et celui de la dispersion est proportionnel à la matrice de covariance ([Filzmoser et al., 2005](https://dl.acm.org/citation.cfm?id=1650448); [Hubert et al., 2018](https://onlinelibrary.wiley.com/doi/full/10.1002/wics.1421); [Rousseeuw et Van Driessen, 1999](https://www.tandfonline.com/doi/abs/10.1080/00401706.1999.10485670)).
+
+```{r}
+#| label: imput-humus-ilr-outliers-mcd
+#| message: false
+id_in <- cov.mcd(ilr_elements, quantile.used = min_in)$best
+is_in <- 1:nrow(ilr_elements) %in% id_in
+plot(ilr_elements, col = is_in + 2)
+```
+
+La proportion de valeurs aberrantes:
+
+```{r}
+#| label: imput-humus-ilr-outliers-mcd-pourc
+sum(!is_in) / length(is_in)
+```
+
+Mais en cas de dissymétrie des données, ces tests (MVE, MCD) ne seraient pas applicables ([Planchon, 2005](https://www.researchgate.net/publication/26406403_Traitement_des_valeurs_aberrantes_concepts_actuels_et_tendances_generales)).
+
+#### Les méthodes par projection
+
+Ces méthodes de détection des observations aberrantes trouvent des projections appropriées des données dans lesquelles les observations aberrantes sont facilement apparentes. Ces observations sont ensuite pondérées pour produire un estimateur robuste pouvant être utilisé pour identifier les observations aberrantes ([Filzmoser et al., 2008](https://www.researchgate.net/publication/222423330_Outlier_identification_in_high_dimension)). Ces méthodes n'assument pas une distribution particulière des données mais cherchent des projections utiles. Elles ne sont donc pas affectées par la non-normalité et s'appliquent sur divers types de distributions ([Filzmoser et al., 2008](https://www.researchgate.net/publication/222423330_Outlier_identification_in_high_dimension); [Hadi et al., 2009](https://onlinelibrary.wiley.com/doi/pdf/10.1002/wics.6)). Le but de cette projection exploratoire est d'utiliser les données pour trouver des projections minimales (à une, deux ou trois dimensions) qui fournissent les vues les plus révélatrices des données complètes ([Friedman, 1987](https://amstat.tandfonline.com/doi/abs/10.1080/01621459.1987.10478427)). La méthode attribue un indice numérique à chaque projection en fonction de la densité des données projetée pour capturer le degré de structure non linéaire présent dans la distribution projetée ([Friedman, 1987](https://amstat.tandfonline.com/doi/abs/10.1080/01621459.1987.10478427); [Hadi et al., 2009](https://onlinelibrary.wiley.com/doi/pdf/10.1002/wics.6)).
+
+En R, nous revenons au module **`mvoutlier`**, mais cette fois-ci avec la fonction `sign2`.
+
+```{r}
+#| label: imput-humus-ilr-outliers-sign2
+library("mvoutlier")
+is_out <- sign2(ilr_elements, qcrit = 0.975)$wfinal01
+plot(ilr_elements, col = is_out + 2)
+```
+
+La proportion de valeurs aberrantes:
+
+```{r}
+#| label: imput-humus-ilr-outliers-sign2-pourc
+sum(is_out == 0) / length(is_out)
+```
+
+```{r}
+#| include: false
+rm(list = ls())
+```
