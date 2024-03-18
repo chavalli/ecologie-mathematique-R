@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.3.450">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
 <title>Analyse et modélisation d’agroécosystèmes sur R - 6&nbsp; Introduction à Python</title>
 <style>
 code{white-space: pre-wrap;}
@@ -20,8 +17,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
-
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
@@ -40,8 +70,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -61,17 +90,12 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-
-
 </head>
-
 <body class="nav-sidebar floating">
 
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
@@ -82,13 +106,9 @@ ul.task-list li input[type="checkbox"] {
         <i class="bi bi-search"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Analyse et modélisation d’agroécosystèmes sur R</a> 
         <div class="sidebar-tools-main">
@@ -108,7 +128,7 @@ ul.task-list li input[type="checkbox"] {
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Préface</span></a>
@@ -205,27 +225,48 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
     </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+</div>
+</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#quest-ce-que-python" id="toc-quest-ce-que-python" class="nav-link active" data-scroll-target="#quest-ce-que-python"><span class="header-section-number">6.1</span> Qu’est-ce que Python ?</a></li>
+<li><a href="#quest-ce-que-python" id="toc-quest-ce-que-python" class="nav-link active" data-scroll-target="#quest-ce-que-python"><span class="header-section-number">6.1</span> Qu’est-ce que Python ?</a></li>
   <li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation"><span class="header-section-number">6.2</span> Installation</a></li>
-  <li><a href="#chapitre-en-construction" id="toc-chapitre-en-construction" class="nav-link" data-scroll-target="#chapitre-en-construction"><span class="header-section-number">6.3</span> Chapitre en construction</a></li>
-  <li><a href="#anaconda-prompt" id="toc-anaconda-prompt" class="nav-link" data-scroll-target="#anaconda-prompt"><span class="header-section-number">6.4</span> Anaconda prompt</a></li>
+  <li><a href="#anaconda-prompt" id="toc-anaconda-prompt" class="nav-link" data-scroll-target="#anaconda-prompt"><span class="header-section-number">6.3</span> Anaconda prompt</a></li>
+  <li><a href="#les-environnements-virtuels" id="toc-les-environnements-virtuels" class="nav-link" data-scroll-target="#les-environnements-virtuels"><span class="header-section-number">6.4</span> Les environnements virtuels</a></li>
+  <li><a href="#rstudio-et-python" id="toc-rstudio-et-python" class="nav-link" data-scroll-target="#rstudio-et-python"><span class="header-section-number">6.5</span> Rstudio et Python</a></li>
+  <li><a href="#hello-world" id="toc-hello-world" class="nav-link" data-scroll-target="#hello-world"><span class="header-section-number">6.6</span> Hello world</a></li>
+  <li>
+<a href="#types-de-donn%C3%A9es" id="toc-types-de-données" class="nav-link" data-scroll-target="#types-de-donn%C3%A9es"><span class="header-section-number">6.7</span> Types de données</a>
+  <ul class="collapse">
+<li><a href="#les-donn%C3%A9es-num%C3%A9riques" id="toc-les-données-numériques" class="nav-link" data-scroll-target="#les-donn%C3%A9es-num%C3%A9riques"><span class="header-section-number">6.7.1</span> Les données numériques</a></li>
+  <li><a href="#la-chaine-de-caract%C3%A8res" id="toc-la-chaine-de-caractères" class="nav-link" data-scroll-target="#la-chaine-de-caract%C3%A8res"><span class="header-section-number">6.7.2</span> La chaine de caractères</a></li>
   </ul>
-</nav>
+</li>
+  <li><a href="#operations" id="toc-operations" class="nav-link" data-scroll-target="#operations"><span class="header-section-number">6.8</span> Operations</a></li>
+  <li><a href="#chaines-de-caract%C3%A8res" id="toc-chaines-de-caractères" class="nav-link" data-scroll-target="#chaines-de-caract%C3%A8res"><span class="header-section-number">6.9</span> Chaines de caractères</a></li>
+  <li>
+<a href="#les-s%C3%A9quences" id="toc-les-séquences" class="nav-link" data-scroll-target="#les-s%C3%A9quences"><span class="header-section-number">6.10</span> Les séquences</a>
+  <ul class="collapse">
+<li><a href="#les-listes" id="toc-les-listes" class="nav-link" data-scroll-target="#les-listes"><span class="header-section-number">6.10.1</span> Les listes</a></li>
+  <li><a href="#les-tuples" id="toc-les-tuples" class="nav-link" data-scroll-target="#les-tuples"><span class="header-section-number">6.10.2</span> Les tuples</a></li>
+  <li><a href="#les-dictionaires" id="toc-les-dictionaires" class="nav-link" data-scroll-target="#les-dictionaires"><span class="header-section-number">6.10.3</span> Les dictionaires</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#structures-de-donn%C3%A9es-des-modules-tiers" id="toc-structures-de-données-des-modules-tiers" class="nav-link" data-scroll-target="#structures-de-donn%C3%A9es-des-modules-tiers"><span class="header-section-number">6.11</span> Structures de données des modules tiers</a>
+  <ul class="collapse">
+<li><a href="#arrays-numpy-arrays" id="toc-arrays-numpy-arrays" class="nav-link" data-scroll-target="#arrays-numpy-arrays"><span class="header-section-number">6.11.1</span> Arrays (NumPy arrays)</a></li>
+  <li><a href="#tableaux" id="toc-tableaux" class="nav-link" data-scroll-target="#tableaux"><span class="header-section-number">6.11.2</span> Tableaux</a></li>
+  </ul>
+</li>
+  <li><a href="#manipulation-de-donn%C3%A9es-en-python" id="toc-manipulation-de-données-en-python" class="nav-link" data-scroll-target="#manipulation-de-donn%C3%A9es-en-python"><span class="header-section-number">6.12</span> Manipulation de données en Python</a></li>
+  </ul></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <h1 class="title"><span id="sec-py" class="quarto-section-identifier"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Introduction à Python</span></span></h1>
 </div>
 
@@ -239,13 +280,11 @@ ul.task-list li input[type="checkbox"] {
   </div>
   
 
-</header>
-
-<hr>
+</header><hr>
 <p>Il peut arriver que, pour une raison ou une autre, vous puissiez bénéficier de travailler avec Python. Par exemple, si vous travaillez en géomatique avec QGIS ou même ArcGIS, Python peut être utilisé pour faire vos manipulations de données et vos analyses spatiales. Le fonctionnement de Python ressemble assez à R et vous remarquerez qu’une fois la première barrière de programmation franchie, les langages subséquents sont beaucoup plus faciles à assimiler.</p>
 <p>Cette section contient une brève introduction à Python. L’auteur de ce manuel, Essi Parent, a publié l’automne dernier une <a href="https://github.com/essicolo/introduction-au-calcul-numerique-avec-python">introduction au calcul numérique avec Python</a>. Le manuel de Essi semble concis et bien fait et vous permettra d’approfondir plus sur l’utilisation de Python. Pour le consulter, vous pouvez soit créer une fork sur votre github et cloner le répertoire, ou alors consulter les fichiers directement dans le navigateur. Sinon, comme pour R, il existe plusieurs bons manuels (par exemple <a href="https://wesmckinney.com/book/">Python for Data Analysis</a>), en anglais toutefois. Rappelez-vous que cette section est facultative; vous pourrez y revenir dans le futur lorsque le besoin se présentera!</p>
-<section id="quest-ce-que-python" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="quest-ce-que-python"><span class="header-section-number">6.1</span> Qu’est-ce que Python ?</h2>
+<section id="quest-ce-que-python" class="level2" data-number="6.1"><h2 data-number="6.1" class="anchored" data-anchor-id="quest-ce-que-python">
+<span class="header-section-number">6.1</span> Qu’est-ce que Python ?</h2>
 <p>Python est un langage de programmation de haut niveau (comme R). Ce langage est apparu en février 1991 et a été créé par Guido van Rossum. Un des objectifs principaux de Van Rossum était de créer un langage libre, simple et intuitif, mais puissant comme d’autres langages déjà existants. Python a été amplement adopté partout dans le monde et est devenu un des langages de programmation les plus populaires d’après différents rangs comme les indices <a href="https://www.tiobe.com/tiobe-index/" class="external" target="_blank">TIOBE</a> et <a href="https://pypl.github.io/PYPL.html" class="external" target="_blank">PYPL</a> et les tendances des questions dans <a href="https://bit.ly/3HKnTa9" class="external" target="_blank">Stack Overflow</a>.</p>
 <p>Dans les dernières années Python est devenu l’un des outils les plus utilisés pour le calcul scientifique et pour l’analyse de données, même si ce langage n’était pas conçu spécifiquement pour ces tâches. L’utilisation de Python dans la science de données a été poussé par le développement de différents modules qui permettent la manipulation et l’analyse de données, certains des modules les plus populaires pour l’analyse de données en Python étant :</p>
 <ul>
@@ -254,42 +293,609 @@ ul.task-list li input[type="checkbox"] {
 <li><p><strong>matplotlib</strong> : C’est le module le plus utilisé pour la visualisation de données sur Python, il peut être considéré comme le module de base pour la visualisation en Python.</p></li>
 <li><p><strong>SciPy</strong> : Ce module a différentes fonctions pour la computation scientifique comme le calcul numérique, le traitement de signaux et d’images, et certains statistiques.</p></li>
 <li><p><strong>scikit-learn</strong> : C’est une des modules les plus utilisés pour l’apprentissage automatique. <code>scikit-learn</code> a des innombrables algorithmes d’apprentissage supervisé et non-supervisé utilisés pour la classification ou la régression.</p></li>
-</ul>
-</section>
-<section id="installation" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="installation"><span class="header-section-number">6.2</span> Installation</h2>
+</ul></section><section id="installation" class="level2" data-number="6.2"><h2 data-number="6.2" class="anchored" data-anchor-id="installation">
+<span class="header-section-number">6.2</span> Installation</h2>
 <p>Il y a différentes façons d’installer Python dans un ordinateur. Dans le cas de Mac et Linux Python vient par défaut avec ces systèmes d’exploitation. Dans le cas de windows il faut le télécharger et l’installer. Une façon d’installer Python sur windows est de télécharger le fichier d’installation directement du site web de <a href="https://www.python.org/downloads/">Python</a>, une fois le fichier téléchargé, l’exécuter et suivre les instructions pour l’installation.</p>
-<p>Une autre alternative pour télécharger Python est à partir de <a href="https://www.anaconda.com/">Anaconda</a>. Anaconda c’est une distribution de Python, dont l’objectif est de simplifier la gestion et le déploiement des modules. Le gestionnaire de modules de Anaconda s’appelle <code>conda</code>. Il y a deux options pour installer Anaconda sur un ordinateur :</p>
+<p>Une autre alternative pour télécharger Python est à partir de <a href="https://www.anaconda.com/">Anaconda</a>. Anaconda c’est une distribution de Python, très utilisée dans la science de données, dont l’objectif est de simplifier la gestion et le déploiement des modules. Le gestionnaire de modules de Anaconda s’appelle <code>conda</code>. Il y a deux options pour installer Anaconda sur un ordinateur :</p>
 <ol type="1">
 <li><p>Télécharger la version complète qui vient avec Python, conda et 1 500 modules pre-installés.</p></li>
 <li><p>Télécharger une version minimale appellé <strong>Miniconda</strong> qui ne vient qu’avec Python et conda.</p></li>
 </ol>
-<p>Les deux différences principales entre Anaconda et Miniconda sont (1) l’espace réquis pour l’installation qui est de 3 GO et 400 MO, respectivement, et (2) le temps d’installation puisque ça prends moins de temps à installer Miniconda que Anaconda. L’utilisateur peut choisir Anaconda si n’a pas d’expérience et s’il ne veut pas se préoccuper à installer des modules. L’installation de Miniconda est récommandé pour des utilisateurs qui sont plus experimentés et qui savent déjà quels modules ils vont utiliser. Enfin, si l’ordinateur n’a pas beaucoup d’espace, il est recommandé d’installer Miniconda. Dans ce manuel, les exemples d’éxecution de Python et l’installation des modules se fera à partir d’un terminal de commande nommé « Anaconda prompt ».</p>
-</section>
-<section id="chapitre-en-construction" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="chapitre-en-construction"><span class="header-section-number">6.3</span> Chapitre en construction</h2>
-</section>
-<section id="anaconda-prompt" class="level2" data-number="6.4">
-<h2 data-number="6.4" class="anchored" data-anchor-id="anaconda-prompt"><span class="header-section-number">6.4</span> Anaconda prompt</h2>
+<p>Les deux différences principales entre Anaconda et Miniconda sont (1) l’espace réquis pour l’installation qui est de 3 GO et 400 MO, respectivement, et (2) le temps d’installation puisque ça prends moins de temps à installer Miniconda que Anaconda. L’utilisateur peut choisir Anaconda si n’a pas d’expérience et s’il ne veut pas se préoccuper à installer des modules. L’installation de Miniconda est récommandée pour des utilisateurs qui sont plus experimentés et qui savent déjà quels modules ils vont utiliser. Enfin, si l’ordinateur n’a pas beaucoup d’espace, il est recommandé d’installer Miniconda. Si vous souhaitez connaître davantage sur la distribution Anaconda, vous pouvez suivre <a href="https://freelearning.anaconda.cloud/get-started-with-anaconda">le cours d’introduction</a> sur le site web d’Anaconda.</p>
+</section><section id="anaconda-prompt" class="level2" data-number="6.3"><h2 data-number="6.3" class="anchored" data-anchor-id="anaconda-prompt">
+<span class="header-section-number">6.3</span> Anaconda prompt</h2>
+<p>Anaconda prompt est la terminale de ligne de commande d’Anaconda, cette terminale permet d’installer les modules nécessaires et de gérer des dossiers de travail connues comme environnements virtuels. Anaconda prompt est installé par défaut avec la distribution Anaconda ou miniconda. Dans le cas de windows pour accèder à la terminal conda, il faut chercher « Anaconda Prompt » et ouvrir la terminal (<a href="#fig-conda_prompt_wind">Figure&nbsp;<span>6.1</span></a>).</p>
+<div id="fig-conda_prompt_wind" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="images/06_conda_prompt_win.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;6.1: Anaconda Prompt - Windows</figcaption></figure>
+</div>
+<p>Dans linux, une fois que Anaconda a été installé, il suffit d’ouvrir la terminal de commandes de votre distribution linux, si la procédure d’installation a été bien exécutée, le mot <em>base</em> entre parenthèses doit apparaître au début de la ligne de commande.</p>
+<p><img src="images/06_fig_conda_prompt_linux.png" id="fig-conda_prompt_linux" class="img-fluid" data-fig-align="center" alt="Anaconda Prompt - Linux"> L’installation de base de conda vient avec une version de Python. Pour connaître la version de python qui a été installée il faut exécuter la commande <code>python -V</code> ou <code>python --version</code>. Lorsqu’on execute l’une de ces commandes on dois obtenir une ligne comme ci-dessous.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-V</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Python 3.11.4</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Dans le cas de la commande utilisée pour connaître la version de Python on a deux options de commande, <code>-V</code> et <code>--version</code>. Dans les terminaux de commande, ce type de commandes sont précédés d’un seul trait d’union quand on n’utilise qu’une lettre. On utilise deux traits d’union si on utilise le mot au complet pour appeler la commande.</p>
+</div>
+</div>
+</section><section id="les-environnements-virtuels" class="level2" data-number="6.4"><h2 data-number="6.4" class="anchored" data-anchor-id="les-environnements-virtuels">
+<span class="header-section-number">6.4</span> Les environnements virtuels</h2>
+<p>Un environnement virtuel (EV) est un dossier contenant une collection spécifique de modules. Il est possible d’avoir autant d’EV’s que nécessaires. Les environnements permettent de travailler de façon isolée et d’avoir différentes versions d’un même module, ce qui est très convénient et peut eviter des conflicts lorsqu’on travaille sur différents projets. Il existent différents modules qui permettent de créer des EV’s comme <a href="https://virtualenv.pypa.io/en/latest/"><code>virtualenv</code></a> et <a href="https://docs.python.org/3/library/venv.html"><code>venv</code></a>. <code>conda</code> permet également de créer des EV’s. Pour ce faire il suffit une ligne de commande qui ressemble à celle ci-dessous :</p>
+<pre><code>conda create --name &lt;my-env&gt;</code></pre>
+<p>Il suffit de remplacer <code>&lt;my-env&gt;</code> par le nom que l’on veut pour l’environnement. Il est également possible de créer un EV avec une version spécifique de python, la ligne de commande ci-dessous permet de créer un environnement nommé <em>py311</em> qui aura la version 3.11 de Python.</p>
+<pre><code>conda create -n py311 python=3.11</code></pre>
+<p>Pour connaitre la liste d’EV’s il faut éxécuter la commande :</p>
+<pre><code>conda env list</code></pre>
+<p>Une fois l’environnement a été crée il est possible de commencer à travailler dans celui-ci. Il faut d’abord l’activer, si l’on veut travailler dans l’EV qu’on vient de créer il faut exécuter la ligne suivante :</p>
+<pre><code>conda activate mon_env</code></pre>
+<p>Si l’EV a été correctement activé le mot <base> qui apparaissait au début de la ligne de commande doit être remplacé par le nom de l’EV qu’on vient d’activer. La capture d’écran de la terminale (<a href="#fig-conda_env">Figure&nbsp;<span>6.2</span></a>) montre la liste d’environnements et l’activation de l’EV <em>py311</em>.</p>
+<div id="fig-conda_env" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="images/06_conda_env.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;6.2: Conda : Environnement virtuel</figcaption></figure>
+</div>
+<p>Une fois dans l’environnement il est possible d’installer les modules nécessaires, l’installation se fait en exécutant la ligne suivante :</p>
+<pre><code>conda install numpy</code></pre>
+<p>Si vous voulez installer plusieurs modules :</p>
+<pre><code>conda install numpy pandas matplotlib</code></pre>
+<p>Pour désactiver un EV :</p>
+<pre><code>conda deactivate</code></pre>
+<p>Il y plusieurs commandes qui peuvent être utilisées, pour obtenir la liste des commandes et des informations sur chacune il suffit d’éxécuter <code>conda -h</code>.</p>
+</section><section id="rstudio-et-python" class="level2" data-number="6.5"><h2 data-number="6.5" class="anchored" data-anchor-id="rstudio-et-python">
+<span class="header-section-number">6.5</span> Rstudio et Python</h2>
+<p>Il existent plusieurs éditeurs de code comme <a href="https://code.visualstudio.com/">Visual Studio Code</a> ou <a href="https://www.jetbrains.com/pycharm/">PyCharm</a>, qui permettent d’éditer et d’exécuter codes Python. Il est également possible de travailler avec Python dans RStudio, pour ce faire, il est nécessaire d’avoir installé Python et d’installer le module <code>reticulate</code> de R (version 1.2 ou supérieure). Il est possible travailler en RStudio avec plusieurs versions de Python, pour choisir une vous pouvez vous servir des fonctions <code>use_python()</code>, <code>use_virtualenv()</code> or <code>use_condaenv()</code> du module reticulate de R. Pour plus d’informations sur l’utilisation du module <code>reticulate</code> vous pouvez visiter la <a href="https://rstudio.github.io/reticulate/index.html">guide officielle</a>. Il est possible de choisir une version de Python par défaut en RStudio, il faut clicker sur Tools -&gt; Global Options -&gt; Python.</p>
+<div id="fig-py_version" class="quarto-layout-panel">
+<figure class="figure"><div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-py_interp" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="images/06_py_interp_rstudio.png" class="img-fluid figure-img" data-ref-parent="fig-py_version"></p>
+<figcaption class="figure-caption">(a) Choisir version de Python en RStudio</figcaption></figure>
+</div>
+</div>
+<div class="quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-interp_list" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="images/06_py_interp_list.png" class="img-fluid figure-img" data-ref-parent="fig-py_version"></p>
+<figcaption class="figure-caption">(b) Liste des versions Python</figcaption></figure>
+</div>
+</div>
+</div>
+<p></p><figcaption class="figure-caption">Figure&nbsp;6.3: Configuration de la version de Python en RStudio</figcaption><p></p>
+</figure>
+</div>
+<p>Une fois la version de Python a été choisie, il est possible de commencer à travailler avec Python en RStudio.</p>
+</section><section id="hello-world" class="level2" data-number="6.6"><h2 data-number="6.6" class="anchored" data-anchor-id="hello-world">
+<span class="header-section-number">6.6</span> Hello world</h2>
+<p>Rendus à ce point on a déjà franchi toutes les étapes nécessaires pour commencer à travailler en Python. Pour commencer on va faire appel à la fonction <code><a href="https://rdrr.io/r/base/print.html">print()</a></code>pour éxécuter notre première ligne de code en Python.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Hello world"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Hello world</code></pre>
+</div>
+</div>
+</section><section id="types-de-données" class="level2" data-number="6.7"><h2 data-number="6.7" class="anchored" data-anchor-id="types-de-données">
+<span class="header-section-number">6.7</span> Types de données</h2>
+<p>En Python on retrouve deux types de données principaux, les données numériques et les chaines de caractères.</p>
+<section id="les-données-numériques" class="level3" data-number="6.7.1"><h3 data-number="6.7.1" class="anchored" data-anchor-id="les-données-numériques">
+<span class="header-section-number">6.7.1</span> Les données numériques</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Entière</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="dv">14</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>14</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># float</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fl">3.5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>3.5</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Tout comme en R, les lignes qui commencent par un <code>#</code> sont des commentaires.</p>
+</div>
+</div>
+<p>La fonction <code><a href="https://rdrr.io/r/base/Round.html">round()</a></code> permet d’arrondir de nombre de places décimales d’un nombre décimal.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="bu">round</span>(<span class="fl">3.14151692</span>, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>3.14</code></pre>
+</div>
+</div>
+<p>Les données booléenes (<code>True</code> et <code>False</code>) sont considérées aussi comme des données numériques.</p>
+</section><section id="la-chaine-de-caractères" class="level3" data-number="6.7.2"><h3 data-number="6.7.2" class="anchored" data-anchor-id="la-chaine-de-caractères">
+<span class="header-section-number">6.7.2</span> La chaine de caractères</h3>
+<p>Une chaine de caractères, de façon générale, est définie en utilisant des apostrophes, cependant si la chaine de caractères contient une apostrophe, il est récommandé d’utiliser les guillemets. Les chaines servent pour représenter des textes qui peuvent être utilisés de différentes façons.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'hello'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>hello</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Ici c'est mieux d'utiliser des guillemets"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Ici c'est mieux d'utiliser des guillemets</code></pre>
+</div>
+</div>
+<p>La fonction <code>type()</code> permet de connaître le type de donnée. Dans l’exemple suivant, puisque le deux est entouré des apostrophes, il est reconnu par Python comme une chaine.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(<span class="st">'2'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'str'&gt;</code></pre>
+</div>
+</div>
+</section></section><section id="operations" class="level2" data-number="6.8"><h2 data-number="6.8" class="anchored" data-anchor-id="operations">
+<span class="header-section-number">6.8</span> Operations</h2>
+<p>En Python on peut effectuer les opérations de base :</p>
 <ul>
-<li>conda bash</li>
-<li>“Bonjour monde”</li>
-<li>Rstudio et Python</li>
-<li>VS Code</li>
-<li>Operations Python</li>
-<li>Types d’objets</li>
-<li>Boucles</li>
-<li>Fonctions</li>
-<li>Les gestionnaires de modules</li>
-<li>Numpy, Pandas, Visualisation</li>
-<li>Fin</li>
+<li><strong>L’addition</strong></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>4</code></pre>
+</div>
+</div>
+<ul>
+<li><em>La soustraccion</em></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="op">-</span> <span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0</code></pre>
+</div>
+</div>
+<ul>
+<li><strong>La multiplication</strong></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="op">*</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>6</code></pre>
+</div>
+</div>
+<ul>
+<li><strong>La division</strong></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span> <span class="op">/</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>3.0</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="op">/</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>ZeroDivisionError: division by zero</code></pre>
+</div>
+</div>
+<p>Comme d’habitude, si l’on effectue une division par zéro ça entraînera une erreur, dans ce cas, Python va lever une exception nommée « ZeroDivisionError ». Les <strong>exceptions</strong> sont des erreurs pendant l’exécution d’un code, Python vient par défaut avec 72 exceptions différentes, pour apprendre davantage sur les exceptions et la façon de les gérer vous pouvez visiter la <a href="https://docs.python.org/3/tutorial/errors.html">documentation de Python</a>.</p>
+<p>Il y a deux autres types de division en Python. Le modulo (opérateur <code>%</code>) permet d’obtenir le reste d’une division, tandis que l’opérateur <code>//</code> permet d’obtenir la partie entière.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="dv">7</span> <span class="op">%</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>1</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="dv">7</span> <span class="op">//</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>3</code></pre>
+</div>
+</div>
+<p>Enfin, l’opérateur puissance est <code>**</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="op">**</span> <span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>27</code></pre>
+</div>
+</div>
+</section><section id="chaines-de-caractères" class="level2" data-number="6.9"><h2 data-number="6.9" class="anchored" data-anchor-id="chaines-de-caractères">
+<span class="header-section-number">6.9</span> Chaines de caractères</h2>
+<p>Les chaines peuvent être concaténées à l’aide de l’opérateur <code>+</code>. Le code ci-dessous concatène deux chaines nommées <code>code</code> et <code>nom_cours</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>code <span class="op">=</span> <span class="st">'gaa-7007'</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>nom_cours <span class="op">=</span> <span class="st">"Analyse et modélisation d'agroecosystèmes"</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(code <span class="op">+</span> <span class="st">' '</span> <span class="op">+</span> nom_cours)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>gaa-7007 Analyse et modélisation d'agroecosystèmes</code></pre>
+</div>
+</div>
+<p>L’opérateur <code>*</code> permet d’afficher plsieurs fois une chaine.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="op">*</span> code</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'gaa-7007gaa-7007gaa-7007'</code></pre>
+</div>
+</div>
+<p>Il est également possible de concaténer une chaine et un numéro. Pour effectuer cette opération il faut que utiliser la fonction <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code>, afin de convertir un numéro dans une chaine.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(code <span class="op">+</span> <span class="st">' '</span> <span class="op">+</span> <span class="bu">str</span>(<span class="dv">777</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>gaa-7007 777</code></pre>
+</div>
+</div>
+<p>En fait, les chaines peuvent être considerées comme des listes en Python, mais elles ne sont pas modifiables. Ainsi, il est possible d’accèder aux élements des chaines.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>nom_cours[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'A'</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>nom_cours[<span class="dv">5</span>:<span class="dv">17</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'se et modéli'</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>nom_cours[<span class="dv">6</span>:<span class="op">-</span><span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>"e et modélisation d'agroecosystè"</code></pre>
+</div>
+</div>
+<p>D’autres méthodes associées aux chaines de caractères comme <code><a href="https://rdrr.io/r/base/split.html">split()</a></code>, <code><a href="https://rdrr.io/r/utils/apropos.html">find()</a></code>, <code>count()</code>, etc. peuvent être trouvées dans <a href="https://python.sdv.univ-paris-diderot.fr/10_plus_sur_les_chaines_de_caracteres/#105-methodes-associees-aux-chaines-de-caracteres">cette guide</a> de l’Université Paris Cité.</p>
+</section><section id="les-séquences" class="level2" data-number="6.10"><h2 data-number="6.10" class="anchored" data-anchor-id="les-séquences">
+<span class="header-section-number">6.10</span> Les séquences</h2>
+<p>Les <strong>séquences</strong>, sont une collection finite de données ordonées par leur position. Il éxistent plusieurs types de séquences comme les listes, les tuples et les dictionnaires. Les chaînes de caractères sont aussi considerées des séquences.</p>
+<section id="les-listes" class="level3" data-number="6.10.1"><h3 data-number="6.10.1" class="anchored" data-anchor-id="les-listes">
+<span class="header-section-number">6.10.1</span> Les listes</h3>
+<p>Une liste est une collection qui peut stocker données de n’importe quelle type. Les listes sont considérées comme la structure de données fondamentale en Python. Pour créer une liste il faut utiliser la fonction <code><a href="https://rdrr.io/r/base/list.html">list()</a></code> ou utiliser les crochets (<code>[]</code>).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>ma_liste <span class="op">=</span> [<span class="dv">1</span> ,<span class="dv">2</span> ,<span class="dv">3</span>]</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>ma_liste</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1, 2, 3]</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>ma_liste_2 <span class="op">=</span> [<span class="fl">2.93758</span>, <span class="st">'a'</span>, <span class="dv">45</span>, [<span class="dv">2</span>, <span class="dv">3</span>]]</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>ma_liste_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[2.93758, 'a', 45, [2, 3]]</code></pre>
+</div>
+</div>
+<p>Il est possible d’ajouter des éléments à la fin d’une liste à l’aide de la méthode <code>append</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>ma_liste_2.append(<span class="st">'abc'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Pour insérer des éléments à un position spécificifique il faut utiliser la méthode <code>insert</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>ma_liste_2.insert(<span class="dv">3</span>, <span class="st">'euler'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Enfin, la méthode <code>pop</code> permet de retirer élements d’une liste.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>ma_liste_2.pop(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>45</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>ma_liste_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[2.93758, 'a', 'euler', [2, 3], 'abc']</code></pre>
+</div>
+</div>
+</section><section id="les-tuples" class="level3" data-number="6.10.2"><h3 data-number="6.10.2" class="anchored" data-anchor-id="les-tuples">
+<span class="header-section-number">6.10.2</span> Les tuples</h3>
+<p>Les tuples sont des collections similaires aux listes, pour les créer il faut utiliser la fonction <code>tuple()</code> ou utiliser les parenthèses (<code>()</code>). La différence entre les listes et les tuples est que les tuples ne sont pas mutables, c’est à dire qu’il n’est pas possible de changer le contenu d’une tuple.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>ma_tuple <span class="op">=</span> (<span class="fl">0.2</span>, [<span class="dv">4</span>, <span class="st">'a'</span>], <span class="st">'R'</span>)</span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>ma_tuple</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(0.2, [4, 'a'], 'R')</code></pre>
+</div>
+</div>
+<p>Il est également possible de créer des listes ou des tuples à partir d’une chaine de caractères.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>str_1 <span class="op">=</span> <span class="st">"ma_tuple"</span></span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>chaine_to_tuple <span class="op">=</span>  <span class="bu">tuple</span>(str_1)</span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>chaine_to_tuple</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>('m', 'a', '_', 't', 'u', 'p', 'l', 'e')</code></pre>
+</div>
+</div>
+</section><section id="les-dictionaires" class="level3" data-number="6.10.3"><h3 data-number="6.10.3" class="anchored" data-anchor-id="les-dictionaires">
+<span class="header-section-number">6.10.3</span> Les dictionaires</h3>
+<p>Les dictionnaires est une structure de données qui permet de stocker des valeurs et les associer à une <strong>clé unique</strong> (<em>key/value pairs</em>, en anglais). Pour créer une dictionnaire il faut construire des paires à partir de la sintaxe <code>'clé' : 'value'</code> et séparer chaque paire par une virgule (<code>,</code>). En fin, tous les paires doivent être entourés d’une paire d’accolades (<code><a href="https://rdrr.io/r/base/Paren.html">{}</a></code>).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>dictio_vide <span class="op">=</span> {} <span class="co"># Cette ligne crée un dictionnaire vide</span></span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>mon_dictio <span class="op">=</span> {<span class="st">'name'</span> : <span class="st">'Issac'</span>, <span class="st">'last_name'</span> : <span class="st">'Newton'</span>}</span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>mon_dictio</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{'name': 'Issac', 'last_name': 'Newton'}</code></pre>
+</div>
+</div>
+<p>Il est possible de connaître les clés d’un dictionnaire en utilisant la méthode <code>keys</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>mon_dictio.keys()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>dict_keys(['name', 'last_name'])</code></pre>
+</div>
+</div>
+<p>La méthode <code>del()</code> permet de supprimer des paires d’un dictionnaire.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="kw">del</span>(mon_dictio[<span class="st">'name'</span>])</span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>mon_dictio</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{'last_name': 'Newton'}</code></pre>
+</div>
+</div>
+</section></section><section id="structures-de-données-des-modules-tiers" class="level2" data-number="6.11"><h2 data-number="6.11" class="anchored" data-anchor-id="structures-de-données-des-modules-tiers">
+<span class="header-section-number">6.11</span> Structures de données des modules tiers</h2>
+<p>Au début de ce chapitre, on a presenté certains modules qui ne font pas partie des fonctionnalités de basse de Python, ces sont des modules tiers qui doivent être installés séparement. Les méthodes qu’on a utilisé jusqu’à présent viennent par défaut avec Python. Cependant, les modules tiers ont autres types de structures qui sont très utilisés dans la science de données, c’est le cas des <em>arrays</em> du module <code>numpy</code> et des tableaux (Dataframes). Les tableaux sont l’une des structures les plus utilisées dans la science de données, en Python, le module <code>Pandas</code> est le plus utilisé pour la manipulation de tableaux. Le module <code>Polars</code> permet aussi de travailler avec des tableaux, ce module a gagné popularité dans les dernières années puisqu’il est <a href="https://duckdblabs.github.io/db-benchmark/">plus rapide</a> comparé à Pandas. Cependant, Pandas à des advantages par rapport à Polars en ce qui concerne la compatibilité avec d’autres modules de Python, notamment, avec les modules de visualisation et d’intélligence artificielle.</p>
+<section id="arrays-numpy-arrays" class="level3" data-number="6.11.1"><h3 data-number="6.11.1" class="anchored" data-anchor-id="arrays-numpy-arrays">
+<span class="header-section-number">6.11.1</span> Arrays (NumPy arrays)</h3>
+<p>Les arrays du module NumPy sont des structures de données conçues pour gérer de façon efficace opérations sur les données. Les arrays sont la base de plusieurs structures d’autres modules de Python. Un array peut avoir plusieurs dimensions, c’est pourquoi ils supportent ne seulement des fonctions mathématiques simples mais aussi des calculs d’algèbre linéaire avancée. NumPy offre différentes fonctions pour la création d’arrays, comme par exemple la fonction <code>arange()</code>. Avant d’appeler les fonctions du module NumPy il faut l’importer, pour cela on utilise la syntaxe <code>import &lt;package_name&gt; as &lt;alias&gt;</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>np.arange(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>array([1, 2, 3, 4])</code></pre>
+</div>
+</div>
+<p>Il est possible de créer des arrays à partir d’une liste.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>np.array(ma_liste)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>array([1, 2, 3])</code></pre>
+</div>
+</div>
+<p>La fonction <code>zeros()</code> permet de créer un array de zéros.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>np.zeros(<span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>array([0., 0., 0., 0., 0., 0.])</code></pre>
+</div>
+</div>
+<p>De même, la fonction <code>ones()</code> permet de créer un array de uns.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>np.ones(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>array([1., 1., 1., 1., 1.])</code></pre>
+</div>
+</div>
+<p>Il est possible de créer des matrices à l’aide de la méthode <code>reshape</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>array_1d <span class="op">=</span> np.arange(<span class="dv">15</span>)</span>
+<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a>matrice <span class="op">=</span> array_1d.reshape(<span class="dv">5</span>,<span class="dv">3</span>)</span>
+<span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a>matrice</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>array([[ 0,  1,  2],
+       [ 3,  4,  5],
+       [ 6,  7,  8],
+       [ 9, 10, 11],
+       [12, 13, 14]])</code></pre>
+</div>
+</div>
+<p>Il y a beaucoup d’autres fonctions qui font partie du module NumPy, pour les consulter vous pouvez visiter le <a href="https://numpy.org/doc/stable/user/absolute_beginners.html">site officiel</a> du module.</p>
+</section><section id="tableaux" class="level3" data-number="6.11.2"><h3 data-number="6.11.2" class="anchored" data-anchor-id="tableaux">
+<span class="header-section-number">6.11.2</span> Tableaux</h3>
+<p>Les tableaux sont des structures de données qui ressemblent aux feuilles de calcul d’Excel. Un tableau peut être aussi vu comme une array de deux dimensions auquel on assigne des noms (<code>labels</code>) pour les colonnes et des indices pour les lignes. Le module le plus utilisé pour la création de tableaux est <code>Pandas</code>, ce module permmet de charger des tableaux à partir de fichiers de différents formats, à partir de fichiers qui se trouvent sur internet, ou à partir des données générées par l’utilisateur directement sur Python à partir des objets crées à l’aide des fonctions de base ou des modules tiers. Tout comme en R, les tableaux doivent avoir des colonnes d’une même longueur et les colonnes peuvent être de différentes types de données. Une des fonctions de Pandas qui permet de créer des tableaux est <code>DataFrame</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb82-3"><a href="#cb82-3" aria-hidden="true" tabindex="-1"></a>tableau_1 <span class="op">=</span> pd.DataFrame(matrice)</span>
+<span id="cb82-4"><a href="#cb82-4" aria-hidden="true" tabindex="-1"></a>tableau_1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    0   1   2
+0   0   1   2
+1   3   4   5
+2   6   7   8
+3   9  10  11
+4  12  13  14</code></pre>
+</div>
+</div>
+<p>Dans le code précédent, le tableau a été construit à partir de la matrice qui avait été crée précédemment à l’aide du module NumPy. Il est à noter que les colonnes n’ont pas été nommées, pour ce faire on peut créer une liste contenant les noms des colonnes, et assigner la liste au paramètre <code>columns</code> du tableau.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>tableau_1.columns <span class="op">=</span> [<span class="st">'col_1'</span>, <span class="st">'col_2'</span>, <span class="st">'col_3'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Il est également possible de créer des tableaux à partir d’un dictionnaire. Pandas réconnait les clés du dictionnaire comme les noms des colonnes.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>dictio_climat <span class="op">=</span> {<span class="st">'sites'</span> : [<span class="st">'site1'</span>, <span class="st">'site2'</span>, <span class="st">'site3'</span>, <span class="st">'site4'</span>],</span>
+<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a>                 <span class="st">'temperature'</span> : [<span class="fl">25.3</span>, <span class="fl">20.1</span>, <span class="fl">15.4</span>, <span class="fl">18.9</span>],</span>
+<span id="cb85-3"><a href="#cb85-3" aria-hidden="true" tabindex="-1"></a>                 <span class="st">'humid_rel'</span> : [<span class="dv">72</span>, <span class="dv">68</span>, np.nan, <span class="dv">70</span>]}</span>
+<span id="cb85-4"><a href="#cb85-4" aria-hidden="true" tabindex="-1"></a>df_climat <span class="op">=</span> pd.DataFrame(dictio_climat)</span>
+<span id="cb85-5"><a href="#cb85-5" aria-hidden="true" tabindex="-1"></a>df_climat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   sites  temperature  humid_rel
+0  site1         25.3       72.0
+1  site2         20.1       68.0
+2  site3         15.4        NaN
+3  site4         18.9       70.0</code></pre>
+</div>
+</div>
+<p>Dans le code précedent, on a crée une valeur manquante à l’aide de la fonction <code>nan</code> du module NumPy. Il est possible d’importer les données à partir d’un fichier, certains des formats qui peuvent être lus par Pandas sont csv, txt, html, excel, etc. Une des formats le plus utilisé est csv, pour lire un fichier de ce type il faut utiliser la fonction <code>read_csv()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>data_abalone <span class="op">=</span> pd.read_csv(<span class="st">'data/abalone.csv'</span>)</span>
+<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a>data_abalone</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     Type  LongestShell  Diameter  ...  VisceraWeight  ShellWeight  Rings
+0       M         0.455     0.365  ...         0.1010       0.1500     15
+1       M         0.350     0.265  ...         0.0485       0.0700      7
+2       F         0.530     0.420  ...         0.1415       0.2100      9
+3       M         0.440     0.365  ...         0.1140       0.1550     10
+4       I         0.330     0.255  ...         0.0395       0.0550      7
+...   ...           ...       ...  ...            ...          ...    ...
+4172    F         0.565     0.450  ...         0.2390       0.2490     11
+4173    M         0.590     0.440  ...         0.2145       0.2605     10
+4174    M         0.600     0.475  ...         0.2875       0.3080      9
+4175    F         0.625     0.485  ...         0.2610       0.2960     10
+4176    M         0.710     0.555  ...         0.3765       0.4950     12
+
+[4177 rows x 9 columns]</code></pre>
+</div>
+</div>
+<p>Il est également possible de charger jeux de données qui sont hébergées sur des sites internet. Dans ce cas, on va importer une jeu de données qui se trouve dans le site web de <a href="https://www.donneesquebec.ca/">Données Québec</a>, appelé « Inventaire des contaminant atmosphériques du Québec ». Comme en R, ils existe la fonction <code>head</code> qui permet d’observer seulement les premières lignes d’un tableau.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a>df_contamin <span class="op">=</span> pd.read_csv(<span class="st">'https://www.donneesquebec.ca/recherche/dataset/f50b0822-0c50-4bc8-9794-0093a5fb8201/resource/50a1b496-793c-4e1e-9906-6a6363944ca8/download/inventaire_contaminants.csv'</span>)</span>
+<span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a>df_contamin.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Annee      Secteur  ...                         Contaminant Emissions(t)
+0   1990  Fabrication  ...  Composés organiques volatils (COV)   937.820352
+1   1990  Fabrication  ...             Particules totales (PM)     0.015100
+2   1990  Fabrication  ...                Oxydes d'azote (NOX)     0.505100
+3   1990  Fabrication  ...  Composés organiques volatils (COV)     3.261800
+4   1990  Fabrication  ...     Particules &lt;2,5 microns (PM2,5)     0.015100
+
+[5 rows x 6 columns]</code></pre>
+</div>
+</div>
+</section></section><section id="manipulation-de-données-en-python" class="level2" data-number="6.12"><h2 data-number="6.12" class="anchored" data-anchor-id="manipulation-de-données-en-python">
+<span class="header-section-number">6.12</span> Manipulation de données en Python</h2>
+<p>La méthode <code>describe</code> de Pandas, permet d’obtenir les statistiques descriptives des colonnes de type numérique d’un tableau.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a>df_contamin.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>              Annee   Emissions(t)
+count  19062.000000   19047.000000
+mean    2006.211888    6807.094418
+std        9.154983   40403.432236
+min     1990.000000       0.000000
+25%     1998.000000      14.883811
+50%     2007.000000     139.908748
+75%     2014.000000    1138.762750
+max     2021.000000  852703.552300</code></pre>
+</div>
+</div>
+<p>La méthode <code>dtypes</code> permet de connaître le type de données de chacune des colonnes du tableau.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a>df_contamin.dtypes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Annee             int64
+Secteur          object
+Sous-secteur     object
+Categorie        object
+Contaminant      object
+Emissions(t)    float64
+dtype: object</code></pre>
+</div>
+</div>
+<p>La sortie du code précédent montre les noms des colonnes, toutes les noms contient des majuscules, un nom contient une trait d’union et le nom de la dernière colonne contienne l’unité de mesure entre parenthèses. En générale, il est recommandable que les noms des colonnes (et des variables) soient écrits entièrement en minuscules, si les noms sont très longs, c’est préférable de les séparer à l’aide d’un tiret bas. Enfin, dans le cas du nom contenant l’unité de mesure, il est préférable d’enlever les parenthèses et de séparer l’unité du nom avec un tiret bas. Le code ci-dessous permet de changer les noms des variables à l’aide de la fonction <code>rename</code>. La guide de style pour écrire code en Python <a href="https://peps.python.org/pep-0008/"><strong>PEP 8</strong></a> contient les bonnes pratiques pour écrire code en Python.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a>df_contamin <span class="op">=</span> df_contamin.rename(columns<span class="op">=</span>{<span class="st">'Annee'</span> : <span class="st">'annee'</span>,</span>
+<span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a>                                          <span class="st">'Secteur'</span> : <span class="st">'secteur'</span>,</span>
+<span id="cb95-3"><a href="#cb95-3" aria-hidden="true" tabindex="-1"></a>                                          <span class="st">'Sous-secteur'</span> : <span class="st">'sous_secteur'</span>,</span>
+<span id="cb95-4"><a href="#cb95-4" aria-hidden="true" tabindex="-1"></a>                                          <span class="st">'Categorie'</span> : <span class="st">'categorie'</span>,</span>
+<span id="cb95-5"><a href="#cb95-5" aria-hidden="true" tabindex="-1"></a>                                          <span class="st">'Contaminant'</span> : <span class="st">'contaminant'</span>,</span>
+<span id="cb95-6"><a href="#cb95-6" aria-hidden="true" tabindex="-1"></a>                                          <span class="st">'Emissions(t)'</span> : <span class="st">'emissions_t'</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Pour accèder à une colonne spécifique, il suffit d’appeler le tableau et d’ajouter le nom de la colonne entouré de crochets.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a>df_contamin[<span class="st">'secteur'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0        Fabrication
+1        Fabrication
+2        Fabrication
+3        Fabrication
+4        Fabrication
+            ...     
+19057      Poussière
+19058      Poussière
+19059      Poussière
+19060      Poussière
+19061      Poussière
+Name: secteur, Length: 19062, dtype: object</code></pre>
+</div>
+</div>
+<p>Il est possible de filtrer les tableaux en utilisant la fonction <code>query()</code>, il est possible d’ajouter différentes requêtes à cette fonction en utilisant les différents opérateurs d’égalité (<code>==</code>, <code>!=</code>, <code>is</code>), de comparaison (<code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code>, <code>&gt;=</code>) et booléenes (<code>and</code>, <code>or</code>, <code>not</code>).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a>df_contamin.query(<span class="st">'secteur == "Fabrication"'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       annee      secteur  ...                         contaminant emissions_t
+0       1990  Fabrication  ...  Composés organiques volatils (COV)  937.820352
+1       1990  Fabrication  ...             Particules totales (PM)    0.015100
+2       1990  Fabrication  ...                Oxydes d'azote (NOX)    0.505100
+3       1990  Fabrication  ...  Composés organiques volatils (COV)    3.261800
+4       1990  Fabrication  ...     Particules &lt;2,5 microns (PM2,5)    0.015100
+...      ...          ...  ...                                 ...         ...
+18537   2021  Fabrication  ...  Composés organiques volatils (COV)   34.191300
+18538   2021  Fabrication  ...       Particules &lt;10 microns (PM10)    0.177485
+18539   2021  Fabrication  ...            Monoxyde de carbone (CO)   47.663831
+18540   2021  Fabrication  ...             Dioxyde de soufre (SO2)    0.088082
+18541   2021  Fabrication  ...                Oxydes d'azote (NOX)    7.354698
+
+[3564 rows x 6 columns]</code></pre>
+</div>
+</div>
+<p>Une autre façon d’effectuer le filtrage de données :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a>df_contamin.query(<span class="st">'secteur == "Agriculture" &amp; emissions_t &gt; 100'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       annee      secteur  ...                         contaminant   emissions_t
+465     1990  Agriculture  ...  Composés organiques volatils (COV)  23008.322620
+466     1990  Agriculture  ...     Particules &lt;2,5 microns (PM2,5)    364.894541
+467     1990  Agriculture  ...       Particules &lt;10 microns (PM10)   1757.730409
+468     1990  Agriculture  ...             Particules totales (PM)   6329.298712
+469     1990  Agriculture  ...       Particules &lt;10 microns (PM10)    554.653427
+...      ...          ...  ...                                 ...           ...
+19005   2021  Agriculture  ...     Particules &lt;2,5 microns (PM2,5)   8600.000000
+19006   2021  Agriculture  ...       Particules &lt;10 microns (PM10)  18060.000000
+19007   2021  Agriculture  ...       Particules &lt;10 microns (PM10)   2921.951688
+19008   2021  Agriculture  ...     Particules &lt;2,5 microns (PM2,5)    584.390337
+19009   2021  Agriculture  ...             Particules totales (PM)   6431.766867
+
+[512 rows x 6 columns]</code></pre>
+</div>
+</div>
+<p>Comme en R, il est possible de regrouper des données selon les facteurs d’une variable. Dans ce cas, on va obtenir la moyenne annuelle des émissions des particules totales (PM) de chaque sous-secteur de l’agriculture. Pour effectuer le regroupement on utilise la fonction <code>groupby()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb102-2"><a href="#cb102-2" aria-hidden="true" tabindex="-1"></a>  df_contamin</span>
+<span id="cb102-3"><a href="#cb102-3" aria-hidden="true" tabindex="-1"></a>  .query(<span class="st">'secteur == "Agriculture" &amp; contaminant == "Particules totales (PM)"'</span>)</span>
+<span id="cb102-4"><a href="#cb102-4" aria-hidden="true" tabindex="-1"></a>  .loc[:, [<span class="st">'annee'</span>, <span class="st">'sous_secteur'</span>, <span class="st">'emissions_t'</span>]]</span>
+<span id="cb102-5"><a href="#cb102-5" aria-hidden="true" tabindex="-1"></a>  .groupby([<span class="st">'annee'</span>, <span class="st">'sous_secteur'</span>]).mean()</span>
+<span id="cb102-6"><a href="#cb102-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                                         emissions_t
+annee sous_secteur                                  
+1990  Production animale                 6329.298712
+      Production de cultures agricoles  20635.033027
+1991  Production animale                 6307.397542
+      Production de cultures agricoles  20623.918071
+1992  Production animale                 6388.488643
+...                                              ...
+2019  Production de cultures agricoles  25176.715491
+2020  Production animale                 7950.949838
+      Production de cultures agricoles  25444.213552
+2021  Production animale                 7928.066565
+      Production de cultures agricoles  25113.266342
+
+[64 rows x 1 columns]</code></pre>
+</div>
+</div>
+<p>Les pas suivis dans le code précedent ont été les suivants :</p>
+<ul>
+<li><p>Filtrage du tableau ;a l’aide de la fonction <code>query</code>, on n’a retenu que les données appartenant au secteur agriculture et au contaminant particules totales.</p></li>
+<li><p>Selection des colonnes <code>annee</code>, <code>sous-secteur</code> et <code>emissions_t</code> à l’aide de la fonction <code>loc()</code>.</p></li>
+<li><p>Regroupement (fonction <code>groupby</code>) et calcul de la moyenne annuel des émissions par sous-secteur.</p></li>
+<li><p>Boucles</p></li>
+<li><p>Fonctions</p></li>
+<li><p>Les gestionnaires de modules</p></li>
+<li><p>Numpy, Pandas, Visualisation</p></li>
+<li><p>Fin</p></li>
 </ul>
 
 
-</section>
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -521,9 +1127,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="./05-github.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Science ouverte et reproductibilité</span></span>
       </a>          
@@ -535,8 +1139,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
+<footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">Analyse et modélisation d’agroécosystèmes est construit avec <a href="https://quarto.org/">Quarto</a>.</div>   
     <div class="nav-footer-center">
       &nbsp;
@@ -544,7 +1147,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-right">Lien vers le <a href="https://essicolo.github.io/ecologie-mathematique-R/">manuel original</a>.</div>
   </div>
 </footer>
-
 
 
 </body></html>
