@@ -17,7 +17,7 @@ Plusieurs cas d'espèces en sciences et génies peuvent être approchés en lian
 
 Lorsque la forme de la réponse est difficile à envisager, en particulier dans des cas non-linéaires ou impliquant plusieurs variables, on pourra faire appel à des modèles dont la structure n'est pas contrôlée par une équation rigide gouvernée par des paramètres (comme la pente ou l'intercept).
 
-L'**autoapprentissage**, apprentissage automatique, ou *machine learning*, vise à détecter des structures complexes émergeant d'ensembles de données à l'aide des mathématiques et de processus automatisés afin de prédire l'émergence de futures occurrences. Comme ensemble de techniques empiriques, l'autoapprentissage est un cas particulier de l'**intelligence artificielle**, qui elle inclut aussi les mécanismes déterministes et des ensembles d'opérations logiques. Par exemple, les premiers ordinateurs à compétitionner aux échecs se basaient sur des règles de logique (si la reine noire est positionnée en c3 et qu'un le fou blanc est en position f6 et que ... alors bouge la tour en g5 - j'écris n'importe quoi). Un jeu simple d'intelligence artificielle consiste à lancer une marche aléatoire, par exemple bouger à chaque pas d'une distance au hasard en x et y, puis de recalculer le pas s'il arrive dans une boîte définie (figure @fig-ml_random_walk). Dans les deux cas, il s'agit d'intelligence artificielle, mais pas d'autoapprentissage. 
+L'**autoapprentissage**, apprentissage automatique, ou *machine learning*, vise à détecter des structures complexes émergeant d'ensembles de données à l'aide des mathématiques et de processus automatisés afin de prédire l'émergence de futures occurrences. Comme ensemble de techniques empiriques, l'autoapprentissage est un cas particulier de l'**intelligence artificielle**, qui elle inclut aussi les mécanismes déterministes et des ensembles d'opérations logiques. Par exemple, les premiers ordinateurs à compétitionner aux échecs se basaient sur des règles de logique (si la reine noire est positionnée en c3 et qu'un le fou blanc est en position f6 et que ... alors bouge la tour en g5 - j'écris n'importe quoi). Un jeu simple d'intelligence artificielle consiste à lancer une marche aléatoire, par exemple bouger à chaque pas d'une distance au hasard en x et y, puis de recalculer le pas s'il arrive dans une boîte définie ([figure @fig-ml_random_walk]). Dans les deux cas, il s'agit d'intelligence artificielle, mais pas d'autoapprentissage. 
 
 ```{r}
 #| label: fig-ml_random_walk
@@ -64,18 +64,18 @@ L'autoapprentissage possède son jargon particulier. Puisque certains termes peu
 
 - **Réponse**. La variable que l'on cherche à obtenir. Il peut s'agir d'une variable continue comme d'une variable catégorielle. On la nomme aussi la *cible*.
 - **Prédicteur**. Une variable utilisée pour prédire une réponse. Les prédicteurs sont des variables continues. Les prédicteurs de type catégoriel doivent préalablement être dummifiés (voir chapitre 5). On nomme les prédicteurs les *entrées*.
-- **Apprentissage supervisé** et **non-supervisé**. Si vous avez suivi le cours jusqu'ici, vous avez déjà utilisé des outils entrant dans la grande famille de l'apprentissage automatique. La régression linéaire, par exemple, vise à minimiser l'erreur sur la réponse en optimisant les coefficients de pente et l'intercept. Un apprentissage supervisé a une cible, comme c'est le cas de la régression linéaire. En revanche, un apprentissage non supervisé n'en a pas: on laisse l'algorithme le soin de détecter des structures intéressantes. Nous avons déjà utilisé cette approche. Pensez-y un peu... l'analyse en composante principale ou en coordonnées principales, ainsi que le partitionnement hiérarchique ou non, couverts au chapitre @sec-ord, sont des exemples d'apprentissage non supervisé. En revanche, l'analyse de redondance a une réponse. L'analyse discriminante aussi, bien que sa réponse soit catégorielle. L'apprentissage non supervisé ayant déjà été couvert (sans le nommer) au chapitre @sec-ord, ce chapitre ne s'intéresse qu'à l'apprentissage supervisé.
+- **Apprentissage supervisé** et **non-supervisé**. Si vous avez suivi le cours jusqu'ici, vous avez déjà utilisé des outils entrant dans la grande famille de l'apprentissage automatique. La régression linéaire, par exemple, vise à minimiser l'erreur sur la réponse en optimisant les coefficients de pente et l'intercept. Un apprentissage supervisé a une cible, comme c'est le cas de la régression linéaire. En revanche, un apprentissage non supervisé n'en a pas: on laisse l'algorithme le soin de détecter des structures intéressantes. Nous avons déjà utilisé cette approche. Pensez-y un peu... l'analyse en composante principale ou en coordonnées principales, ainsi que le partitionnement hiérarchique ou non, couverts au [chapitre @sec-ord], sont des exemples d'apprentissage non supervisé. En revanche, l'analyse de redondance a une réponse. L'analyse discriminante aussi, bien que sa réponse soit catégorielle. L'apprentissage non supervisé ayant déjà été couvert (sans le nommer) au [chapitre @sec-ord], ce chapitre ne s'intéresse qu'à l'apprentissage supervisé.
 - **Régression** et **Classification**. Alors que la régression est un type d'apprentissage automatique pour les réponses continues, la classification vise à prédire une réponse catégorielle. Il existe des algorithmes uniquement application à la régression, uniquement applicables à la classification, et plusieurs autres adaptable aux deux situations.
 - **Données d'entraînement** et **données de test**. Lorsque l'on génère un modèle, on désire qu'il sache comment réagir à ses prédicteurs. Cela se fait avec des données d'entraînement, sur lesquelles on **calibre** et **valide** le modèle. Les données de test servent à vérifier si le modèle est en mesure de prédire des réponses sur lesquelles il n'a pas été entraîné.
 - **Fonction de perte**. Une fonction qui mesure l'erreur d'un modèle.
 
 ## Démarche
 
-La première tâche est d'explorer les données, ce que nous avons couvert au chapitres \@ref(chapitre-tableaux) et @sec-visual.
+La première tâche est d'explorer les données, ce que nous avons couvert au chapitres [-@sec-table] et [-@sec-visual].
 
 ### Prétraitement
 
-Pour la plupart des techniques d'autoapprentissage, le choix de l'échelle de mesure est déterminant sur la modélisation subséquente. Par exemple, un algorithme basé sur la distance comme les *k* plus proches voisins ne mesurera pas les mêmes distances entre deux observations si l'on change l'unité de mesure d'une variable du mètre au kilomètre. Il est donc important d'effectuer, ou d'envisager la possibilité d'effectuer un prétraitement sur les données. Je vous réfère au chapitre @sec-expl pour plus de détails sur le prétraitement.
+Pour la plupart des techniques d'autoapprentissage, le choix de l'échelle de mesure est déterminant sur la modélisation subséquente. Par exemple, un algorithme basé sur la distance comme les *k* plus proches voisins ne mesurera pas les mêmes distances entre deux observations si l'on change l'unité de mesure d'une variable du mètre au kilomètre. Il est donc important d'effectuer, ou d'envisager la possibilité d'effectuer un prétraitement sur les données. Je vous réfère au [chapitre @sec-expl] pour plus de détails sur le prétraitement.
 
 ### Entraînement et test
 
@@ -186,7 +186,7 @@ knitr::include_graphics("images/11_les-voisins.jpg")
 
 Pour dire comme Georges, le... l'idée en arrière des KNN pour être... euh... *simpliste*, c'est qu'un objet va ressembler à ce qui se trouve dans son voisinage. Les KNN se basent en effet sur une métrique de distance pour rechercher un nombre *k* de points situés à proximité de la mesure. Les *k* points les plus proches sont retenus, *k* étant un entier non nul à optimiser. Un autre paramètre parfois utilisé est la distance maximale des voisins à considérer: un voisin trop éloigné pourra être discarté. La réponse attribuée à la mesure est calculée à partir de la réponse des *k* voisins retenus. Dans le cas d'une régression, on utiliser généralement la moyenne. Dans le cas de la classification, la mesure prendra la catégorie qui sera la plus présente chez les *k* plus proches voisins.
 
-L'algorithme des *k* plus proches voisins est relativement simple à comprendre. Certains pièges sont, de même, peuvent être contournés facilement. Imaginez que vous rechercher les points les plus rapprochés dans un système de coordonnées géographiques où les coordonnées $x$ sont exprimées en mètres et les coordonnées $y$, en centimètres. Vous y projetez trois points (figure @fig-ml_knn1).
+L'algorithme des *k* plus proches voisins est relativement simple à comprendre. Certains pièges sont, de même, peuvent être contournés facilement. Imaginez que vous rechercher les points les plus rapprochés dans un système de coordonnées géographiques où les coordonnées $x$ sont exprimées en mètres et les coordonnées $y$, en centimètres. Vous y projetez trois points ([figure @fig-ml_knn1]).
 
 ```{r}
 #| label: fig-ml_knn1
@@ -203,7 +203,7 @@ plot(data, cex=3,
 text(data, labels = rownames(data))
 ```
 
-Techniquement la distance A-B est 100 fois plus élevée que la distance A-C, mais l'algorithme ne se soucie pas de la métrique que vous utilisez (figure @fig-ml_knn1). Il est primordial dans ce cas d'utiliser la même métrique. Cette stratégie est évidente lorsque les variables sont comparables. C'est rarement le cas, que ce soit lorsque l'on compare des dimensions physionomiques (la longueur d'une phalange ou celle d'un fémur) mais lorsque les variables incluent des mélanges de longueurs, des pH, des décomptes, etc., il est important de bien identifier la métrique et le type de distance qu'il convient le mieux d'utiliser. En outre, la standardisation des données à une moyenne de zéro et à un écart-type de 1 est une approche couramment utilisée.
+Techniquement la distance A-B est 100 fois plus élevée que la distance A-C, mais l'algorithme ne se soucie pas de la métrique que vous utilisez ([figure @fig-ml_knn1]). Il est primordial dans ce cas d'utiliser la même métrique. Cette stratégie est évidente lorsque les variables sont comparables. C'est rarement le cas, que ce soit lorsque l'on compare des dimensions physionomiques (la longueur d'une phalange ou celle d'un fémur) mais lorsque les variables incluent des mélanges de longueurs, des pH, des décomptes, etc., il est important de bien identifier la métrique et le type de distance qu'il convient le mieux d'utiliser. En outre, la standardisation des données à une moyenne de zéro et à un écart-type de 1 est une approche couramment utilisée.
 
 #### Exemple d'application
 
@@ -318,7 +318,7 @@ Les espèces de dragon sont toutes bien classées tant entraînement qu'en test 
 #| label: ml-ents
 #| out-width: 100%
 #| fig-align: center
-#| fig-cap: "Les Ents, tiré du film le Seigneur des anneaux, qui prennent trop de temps avant de se décider - paradoxalement, les abrbres de décisions sont dotés d'algorithmes rapides."
+#| fig-cap: "Les Ents, tiré du film le Seigneur des anneaux, qui prennent trop de temps avant de se décider - paradoxalement, les arbres de décisions sont dotés d'algorithmes rapides."
 #| echo: false
 
 knitr::include_graphics("images/11_Entmoot.jpg")
@@ -450,7 +450,7 @@ Notez que les forêts aléatoires ne génère par de visuel.
 
 ### Les réseaux neuronaux
 
-Après les KNN et les *random forests*, nous passons au domaine plus complexe des réseaux neuronaux. Le terme *réseau neuronal* est une métaphore liée à une perception que l'on avait du fonctionnement du cerveau humain lorsque la technique des réseaux neuronaux a été développée dans les années 1950. Un réseau neuronal comprend une série de boîtes d'entrées liée à des fonctions qui transforment et acheminent successivement l'information jusqu'à la sortie d'une ou plusieurs réponses. Il existe plusieurs formes de réseaux neuronnaux, dont la plus simple manifestation est le *perceptron multicouche*. Dans l'exemple de la figure @fig-ml_nn1, on retrouve 4 variables d'entrée et trois variables de sortie entre lesquelles on retrouve 5 couches dont le nombre de neurones varient entre 3 et 6.
+Après les KNN et les *random forests*, nous passons au domaine plus complexe des réseaux neuronaux. Le terme *réseau neuronal* est une métaphore liée à une perception que l'on avait du fonctionnement du cerveau humain lorsque la technique des réseaux neuronaux a été développée dans les années 1950. Un réseau neuronal comprend une série de boîtes d'entrées liée à des fonctions qui transforment et acheminent successivement l'information jusqu'à la sortie d'une ou plusieurs réponses. Il existe plusieurs formes de réseaux neuronaux, dont la plus simple manifestation est le *perceptron multicouche*. Dans l'exemple de la [figure @fig-ml_nn1], on retrouve 4 variables d'entrée et trois variables de sortie entre lesquelles on retrouve 5 couches dont le nombre de neurones varient entre 3 et 6.
 
 ```{r}
 #| label: fig-ml_nn1
@@ -502,7 +502,7 @@ iris_tr_index <- createDataPartition(y=iris$Species, p = 0.75, list = FALSE)
 
 Nous pouvons ainsi créer nos tableaux d'entraînement et de test pour les variables prédictives.
 
-Les réseaux neuronaux sont aptes à générer des sorties multiples. Nous désirons prédire une catégorie, et **`neuralnet`** ne s'occupe pas de les transformer de facto. Lors de la prédiction d'une catégorie, nous devons générer des sorties multiples qui permettront de décider de l'appartenance exclusive à une catégorie ou une autre. Nous avons abordé l'encodage catégoriel aux chapitres [@sec-bios] et [@sec-expl]. C'est ce que nous ferons ici.
+Les réseaux neuronaux sont aptes à générer des sorties multiples. Nous désirons prédire une catégorie, et **`neuralnet`** ne s'occupe pas de les transformer de facto. Lors de la prédiction d'une catégorie, nous devons générer des sorties multiples qui permettront de décider de l'appartenance exclusive à une catégorie ou une autre. Nous avons abordé l'encodage catégoriel aux chapitres [-@sec-bios] et [-@sec-expl]. C'est ce que nous ferons ici.
 
 ```{r}
 #| label: ml-iris-preprocess

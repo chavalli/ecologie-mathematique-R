@@ -373,7 +373,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>L’interprétation <strong>bayésienne</strong> vise à quantifier l’incertitude des phénomènes. Dans cette perspective, plus l’information s’accumule, plus l’incertitude diminue. Cette approche gagne en notoriété notamment parce qu’elle permet de décrire des phénomènes qui, intrinsèquement, ne peuvent être répétés infiniment (absence d’asymptote), comme ceux qui sont bien définis dans le temps ou sur des populations limitées. <em>L’approche bayésienne évalue la probabilité que le modèle soit réel</em>.</li>
 </ul>
 <p>Une erreur courante consiste à aborder des statistiques fréquentielles comme des statistiques bayésiennes. Par exemple, si l’on désire évaluer la probabilité de l’existence de vie sur Mars, on devra passer par le bayésien, car avec les stats fréquentielles, on devra plutôt conclure si les données sont conformes ou non avec l’hypothèse de la vie sur Mars (exemple tirée du blogue <a href="https://dynamicecology.wordpress.com/2011/10/11/frequentist-vs-bayesian-statistics-resources-to-help-you-choose/">Dynamic Ecology</a>).</p>
-<p>Des rivalités factices s’installent entre les tenants des différentes approches, dont chacune, en réalité, répond à des questions différentes dont il convient réfléchir sur les limitations. Bien que les statistiques bayésiennes soient de plus en plus utilisées, nous ne couvrirons dans ce chapitre que l’approche fréquentielle. L’approche bayésienne est néanmoins traitée dans le <a href="07b-bayes.html">chapitre&nbsp;<span>8</span></a>, qui est facultatif au cours.</p>
+<p>Des rivalités factices s’installent entre les tenants des différentes approches, dont chacune, en réalité, répond à des questions différentes dont il convient réfléchir sur les limitations. Bien que les statistiques bayésiennes soient de plus en plus utilisées, nous ne couvrirons dans ce chapitre que l’approche fréquentielle. L’approche bayésienne est néanmoins traitée dans le <span class="quarto-unresolved-ref">?sec-bayes</span>, qui est facultatif au cours.</p>
 </section><section id="les-distributions" class="level2" data-number="7.4"><h2 data-number="7.4" class="anchored" data-anchor-id="les-distributions">
 <span class="header-section-number">7.4</span> Les distributions</h2>
 <p>Une variable aléatoire peut prendre des valeurs selon des modèles de distribution des probabilités. Une distribution est une fonction mathématique décrivant la probabilité d’observer une série d’évènements. Ces évènements peuvent être des valeurs continues, des nombres entiers, des catégories, des valeurs booléennes (Vrai/Faux), etc. Dépendemment du type de valeur et des observations obtenues, on peut associer des variables à différentes lois de probabilité. Toujours, l’aire sous la courbe d’une distribution de probabilité est égale à 1.</p>
@@ -390,8 +390,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ✔ dplyr     1.1.4     ✔ readr     2.1.5
 ✔ forcats   1.0.0     ✔ stringr   1.5.1
-✔ ggplot2   3.4.4     ✔ tibble    3.2.1
-✔ lubridate 1.9.3     ✔ tidyr     1.3.0
+✔ ggplot2   3.5.0     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.1
 ✔ purrr     1.0.2     
 ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ✖ dplyr::filter() masks stats::filter()
@@ -431,7 +431,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section><section id="distribution-uniforme" class="level3" data-number="7.4.3"><h3 data-number="7.4.3" class="anchored" data-anchor-id="distribution-uniforme">
 <span class="header-section-number">7.4.3</span> Distribution uniforme</h3>
-<p>La distribution la plus simple est probablement la distribution uniforme. Si la variable est discrète, chaque catégorie est associée à une probabilité égale. Si la variable est continue, la probabilité est directement proportionnelle à la largeur de l’intervalle. On utilise rarement la distribution uniforme en biostatistiques, sinon pour décrire des <em>a priori</em> vagues pour l’analyse bayésienne (ce sujet est traité dans le <a href="07b-bayes.html">chapitre&nbsp;<span>8</span></a>). Nous utilisons la fonction <code>dunif</code>. À la différence des distributions discrètes, les fonctions de distribution de probabilités continues sont appelées des fonctions de densité d’une loi de probabilité (<em>probability density function</em>).</p>
+<p>La distribution la plus simple est probablement la distribution uniforme. Si la variable est discrète, chaque catégorie est associée à une probabilité égale. Si la variable est continue, la probabilité est directement proportionnelle à la largeur de l’intervalle. On utilise rarement la distribution uniforme en biostatistiques, sinon pour décrire des <em>a priori</em> vagues pour l’analyse bayésienne (ce sujet est traité dans le <span class="quarto-unresolved-ref">?sec-bayes</span>). Nous utilisons la fonction <code>dunif</code>. À la différence des distributions discrètes, les fonctions de distribution de probabilités continues sont appelées des fonctions de densité d’une loi de probabilité (<em>probability density function</em>).</p>
 <div class="cell">
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">increment</span> <span class="op">&lt;-</span> <span class="fl">0.01</span></span>
 <span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">4</span>, <span class="fl">4</span>, by <span class="op">=</span> <span class="va">increment</span><span class="op">)</span></span>
@@ -772,7 +772,7 @@ mean of x
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="images/07_p-hacking.png" class="img-fluid figure-img"></p>
+<figure class="figure"><p><img src="images/07_p-hacking.png" class="img-fluid figure-img" width="456"></p>
 <figcaption class="figure-caption">Un sketch humoristique de John Oliver sur le <em>p-hacking</em>, <a href="https://youtu.be/0Rnq1NpHdmw">Last week tonight, 2016</a> (en anglais)</figcaption></figure>
 </div>
 </div>
@@ -958,7 +958,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </section><section id="sec-bios-models" class="level2" data-number="7.8"><h2 data-number="7.8" class="anchored" data-anchor-id="sec-bios-models">
 <span class="header-section-number">7.8</span> Les modèles statistiques</h2>
 <p>La modélisation statistique consiste à lier de manière explicite des variables de sortie <span class="math inline">\(y\)</span> (ou variables-réponse / variables dépendantes) à des variables explicatives <span class="math inline">\(x\)</span> (ou variables prédictives / indépendantes / covariables). Les variables-réponse sont modélisées par une fonction des variables explicatives ou prédictives.</p>
-<p>Pourquoi garder les termes <em>explicatives</em> et <em>prédictives</em>? Parce que les modèles statistiques (basés sur des données et non pas sur des mécanismes) sont de deux ordres. D’abord, les modèles <strong>prédictifs</strong> sont conçus pour prédire de manière fiable une ou plusieurs variables-réponse à partir des informations contenues dans les variables qui sont, dans ce cas, prédictives (par exemple : Les séries temporelles au <span class="quarto-unresolved-ref">?sec-temps</span>). Lorsque l’on désire tester des hypothèses pour évaluer quelles variables expliquent la réponse, on parlera de modélisation (et de variables) <strong>explicative</strong>. En inférence statistique, on évaluera les <em>corrélations</em> entre les variables explicatives et les variables-réponse. Un lien de corrélation n’est pas un lien de causalité. L’inférence causale peut en revanche être évaluée par des <a href="https://doi.org/10.1017/CBO9781139979573"><em>modèles d’équations structurelles</em></a>.</p>
+<p>Pourquoi garder les termes <em>explicatives</em> et <em>prédictives</em>? Parce que les modèles statistiques (basés sur des données et non pas sur des mécanismes) sont de deux ordres. D’abord, les modèles <strong>prédictifs</strong> sont conçus pour prédire de manière fiable une ou plusieurs variables-réponse à partir des informations contenues dans les variables qui sont, dans ce cas, prédictives (par exemple : Les séries temporelles au <a href="11-series-temporelles.html">chapitre&nbsp;<span>12</span></a>). Lorsque l’on désire tester des hypothèses pour évaluer quelles variables expliquent la réponse, on parlera de modélisation (et de variables) <strong>explicative</strong>. En inférence statistique, on évaluera les <em>corrélations</em> entre les variables explicatives et les variables-réponse. Un lien de corrélation n’est pas un lien de causalité. L’inférence causale peut en revanche être évaluée par des <a href="https://doi.org/10.1017/CBO9781139979573"><em>modèles d’équations structurelles</em></a>.</p>
 <p>Cette section couvre la modélisation explicative. Les variables qui contribuent à créer les modèles peuvent être de différentes natures et distribuées selon différentes lois de probabilité. Alors que les modèles linéaires simples (<em>lm</em>) impliquent une variable-réponse distribuée de manière continue, les modèles linéaires généralisés peuvent aussi expliquer des variables de sorties discrètes.</p>
 <p>Dans les deux cas, on distinguera les variables fixes et les variables aléatoires. Les <strong>variables fixes</strong> sont les variables testées lors de l’expérience: dose du traitement, espèce/cultivar, météo, etc. Les <strong>variables aléatoires</strong> sont les sources de variation qui génèrent du bruit dans le modèle: les unités expérimentales ou le temps lors de mesures répétées. Les modèles incluant des effets fixes seulement sont des modèles à effets fixes. Généralement, les modèles incluant des variables aléatoires incluent aussi des variables fixes: on parlera alors de modèles mixtes. Nous couvrirons ces deux types de modèles.</p>
 <section id="modèles-à-effets-fixes" class="level3" data-number="7.8.1"><h3 data-number="7.8.1" class="anchored" data-anchor-id="modèles-à-effets-fixes">
@@ -1772,7 +1772,7 @@ Formula: yield ~ A * (1 - exp(-R * (E + nitro)))
 Parameters:
    Estimate Std. Error t value Pr(&gt;|t|)    
 A 75.023427   3.331860  22.517   &lt;2e-16 ***
-E 66.164111  27.251591   2.428   0.0184 *  
+E 66.164111  27.251589   2.428   0.0184 *  
 R  0.012565   0.004881   2.574   0.0127 *  
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
@@ -1780,7 +1780,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 12.34 on 57 degrees of freedom
 
 Number of iterations to convergence: 5 
-Achieved convergence tolerance: 8.058e-06</code></pre>
+Achieved convergence tolerance: 8.066e-06</code></pre>
 </div>
 </div>
 <p>Les paramètres sont différents de zéro, et donnent la courbe suivante.</p>
@@ -1866,17 +1866,17 @@ Attaching package: 'nlme'</code></pre>
 Random effects:
  Formula: ~1 | year
         (Intercept)
-StdDev:    20.35426
+StdDev:    20.35438
 
  Formula: ~1 | rep %in% year
         (Intercept) Residual
-StdDev:    11.17447 11.35617
+StdDev:    11.17449 11.35617
 
 Fixed effects:  yield ~ lat + long + nitro + topo + bv 
                  Value Std.Error   DF    t-value p-value
-(Intercept) -1379436.9  55894.55 3430 -24.679273   0.000
-lat           -25453.0   1016.53 3430 -25.039084   0.000
-long           -8432.3    466.05 3430 -18.092988   0.000
+(Intercept) -1379437.0  55894.55 3430 -24.679273   0.000
+lat           -25453.0   1016.53 3430 -25.039085   0.000
+long           -8432.3    466.05 3430 -18.092989   0.000
 nitro              0.0      0.00 3430   1.739757   0.082
 topoHT           -27.7      0.92 3430 -30.122438   0.000
 topoLO             6.8      0.88 3430   7.804733   0.000
@@ -1894,7 +1894,7 @@ bv     -0.121 -0.012 -0.214 -0.023 -0.467  0.346 -0.266
 
 Standardized Within-Group Residuals:
         Min          Q1         Med          Q3         Max 
--4.32360269 -0.66781575 -0.07450856  0.61587533  3.96434001 
+-4.32360269 -0.66781576 -0.07450854  0.61587533  3.96434003 
 
 Number of Observations: 3443
 Number of Groups: 
@@ -1918,22 +1918,22 @@ Number of Groups:
 <pre><code>Nonlinear mixed-effects model fit by maximum likelihood
   Model: yield ~ A * (1 - exp(-R * (E + nitro))) 
   Data: engelstad.nitro 
-       AIC     BIC    logLik
-  477.2286 491.889 -231.6143
+       AIC      BIC    logLik
+  477.2285 491.8889 -231.6143
 
 Random effects:
  Formula: A ~ year | loc
  Structure: General positive-definite, Log-Cholesky parametrization
               StdDev       Corr  
-A.(Intercept)  2.608588499 A.(In)
-A.year         0.003066584 -0.556
-Residual      11.152757993       
+A.(Intercept)  2.571625268 A.(In)
+A.year         0.003062626 -0.556
+Residual      11.152760017       
 
 Fixed effects:  list(A ~ 1, E ~ 1, R ~ 1) 
                  Value Std.Error DF   t-value p-value
-A.(Intercept) 74.58222  4.722715 56 15.792235  0.0000
-E             65.56721 25.533994 56  2.567840  0.0129
-R              0.01308  0.004808 56  2.720215  0.0087
+A.(Intercept) 74.58281  4.722807 56 15.792054  0.0000
+E             65.57006 25.534748 56  2.567876  0.0129
+R              0.01308  0.004807 56  2.720245  0.0087
  Correlation: 
   A.(In) E     
 E  0.379       
@@ -1941,7 +1941,7 @@ R -0.483 -0.934
 
 Standardized Within-Group Residuals:
         Min          Q1         Med          Q3         Max 
--1.83373140 -0.89293039  0.07418166  0.68353578  1.82434344 
+-1.83376868 -0.89290221  0.07419032  0.68354473  1.82431443 
 
 Number of Observations: 60
 Number of Groups: 2 </code></pre>
@@ -1962,7 +1962,7 @@ Number of Groups: 2 </code></pre>
 </div>
 </div>
 <p>Les modèles mixtes non linéaires peuvent devenir très complexes lorsque les paramètres, par exemple A, E et R, sont eux-même affectés linéairement par des variables (par exemple <code>A ~ topo</code>). Pour aller plus loin, consultez <a href="https://doi.org/10.3389/fenvs.2017.00081">Parent et al.&nbsp;(2017)</a> ainsi que les <a href="https://github.com/essicolo/site-specific-multilevel-modeling-of-potato-response-to-nitrogen-fertilization">calculs associés à l’article</a>. Ou écrivez-moi un courriel pour en discuter!</p>
-<p><strong>Note</strong>. L’interprétation de <em>p-values</em> sur les modèles mixtes est controversée. À ce sujet, Douglas Bates a écrit une longue lettre à la communauté de développement du module <code>lme4</code>, une alternative à <code>nlme</code>, qui remet en cause l’utilisation des p-values, <a href="https://stat.ethz.ch/pipermail/r-help/2006-May/094765.html">ici</a>. De plus en plus, pour les modèles mixtes, on se tourne vers les statistiques bayésiennes, couvertes dans le <a href="07b-bayes.html">chapitre&nbsp;<span>8</span></a> avec le module greta. Mais en ce qui a trait aux modèles mixtes, le module <a href="https://github.com/paul-buerkner/brms"><code>brms</code></a> automatise bien des aspects de l’approche bayésienne.</p>
+<p><strong>Note</strong>. L’interprétation de <em>p-values</em> sur les modèles mixtes est controversée. À ce sujet, Douglas Bates a écrit une longue lettre à la communauté de développement du module <code>lme4</code>, une alternative à <code>nlme</code>, qui remet en cause l’utilisation des p-values, <a href="https://stat.ethz.ch/pipermail/r-help/2006-May/094765.html">ici</a>. De plus en plus, pour les modèles mixtes, on se tourne vers les statistiques bayésiennes, couvertes dans le <span class="quarto-unresolved-ref">?sec-bayes</span> avec le module greta. Mais en ce qui a trait aux modèles mixtes, le module <a href="https://github.com/paul-buerkner/brms"><code>brms</code></a> automatise bien des aspects de l’approche bayésienne.</p>
 </section></section><section id="aller-plus-loin" class="level3" data-number="7.8.3"><h3 data-number="7.8.3" class="anchored" data-anchor-id="aller-plus-loin">
 <span class="header-section-number">7.8.3</span> Aller plus loin</h3>
 <section id="statistiques-générales" class="level4" data-number="7.8.3.1"><h4 data-number="7.8.3.1" class="anchored" data-anchor-id="statistiques-générales">

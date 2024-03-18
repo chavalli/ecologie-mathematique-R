@@ -463,7 +463,7 @@ author: "Frank Herbert"
 date: "1965-08-01"
 output: github_document
 ---</code></pre>
-<p>Le titre, l’auteur et la date sont spécifiés. Pour indiquer la date courante, on peut simplement la générer avec R en remplaçant <code>"1965-08-01"</code> par 2024-02-29. La spécification <code>output</code> indique le type de document à générer, par exemple <code>html_document</code> pour une page web, <code>pdf_document</code> pour un pdf, ou <code>word_document</code> pour un docx. Dans ce cas-ci, j’indique <code>github_document</code> pour créer un fichier markdown comprenant notamment des liens relatifs vers les images des graphiques générés. Pourquoi un <code>github_document</code>? C’est le sujet de la <a href="#sec-intro-git">section&nbsp;<span>5.2</span></a>. Mais avant cela, je vous réfère à un autre aide-mémoire.</p>
+<p>Le titre, l’auteur et la date sont spécifiés. Pour indiquer la date courante, on peut simplement la générer avec R en remplaçant <code>"1965-08-01"</code> par 2024-03-18. La spécification <code>output</code> indique le type de document à générer, par exemple <code>html_document</code> pour une page web, <code>pdf_document</code> pour un pdf, ou <code>word_document</code> pour un docx. Dans ce cas-ci, j’indique <code>github_document</code> pour créer un fichier markdown comprenant notamment des liens relatifs vers les images des graphiques générés. Pourquoi un <code>github_document</code>? C’est le sujet de la <a href="#sec-intro-git">section&nbsp;<span>5.2</span></a>. Mais avant cela, je vous réfère à un autre aide-mémoire.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-git-rmd-cs" class="quarto-figure quarto-figure-center anchored">
@@ -728,8 +728,8 @@ format:
 <div class="cell">
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">stations</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>A <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
 <span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://docs.ropensci.org/weathercan/">"weathercan"</a></span><span class="op">)</span></span>
-<span><span class="va">mont_bellevue</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/weathercan/reference/weather_dl.html">weather_dl</a></span><span class="op">(</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"weathercan"</span><span class="op">)</span></span>
+<span><span class="va">mont_bellevue</span> <span class="op">&lt;-</span> <span class="fu">weather_dl</span><span class="op">(</span></span>
 <span>  station_ids <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5397</span>, <span class="fl">48371</span><span class="op">)</span>,</span>
 <span>  start <span class="op">=</span> <span class="st">"2019-02-01"</span>,</span>
 <span>  end <span class="op">=</span> <span class="st">"2019-02-07"</span>,</span>
@@ -741,7 +741,7 @@ format:
 <pre><code>Getting station: 5397
 Formatting station data: 5397
 Error in strptime(xx, f, tz = tz) : valeur 'tz' incorrecte</code></pre>
-<p>Le bogue: la fonction <code><a href="https://docs.ropensci.org/weathercan/reference/weather_dl.html">weather_dl()</a></code> utilisait à l’interne un objet nommé <code>stations</code>, qui entrait en conflit avec un objet <code>stations</code> s’il était défini hors de la fonction.</p>
+<p>Le bogue: la fonction <code>weather_dl()</code> utilisait à l’interne un objet nommé <code>stations</code>, qui entrait en conflit avec un objet <code>stations</code> s’il était défini hors de la fonction.</p>
 <p>Synthétiser une question n’est pas facile (créer cet exemple reprductible m’a pris près de 2 heures). Mais répondre à une question non synthétisée, c’est encore plus difficile. C’est pourquoi on (moi y compris) vous demandera systématiquement un <em>reprex</em> lorsque vous poserez une question liée à une erreur systématique, le plus souvent en programmation.</p>
 <blockquote class="blockquote">
 <p>Un exemple reproductible permet à quelqu’un de recréer l’erreur que vous avez obtenue simplement en copiant-collant votre code. - <a href="https://gist.github.com/hadley/270442">Hadley Wickham</a></p>

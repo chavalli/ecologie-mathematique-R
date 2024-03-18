@@ -46,7 +46,7 @@ Dans linux, une fois que Anaconda a été installé, il suffit d'ouvrir la termi
 
 ```{r}
 #| echo: false
-reticulate::use_condaenv("py311", conda = "/opt/miniconda/bin/conda")
+reticulate::use_condaenv("py311", conda = "/opt/miniconda3/bin/conda")
 ```
 
 ```{bash}
