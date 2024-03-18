@@ -254,7 +254,7 @@ dragons_tr <- dragons_sc[id_tr, ]
 dragons_te <- dragons_sc[-id_tr, ]
 ```
 
-Avant de lancer nos calculs, allons vois sur la [page de `caret`](https://topepo.github.io/caret/available-models.html) les modules qui effectuent des KNN pour la classification. Nous trouvons **`knn`** et **`kknn`**. Si les modules nécessaires aux calculs ne sont pas installés sur votre ordinateur, **`caret`** vous demandera de les installer. Prenons le module **`kknn`**, qui demande le paramètre `kmax`, soit le nombre de voisins à considérer, ainsi qu'un paramètre de `distance` (spécifiez 1 pour la distance de Mahattan et 2 pour la distance euclidienne), et un `kernel`, qui est une fonction pour mesurer la distance. Comment choisir les bons paramètres? Une manière de procéder est de créer une grille de paramètres.
+Avant de lancer nos calculs, allons voir sur la [page de `caret`](https://topepo.github.io/caret/available-models.html) les modules qui effectuent des KNN pour la classification. Nous trouvons **`knn`** et **`kknn`**. Si les modules nécessaires aux calculs ne sont pas installés sur votre ordinateur, **`caret`** vous demandera de les installer. Prenons le module **`kknn`**, qui demande le paramètre `kmax`, soit le nombre de voisins à considérer, ainsi qu'un paramètre de `distance` (spécifiez 1 pour la distance de Mahattan et 2 pour la distance euclidienne), et un `kernel`, qui est une fonction pour mesurer la distance. Comment choisir les bons paramètres? Une manière de procéder est de créer une grille de paramètres.
 
 ```{r}
 #| label: ml-dragons-grid

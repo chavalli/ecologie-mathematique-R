@@ -10,6 +10,7 @@ format:
     transition: slide
     center: true
     fontsize: 2em
+    chalkboard: true
     #css: custom.css
 editor_options:
   chunk_output_type: console
@@ -22,3 +23,95 @@ editor_options:
 - saurez établir un plan de modélisation par autoapprentissage
 - saurez définir le sous-apprentissage et le surapprentissage
 - serez en mesure d'effectuer un autoapprentissage avec les techniques des *k*-proches voisins, les arbres de décision, les forêts aléatoires, les réseaux neuronaux et les processus gaussiens
+
+## Bagging - Forêts aléatoires
+
+![Bagging. Source : [Fenner, M. (2019)](https://www.oreilly.com/library/view/machine-learning-with/9780134845708/?_gl=1*152sfmt*_ga*MTMyNDUzMDI2OC4xNzEwNzgwMjM2*_ga_092EL089CH*MTcxMDc4MDIzNS4xLjEuMTcxMDc4MDI0OC40Ny4wLjA.)](images/fig-bagging.png)
+
+## Les processus gaussiens
+
+Les processus gaussiens (PG) tirent profit des statistiques bayésiennes pour effectuer des prédictions probabilistes.
+
+Le matériel explicatif sur les PG pour ces diapositives est tiré du livre « [Dive into deep learning (Zhang, A. et al. (2023))](https://d2l.ai/chapter_gaussian-processes/gp-intro.html#introduction-to-gaussian-processes){preview-link="true"}
+
+## Les processus gaussiens
+
+::: {layout-ncol=2}
+![Données observées](images/gp-observed-data.svg){height=180}
+
+![Fonctions « _a priori_ »](images/gp-sample-prior-functions.svg){height=180}
+:::
+
+## Les processus gaussiens
+
+::: {layout-ncol=2}
+
+![Fonctions « _a posteriori_ »](images/gp-sample-posterior-functions.svg){height=180}
+
+![Intervalles de confiance 95%](images/gp-posterior-samples-95.svg){height=180}
+
+:::
+
+## Les processus gaussiens
+
+Les propriétés du PG sont contrôlées par une fonction de covariance (*kernel*), comme la **fonction de base radiale**
+
+$$
+k_{\textrm{RBF}}(x,x') = \textrm{Cov}(f(x),f(x')) = a^2 \exp\left(-\frac{1}{2\ell^2}||x-x'||^2\right) 
+$$
+<center>
+- $a$ est un paramètre d'amplitude
+
+- $l$ est un paramètre d’échelle de longueur
+</center>
+
+## Les processus gaussiens
+
+![Hyperparamètres d'un noyau RBF](images/fig-ml_gp_hyperp-1.png)
+
+## Les processus gaussiens
+
+$$
+f(x) | f(x_1), \dots, f(x_n) \sim \mathcal{N}(m,s^2)
+$$
+
+où,
+
+$$
+m = k(x,x_{1:n}) k(x_{1:n},x_{1:n})^{-1} f(x_{1:n})
+$$
+
+$$
+s^2 = k(x,x) - k(x,x_{1:n})k(x_{1:n},x_{1:n})^{-1}k(x,x_{1:n})
+$$
+
+## Les processus gaussiens
+
+::: {layout-ncol=2}
+
+![Contour](https://user-images.githubusercontent.com/6753639/206867364-b4707db5-0c2e-4ae4-a412-8292bca4d08d.svg)
+
+![Prediction](https://user-images.githubusercontent.com/6753639/206867367-3815720c-93c8-4b4b-80e7-296db1d3553b.svg)
+
+:::
+
+$$
+\begin{bmatrix}
+   f(x) \\ 
+   f(x_1) \\
+   \end{bmatrix}
+   \sim
+   \mathcal{N}\left(\mu, 
+   \begin{bmatrix}
+   k(x,x) & k(x, x_1) \\
+   k(x_1,x) & k(x_1,x_1)
+   \end{bmatrix}
+   \right)
+$$
+
+## Processus gaussiens
+
+<center>
+![Source : [Scikit-learn](https://scikit-learn.org/stable/modules/gaussian_process.html#gaussian-process-regression-gpr)](images/gp_sklearn.png){width=70% fig-align="center"}
+</center>
+

@@ -34,6 +34,8 @@
   <link href="09-ia_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="09-ia_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="09-ia_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="09-ia_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="09-ia_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
   <link href="09-ia_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
 
@@ -344,6 +346,138 @@ Andrés Silva
 <li>saurez définir le sous-apprentissage et le surapprentissage</li>
 <li>serez en mesure d’effectuer un autoapprentissage avec les techniques des <em>k</em>-proches voisins, les arbres de décision, les forêts aléatoires, les réseaux neuronaux et les processus gaussiens</li>
 </ul>
+</section>
+<section id="bagging---forêts-aléatoires" class="slide level2 center">
+<h2>Bagging - Forêts aléatoires</h2>
+
+<img data-src="images/fig-bagging.png" class="r-stretch quarto-figure-center"><p class="caption">Bagging. Source : <a href="https://www.oreilly.com/library/view/machine-learning-with/9780134845708/?_gl=1*152sfmt*_ga*MTMyNDUzMDI2OC4xNzEwNzgwMjM2*_ga_092EL089CH*MTcxMDc4MDIzNS4xLjEuMTcxMDc4MDI0OC40Ny4wLjA.">Fenner, M. (2019)</a></p></section>
+<section id="les-processus-gaussiens" class="slide level2 center">
+<h2>Les processus gaussiens</h2>
+<p>Les processus gaussiens (PG) tirent profit des statistiques bayésiennes pour effectuer des prédictions probabilistes.</p>
+<p>Le matériel explicatif sur les PG pour ces diapositives est tiré du livre « <a href="https://d2l.ai/chapter_gaussian-processes/gp-intro.html#introduction-to-gaussian-processes" data-preview-link="true">Dive into deep learning (Zhang, A. et al.&nbsp;(2023))</a></p>
+</section>
+<section id="les-processus-gaussiens-1" class="slide level2 center">
+<h2>Les processus gaussiens</h2>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/gp-observed-data.svg"></p>
+<figcaption>Données observées</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/gp-sample-prior-functions.svg"></p>
+<figcaption>Fonctions « <em>a priori</em> »</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="les-processus-gaussiens-2" class="slide level2 center">
+<h2>Les processus gaussiens</h2>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/gp-sample-posterior-functions.svg"></p>
+<figcaption>Fonctions « <em>a posteriori</em> »</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/gp-posterior-samples-95.svg"></p>
+<figcaption>Intervalles de confiance 95%</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="les-processus-gaussiens-3" class="slide level2 center">
+<h2>Les processus gaussiens</h2>
+<p>Les propriétés du PG sont contrôlées par une fonction de covariance (<em>kernel</em>), comme la <strong>fonction de base radiale</strong></p>
+<span class="math display">\[
+k_{\textrm{RBF}}(x,x') = \textrm{Cov}(f(x),f(x')) = a^2 \exp\left(-\frac{1}{2\ell^2}||x-x'||^2\right)
+\]</span>
+<center>
+<ul>
+<li><p><span class="math inline">\(a\)</span> est un paramètre d’amplitude</p></li>
+<li><p><span class="math inline">\(l\)</span> est un paramètre d’échelle de longueur</p></li>
+</ul>
+</center>
+</section>
+<section id="les-processus-gaussiens-4" class="slide level2 center">
+<h2>Les processus gaussiens</h2>
+
+<img data-src="images/fig-ml_gp_hyperp-1.png" class="r-stretch quarto-figure-center"><p class="caption">Hyperparamètres d’un noyau RBF</p></section>
+<section id="les-processus-gaussiens-5" class="slide level2 center">
+<h2>Les processus gaussiens</h2>
+<p><span class="math display">\[
+f(x) | f(x_1), \dots, f(x_n) \sim \mathcal{N}(m,s^2)
+\]</span></p>
+<p>où,</p>
+<p><span class="math display">\[
+m = k(x,x_{1:n}) k(x_{1:n},x_{1:n})^{-1} f(x_{1:n})
+\]</span></p>
+<p><span class="math display">\[
+s^2 = k(x,x) - k(x,x_{1:n})k(x_{1:n},x_{1:n})^{-1}k(x,x_{1:n})
+\]</span></p>
+</section>
+<section id="les-processus-gaussiens-6" class="slide level2 center">
+<h2>Les processus gaussiens</h2>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="https://user-images.githubusercontent.com/6753639/206867364-b4707db5-0c2e-4ae4-a412-8292bca4d08d.svg"></p>
+<figcaption>Contour</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="https://user-images.githubusercontent.com/6753639/206867367-3815720c-93c8-4b4b-80e7-296db1d3553b.svg"></p>
+<figcaption>Prediction</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p><span class="math display">\[
+\begin{bmatrix}
+   f(x) \\
+   f(x_1) \\
+   \end{bmatrix}
+   \sim
+   \mathcal{N}\left(\mu,
+   \begin{bmatrix}
+   k(x,x) &amp; k(x, x_1) \\
+   k(x_1,x) &amp; k(x_1,x_1)
+   \end{bmatrix}
+   \right)
+\]</span></p>
+</section>
+<section id="processus-gaussiens" class="slide level2 center">
+<h2>Processus gaussiens</h2>
+<center>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/gp_sklearn.png" style="width:70.0%"></p>
+<figcaption>Source : <a href="https://scikit-learn.org/stable/modules/gaussian_process.html#gaussian-process-regression-gpr">Scikit-learn</a></figcaption>
+</figure>
+</div>
+</center>
 <div class="footer footer-default">
 
 </div>
@@ -358,6 +492,7 @@ Andrés Silva
   <script src="09-ia_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
   <script src="09-ia_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
   <script src="09-ia_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="09-ia_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
   <script src="09-ia_files/libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
@@ -379,7 +514,8 @@ Andrés Silva
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
-'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true},
 'smaller': false,
  
         // Display controls in the bottom right corner
@@ -550,7 +686,7 @@ Andrés Silva
         },
 
         // reveal.js plugins
-        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
 
           RevealMath,
           RevealNotes,
