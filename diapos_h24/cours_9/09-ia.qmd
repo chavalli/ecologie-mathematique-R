@@ -1,0 +1,24 @@
+---
+title: "Autoapprentissage"
+author: "Andrés Silva"
+execute: 
+  echo: true
+format:
+  revealjs:
+    theme: moon
+    highlight: kate
+    transition: slide
+    center: true
+    fontsize: 2em
+    #css: custom.css
+editor_options:
+  chunk_output_type: console
+---
+
+
+## Objectifs spécifiques
+À la fin de ce chapitre, vous
+
+- saurez établir un plan de modélisation par autoapprentissage
+- saurez définir le sous-apprentissage et le surapprentissage
+- serez en mesure d'effectuer un autoapprentissage avec les techniques des *k*-proches voisins, les arbres de décision, les forêts aléatoires, les réseaux neuronaux et les processus gaussiens

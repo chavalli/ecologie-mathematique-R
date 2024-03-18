@@ -273,7 +273,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 </header><hr>
-<hr>
 <p>️&nbsp;<strong>Objectifs spécifiques</strong>:</p>
 <p>À la fin de ce chapitre, vous</p>
 <ul>
@@ -323,7 +322,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Si les données sont peu équilibrées (par exemple, on retrouve peu de données de l’espèce <span class="math inline">\(A\)</span>, que l’on retrouve peu de données à un pH inférieur à 5 ou que l’on a peu de données croisées de l’espèce <span class="math inline">\(A\)</span> à pH inférieur à 5), il y a un danger qu’une trop grande part, voire toute les données, se retrouvent dans le tableau d’entraînement (certaines situations ne seront ainsi pas testées) ou dans le tableau de test (certaines situations ne seront pas couvertes par le modèle). L’analyste doit s’assurer de séparer le tableau au hasard, mais de manière consciencieuse.</p>
 </section><section id="sousapprentissage-et-surapprentissage" class="level3" data-number="13.2.3"><h3 data-number="13.2.3" class="anchored" data-anchor-id="sousapprentissage-et-surapprentissage">
 <span class="header-section-number">13.2.3</span> Sousapprentissage et surapprentissage</h3>
-<p>Une difficulté en modélisation phénoménologique est de discerner ce qui tient de la structure de ce qui tient du bruit. Lorsque l’on considère une structure comme du bruit, on est dans un cas de sousapprentissage. Lorsque, au contraire, on interprète du bruit comme une structure, on est en cas de surapprentissage. Les graphiques de la figure <a href="#fig-mesapprentissage">Figure&nbsp;<span>13.2</span></a> présentent ces deux cas, avec au centre un cas d’apprentissage conforme.</p>
+<p>Une difficulté en modélisation phénoménologique est de discerner ce qui tient de la structure de ce qui tient du bruit. Lorsque l’on considère une structure comme du bruit, on est dans un cas de sousapprentissage. Lorsque, au contraire, on interprète du bruit comme une structure, on est en cas de surapprentissage. Les graphiques de la <a href="#fig-mesapprentissage">figure&nbsp;<span>13.2</span></a> présentent ces deux cas, avec au centre un cas d’apprentissage conforme.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-mesapprentissage" class="quarto-figure quarto-figure-center anchored">
@@ -392,7 +391,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 ✖ dplyr::lag()      masks stats::lag()
 ✖ yardstick::spec() masks readr::spec()
 ✖ recipes::step()   masks stats::step()
-• Dig deeper into tidy modeling with R at https://www.tmwr.org</code></pre>
+• Use tidymodels_prefer() to resolve common conflicts.</code></pre>
 </div>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/topepo/caret/">"caret"</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">

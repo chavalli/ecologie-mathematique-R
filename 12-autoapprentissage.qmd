@@ -2,7 +2,6 @@
 
 ---
 
-***
 ️\ **Objectifs spécifiques**:
 
 À la fin de ce chapitre, vous
@@ -11,7 +10,7 @@
 - saurez définir le sous-apprentissage et le surapprentissage
 - serez en mesure d'effectuer un autoapprentissage avec les techniques des *k*-proches voisins, les arbres de décision, les forêts aléatoires, les réseaux neuronaux et les processus gaussiens
 
-***
+---
 
 Plusieurs cas d'espèces en sciences et génies peuvent être approchés en liant un variable avec une ou plusieurs autres à l'aide de régressions linéaires, polynomiales, sinusoïdales, exponentielle, sigmoïdales, [etc](https://dl.sciencesocieties.org/publications/aj/pdfs/107/2/786). Encore faut-il s'assurer que ces formes préétablies représentent le phénomène de manière fiable.
 
@@ -87,7 +86,7 @@ Si les données sont peu équilibrées (par exemple, on retrouve peu de données
 
 ### Sousapprentissage et surapprentissage
 
-Une difficulté en modélisation phénoménologique est de discerner ce qui tient de la structure de ce qui tient du bruit. Lorsque l'on considère une structure comme du bruit, on est dans un cas de sousapprentissage. Lorsque, au contraire, on interprète du bruit comme une structure, on est en cas de surapprentissage. Les graphiques de la figure @fig-mesapprentissage présentent ces deux cas, avec au centre un cas d'apprentissage conforme.
+Une difficulté en modélisation phénoménologique est de discerner ce qui tient de la structure de ce qui tient du bruit. Lorsque l'on considère une structure comme du bruit, on est dans un cas de sousapprentissage. Lorsque, au contraire, on interprète du bruit comme une structure, on est en cas de surapprentissage. Les graphiques de la [figure @fig-mesapprentissage] présentent ces deux cas, avec au centre un cas d'apprentissage conforme.
 
 ```{r}
 #| label: fig-mesapprentissage

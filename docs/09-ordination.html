@@ -551,12 +551,12 @@ Jaseur boréal               66    0    0    0</code></pre>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span></span>
 <span><span class="va">iris</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_n</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
-1          5.1         3.8          1.5         0.3    setosa
-2          5.3         3.7          1.5         0.2    setosa
-3          6.8         3.0          5.5         2.1 virginica
-4          7.3         2.9          6.3         1.8 virginica
-5          5.1         3.4          1.5         0.2    setosa</code></pre>
+<pre><code>  Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
+1          5.0         2.0          3.5         1.0 versicolor
+2          6.7         3.0          5.2         2.3  virginica
+3          7.6         3.0          6.6         2.1  virginica
+4          5.4         3.0          4.5         1.5 versicolor
+5          4.9         3.6          1.4         0.1     setosa</code></pre>
 </div>
 </div>
 <p>Les mesures du tableau sont en centimètres. Pour éviter de donner davantage de poids aux longueurs des sépales et en même temps de négliger la largeur des pétales, nous allons standardiser le tableau.</p>
@@ -889,7 +889,7 @@ Source: <a href="https://dashee87.github.io/data%20science/general/Clustering-wi
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">mcinnes_kmeans</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>List of 4
- $ partition: int [1:2309, 1:8] 3 3 3 3 3 3 3 3 3 3 ...
+ $ partition: int [1:2309, 1:8] 2 2 2 2 2 2 2 2 2 2 ...
   ..- attr(*, "dimnames")=List of 2
   .. ..$ : chr [1:2309] "1" "2" "3" "4" ...
   .. ..$ : chr [1:8] "3 groups" "4 groups" "5 groups" "6 groups" ...
@@ -898,7 +898,7 @@ Source: <a href="https://dashee87.github.io/data%20science/general/Clustering-wi
   .. ..$ : chr [1:2] "SSE" "calinski"
   .. ..$ : chr [1:8] "3 groups" "4 groups" "5 groups" "6 groups" ...
  $ criterion: chr "calinski"
- $ size     : int [1:10, 1:8] 505 561 1243 NA NA NA NA NA NA NA ...
+ $ size     : int [1:10, 1:8] 505 1243 561 NA NA NA NA NA NA NA ...
   ..- attr(*, "dimnames")=List of 2
   .. ..$ : chr [1:10] "Group 1" "Group 2" "Group 3" "Group 4" ...
   .. ..$ : chr [1:8] "3 groups" "4 groups" "5 groups" "6 groups" ...
@@ -935,9 +935,9 @@ Source: <a href="https://dashee87.github.io/data%20science/general/Clustering-wi
 <span><span class="va">mcinnes_kmeans</span><span class="op">$</span><span class="va">partition</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  3 groups 4 groups 5 groups 6 groups 7 groups 8 groups 9 groups 10 groups
-1        3        4        1        5        1        5        9         6
-2        3        4        2        1        1        3        9         6
-3        3        3        1        5        3        5        5         8</code></pre>
+1        2        2        4        2        2        4        4        10
+2        2        2        3        3        2        2        4        10
+3        2        4        4        2        4        4        2         8</code></pre>
 </div>
 <div class="sourceCode" id="cb64"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df_mcinnes</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>kmeans_group <span class="op">=</span> <span class="va">kmeans_group</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="co"># ajouter une colonne de regoupement</span></span>
@@ -1420,18 +1420,18 @@ Biplot de corrélation permettant de visualiser les corrélations entre des vari
 <span><span class="va">varechem</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_n</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>      N    P     K    Ca    Mg    S    Al    Fe   Mn   Zn  Mo Baresoil Humdepth
-6  19.1 26.4  61.1 259.1  37.0 21.4 155.1  81.4 20.6  4.0 0.6      5.8      1.9
-3  31.1 32.3  73.7 219.0  52.5 25.5 304.6 204.4 14.2  2.6 0.5      3.6      1.8
-24 20.2 67.7 207.1 973.3 209.1 58.1 138.0  35.4 32.1 16.8 0.8     21.2      2.0
-18 19.8 42.1 139.9 519.4  90.0 32.3  39.0  40.9 58.1  4.5 0.3     43.9      2.2
-22 26.6 36.7 171.4 738.6  94.9 33.8  20.7   2.5 77.6  7.4 0.3     23.0      2.8
+<pre><code>      N    P     K    Ca   Mg    S    Al    Fe   Mn  Zn  Mo Baresoil Humdepth
+9  15.0 48.4 127.4 499.6 75.1 46.9 227.1  32.2 35.1 8.9 0.7     6.07      2.2
+6  19.1 26.4  61.1 259.1 37.0 21.4 155.1  81.4 20.6 4.0 0.6     5.80      1.9
+21 21.0 26.5 104.4 484.8 74.4 22.2  35.8   5.9 27.5 5.3 0.2    56.00      2.5
+2  22.3 47.4 165.9 436.1 64.3 42.3 316.5 200.1 28.2 7.2 0.3     0.01      1.5
+4  18.0 64.9 224.5 517.6 59.7 52.9 435.1 101.2 38.0 9.5 1.1    21.30      1.8
     pH
+9  3.0
 6  3.0
-3  3.3
-24 3.0
-18 2.7
-22 2.8</code></pre>
+21 3.0
+2  2.9
+4  2.9</code></pre>
 </div>
 </div>
 <p>Comme nous l’avons vu précedemment, les données de concentration sont de type <em>compositionnelles</em>. Les données compositionnelles du tableau <code>varechem</code> mériteraient d’être transformées (<a href="http://doi.wiley.com/10.1111/1467-9876.00275">Aitchison et Greenacre, 2002</a>). Utilisons les log-ratios centrés (<em>clr</em>).</p>
@@ -1473,13 +1473,13 @@ Attaching package: 'compositions'</code></pre>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_n</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 15
-       N        P     K    Ca     Mg      S     Al     Fe     Mn    Zn    Mo
-*  &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-1 -1.34  -0.760   0.673  2.07  0.549 -0.762  0.181 -1.60  -0.696 -2.26 -5.39
-2 -1.88  -0.600   0.641  1.48 -0.684 -0.805  1.30  -0.156 -1.14  -2.52 -4.68
-3 -0.773 -0.988   0.175  1.05 -0.174 -0.960  1.50   0.628 -1.88  -3.09 -5.11
-4 -1.30  -0.547   0.654  1.97  0.213 -0.812 -0.624 -0.576 -0.225 -2.78 -5.49
-5 -0.901  0.00174 1.27   2.32  0.361 -0.546 -1.41  -3.42   0.374 -2.07 -5.50
+       N        P     K    Ca      Mg      S     Al     Fe     Mn    Zn    Mo
+*  &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 -0.901  0.00174 1.27   2.32  0.361  -0.546 -1.41  -3.42   0.374 -2.07 -5.50
+2 -1.34  -0.760   0.673  2.07  0.549  -0.762  0.181 -1.60  -0.696 -2.26 -5.39
+3 -0.773 -0.988   0.175  1.05 -0.174  -0.960  1.50   0.628 -1.88  -3.09 -5.11
+4 -1.69  -0.624   0.830  1.59 -0.0312 -0.729  0.189 -0.626 -0.331 -2.60 -5.49
+5 -0.854 -0.532   1.01   2.47  0.418  -0.614 -1.10  -3.22   0.217 -2.13 -5.34
 # ℹ 4 more variables: Fv &lt;dbl&gt;, Baresoil &lt;dbl&gt;, Humdepth &lt;dbl&gt;, pH &lt;dbl&gt;</code></pre>
 </div>
 </div>
@@ -1730,13 +1730,13 @@ dbl (3): x, y, z
 <div class="sourceCode" id="cb119"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dolphin</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_n</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 4
-          x      y       z anatomy
-      &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;  
-1 -1.56e- 1 -0.338  0.0894 Head   
-2 -3.19e- 2 -0.562 -0.287  Head   
-3  3.90e- 2  0.558  0.354  Body   
-4 -2.37e-12 -0.453  0.165  Head   
-5 -2.20e- 1  0.131 -0.0211 Body   </code></pre>
+          x       y        z anatomy
+      &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;  
+1  0.000179  0.386   0.315   Body   
+2 -0.210    -0.0784  0.0200  Body   
+3  0.0789    1.30    0.776   Body   
+4 -0.193    -0.230   0.00438 Body   
+5 -0.183     0.168  -0.159   Body   </code></pre>
 </div>
 </div>
 <p>Voici en vue isométrique ce en quoi consiste ce nuage de points.</p>
@@ -1836,41 +1836,41 @@ attr(,"const")
 <span><span class="va">varespec</span> <span class="op">|&gt;</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_n</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Callvulg Empenigr Rhodtome Vaccmyrt Vaccviti Pinusylv Descflex Betupube
-7      0.00     5.30        0     0.00     8.20     0.00     0.05        0
-19     0.00     8.92        0     2.42    10.28     0.12     0.02        0
-11     2.37     0.67        0     0.00    12.90     0.80     0.00        0
-10     0.25    11.00        0     0.00    11.90     0.25     0.00        0
-18     0.55    11.13        0     0.00    17.80     0.07     0.00        0
+7      0.00     5.30        0        0     8.20     0.00     0.05     0.00
+25     0.00     6.93        0        0    10.60     0.02     0.10     0.02
+18     0.55    11.13        0        0    17.80     0.07     0.00     0.00
+6      0.30     5.75        0        0    10.50     0.10     0.00     0.00
+3      0.03     3.65        0        0     4.43     0.00     0.00     0.00
    Vacculig Diphcomp Dicrsp Dicrfusc Dicrpoly Hylosple Pleuschr Polypili
-7       8.1     0.28      0     0.45     0.03        0     0.10     0.00
-19      0.0     0.00      0     0.32     0.02        0    21.03     0.02
-11      0.0     0.00      0     0.25     0.25        0    17.70     0.25
-10      0.0     0.00      0     0.25     0.25        0     0.67     0.00
-18      1.6     2.07      0     1.62     0.00        0     4.67     0.02
+7      8.10     0.28   0.00     0.45     0.03     0.00     0.10     0.00
+25     0.05     0.07  14.02    10.82     0.00     0.02    28.77     0.00
+18     1.60     2.07   0.00     1.62     0.00     0.00     4.67     0.02
+6      0.00     0.00   0.00     0.85     0.00     0.00     0.05     0.03
+3      1.65     0.50   0.00     0.55     0.00     0.00     0.05     0.00
    Polyjuni Polycomm Pohlnuta Ptilcili Barbhatc Cladarbu Cladrang Cladstel
-7      0.25     0.00     0.03     0.00     0.00    35.00    42.50     0.28
-19     1.58     0.18     0.07     0.27     0.02     7.23     4.95    22.08
-11     0.25     0.00     0.25     0.67     0.00     9.67    29.80    31.80
-10     0.25     0.00     0.25     0.00     0.00     1.30     8.70    84.30
-18     0.13     0.00     0.13     0.12     0.00    21.73    21.47     3.50
+7      0.25     0.00     0.03     0.00        0    35.00    42.50     0.28
+25     6.98     0.13     0.00     0.22        0     6.00     2.25     0.00
+18     0.13     0.00     0.13     0.12        0    21.73    21.47     3.50
+6      0.08     0.00     0.00     0.08        0    39.00    37.50    11.30
+3      0.00     0.00     0.03     0.03        0     8.80    29.50    55.60
    Cladunci Cladcocc Cladcorn Cladgrac Cladfimb Cladcris Cladchlo Cladbotr
-7      0.35     0.08     0.20     0.25     0.18     0.13     0.08     0.00
-19     0.25     0.10     0.25     0.18     0.10     0.12     0.05     0.02
-11     2.53     0.25     0.25     0.25     0.00     0.25     0.00     0.00
-10     0.25     0.25     0.25     0.00     0.25     0.25     0.25     0.00
-18     0.30     0.18     0.23     0.25     0.25     0.23     0.00     0.00
+7      0.35     0.08     0.20     0.25     0.18     0.13     0.08        0
+25     0.80     0.12     0.57     0.17     0.15     0.07     0.00        0
+18     0.30     0.18     0.23     0.25     0.25     0.23     0.00        0
+6      3.45     0.18     0.20     0.25     0.25     0.23     0.03        0
+3      0.25     0.08     0.25     0.25     0.15     0.10     0.03        0
    Cladamau Cladsp Cetreric Cetrisla Flavniva Nepharct Stersp Peltapht Icmaeric
 7      0.00   0.00     0.05     0.00     0.23     0.20   0.93     0.00     0.03
-19     0.00   0.00     0.00     0.00     0.02     0.00   0.28     0.00     0.00
-11     0.00   0.00     0.00     0.25     0.00     0.00   0.93     0.25     0.00
-10     0.00   0.00     0.25     0.25     0.25     0.00   0.25     0.00     0.00
+25     0.00   0.02     0.03     0.02     0.00     4.87   0.10     0.07     0.00
 18     0.08   0.02     0.02     0.00     0.12     0.02   0.62     0.02     0.00
+6      0.00   0.03     0.35     0.00     0.08     0.00   0.03     0.00     0.00
+3      0.03   0.00     0.05     0.00     0.15     0.15   0.28     0.00     0.00
    Cladcerv Claddefo Cladphyl
-7         0     0.10     0.00
-19        0     0.37     0.00
-11        0     0.00     0.25
-10        0     0.25     0.25
-18        0     0.25     0.00</code></pre>
+7      0.00     0.10        0
+25     0.02     0.05        0
+18     0.00     0.25        0
+6      0.00     0.28        0
+3      0.00     0.08        0</code></pre>
 </div>
 </div>
 <p>Pour effectuer l’AC, nous utiliserons, comme pour l’ACP, le module vegan mais cette fois-ci avec la fonction <code>cca</code>. L’AC en <em>scaling 1</em> est effectuée sur le tableau des abondances avec les espèces comme colonnes et les sites comme lignes. Les matrices d’abondance transposées indique les sites où chaque espèce ont été dénombrées: pour une analyse en <em>scaling 2</em>, on effectue une analyse de correspondance sur la matrice d’abondance (ou d’occurrence) transposée.</p>
@@ -2132,45 +2132,45 @@ Site scores (weighted averages of species scores)
 <div class="cell-output cell-output-stdout">
 <pre><code>Run 0 stress 0 
 Run 1 stress 0 
-... Procrustes: rmse 0.1292102  max resid 0.1760325 
+... Procrustes: rmse 0.1382786  max resid 0.1847321 
 Run 2 stress 0 
-... Procrustes: rmse 0.100068  max resid 0.1357373 
+... Procrustes: rmse 0.1057203  max resid 0.1391843 
 Run 3 stress 0 
-... Procrustes: rmse 0.1388705  max resid 0.1858433 
+... Procrustes: rmse 0.216469  max resid 0.2819841 
 Run 4 stress 0 
-... Procrustes: rmse 0.1721182  max resid 0.2167876 
+... Procrustes: rmse 0.1019555  max resid 0.1335701 
 Run 5 stress 0 
-... Procrustes: rmse 0.03353578  max resid 0.05062898 
+... Procrustes: rmse 0.1090228  max resid 0.160984 
 Run 6 stress 0 
-... Procrustes: rmse 0.1441115  max resid 0.1722704 
+... Procrustes: rmse 0.1378831  max resid 0.1841074 
 Run 7 stress 0 
-... Procrustes: rmse 0.171044  max resid 0.2244589 
+... Procrustes: rmse 0.120225  max resid 0.1614985 
 Run 8 stress 0 
-... Procrustes: rmse 0.1120263  max resid 0.1444549 
+... Procrustes: rmse 0.1116933  max resid 0.1650297 
 Run 9 stress 0 
-... Procrustes: rmse 0.1170677  max resid 0.1595718 
+... Procrustes: rmse 0.1379248  max resid 0.1779135 
 Run 10 stress 0 
-... Procrustes: rmse 0.12952  max resid 0.1738225 
+... Procrustes: rmse 0.1456094  max resid 0.1904091 
 Run 11 stress 0 
-... Procrustes: rmse 0.1249241  max resid 0.1837349 
+... Procrustes: rmse 0.07318483  max resid 0.103166 
 Run 12 stress 0 
-... Procrustes: rmse 0.07212635  max resid 0.1061348 
+... Procrustes: rmse 0.08492714  max resid 0.1119271 
 Run 13 stress 0 
-... Procrustes: rmse 0.09147635  max resid 0.118391 
+... Procrustes: rmse 0.1314383  max resid 0.1721223 
 Run 14 stress 0 
-... Procrustes: rmse 0.1741224  max resid 0.2273009 
+... Procrustes: rmse 0.0740843  max resid 0.1103085 
 Run 15 stress 0 
-... Procrustes: rmse 0.07604216  max resid 0.1052376 
+... Procrustes: rmse 0.1656771  max resid 0.2154395 
 Run 16 stress 0 
-... Procrustes: rmse 0.1505011  max resid 0.1876206 
+... Procrustes: rmse 0.07691067  max resid 0.104863 
 Run 17 stress 0 
-... Procrustes: rmse 0.1256137  max resid 0.1622711 
+... Procrustes: rmse 0.0564382  max resid 0.07600797 
 Run 18 stress 0 
-... Procrustes: rmse 0.1025046  max resid 0.1406042 
+... Procrustes: rmse 0.1199816  max resid 0.1629244 
 Run 19 stress 0 
-... Procrustes: rmse 0.05611547  max resid 0.06967289 
-Run 20 stress 0 
-... Procrustes: rmse 0.127161  max resid 0.1775797 
+... Procrustes: rmse 0.1070435  max resid 0.1426629 
+Run 20 stress 5.154587e-05 
+... Procrustes: rmse 0.1245635  max resid 0.1831757 
 *** Best solution was not repeated -- monoMDS stopping criteria:
     20: stress &lt; smin</code></pre>
 </div>
@@ -2450,20 +2450,20 @@ Number of permutations: 999
 
 Model: rda(formula = varespec ~ N + P + K + Ca + Mg + S + Al + Fe + Mn + Zn + Mo + Fv + Baresoil + Humdepth + pH, data = vareclr, scale = FALSE)
          Df Variance      F Pr(&gt;F)   
-N         1   216.13 4.8470  0.011 * 
-P         1   272.71 6.1159  0.004 **
-K         1   194.97 4.3724  0.011 * 
-Ca        1    24.92 0.5589  0.657   
-Mg        1    52.61 1.1799  0.300   
-S         1   100.07 2.2441  0.108   
-Al        1   177.91 3.9900  0.024 * 
-Fe        1   118.59 2.6595  0.073 . 
+N         1   216.13 4.8470  0.007 **
+P         1   272.71 6.1159  0.006 **
+K         1   194.97 4.3724  0.018 * 
+Ca        1    24.92 0.5589  0.665   
+Mg        1    52.61 1.1799  0.298   
+S         1   100.07 2.2441  0.107   
+Al        1   177.91 3.9900  0.017 * 
+Fe        1   118.59 2.6595  0.076 . 
 Mn        1    25.96 0.5822  0.650   
-Zn        1    35.81 0.8030  0.498   
-Mo        1    23.51 0.5273  0.696   
-Baresoil  1    98.64 2.2122  0.088 . 
-Humdepth  1    43.59 0.9777  0.412   
-pH        1    38.93 0.8730  0.467   
+Zn        1    35.81 0.8030  0.493   
+Mo        1    23.51 0.5273  0.672   
+Baresoil  1    98.64 2.2122  0.101   
+Humdepth  1    43.59 0.9777  0.376   
+pH        1    38.93 0.8730  0.445   
 Residual  9   401.31                 
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
