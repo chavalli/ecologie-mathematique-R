@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.4.550">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>Analyse et modélisation d’agroécosystèmes sur R - 7&nbsp; Biostatistiques</title>
 <style>
@@ -19,7 +19,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -76,7 +76,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -85,34 +91,59 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 </head>
 <body class="nav-sidebar floating">
 
-
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./07a-biostats.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Biostatistiques</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./07a-biostats.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Biostatistiques</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
   </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Analyse et modélisation d’agroécosystèmes sur R</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/chavalli/ecologie-mathematique-R/tree/h2024" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/chavalli/ecologie-mathematique-R/tree/h2024" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -226,7 +257,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
     </ul>
 </div>
-</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
@@ -289,6 +320,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header><hr>
 <p><strong>Objectifs spécifiques</strong>:</p>
 <p>À la fin de ce chapitre, vous</p>
@@ -338,7 +370,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Chaque paramètre est liée à une perspective que l’on désire connaître chez une population. Ces angles d’observations sont les <strong>variables</strong>.</p>
 </section><section id="les-variables" class="level2" data-number="7.2"><h2 data-number="7.2" class="anchored" data-anchor-id="les-variables">
 <span class="header-section-number">7.2</span> Les variables</h2>
-<p>Nous avons abordé au <a href="03-tableaux.html">chapitre&nbsp;<span>3</span></a> la notion de <em>variable</em> par l’intermédiaire d’une donnée. Une variable est l’observation d’une caractéristique décrivant un échantillon. Si la charactéristique varie d’un échantillon à un autre sans que vous en expliquiez la raison (i.e.&nbsp;si identifier la source de la variabilité ne fait pas partie de votre expérience), on parlera de variable aléatoire. Même le hasard est régi par certaines lois: ce qui est aléatoire dans une variable peut être décrit par des <strong>lois de probabilité</strong>, que nous verrons plus bas.</p>
+<p>Nous avons abordé au <a href="03-tableaux.html" class="quarto-xref">chapitre&nbsp;<span>3</span></a> la notion de <em>variable</em> par l’intermédiaire d’une donnée. Une variable est l’observation d’une caractéristique décrivant un échantillon. Si la charactéristique varie d’un échantillon à un autre sans que vous en expliquiez la raison (i.e.&nbsp;si identifier la source de la variabilité ne fait pas partie de votre expérience), on parlera de variable aléatoire. Même le hasard est régi par certaines lois: ce qui est aléatoire dans une variable peut être décrit par des <strong>lois de probabilité</strong>, que nous verrons plus bas.</p>
 <p>Mais restons aux variables pour l’instant. Par convention, on peut attribuer aux variables un symbole mathématique. Par exemple, on peut donner à la masse volumique d’un sol (qui est le résultat d’une méthodologie précise) le symbole <span class="math inline">\(\rho\)</span>. Lorsque l’on attribue une valeur à <span class="math inline">\(\rho\)</span>, on parle d’une donnée. Chaque donnée d’une observation a un indice qui lui est propre, que l’on désigne souvent par <span class="math inline">\(i\)</span>, que l’on place en indice <span class="math inline">\(\rho_i\)</span>. Pour la première donnée, on a <span class="math inline">\(i=1\)</span>, donc <span class="math inline">\(\rho_1\)</span>. Pour un nombre <span class="math inline">\(n\)</span> d’échantillons, on aura <span class="math inline">\(\rho_1\)</span>, <span class="math inline">\(\rho_2\)</span>, <span class="math inline">\(\rho_3\)</span>, …, <span class="math inline">\(\rho_n\)</span>, formant le vecteur <span class="math inline">\(\rho = \left[\rho_1, \rho_2, \rho_3, ..., \rho_n \right]\)</span>.</p>
 <p>En R, une variable est associée à un vecteur ou une colonne d’un tableau.</p>
 <div class="cell">
@@ -373,7 +405,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>L’interprétation <strong>bayésienne</strong> vise à quantifier l’incertitude des phénomènes. Dans cette perspective, plus l’information s’accumule, plus l’incertitude diminue. Cette approche gagne en notoriété notamment parce qu’elle permet de décrire des phénomènes qui, intrinsèquement, ne peuvent être répétés infiniment (absence d’asymptote), comme ceux qui sont bien définis dans le temps ou sur des populations limitées. <em>L’approche bayésienne évalue la probabilité que le modèle soit réel</em>.</li>
 </ul>
 <p>Une erreur courante consiste à aborder des statistiques fréquentielles comme des statistiques bayésiennes. Par exemple, si l’on désire évaluer la probabilité de l’existence de vie sur Mars, on devra passer par le bayésien, car avec les stats fréquentielles, on devra plutôt conclure si les données sont conformes ou non avec l’hypothèse de la vie sur Mars (exemple tirée du blogue <a href="https://dynamicecology.wordpress.com/2011/10/11/frequentist-vs-bayesian-statistics-resources-to-help-you-choose/">Dynamic Ecology</a>).</p>
-<p>Des rivalités factices s’installent entre les tenants des différentes approches, dont chacune, en réalité, répond à des questions différentes dont il convient réfléchir sur les limitations. Bien que les statistiques bayésiennes soient de plus en plus utilisées, nous ne couvrirons dans ce chapitre que l’approche fréquentielle. L’approche bayésienne est néanmoins traitée dans le <a href="07b-bayes.html">chapitre&nbsp;<span>8</span></a>, qui est facultatif au cours.</p>
+<p>Des rivalités factices s’installent entre les tenants des différentes approches, dont chacune, en réalité, répond à des questions différentes dont il convient réfléchir sur les limitations. Bien que les statistiques bayésiennes soient de plus en plus utilisées, nous ne couvrirons dans ce chapitre que l’approche fréquentielle. L’approche bayésienne est néanmoins traitée dans le <a href="07b-bayes.html" class="quarto-xref">chapitre&nbsp;<span>8</span></a>, qui est facultatif au cours.</p>
 </section><section id="les-distributions" class="level2" data-number="7.4"><h2 data-number="7.4" class="anchored" data-anchor-id="les-distributions">
 <span class="header-section-number">7.4</span> Les distributions</h2>
 <p>Une variable aléatoire peut prendre des valeurs selon des modèles de distribution des probabilités. Une distribution est une fonction mathématique décrivant la probabilité d’observer une série d’évènements. Ces évènements peuvent être des valeurs continues, des nombres entiers, des catégories, des valeurs booléennes (Vrai/Faux), etc. Dépendemment du type de valeur et des observations obtenues, on peut associer des variables à différentes lois de probabilité. Toujours, l’aire sous la courbe d’une distribution de probabilité est égale à 1.</p>
@@ -388,10 +420,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://tidyverse.tidyverse.org">"tidyverse"</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ dplyr     1.1.4     ✔ readr     2.1.4
 ✔ forcats   1.0.0     ✔ stringr   1.5.1
-✔ ggplot2   3.5.0     ✔ tibble    3.2.1
-✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+✔ ggplot2   3.4.4     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.0
 ✔ purrr     1.0.2     
 ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ✖ dplyr::filter() masks stats::filter()
@@ -408,7 +440,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_segment.html">geom_segment</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, xend <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="fl">0</span>, yend <span class="op">=</span> <span class="va">y</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"grey50"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="07a-biostats_files/figure-html/bios-binom-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure"><p><img src="07a-biostats_files/figure-html/bios-binom-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section><section id="distribution-de-poisson" class="level3" data-number="7.4.2"><h3 data-number="7.4.2" class="anchored" data-anchor-id="distribution-de-poisson">
@@ -426,12 +461,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_segment.html">geom_segment</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, xend <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="fl">0</span>, yend <span class="op">=</span> <span class="va">y</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"grey50"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="07a-biostats_files/figure-html/bios-poisson-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure"><p><img src="07a-biostats_files/figure-html/bios-poisson-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section><section id="distribution-uniforme" class="level3" data-number="7.4.3"><h3 data-number="7.4.3" class="anchored" data-anchor-id="distribution-uniforme">
 <span class="header-section-number">7.4.3</span> Distribution uniforme</h3>
-<p>La distribution la plus simple est probablement la distribution uniforme. Si la variable est discrète, chaque catégorie est associée à une probabilité égale. Si la variable est continue, la probabilité est directement proportionnelle à la largeur de l’intervalle. On utilise rarement la distribution uniforme en biostatistiques, sinon pour décrire des <em>a priori</em> vagues pour l’analyse bayésienne (ce sujet est traité dans le <a href="07b-bayes.html">chapitre&nbsp;<span>8</span></a>). Nous utilisons la fonction <code>dunif</code>. À la différence des distributions discrètes, les fonctions de distribution de probabilités continues sont appelées des fonctions de densité d’une loi de probabilité (<em>probability density function</em>).</p>
+<p>La distribution la plus simple est probablement la distribution uniforme. Si la variable est discrète, chaque catégorie est associée à une probabilité égale. Si la variable est continue, la probabilité est directement proportionnelle à la largeur de l’intervalle. On utilise rarement la distribution uniforme en biostatistiques, sinon pour décrire des <em>a priori</em> vagues pour l’analyse bayésienne (ce sujet est traité dans le <a href="07b-bayes.html" class="quarto-xref">chapitre&nbsp;<span>8</span></a>). Nous utilisons la fonction <code>dunif</code>. À la différence des distributions discrètes, les fonctions de distribution de probabilités continues sont appelées des fonctions de densité d’une loi de probabilité (<em>probability density function</em>).</p>
 <div class="cell">
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">increment</span> <span class="op">&lt;-</span> <span class="fl">0.01</span></span>
 <span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">4</span>, <span class="fl">4</span>, by <span class="op">=</span> <span class="va">increment</span><span class="op">)</span></span>
@@ -449,7 +487,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">gg_unif</span>, mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">value</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="va">variable</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="07a-biostats_files/figure-html/bios-unif-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure"><p><img src="07a-biostats_files/figure-html/bios-unif-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section><section id="distribution-normale" class="level3" data-number="7.4.4"><h3 data-number="7.4.4" class="anchored" data-anchor-id="distribution-normale">
@@ -474,7 +515,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">gg_norm</span>, mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">value</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="va">variable</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="07a-biostats_files/figure-html/bios-norm-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure"><p><img src="07a-biostats_files/figure-html/bios-norm-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Quelle est la probabilité d’obtenir le nombre 0 chez une observation continue distribuée normalement dont la moyenne est 0 et l’écart-type est de 1? Réponse: 0. La loi normale étant une distribution continue, les probabilités non-nulles ne peuvent être calculées que sur des intervalles. Par exemple, la probabilité de retrouver une valeur dans l’intervalle entre -1 et 2 est calculée en soustrayant la probabilité cumulée à -1 de la probabilité cumulée à 2.</p>
@@ -495,7 +539,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_polygon.html">geom_polygon</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">gg_auc</span>, fill <span class="op">=</span> <span class="st">'#71ad50'</span><span class="op">)</span> <span class="op">+</span> <span class="co"># #71ad50 est un code de couleur format hexadécimal</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="07a-biostats_files/figure-html/bios-norm-prob-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure"><p><img src="07a-biostats_files/figure-html/bios-norm-prob-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">prob_norm_between</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">pnorm</a></span><span class="op">(</span>q <span class="op">=</span> <span class="va">prob_between</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">pnorm</a></span><span class="op">(</span>q <span class="op">=</span> <span class="va">prob_between</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"La probabilité d'obtenir un nombre entre"</span>,</span>
@@ -530,7 +577,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>                              labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">prob_between</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>            mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">labels</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="07a-biostats_files/figure-html/biod-norm-ci-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure"><p><img src="07a-biostats_files/figure-html/biod-norm-ci-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>On pourrait aussi être intéressé à l’intervalle de confiance sur la moyenne. En effet, la moyenne suit aussi une distribution normale, dont la tendance centrale est la moyenne de la distribution, et dont l’écart-type est noté <em>erreur standard</em>. On calcule cette erreur en divisant la variance par le nombre d’observation, ou en divisant l’écart-type par la racine carrée du nombre d’observations. Ainsi, pour 10 échantillons:</p>
@@ -557,7 +607,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>                              labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">prob_between</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>            mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">labels</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="07a-biostats_files/figure-html/bios-norm-mean-ci-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure"><p><img src="07a-biostats_files/figure-html/bios-norm-mean-ci-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section></section><section id="statistiques-descriptives" class="level2" data-number="7.5"><h2 data-number="7.5" class="anchored" data-anchor-id="statistiques-descriptives">
@@ -772,8 +825,8 @@ mean of x
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="images/07_p-hacking.png" class="img-fluid figure-img" width="456"></p>
-<figcaption class="figure-caption">Un sketch humoristique de John Oliver sur le <em>p-hacking</em>, <a href="https://youtu.be/0Rnq1NpHdmw">Last week tonight, 2016</a> (en anglais)</figcaption></figure>
+<figure class="figure"><p><img src="images/07_p-hacking.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="456"></p>
+<figcaption>Un sketch humoristique de John Oliver sur le <em>p-hacking</em>, <a href="https://youtu.be/0Rnq1NpHdmw">Last week tonight, 2016</a> (en anglais)</figcaption></figure>
 </div>
 </div>
 </div>
@@ -814,7 +867,7 @@ alternative hypothesis: true location is not equal to 18</code></pre>
 5 versicolor          4.1</code></pre>
 </div>
 </div>
-<p>Dans la prochaine cellule de code, nous introduisons l’<em>interface-formule</em> de R, où l’on retrouve typiquement le <code>~</code>, entre les variables de sortie à gauche et les variables d’entrée à droite. Dans notre cas, la variable de sortie est la variable testée, <code>Petal.Length</code>, qui varie en fonction du groupe <code>Species</code>, qui est la variable d’entrée (variable explicative) - nous verrons les types de variables plus en détails dans la section sur les modèles statistiques (<a href="#sec-bios-models">chapitre&nbsp;<span>7.8</span></a>).</p>
+<p>Dans la prochaine cellule de code, nous introduisons l’<em>interface-formule</em> de R, où l’on retrouve typiquement le <code>~</code>, entre les variables de sortie à gauche et les variables d’entrée à droite. Dans notre cas, la variable de sortie est la variable testée, <code>Petal.Length</code>, qui varie en fonction du groupe <code>Species</code>, qui est la variable d’entrée (variable explicative) - nous verrons les types de variables plus en détails dans la section sur les modèles statistiques (<a href="#sec-bios-models" class="quarto-xref">chapitre&nbsp;<span>7.8</span></a>).</p>
 <div class="cell">
 <div class="sourceCode" id="cb54"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">Petal.Length</span> <span class="op">~</span> <span class="va">Species</span>,</span>
 <span>       data <span class="op">=</span> <span class="va">iris_pl</span>, var.equal <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -958,7 +1011,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </section><section id="sec-bios-models" class="level2" data-number="7.8"><h2 data-number="7.8" class="anchored" data-anchor-id="sec-bios-models">
 <span class="header-section-number">7.8</span> Les modèles statistiques</h2>
 <p>La modélisation statistique consiste à lier de manière explicite des variables de sortie <span class="math inline">\(y\)</span> (ou variables-réponse / variables dépendantes) à des variables explicatives <span class="math inline">\(x\)</span> (ou variables prédictives / indépendantes / covariables). Les variables-réponse sont modélisées par une fonction des variables explicatives ou prédictives.</p>
-<p>Pourquoi garder les termes <em>explicatives</em> et <em>prédictives</em>? Parce que les modèles statistiques (basés sur des données et non pas sur des mécanismes) sont de deux ordres. D’abord, les modèles <strong>prédictifs</strong> sont conçus pour prédire de manière fiable une ou plusieurs variables-réponse à partir des informations contenues dans les variables qui sont, dans ce cas, prédictives (par exemple : Les séries temporelles au <a href="11-series-temporelles.html">chapitre&nbsp;<span>12</span></a>). Lorsque l’on désire tester des hypothèses pour évaluer quelles variables expliquent la réponse, on parlera de modélisation (et de variables) <strong>explicative</strong>. En inférence statistique, on évaluera les <em>corrélations</em> entre les variables explicatives et les variables-réponse. Un lien de corrélation n’est pas un lien de causalité. L’inférence causale peut en revanche être évaluée par des <a href="https://doi.org/10.1017/CBO9781139979573"><em>modèles d’équations structurelles</em></a>.</p>
+<p>Pourquoi garder les termes <em>explicatives</em> et <em>prédictives</em>? Parce que les modèles statistiques (basés sur des données et non pas sur des mécanismes) sont de deux ordres. D’abord, les modèles <strong>prédictifs</strong> sont conçus pour prédire de manière fiable une ou plusieurs variables-réponse à partir des informations contenues dans les variables qui sont, dans ce cas, prédictives (par exemple : Les séries temporelles au <a href="11-series-temporelles.html" class="quarto-xref">chapitre&nbsp;<span>12</span></a>). Lorsque l’on désire tester des hypothèses pour évaluer quelles variables expliquent la réponse, on parlera de modélisation (et de variables) <strong>explicative</strong>. En inférence statistique, on évaluera les <em>corrélations</em> entre les variables explicatives et les variables-réponse. Un lien de corrélation n’est pas un lien de causalité. L’inférence causale peut en revanche être évaluée par des <a href="https://doi.org/10.1017/CBO9781139979573"><em>modèles d’équations structurelles</em></a>.</p>
 <p>Cette section couvre la modélisation explicative. Les variables qui contribuent à créer les modèles peuvent être de différentes natures et distribuées selon différentes lois de probabilité. Alors que les modèles linéaires simples (<em>lm</em>) impliquent une variable-réponse distribuée de manière continue, les modèles linéaires généralisés peuvent aussi expliquer des variables de sorties discrètes.</p>
 <p>Dans les deux cas, on distinguera les variables fixes et les variables aléatoires. Les <strong>variables fixes</strong> sont les variables testées lors de l’expérience: dose du traitement, espèce/cultivar, météo, etc. Les <strong>variables aléatoires</strong> sont les sources de variation qui génèrent du bruit dans le modèle: les unités expérimentales ou le temps lors de mesures répétées. Les modèles incluant des effets fixes seulement sont des modèles à effets fixes. Généralement, les modèles incluant des variables aléatoires incluent aussi des variables fixes: on parlera alors de modèles mixtes. Nous couvrirons ces deux types de modèles.</p>
 <section id="modèles-à-effets-fixes" class="level3" data-number="7.8.1"><h3 data-number="7.8.1" class="anchored" data-anchor-id="modèles-à-effets-fixes">
@@ -993,7 +1046,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <div class="sourceCode" id="cb71"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">lasrosas.corn</span>, mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">nitro</span>, y <span class="op">=</span> <span class="va">yield</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="07a-biostats_files/figure-html/bios-plot-nitro-agridat-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure"><p><img src="07a-biostats_files/figure-html/bios-plot-nitro-agridat-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>L’hypothèse nulle est que la dose d’azote n’affecte pas le rendement, c’est à dire que le coefficient de pente et nul. Une autre hypothèse est que l’intercept est nul, c’est à dire qu’à une dose de 0, le rendement est de 0. Un modèle linéaire à variable de sortie continue est créé avec la fonction <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code>, pour <em>linear model</em>.</p>
@@ -1092,7 +1148,10 @@ nitro        0.04629164  0.07714271</code></pre>
 ℹ Please use `linewidth` instead.</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="07a-biostats_files/figure-html/bios-lm1-residuals-plot-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure"><p><img src="07a-biostats_files/figure-html/bios-lm1-residuals-plot-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Bien que le jugement soit subjectif, on peut dire avec confiance qu’il n’y a pas structure particulière. En revanche, on pourrait générer un <span class="math inline">\(y\)</span> qui varie de manière quadratique avec <span class="math inline">\(x\)</span>, un modèle linéaire montrera une structure évidente.</p>
@@ -1107,7 +1166,10 @@ nitro        0.04629164  0.07714271</code></pre>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"x"</span>, y <span class="op">=</span> <span class="st">"Résidus"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_hline</a></span><span class="op">(</span>yintercept <span class="op">=</span> <span class="fl">0</span>, col <span class="op">=</span> <span class="st">"red"</span>, size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="07a-biostats_files/figure-html/bios-residuals-example-banana-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure"><p><img src="07a-biostats_files/figure-html/bios-residuals-example-banana-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Également, les résidus ne devraient pas croître avec <span class="math inline">\(x\)</span>.</p>
@@ -1122,7 +1184,10 @@ nitro        0.04629164  0.07714271</code></pre>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"x"</span>, y <span class="op">=</span> <span class="st">"Résidus"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_hline</a></span><span class="op">(</span>yintercept <span class="op">=</span> <span class="fl">0</span>, col <span class="op">=</span> <span class="st">"red"</span>, size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="07a-biostats_files/figure-html/bios-residuals-example-expand-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure"><p><img src="07a-biostats_files/figure-html/bios-residuals-example-expand-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>On pourra aussi inspecter les résidus avec un graphique de leur distribution. Reprenons notre modèle de rendement du maïs.</p>
@@ -1131,7 +1196,10 @@ nitro        0.04629164  0.07714271</code></pre>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>binwidth <span class="op">=</span> <span class="fl">2</span>, color <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Residual"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="07a-biostats_files/figure-html/bios-residuals-agridat-groups-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure"><p><img src="07a-biostats_files/figure-html/bios-residuals-agridat-groups-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>L’histogramme devrait présenter une distribution normale. Les tests de normalité comme le test de Shapiro-Wilk peuvent aider, mais ils sont généralement très sévères.</p>
@@ -1233,7 +1301,10 @@ attr(,"contrasts")$cultivar
 <div class="sourceCode" id="cb97"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">lasrosas.corn</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">topo</span>, y <span class="op">=</span> <span class="va">yield</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="07a-biostats_files/figure-html/bios-lasrosas-topo-boxplot-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure"><p><img src="07a-biostats_files/figure-html/bios-lasrosas-topo-boxplot-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Les différences sont évidentes, et la modélisation devrait montrer des effets différents.</p>
@@ -1336,7 +1407,10 @@ attr(,"contrasts")$statut_o
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>angle <span class="op">=</span> <span class="fl">45</span>, hjust <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="07a-biostats_files/figure-html/bios-encoding-ordinal-plot-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure"><p><img src="07a-biostats_files/figure-html/bios-encoding-ordinal-plot-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Règle générale, pour les variables ordinales, on préférera une distribution linéaire, et c’est l’option par défaut de la fonction <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code>. L’utilisation d’une autre distribution peut être effectuée à la mitaine en utilisant dans le modèle la colonne désirée de la sortie de la fonction <code><a href="https://rdrr.io/r/stats/model.matrix.html">model.matrix()</a></code>.</p>
@@ -1457,7 +1531,10 @@ F-statistic: 575.3 on 7 and 3435 DF,  p-value: &lt; 2.2e-16</code></pre>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Coefficient standardisé"</span>, y <span class="op">=</span> <span class="st">""</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">type</span>, scales <span class="op">=</span> <span class="st">"free"</span>, ncol <span class="op">=</span> <span class="fl">1</span>, strip.position <span class="op">=</span> <span class="st">"right"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="07a-biostats_files/figure-html/bios-multivariate-lm-ci-plot-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure"><p><img src="07a-biostats_files/figure-html/bios-multivariate-lm-ci-plot-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>On y voit qu’à l’exception de la variable <code>long</code>, tous les coefficients sont éloignés de 0. Le coefficient <code>bv</code> est négatif, indiquant que plus la valeur de <code>bv</code> est élevé (donc plus le sol est pauvre en matière organique), plus le rendement est faible. Plus la latitude est élevée (plus on se dirige vers le Nord de l’Argentine), plus le rendement est élevé. La dose d’azote a aussi un effet statistique positif sur le rendement.</p>
@@ -1507,7 +1584,10 @@ F-statistic: 445.1 on 7 and 3435 DF,  p-value: &lt; 2.2e-16</code></pre>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"y"</span>, y <span class="op">=</span> <span class="st">"Résidus"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_hline</a></span><span class="op">(</span>yintercept <span class="op">=</span> <span class="fl">0</span>, col <span class="op">=</span> <span class="st">"red"</span>, size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="07a-biostats_files/figure-html/bios-residuals-mult-reg-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure"><p><img src="07a-biostats_files/figure-html/bios-residuals-mult-reg-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Dans ce modèle, il y a clairement une structure qui nous échappe! L’ajout d’autres variables nous permettrait éventuellement d’obtenir une distribution qui s’approche d’un bruit.</p>
@@ -1582,14 +1662,20 @@ dbl (4): ID, sandales, bas, karma
 <div class="cell">
 <div class="sourceCode" id="cb127"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cochran.wireworms</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">worms</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>bins <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="07a-biostats_files/figure-html/bios-multivariate-glm-hist-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure"><p><img src="07a-biostats_files/figure-html/bios-multivariate-glm-hist-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Explorons les décomptes selon les traitements.</p>
 <div class="cell">
 <div class="sourceCode" id="cb128"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cochran.wireworms</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">trt</span>, y <span class="op">=</span> <span class="va">worms</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="07a-biostats_files/figure-html/bios-multivariate-glm-boxplot-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure"><p><img src="07a-biostats_files/figure-html/bios-multivariate-glm-boxplot-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Les traitements semblent à première vue avoir un effet comparativement au contrôle. Lançons un MLG avec la fonction <code><a href="https://rdrr.io/r/stats/glm.html">glm()</a></code>, et spécifions que la sortie est une distribution de Poisson. Bien que la fonction de lien (<code>link = "log"</code>) soit explictement imposée, le log est la valeur par défaut pour les distributions de Poisson. Ainsi, les coefficients du modèles devront être interprétés selon un modèle <span class="math inline">\(log \left(worms \right) = intercept + pente \times coefficient\)</span>.</p>
@@ -1629,8 +1715,8 @@ Number of Fisher Scoring iterations: 5</code></pre>
 <span>                    UL <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/confint.html">confint</a></span><span class="op">(</span><span class="va">modglm_1</span><span class="op">)</span><span class="op">[</span>, <span class="fl">2</span><span class="op">]</span>,</span>
 <span>                    variable <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coefficients</a></span><span class="op">(</span><span class="va">modglm_1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Waiting for profiling to be done...
-Waiting for profiling to be done...</code></pre>
+<pre><code>Attente de la réalisation du profilage...
+Attente de la réalisation du profilage...</code></pre>
 </div>
 <div class="sourceCode" id="cb133"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">intervals</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1652,7 +1738,10 @@ Waiting for profiling to be done...</code></pre>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Coefficient"</span>, y <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="07a-biostats_files/figure-html/bios-multivariate-glm-plot-effects-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure"><p><img src="07a-biostats_files/figure-html/bios-multivariate-glm-plot-effects-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Les intervalles de confiance se superposant, on ne peut pas conclure qu’un traitement est lié à une réduction plus importante de vers qu’un autre, au seuil 0.05.</p>
@@ -1673,7 +1762,10 @@ Merc 450SL        17.3   8 275.8 180 3.07 3.730 17.60  0  0    3    3</code></pr
 <div class="sourceCode" id="cb138"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mtcars</span> <span class="op">|&gt;</span> </span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">wt</span>, y <span class="op">=</span> <span class="va">vs</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="07a-biostats_files/figure-html/bios-multivariate-glm-cars-plot-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure"><p><img src="07a-biostats_files/figure-html/bios-multivariate-glm-cars-plot-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Il semble y avoir une tendance: les véhicules plus lourds ont plutôt des pistons droits (<code>vs = 0</code>). Vérifions cela.</p>
@@ -1729,7 +1821,10 @@ Number of Fisher Scoring iterations: 5</code></pre>
 <span>        <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>        <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="07a-biostats_files/figure-html/bios-multivariate-nls-plot-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure"><p><img src="07a-biostats_files/figure-html/bios-multivariate-nls-plot-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Le modèle de Mitscherlich pourrait être utilisé.</p>
@@ -1748,7 +1843,10 @@ Number of Fisher Scoring iterations: 5</code></pre>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">engelstad.nitro</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">nitro</span>, y <span class="op">=</span> <span class="va">yield</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html">ylim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">100</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="07a-biostats_files/figure-html/biostats-multivariate-nls-miscth-explore-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure"><p><img src="07a-biostats_files/figure-html/biostats-multivariate-nls-miscth-explore-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p><strong>Exercice</strong>. Changez les paramètres pour visualiser comment la courbe réagit.</p>
@@ -1772,7 +1870,7 @@ Formula: yield ~ A * (1 - exp(-R * (E + nitro)))
 Parameters:
    Estimate Std. Error t value Pr(&gt;|t|)    
 A 75.023427   3.331860  22.517   &lt;2e-16 ***
-E 66.164111  27.251589   2.428   0.0184 *  
+E 66.164111  27.251591   2.428   0.0184 *  
 R  0.012565   0.004881   2.574   0.0127 *  
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
@@ -1780,7 +1878,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 12.34 on 57 degrees of freedom
 
 Number of iterations to convergence: 5 
-Achieved convergence tolerance: 8.066e-06</code></pre>
+Achieved convergence tolerance: 8.058e-06</code></pre>
 </div>
 </div>
 <p>Les paramètres sont différents de zéro, et donnent la courbe suivante.</p>
@@ -1795,7 +1893,10 @@ Achieved convergence tolerance: 8.066e-06</code></pre>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">engelstad.nitro</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">nitro</span>, y <span class="op">=</span> <span class="va">yield</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html">ylim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">100</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="07a-biostats_files/figure-html/bios-multivariate-nls-resultat-plot-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure"><p><img src="07a-biostats_files/figure-html/bios-multivariate-nls-resultat-plot-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Et les résidus…</p>
@@ -1803,7 +1904,10 @@ Achieved convergence tolerance: 8.066e-06</code></pre>
 <div class="sourceCode" id="cb150"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>res <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/residuals.html">residuals</a></span><span class="op">(</span><span class="va">modnl_1</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">res</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>bins <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="07a-biostats_files/figure-html/bios-multivariate-nls-residuals-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure"><p><img src="07a-biostats_files/figure-html/bios-multivariate-nls-residuals-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <div class="cell">
@@ -1812,7 +1916,10 @@ Achieved convergence tolerance: 8.066e-06</code></pre>
 <span>        <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>        <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_hline</a></span><span class="op">(</span>yintercept <span class="op">=</span> <span class="fl">0</span>, colour <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="07a-biostats_files/figure-html/bios-multivariate-nls-residuals2-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure"><p><img src="07a-biostats_files/figure-html/bios-multivariate-nls-residuals2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Les résidus ne sont pas distribués normalement, mais semblent bien partagés de part et d’autre de la courbe.</p>
@@ -1842,10 +1949,10 @@ b_p
 <div class="sourceCode" id="cb152"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://svn.r-project.org/R-packages/trunk/nlme/">"nlme"</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>
-Attaching package: 'nlme'</code></pre>
+Attachement du package : 'nlme'</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>The following object is masked from 'package:dplyr':
+<pre><code>L'objet suivant est masqué depuis 'package:dplyr':
 
     collapse</code></pre>
 </div>
@@ -1866,17 +1973,17 @@ Attaching package: 'nlme'</code></pre>
 Random effects:
  Formula: ~1 | year
         (Intercept)
-StdDev:    20.35438
+StdDev:    20.35426
 
  Formula: ~1 | rep %in% year
         (Intercept) Residual
-StdDev:    11.17449 11.35617
+StdDev:    11.17447 11.35617
 
 Fixed effects:  yield ~ lat + long + nitro + topo + bv 
                  Value Std.Error   DF    t-value p-value
-(Intercept) -1379437.0  55894.55 3430 -24.679273   0.000
-lat           -25453.0   1016.53 3430 -25.039085   0.000
-long           -8432.3    466.05 3430 -18.092989   0.000
+(Intercept) -1379436.9  55894.55 3430 -24.679273   0.000
+lat           -25453.0   1016.53 3430 -25.039084   0.000
+long           -8432.3    466.05 3430 -18.092988   0.000
 nitro              0.0      0.00 3430   1.739757   0.082
 topoHT           -27.7      0.92 3430 -30.122438   0.000
 topoLO             6.8      0.88 3430   7.804733   0.000
@@ -1894,7 +2001,7 @@ bv     -0.121 -0.012 -0.214 -0.023 -0.467  0.346 -0.266
 
 Standardized Within-Group Residuals:
         Min          Q1         Med          Q3         Max 
--4.32360269 -0.66781576 -0.07450854  0.61587533  3.96434003 
+-4.32360269 -0.66781575 -0.07450856  0.61587533  3.96434001 
 
 Number of Observations: 3443
 Number of Groups: 
@@ -1918,22 +2025,22 @@ Number of Groups:
 <pre><code>Nonlinear mixed-effects model fit by maximum likelihood
   Model: yield ~ A * (1 - exp(-R * (E + nitro))) 
   Data: engelstad.nitro 
-       AIC      BIC    logLik
-  477.2285 491.8889 -231.6143
+       AIC     BIC    logLik
+  477.2286 491.889 -231.6143
 
 Random effects:
  Formula: A ~ year | loc
  Structure: General positive-definite, Log-Cholesky parametrization
               StdDev       Corr  
-A.(Intercept)  2.571625268 A.(In)
-A.year         0.003062626 -0.556
-Residual      11.152760017       
+A.(Intercept)  2.608588499 A.(In)
+A.year         0.003066584 -0.556
+Residual      11.152757993       
 
 Fixed effects:  list(A ~ 1, E ~ 1, R ~ 1) 
                  Value Std.Error DF   t-value p-value
-A.(Intercept) 74.58281  4.722807 56 15.792054  0.0000
-E             65.57006 25.534748 56  2.567876  0.0129
-R              0.01308  0.004807 56  2.720245  0.0087
+A.(Intercept) 74.58222  4.722715 56 15.792235  0.0000
+E             65.56721 25.533994 56  2.567840  0.0129
+R              0.01308  0.004808 56  2.720215  0.0087
  Correlation: 
   A.(In) E     
 E  0.379       
@@ -1941,7 +2048,7 @@ R -0.483 -0.934
 
 Standardized Within-Group Residuals:
         Min          Q1         Med          Q3         Max 
--1.83376868 -0.89290221  0.07419032  0.68354473  1.82431443 
+-1.83373140 -0.89293039  0.07418166  0.68353578  1.82434344 
 
 Number of Observations: 60
 Number of Groups: 2 </code></pre>
@@ -1958,11 +2065,14 @@ Number of Groups: 2 </code></pre>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html">ylim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">95</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="07a-biostats_files/figure-html/bios-multivariate-nlme-nl-plot-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure"><p><img src="07a-biostats_files/figure-html/bios-multivariate-nlme-nl-plot-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Les modèles mixtes non linéaires peuvent devenir très complexes lorsque les paramètres, par exemple A, E et R, sont eux-même affectés linéairement par des variables (par exemple <code>A ~ topo</code>). Pour aller plus loin, consultez <a href="https://doi.org/10.3389/fenvs.2017.00081">Parent et al.&nbsp;(2017)</a> ainsi que les <a href="https://github.com/essicolo/site-specific-multilevel-modeling-of-potato-response-to-nitrogen-fertilization">calculs associés à l’article</a>. Ou écrivez-moi un courriel pour en discuter!</p>
-<p><strong>Note</strong>. L’interprétation de <em>p-values</em> sur les modèles mixtes est controversée. À ce sujet, Douglas Bates a écrit une longue lettre à la communauté de développement du module <code>lme4</code>, une alternative à <code>nlme</code>, qui remet en cause l’utilisation des p-values, <a href="https://stat.ethz.ch/pipermail/r-help/2006-May/094765.html">ici</a>. De plus en plus, pour les modèles mixtes, on se tourne vers les statistiques bayésiennes, couvertes dans le <a href="07b-bayes.html">chapitre&nbsp;<span>8</span></a> avec le module greta. Mais en ce qui a trait aux modèles mixtes, le module <a href="https://github.com/paul-buerkner/brms"><code>brms</code></a> automatise bien des aspects de l’approche bayésienne.</p>
+<p><strong>Note</strong>. L’interprétation de <em>p-values</em> sur les modèles mixtes est controversée. À ce sujet, Douglas Bates a écrit une longue lettre à la communauté de développement du module <code>lme4</code>, une alternative à <code>nlme</code>, qui remet en cause l’utilisation des p-values, <a href="https://stat.ethz.ch/pipermail/r-help/2006-May/094765.html">ici</a>. De plus en plus, pour les modèles mixtes, on se tourne vers les statistiques bayésiennes, couvertes dans le <a href="07b-bayes.html" class="quarto-xref">chapitre&nbsp;<span>8</span></a> avec le module greta. Mais en ce qui a trait aux modèles mixtes, le module <a href="https://github.com/paul-buerkner/brms"><code>brms</code></a> automatise bien des aspects de l’approche bayésienne.</p>
 </section></section><section id="aller-plus-loin" class="level3" data-number="7.8.3"><h3 data-number="7.8.3" class="anchored" data-anchor-id="aller-plus-loin">
 <span class="header-section-number">7.8.3</span> Aller plus loin</h3>
 <section id="statistiques-générales" class="level4" data-number="7.8.3.1"><h4 data-number="7.8.3.1" class="anchored" data-anchor-id="statistiques-générales">
@@ -2066,10 +2176,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -2079,8 +2188,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -2093,6 +2211,125 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -2136,6 +2373,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -2161,6 +2399,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -2220,23 +2484,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="./06-python.html" class="pagination-link">
+      <a href="./06-python.html" class="pagination-link" aria-label="Introduction à Python">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Introduction à Python</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./07b-bayes.html" class="pagination-link">
+      <a href="./07b-bayes.html" class="pagination-link" aria-label="Introduction à l'analyse bayésienne en écologie">
         <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Introduction à l’analyse bayésienne en écologie</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
 <footer class="footer"><div class="nav-footer">
-    <div class="nav-footer-left">Analyse et modélisation d’agroécosystèmes est construit avec <a href="https://quarto.org/">Quarto</a>.</div>   
+    <div class="nav-footer-left">
+<p>Analyse et modélisation d’agroécosystèmes est construit avec <a href="https://quarto.org/">Quarto</a>.</p>
+</div>   
     <div class="nav-footer-center">
       &nbsp;
     </div>
-    <div class="nav-footer-right">Lien vers le <a href="https://essicolo.github.io/ecologie-mathematique-R/">manuel original</a>.</div>
+    <div class="nav-footer-right">
+<p>Lien vers le <a href="https://essicolo.github.io/ecologie-mathematique-R/">manuel original</a>.</p>
+</div>
   </div>
 </footer>
 

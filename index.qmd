@@ -10,8 +10,9 @@ Voici la liste des modifications principales apportées jusqu'à présent par ra
 -   Remplacement des *pipes* de tidyverse **`%>%`** par la version **` |> `** introduite en 2021 dans r-base
 -   Correction des liens internet qui ont changé d'adresse
 -   Utilisation des nouvelles éditions des manuels de référence (par exemple [R for data science (2e)](https://r4ds.hadley.nz/) ou [Forecasting: Principles and Practice (3rd ed)](https://otexts.com/fpp3/))
--   Remplacement de certaines fonctions qui ne sont plus maintenues (ex. `slice_sample()` remplace `sample_n()`)
+-   Remplacement de certaines fonctions qui ne sont plus maintenues
 -   Remplacement de certains modules (ex. `renv` remplace `Packrat`)
+-   Mise à jour presque complète du [chapitre @sec-temps] pour intégrer les méthodes avec les modules `tsibble`, `feasts` et `fable`
 
 ## Table des matières
 
