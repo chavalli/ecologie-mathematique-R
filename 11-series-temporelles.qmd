@@ -322,10 +322,26 @@ data("lynx")
 canadian_gas |> autoplot(Volume)
 hydrometeo_ts |> autoplot(mean_temp)
 lynx |> as_tsibble() |> autoplot(value)
-
 ```
 
-Il est possible que l'on retrouve une hiérarchie dans les fluctuations, c'est-à-dire que de grandes fluctuations (saisonnières ou cycliques) peuvent contenir des fluctuations sur des incréments de temps plus petits, un peu comme sur la @fig-ts-lynx-trend-1 où, en plus des fluctuations saisonnières et de la tendance croissante, on pourrait voir une oscillation sur un cycle d'environ 20 ans (mais il faudrait un plus long jeu de données pour confirmer ce cycle).
+Il est possible que l'on retrouve une hiérarchie dans les fluctuations, c'est-à-dire que de grandes fluctuations (saisonnières ou cycliques) peuvent contenir des fluctuations sur des incréments de temps plus petits, un peu comme sur la @fig-ts-lynx-trend-1 où, en plus des fluctuations saisonnières et de la tendance croissante, on pourrait voir une oscillation sur un cycle d'environ 20 ans (mais il faudrait un plus long jeu de données pour confirmer ce cycle). 
+
+Dans certains cas, il peut être intéressant pour la visualisation de calculer la moyenne mobile, en utilisant par exemple la fonction `slider::slide_dbl()`. Ici, pour estimer la tendance des données annuelles à partir de données mensuelles, on effectue une moyenne mobile double (première sur 12 mois, puis la deuxième pour considérer l'année précédente).
+
+```{r}
+#| label: ts-gas-trend-ma
+#| warning: false
+canadian_gas_ma <- canadian_gas |>
+  mutate(
+    vol_12m = slider::slide_dbl(Volume, mean,
+                .before = 5, .after = 6, .complete = TRUE),
+    vol_ma = slider::slide_dbl(vol_12m, mean,
+                .before = 1, .after = 0, .complete = TRUE)
+  )
+canadian_gas_ma |>
+  autoplot(Volume, alpha = 0.2) +
+  geom_line(aes(y = vol_ma), color = "#228866")
+```
 
 ### L'autocorrélation
 
@@ -350,7 +366,6 @@ plot_grid(autoplot(lynx_ts, value) + ggtitle("Lynx: Série temporelle"),
           ACF(lynx_ts, y = bruit_blanc) |> autoplot() + ggtitle("Bruit blanc: Autocorrélation"),
           gg_lag(lynx_ts, y = bruit_blanc, geom = "point") + ggtitle("Bruit blanc: Lag plot"),
           ncol = 3)
-
 ```
 
 ---
@@ -856,8 +871,6 @@ flow_ts_train |>
   facet_grid(name ~ ., scales = "free_y") + ylab("")
 ```
 
-
-
 ```{r}
 #| label: ts-hm-arima-dyn
 flow_darima <- flow_ts_train |> 
@@ -910,6 +923,15 @@ flow_future <- new_data(flow_ts_train, 24) |>
 forecast(flow_darima, flow_future) |> 
   autoplot(flow_ts_train)
 ```
+
+Pour terminer, revenons à notre fonction d'autocorrélation présentée plus tôt. Lorsque vous êtes en présence de covariables, vous pouvez déterminer s'il existe une corrélation croisée entre deux séries univariées avec la fonction `feasts::CCF()`. Attention toutefois : Une corrélation significative n'indique pas nécessairement de cause à effet, et ne renseigne pas sur l'amplitude d'un effet. Si l'on reprend l'exemple de la covariable température, dont l'effet semblait quasi-nul, on obtient ceci.
+
+```{r}
+#| label: ts-hm-ccf-temp
+CCF(flow_ts_train, y = log(`Débit`), x = mean_temp) |> autoplot()
+```
+
+On remarque que les deux séries temporelles sont fortement corrélées sur un cycle de 12 mois, avec un décalage d'environ 3 mois. Cette corrélation nous informe que lorsque la température commence à augmenter au temps $t$, le débit augmente au temps $t_{+3}$, mais diminue au temps $t_{-3}$. De la même façon, si la température diminue au temps $t$, le débit diminue à $t_{+3}$ et augmente à $t_{-3}$. Cela correspond aux crues printannières et automnales. Ainsi, la température et le débit évoluent selon des cycles similaires, ce qui nous amène aux modèles à saisonnalité plus complexes.
 
 ### Les modèles à saisonnalité complexe
 
