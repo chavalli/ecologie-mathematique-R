@@ -612,19 +612,13 @@
     "href": "index.html",
     "title": "Analyse et modélisation d’agroécosystèmes sur R",
     "section": "",
-    "text": "Préface\nCe cours a pour objectif de former les étudiants gradués en génie agroenvironnemental, génie civil, génie écologique, agronomie, biologie, foresterie et écologie en analyse et modélisation de systèmes vivants. Les sujets traités sont l’introduction au langage de programmation R, l’analyse statistique descriptive, la visualisation, la modélisation inférentielle, prédictive et déterministe.\nCe manuel est basé sur le cours Analyse et modélisation d’agroécosystèmes de Essi Parent (voir licence au bas de la page). La version proposée ici tient compte des mises à jour des différents outils présentés dans le manuel original. Elle est construite au format Quarto par Charles Frenette-Vallières et Andrés Felipe Silva Dimaté\nVoici la liste des modifications principales apportées jusqu’à présent par rapport à la version originale :",
-    "crumbs": [
-      "Préface"
-    ]
+    "text": "Préface\nCe cours a pour objectif de former les étudiants gradués en génie agroenvironnemental, génie civil, génie écologique, agronomie, biologie, foresterie et écologie en analyse et modélisation de systèmes vivants. Les sujets traités sont l’introduction au langage de programmation R, l’analyse statistique descriptive, la visualisation, la modélisation inférentielle, prédictive et déterministe.\nCe manuel est basé sur le cours Analyse et modélisation d’agroécosystèmes de Essi Parent (voir licence au bas de la page). La version proposée ici tient compte des mises à jour des différents outils présentés dans le manuel original. Elle est construite au format Quarto par Charles Frenette-Vallières et Andrés Felipe Silva Dimaté\nVoici la liste des modifications principales apportées jusqu’à présent par rapport à la version originale :"
   },
   {
     "objectID": "index.html#table-des-matières",
     "href": "index.html#table-des-matières",
     "title": "Analyse et modélisation d’agroécosystèmes sur R",
     "section": "Table des matières",
-    "text": "Table des matières\n\nIntroduction\nLa science des données avec R\nOrganisation des données et opérations sur des tableaux\nVisualisation\nScience ouverte et reproductibilité\nIntroduction à Python\nBiostatistiques\nIntroduction à l’analyse bayésienne en écologie\nExplorer R\nAssociation, partitionnement et ordination\nDétection de valeurs aberrantes et imputation de données manquantes\nLes séries temporelles\nIntroduction à l’autoapprentissage\nLes données géospatiales\nModélisation de mécanismes écologiques\n\n\nAnalyse et modélisation d’agroécosystèmes de Essi Parent est mis à disposition selon les termes de la licence Creative Commons Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International\n\nFondé(e) sur une œuvre à https://github.com/essicolo/ecologie-mathematique-R/.",
-    "crumbs": [
-      "Préface"
-    ]
+    "text": "Table des matières\n\nIntroduction\nLa science des données avec R\nOrganisation des données et opérations sur des tableaux\nVisualisation\nScience ouverte et reproductibilité\nIntroduction à Python\nBiostatistiques\nIntroduction à l’analyse bayésienne en écologie\nExplorer R\nAssociation, partitionnement et ordination\nDétection de valeurs aberrantes et imputation de données manquantes\nLes séries temporelles\nIntroduction à l’autoapprentissage\nLes données géospatiales\nModélisation de mécanismes écologiques\n\n\nAnalyse et modélisation d’agroécosystèmes de Essi Parent est mis à disposition selon les termes de la licence Creative Commons Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International\n\nFondé(e) sur une œuvre à https://github.com/essicolo/ecologie-mathematique-R/."
   }
 ]
